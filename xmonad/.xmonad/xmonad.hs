@@ -11,6 +11,8 @@ import System.Exit
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+import qualified Data.Char       as C
+import qualified Data.List       as L
 
 import XMonad.Util.Run
 
@@ -35,25 +37,29 @@ import System.Taffybar.Hooks.PagerHints
 main :: IO ()
 main = do
   let backgroundColor = "#000000"
+      headerColor     = "#1d1d1d"
       focusedColor    = "#D64937"
       textColor       = "#bbbbbb"
-      textFont        = "-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
+      textFont        = "Sans-9:bold"
       xpConfig        = defaultXPConfig
-        { font              = textFont
-        , bgColor           = backgroundColor
+        { font              = "xft:" ++ textFont
+        , bgColor           = headerColor
         , fgColor           = textColor
         , bgHLight          = focusedColor
-        , fgHLight          = backgroundColor
-        , borderColor       = focusedColor
+        , fgHLight          = headerColor
+        , borderColor       = backgroundColor
         , autoComplete      = Nothing
-        , promptBorderWidth = 2
+        , promptBorderWidth = 0
+        , height            = 22
+        , alwaysHighlight   = True
+        , searchPredicate   = L.isInfixOf . map C.toLower
         }
-      dmenuCmd = "dmenu_run -b "
+      dmenuCmd = "~/usr/bin/dmenu_run_xft -b "
                  ++ "  -fn '" ++ textFont
-                 ++ "' -nb '" ++ backgroundColor
+                 ++ "' -nb '" ++ headerColor
                  ++ "' -nf '" ++ textColor
                  ++ "' -sb '" ++ focusedColor
-                 ++ "' -sf '" ++ backgroundColor
+                 ++ "' -sf '" ++ headerColor
                  ++ "'"
       terminalCmd = "gnome-terminal --hide-menubar"
 
