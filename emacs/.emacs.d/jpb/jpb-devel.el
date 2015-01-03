@@ -2,8 +2,7 @@
 ;; GNU Emacs configuration file
 ;; ----------------------------
 ;;
-;;  Author: Juan Pedro Bolívar Puente
-;;  Time-stamp: <2015-01-03 12:05:53 raskolnikov>
+;;   Author: Juan Pedro Bolívar Puente
 ;;
 
 ;;

@@ -2,8 +2,7 @@
 ;; GNU Emacs configuration file
 ;; ----------------------------
 ;;
-;;  Author: Juan Pedro Bolivar Puente
-;;  Time-stamp: <2009-05-16 18:25:16 raskolnikov>
+;;   Author: Juan Pedro Bolivar Puente
 ;;
 
 ;;
@@ -11,7 +10,7 @@
 ;;
 (defadvice raise-frame (after make-it-work (&optional frame) activate)
     "Work around some bug? in raise-frame/Emacs/GTK/Metacity/something.
-     Katsumi Yamaoka <yamaoka@jpl.org> posted this in 
+     Katsumi Yamaoka <yamaoka@jpl.org> posted this in
      http://article.gmane.org/gmane.emacs.devel:39702"
      (call-process
      "wmctrl" nil nil nil "-i" "-R"

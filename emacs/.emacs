@@ -1,8 +1,8 @@
+;;
 ;; GNU Emacs configuration file
 ;; ----------------------------
 ;;
-;;  Author: Juan Pedro Bolivar Puente
-;;  Time-stamp: <2015-01-03 00:09:00 raskolnikov>
+;;   Author: Juan Pedro Bolivar Puente
 ;;
 
 (server-start)

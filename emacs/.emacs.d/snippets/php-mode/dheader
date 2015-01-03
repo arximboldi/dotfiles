@@ -1,8 +1,6 @@
 #name: fancy doxygen header
 # --
 /**
- *  Time-stamp:  <2009-04-07 12:36:35 raskolnikov>
- *
  *  @file        `(file-name-nondirectory (buffer-file-name))`
  *  @author      `(author-name)` <`(author-email)`>
  *  @date        `(current-time-string)`

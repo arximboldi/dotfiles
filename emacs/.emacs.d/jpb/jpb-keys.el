@@ -2,8 +2,7 @@
 ;; GNU Emacs configuration file
 ;; ----------------------------
 ;;
-;;  Author: Juan Pedro Bolivar Puente
-;;  Time-stamp: <2013-11-18 20:32:23 raskolnikov>
+;;   Author: Juan Pedro Bolivar Puente
 ;;
 
 (defun jpb-toggle-fullscreen ()

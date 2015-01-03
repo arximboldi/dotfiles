@@ -2,8 +2,7 @@
 ;; GNU Emacs configuration file
 ;; ----------------------------
 ;;
-;;  Author: Juan Pedro Bolivar Puente
-;;  Time-stamp: <2015-01-03 11:28:05 raskolnikov>
+;;   Author: Juan Pedro Bolivar Puente
 ;;
 
 ;; Emacs default options in another file

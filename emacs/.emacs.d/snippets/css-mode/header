@@ -4,7 +4,6 @@
  *  File:       `(file-name-nondirectory (buffer-file-name))`
  *  Author:     `(author-name)` <`(author-email)`>
  *  Date:       `(current-time-string)`
- *  Time-stamp: <2009-01-04 23:43:36 raskolnikov>
  *
  *  $1
  */

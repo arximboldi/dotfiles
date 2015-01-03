@@ -5,7 +5,6 @@
 #  File:       `(file-name-nondirectory (buffer-file-name))`
 #  Author:     `(author-name)` <`(author-email)`>
 #  Date:       `(current-time-string)`
-#  Time-stamp: <2013-05-20 15:26:25 raskolnikov>
 #
 #  $1
 #
