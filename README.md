@@ -45,3 +45,9 @@ figure out all the other dependencies, like `suckless-tools`,
 
 Oh, and this theme looks very well in combination with [the Numix
 theme](https://numixproject.org/).
+
+bash
+----
+
+Here is some bash stuff that enables `git` niceties among other
+things.
