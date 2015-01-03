@@ -1,0 +1,11 @@
+#name: fancy header
+# --
+{% comment %}
+    File:       `(file-name-nondirectory (buffer-file-name))`
+    Author:     `(author-name)` <`(author-email)`>
+    Date:       `(current-time-string)`
+    Time-stamp: <2010-06-21 19:07:52 raskolnikov>
+  
+    $1
+{% endcomment %}
+$0

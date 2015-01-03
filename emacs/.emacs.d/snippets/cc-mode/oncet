@@ -1,0 +1,8 @@
+#name : #ifndef XXX; #define XXX; #endif
+# --
+#ifndef ${1:NS}_${2:`(upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`_TPP_}
+#define $1_$2
+
+$0
+
+#endif /* $1_$2 */

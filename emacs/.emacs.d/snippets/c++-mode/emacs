@@ -1,0 +1,3 @@
+#name : emacs header
+# --
+/* -*- Mode:C++; c-file-style:"bsd"; c-basic-offset:4; */
