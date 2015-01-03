@@ -33,3 +33,15 @@ though:
   * scss-mode-0.5.0
   * smex-3.0
   * yasnippet-0.8.0
+
+xmonad
+------
+
+This is the configuration for `xmonad`.  It also requires a very
+recent `taffybar`, that you can just grab [from
+upstream](https://github.com/travitch/taffybar).  Check `xmonad.hs` to
+figure out all the other dependencies, like `suckless-tools`,
+`cinnamon`, among others.
+
+Oh, and this theme looks very well in combination with [the Numix
+theme](https://numixproject.org/).

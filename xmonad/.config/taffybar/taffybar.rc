@@ -1,0 +1,16 @@
+style "default" {
+  bg[NORMAL] = "#1d1d1d"
+  fg[NORMAL] = "#ccc"
+  text[NORMAL] = "#ccc"
+  font_name = "Sans Bold 9"
+}
+
+style "window-switcher" {
+  bg[NORMAL] = "#1d1d1d"
+  fg[NORMAL] = "#D64937"
+  text[NORMAL] = "#D64937"
+  font_name = "Sans Bold 9"
+}
+
+widget "Taffybar" style "default"
+widget "*WindowSwitcher*" style "window-switcher"
