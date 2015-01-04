@@ -5,6 +5,17 @@
 ;;   Author: Juan Pedro Bolivar Puente
 ;;
 
+;; Fix emacs not finding commands in my custom path
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (replace-regexp-in-string
+                          "[ \t\n]*$"
+                          ""
+                          (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq eshell-path-env path-from-shell) ; for eshell users
+    (setq exec-path (split-string path-from-shell path-separator))))
+(when window-system (set-exec-path-from-shell-PATH))
+
 ;; Emacs default options in another file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
