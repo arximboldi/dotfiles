@@ -65,7 +65,7 @@
     (turn-on-haskell-doc turn-on-haskell-indentation
                          (lambda nil
                            (ghc-init)
-                           (flymake-mode)))))
+                           (flymake-mode)))) t)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(ido-max-directory-size 30000)
