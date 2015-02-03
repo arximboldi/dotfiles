@@ -34,16 +34,6 @@
 
 
 ;;
-;; Shell
-;;
-(setq ansi-color-names-vector ; better contrast colors
-      ["black" "red" "green yellow" "yellow"
-       "deep sky blue" "magenta" "cyan" "white"])
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-(add-hook 'shell-mode-hook '(lambda () (toggle-truncate-lines 1)))
-(setq comint-prompt-read-only t)
-
-;;
 ;; Yasnippet
 ;;
 
@@ -183,19 +173,6 @@
   "compile etags for the current project"
   (interactive "DSources directory: ")
   (compile (concat "cd " (expand-file-name str) "; gtags")))
-
-;;
-;; Better colors
-;;
-
-(require 'ansi-color)
-
-(defun colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
-
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;;
 ;; Rainbow

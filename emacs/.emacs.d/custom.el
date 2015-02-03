@@ -43,6 +43,9 @@
      ("^executivepaper$" "%(o?)evince %dS -paper 7.25x10.5in %d")
      ("^landscape$" "%(o?)evince %dS -paper a4r -s 0 %d")
      ("." "%(o?)evince %d"))))
+ '(ansi-color-for-comint-mode t)
+ '(ansi-color-names-vector
+   ["black" "red" "green yellow" "yellow" "deep sky blue" "magenta" "cyan" "white"])
  '(coffee-extend-comments nil)
  '(coffee-tab-width 4)
  '(column-number-mode t)
@@ -82,6 +85,7 @@
  '(line-number-mode t)
  '(line-spacing 4)
  '(menu-bar-mode nil)
+ '(multi-term-dedicated-select-after-open-p t)
  '(mumamo-chunk-coloring 2)
  '(projectile-global-mode t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))

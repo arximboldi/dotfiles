@@ -5,6 +5,50 @@
 ;;   Author: Juan Pedro Bolivar Puente
 ;;
 
+;;
+;; Emacs default options in another file.
+;; Needs to be first thing evah!
+;;
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+
+;;
+;; Term
+;;
+
+;; Needed for multi-term to work
+(if (not (fboundp 'ad-advised-definition-p))
+    (defun ad-advised-definition-p (definition)
+      "Return non-nil if DEFINITION was generated from advice information."
+      (if (or (ad-lambda-p definition)
+              (macrop definition)
+              (ad-compiled-p definition))
+          (let ((docstring (ad-docstring definition)))
+            (and (stringp docstring)
+                 (get-text-property 0 'dynamic-docstring-function docstring))))))
+
+(require 'multi-term)
+(dolist (hook (list 'term-mode-hook))
+  (add-hook hook '(lambda () (yas-minor-mode -1))))
+
+;;
+;; Shell
+;;
+(require 'ansi-color)
+(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-hook 'shell-mode-hook
+          '(lambda ()
+             (toggle-truncate-lines 1)
+             (set-process-query-on-exit-flag (get-process "shell") nil)))
+(setq comint-prompt-read-only t)
+
+(defun colorize-compilation-buffer ()
+  (when (eq major-mode 'compilation-mode)
+    (ansi-color-apply-on-region compilation-filter-start (point-max))))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+
 ;; Fix emacs not finding commands in my custom path
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
@@ -15,10 +59,6 @@
     (setq eshell-path-env path-from-shell) ; for eshell users
     (setq exec-path (split-string path-from-shell path-separator))))
 (when window-system (set-exec-path-from-shell-PATH))
-
-;; Emacs default options in another file
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
 
 ;; Fix shit
 
@@ -88,19 +128,16 @@ Also returns nil if pid is nil."
   (shrink-window (- (window-height) 12))
   (shell))
 
+(defun small-term ()
+  (interactive)
+  (multi-term-dedicated-toggle))
+
 (defun small-eshell ()
   (interactive)
   (split-window-vertically)
   (other-window 1)
   (shrink-window (- (window-height) 12))
   (eshell))
-
-(defun small-window (shellcmd)
-  (interactive)
-  (split-window-vertically)
-  (other-window 1)
-  (shrink-window (- (window-height) 12))
-  (shellcmd))
 
 (add-hook 'write-file-hooks 'time-stamp)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)

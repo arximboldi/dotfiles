@@ -58,7 +58,7 @@
 ;; Key bindings
 ;;
 
-(global-set-key [f7]    'small-shell)
+(global-set-key [f7]    'small-term)
 (global-set-key [f8]    'compile)
 (global-set-key [f9]    'jpb-gdb)
 (global-set-key [C-f10] 'indent-buffer)
