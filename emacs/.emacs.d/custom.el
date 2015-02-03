@@ -90,7 +90,7 @@
  '(mumamo-chunk-coloring 2)
  '(projectile-global-mode t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
- '(scroll-bar-mode (quote right))
+ '(scroll-bar-mode nil)
  '(scroll-conservatively 1)
  '(scroll-step 1)
  '(send-mail-function nil)
