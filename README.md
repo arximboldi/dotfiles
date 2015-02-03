@@ -43,6 +43,10 @@ upstream](https://github.com/travitch/taffybar).  Check `xmonad.hs` to
 figure out all the other dependencies, like `suckless-tools`,
 `cinnamon`, among others.
 
+It also depends on
+[wallpaperd](https://projects.pekdon.net/projects/wallpaperd) which
+may be installed separatelly.
+
 Oh, and this theme looks very well in combination with [the Numix
 theme](https://numixproject.org/).
 
