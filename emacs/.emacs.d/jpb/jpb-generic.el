@@ -16,6 +16,9 @@
 ;; Term
 ;;
 
+(add-hook 'term-mode-hook
+          '(lambda() (set (make-local-variable 'global-hl-line-mode) nil)))
+
 ;; Needed for multi-term to work
 (if (not (fboundp 'ad-advised-definition-p))
     (defun ad-advised-definition-p (definition)
