@@ -64,7 +64,6 @@
       (0.1870967741935484 . 0.35714285714285715)))))
  '(frame-background-mode (quote dark))
  '(global-hl-line-mode t)
- '(global-rainbow-delimiters-mode t)
  '(haskell-mode-hook
    (quote
     (turn-on-haskell-doc turn-on-haskell-indentation

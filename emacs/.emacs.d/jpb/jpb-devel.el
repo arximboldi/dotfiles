@@ -179,7 +179,7 @@
 ;;
 
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 (cl-loop
  for index from 1 to rainbow-delimiters-max-face-count do
