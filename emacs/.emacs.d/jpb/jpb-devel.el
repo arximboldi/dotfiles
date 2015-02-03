@@ -136,6 +136,7 @@
 		      (setq indent-tabs-mode nil))))
 
 (add-to-list 'auto-mode-alist '("\\.tpp\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
 
 (add-hook 'c-mode-common-hook
 	  (function (lambda ()
