@@ -1,7 +1,7 @@
 style "default" {
   bg[NORMAL] = "#1d1d1d"
-  fg[NORMAL] = "#ccc"
-  text[NORMAL] = "#ccc"
+  fg[NORMAL] = "#777"
+  text[NORMAL] = "#777"
   font_name = "Sans Bold 9"
 }
 

@@ -186,15 +186,15 @@ main = do
 
   runProcessWithInput "killall" ["nm-applet"] ""
   runProcessWithInput "killall" ["taffybar-linux-x86_64"] ""
-  runProcessWithInput "killall" ["mpDris2", "-9"] ""
+  runProcessWithInput "killall" ["mpDris", "-9"] ""
   runProcessWithInput "killall" ["wallpaperd"] ""
   spawnPipe "wallpaperd"
+  spawnPipe "mpDris"
   spawnPipe "cinnamon-settings-daemon"
   spawnPipe "tracker-control -s"
   spawnPipe "nautilus -n"
   spawnPipe "nm-applet"
   spawnPipe "~/.cabal/bin/taffybar"
-  spawnPipe "mpDris2"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook defaultConfig
     { terminal           = terminalCmd
