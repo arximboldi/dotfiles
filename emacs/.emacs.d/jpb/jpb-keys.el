@@ -62,6 +62,7 @@
 (global-set-key [f8]    'compile)
 (global-set-key [f9]    'jpb-gdb)
 (global-set-key [C-f10] 'indent-buffer)
+(global-set-key [f12]   'zoom-window-zoom)
 
 ;; Windmode rocks
 (global-set-key [s-left]  'windmove-left)
