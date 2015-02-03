@@ -51,8 +51,9 @@
  '(coffee-tab-width 4)
  '(column-number-mode t)
  '(compilation-always-kill t)
+ '(compilation-ask-about-save t)
  '(compilation-skip-threshold 2)
- '(confirm-kill-emacs (quote yes-or-no-p))
+ '(confirm-kill-emacs nil)
  '(debug-on-error (quote (nil)))
  '(ecb-layout-window-sizes
    (quote
