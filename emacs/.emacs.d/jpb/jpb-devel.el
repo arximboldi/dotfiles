@@ -147,6 +147,11 @@
   (setq auto-mode-alist (remove '("\\.h\\'" . c++-mode) auto-mode-alist)))
 
 ;;
+;; QML
+;;
+(add-to-list 'auto-mode-alist '("\\.qml\\'" . js-mode))
+
+;;
 ;; Gtags
 ;;
 
