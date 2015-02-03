@@ -41,6 +41,11 @@
 (global-set-key "\M-x" 'jpb-smex-load-and-run)
 
 ;;
+;; Git
+;;
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;;
 ;; Gtags
 ;;
 
