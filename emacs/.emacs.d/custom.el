@@ -52,6 +52,7 @@
  '(column-number-mode t)
  '(compilation-always-kill t)
  '(compilation-ask-about-save t)
+ '(compilation-scroll-output (quote first-error))
  '(compilation-skip-threshold 2)
  '(confirm-kill-emacs nil)
  '(debug-on-error (quote (nil)))
