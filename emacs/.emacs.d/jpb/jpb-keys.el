@@ -21,7 +21,7 @@
 
 ;; Display ido results vertically, rather than horizontally
 (setq ido-decorations
-      (quote ("\n-> " "" "\n   " "\n   ..." "[" "]"
+      (quote ("\n ▶ " "" "\n   " "\n   ..." "[" "]"
 	      " [No match]"
 	      " [Matched]"
 	      " [Not readable]"
