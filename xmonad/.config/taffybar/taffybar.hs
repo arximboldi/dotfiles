@@ -48,7 +48,8 @@ main = do
         , graphBackgroundColor = bg
         , graphBorderColor = bg
         , graphPadding = 0
-       }
+        , graphBorderWidth = 0
+        }
       cpuCfg = defaultGraphConfig
         { graphDataColors = [ fg
                             , fg
@@ -57,6 +58,7 @@ main = do
         , graphBackgroundColor = bg
         , graphBorderColor = bg
         , graphPadding = 0
+        , graphBorderWidth = 0
         }
       logCfg = defaultPagerConfig
         { activeWorkspace = colorize "yellow" "" . escape
