@@ -114,7 +114,11 @@
 ;;
 ;; Debug
 ;;
-
+(defun jpb-gdb ()
+  (interactive)
+  (if (buffer-live-p gud-comint-buffer)
+      (gdb-restore-windows)
+    (call-interactively 'gdb)))
 (setq gdb-many-windows t)
 
 ;;
