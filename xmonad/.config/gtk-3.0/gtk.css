@@ -1,0 +1,22 @@
+.window-frame:backdrop,
+.window-frame,
+.window-frame.tiled,
+.window-frame.popup {
+    box-shadow:none;
+    box-shadow: none;
+    margin: 0px;
+    background: #2D2D2D;
+}
+
+.window-frame.tooltip.csd,
+.window-frame.popup.csd,
+.window-frame.popup {
+    border-radius:0px;
+    box-shadow: none;
+    margin: 0px;
+    background: #2D2D2D;
+}
+
+* {
+    border-radius: 0
+}
