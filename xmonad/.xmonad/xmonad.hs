@@ -194,7 +194,7 @@ main = do
   spawnPipe "tracker-control -s"
   spawnPipe "nautilus -n"
   spawnPipe "nm-applet"
-  spawnPipe "~/.cabal/bin/taffybar"
+  spawnPipe "sleep 1 && ~/.cabal/bin/taffybar"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook defaultConfig
     { terminal           = terminalCmd
