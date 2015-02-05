@@ -79,6 +79,10 @@ may be installed separatelly.
 Oh, and this theme looks very well in combination with [the Numix
 theme](https://numixproject.org/).
 
+To make GTK apps look nice, I also like setting
+`org.cinnamon.settings-daemon.plugins.xsettings:overrides` to
+`{'Gtk/DecorationLayout': <''>}`.
+
 bash
 ----
 
