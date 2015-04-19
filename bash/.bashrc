@@ -49,6 +49,8 @@ alias ll='ls --color=auto -lh'
 alias la='ls --color=auto -A'
 alias l='ls --color=auto -CF'
 
+alias open=xdg-open
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
