@@ -36,7 +36,7 @@ import System.Taffybar.Hooks.PagerHints
 
 main :: IO ()
 main = do
-  let backgroundColor = "#000000"
+  let backgroundColor = "#2d2d2d"
       headerColor     = "#1d1d1d"
       focusedColor    = "#D64937"
       textColor       = "#bbbbbb"
@@ -199,7 +199,7 @@ main = do
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
-    , borderWidth        = 2
+    , borderWidth        = 4
     , modMask            = mod4Mask
     , workspaces         = [ "web", "emacs", "misc", "mail" ]
     , normalBorderColor  = backgroundColor
