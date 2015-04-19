@@ -23,9 +23,10 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Circle
 import XMonad.Layout.Magnifier
-
+import XMonad.Layout.Renamed
+import XMonad.Actions.NoBorders
+import XMonad.Actions.Navigation2D
 import XMonad.Prompt
-import XMonad.Prompt.Workspace
 import XMonad.Prompt.RunOrRaise
 import XMonad.Prompt.Window
 
@@ -72,7 +73,17 @@ main = do
         , ((mask .|. shiftMask, xK_p), runOrRaisePrompt xpConfig)
         , ((mask .|. shiftMask, xK_g), windowPromptGoto  xpConfig)
         , ((mask .|. shiftMask, xK_b), windowPromptBring xpConfig)
-        , ((mask, xK_w), workspacePrompt xpConfig (windows . W.view))
+        -- , ((mask, xK_w), workspacePrompt xpConfig (windows . W.view))
+              -- Directional navigation of windows
+        , ((mask, xK_Right), windowGo R False)
+        , ((mask, xK_Left ), windowGo L False)
+        , ((mask, xK_Up   ), windowGo U False)
+        , ((mask, xK_Down ), windowGo D False)
+          -- Swap adjacent windows
+        , ((mask .|. shiftMask, xK_Right), windowSwap R False)
+        , ((mask .|. shiftMask, xK_Left ), windowSwap L False)
+        , ((mask .|. shiftMask, xK_Up   ), windowSwap U False)
+        , ((mask .|. shiftMask, xK_Down ), windowSwap D False)
         -- close focused window
         , ((mask, xK_c), kill)
          -- Rotate through the available layout algorithms
@@ -89,6 +100,8 @@ main = do
         , ((mask, xK_j), windows W.focusUp)
         -- Move focus to the master window
         , ((mask, xK_m), windows W.focusMaster)
+        -- Toggle border
+        , ((mask,  xK_g ), withFocused toggleBorder)
         -- Swap the focused window and the master window
         , ((mask, xK_Return), windows W.swapMaster)
         -- Swap the focused window with the next window
@@ -122,9 +135,9 @@ main = do
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
         -- Maximize
-        , ((mask              , xK_plus ), sendMessage MagnifyMore)
-        , ((mask              , xK_minus), sendMessage MagnifyLess)
-        , ((mask              , xK_o    ), sendMessage Toggle     )
+        , ((mask .|. shiftMask, xK_plus ), sendMessage MagnifyMore)
+        , ((mask .|. shiftMask, xK_minus), sendMessage MagnifyLess)
+        , ((mask              , xK_o    ), sendMessage Toggle)
         -- , ((mask, xK_backslash), withFocused (sendMessage . maximizeRestore))
         -- , ((mask, xK_plus), withFocused (sendMessage . maximize))
         ]
@@ -146,7 +159,7 @@ main = do
   let layout' = smartBorders normalLayout
         where
           tallLayout  = Tall 1 (3/100) (6/10)
-          circleLayout = magnifiercz' (100/80) Circle
+          circleLayout = renamed [ Replace "Circle" ] $ magnifiercz' (100/80) Circle
           normalLayout = circleLayout ||| tallLayout ||| Full
 
   let manageHook' = composeAll
@@ -196,7 +209,7 @@ main = do
   spawnPipe "nm-applet"
   spawnPipe "sleep 1 && ~/.cabal/bin/taffybar"
 
-  xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook defaultConfig
+  xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
     , borderWidth        = 4
