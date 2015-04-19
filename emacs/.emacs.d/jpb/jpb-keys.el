@@ -70,10 +70,10 @@
 (global-set-key [f12]   'zoom-window-zoom)
 
 ;; Windmode rocks
-(global-set-key [s-left]  'windmove-left)
-(global-set-key [s-right] 'windmove-right)
-(global-set-key [s-down]  'windmove-down)
-(global-set-key [s-up]    'windmove-up)
+(global-set-key [C-M-left]  'windmove-left)
+(global-set-key [C-M-right] 'windmove-right)
+(global-set-key [C-M-down]  'windmove-down)
+(global-set-key [C-M-up]    'windmove-up)
 
 ;; Scrolling
 (global-set-key '[C-M-up] 'scroll-down-keep-cursor)
