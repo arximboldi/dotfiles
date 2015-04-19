@@ -63,6 +63,7 @@
       (0.1935483870967742 . 0.35714285714285715)
       (0.1870967741935484 . 0.6190476190476191)
       (0.1870967741935484 . 0.35714285714285715)))))
+ '(focus-follows-mouse t)
  '(frame-background-mode (quote dark))
  '(global-hl-line-mode t)
  '(haskell-mode-hook
@@ -91,6 +92,12 @@
  '(mumamo-chunk-coloring 2)
  '(projectile-global-mode t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
+ '(safe-local-variable-values
+   (quote
+    ((eval when
+           (fboundp
+            (quote rainbow-mode))
+           (rainbow-mode 1)))))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1)
  '(scroll-step 1)
@@ -108,4 +115,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(fringe ((t (:background "black" :foreground "#888")))))
