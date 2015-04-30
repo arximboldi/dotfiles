@@ -13,6 +13,12 @@
 (load custom-file 'noerror)
 
 ;;
+;; Compat for apt-utils
+;;
+(defun make-local-hook (hook)
+  nil)
+
+;;
 ;; Term
 ;;
 
