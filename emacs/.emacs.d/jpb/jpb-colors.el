@@ -8,8 +8,6 @@
 ;; colors are now set in custom.el file.
 ;;
 
-(require 'color-theme)
-
 (defun color-theme-jpb-black ()
   "Based on color-theme-charcoal. Color theme by Lars Chr. Hausmann, created 2003-03-24."
   (interactive)

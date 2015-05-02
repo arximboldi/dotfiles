@@ -23,7 +23,6 @@
              '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
-(require 'jpb-colors)
 (require 'jpb-generic)
 (require 'jpb-mail)
 (require 'jpb-devel)
