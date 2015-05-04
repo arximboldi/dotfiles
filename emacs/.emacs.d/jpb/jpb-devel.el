@@ -197,7 +197,7 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 (cl-loop
- for index from 1 to rainbow-delimiters-max-face-count do
+ for index from 1 to (- rainbow-delimiters-max-face-count 1) do
  (let* ((face (intern (format "rainbow-delimiters-depth-%d-face" index)))
         (total rainbow-delimiters-max-face-count)
         (perc (max (- (+ total 40) (* index 4)) 20)))
