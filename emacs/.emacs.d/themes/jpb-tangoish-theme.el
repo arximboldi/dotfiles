@@ -13,8 +13,7 @@
 (custom-theme-set-faces
  'jpb-tangoish
  '(default ((t (:background "#121212" :foreground "#eeeeec" :height 150 :family "Inconsolata"))))
- '(cursor ((t (:foreground "yellow"))))
- '(default ((t )))
+ '(cursor ((t (:foreground "black" :background "yellow"))))
  '(fringe ((t (:background "#121212" :foreground "#888"))))
  '(highlight ((t (:background "#202020"))))
  '(region ((t (:background "black"))))
@@ -28,6 +27,8 @@
  ;;'(minibuffer-prompt ((t (:foreground "#729fcf"))))
  '(font-lock-builtin-face ((t (:foreground "#729fcf"))))
  '(font-lock-comment-face ((t (:foreground "#888a85"))))
+ ;; '(font-lock-label-face ((t (:foreground "#888a85"))))
+ ;; '(font-lock-label-face ((t (:foreground "#888a85"))))
  '(font-lock-constant-face ((t (:foreground "#ad7fa8"))))
  '(font-lock-function-name-face ((t (:foreground "#729fcf"))))
  '(font-lock-keyword-face ((t (:foreground "#fcaf3e"))))
