@@ -26,6 +26,7 @@
 (require 'jpb-generic)
 (require 'jpb-mail)
 (require 'jpb-devel)
+(require 'jpb-cpp11)
 (require 'jpb-keys)
 
 (desktop-save-mode 1)
