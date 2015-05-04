@@ -1,0 +1,58 @@
+/**
+ * Add using Stylish.
+ * Works on top of the standard Developer Theme.
+ * Base on: https://userstyles.org/styles/108505/developer-theme-for-firefox-34-dark-version
+ */
+:root[devtoolstheme="dark"] {
+  /* Chrome */
+  --chrome-background-color: #1d1d1d;
+  --chrome-color: #999;
+  --chrome-secondary-background-color: #2D2D2D;
+  --chrome-navigator-toolbox-separator-color: rgba(0,0,0,.2);
+  --chrome-nav-bar-separator-color: rgba(0,0,0,.0);
+  --chrome-nav-buttons-background: #1d1d1d;
+  --chrome-nav-buttons-hover-background: #000000;
+  --chrome-selection-color: #fff;
+  --chrome-selection-background-color: #D64937;
+
+  /* Tabs */
+  --tabs-toolbar-color: #777777;
+  --tab-background-color: #1d1d1d;
+  --tab-color: #777777;
+  --tab-hover-background-color: #000000;
+  --tab-separator-color: #2d2d2d;
+  --tab-selection-color: #DCDCDC;
+  --tab-selection-background-color: #2D2D2D;
+  --tab-selection-box-shadow: 0 3px 0 #D64937 inset,
+                                     0 8px 3px -5px #2D2D2D inset,
+                                     0 -1px 0 #2D2D2D inset;
+  --pinned-tab-glow: radial-gradient(22px at center calc(100% - 2px), rgba(76,158,217,0.9) 13%, rgba(0,0,0,0.4) 16%, transparent 70%);
+
+  /* Toolbar buttons */
+  --toolbarbutton-hover-background: rgba(33,33,33,.6) linear-gradient(rgba(33,33,33,.6), rgba(33,33,33,.6)) padding-box;
+  --toolbarbutton-hover-boxshadow: none;
+  --toolbarbutton-hover-bordercolor: rgba(33,33,33,.6);
+  --toolbarbutton-active-background: rgba(33,33,33,1) linear-gradient(rgba(33,33,33,1), rgba(33,33,33,1)) border-box;
+  --toolbarbutton-active-boxshadow: none;
+  --toolbarbutton-active-bordercolor: rgba(33,33,33,.8);
+  --toolbarbutton-checkedhover-backgroundcolor: #1D4F73;
+  --toolbarbutton-combined-boxshadow: none;
+  --toolbarbutton-combined-backgroundimage: linear-gradient(#5F6670 0, #5F6670 18px);
+
+  /* Identity box */
+  --identity-box-chrome-color: #46afe3;
+  --identity-box-chrome-background-image: linear-gradient(#5F6670 0, #5F6670 100%);
+  --identity-box-verified-background-image: linear-gradient(#5F6670 0, #5F6670 100%);
+  --verified-identity-box-backgroundcolor: transparent;
+
+  /* Url and search bars */
+  --url-and-searchbar-background-color: #1D1D1D;
+  --url-and-searchbar-color: #fff;
+  --urlbar-dropmarker-region: rect(0px, 11px, 14px, 0px);
+  --urlbar-dropmarker-active-region: rect(0px, 22px, 14px, 11px);
+  --urlbar-dropmarker-2x-region: rect(0px, 11px, 14px, 0px);
+  --urlbar-dropmarker-active-2x-region: rect(0px, 22px, 14px, 11px);
+
+  /* Menu button separator */
+  --panel-ui-button-background-image: linear-gradient(to bottom, transparent, #555 30%, #555 70%, transparent);
+}
