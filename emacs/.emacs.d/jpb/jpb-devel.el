@@ -165,9 +165,6 @@
 ;; Gtags
 ;;
 
-(require 'gtags)
-(gtags-mode 1)
-
 (defun gtags-root-dir ()
     "Returns GTAGS root directory or nil if doesn't exist."
     (with-temp-buffer
@@ -184,10 +181,15 @@
       (gtags-update)))
 (add-hook 'after-save-hook #'gtags-update-hook)
 
-(defun compile-tags (str)
+(defun compile-gtags (str)
   "compile etags for the current project"
   (interactive "DSources directory: ")
   (compile (concat "cd " (expand-file-name str) "; gtags")))
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
 
 ;;
 ;; Rainbow
@@ -204,3 +206,9 @@
    (set-face-attribute face nil :foreground (format "gray%d" perc))))
 
 (provide 'jpb-devel)
+
+;;
+;; Update copyright
+;;
+
+(add-hook 'before-save-hook 'copyright-update)
