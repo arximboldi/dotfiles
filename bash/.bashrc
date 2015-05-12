@@ -107,3 +107,7 @@ export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 # Google cloud stuff
 source ~/soft/google-cloud-sdk/path.bash.inc
 source ~/soft/google-cloud-sdk/completion.bash.inc
+
+# User
+export EMAIL="raskolnikov@gnu.org"
+export USER="Juan Pedro Bolívar Puente"
