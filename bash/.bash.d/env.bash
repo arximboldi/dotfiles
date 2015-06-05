@@ -2,6 +2,8 @@
 export EMAIL="raskolnikov@gnu.org"
 export USER="Juan Pedro Bolívar Puente"
 
+export EDITOR="emacsclient -a emacs24"
+
 
 export LCVER=3.7
 export LC="ccache clang-$LCVER"
