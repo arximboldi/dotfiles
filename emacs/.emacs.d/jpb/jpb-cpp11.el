@@ -51,19 +51,19 @@
            ))
     ) t)
 
-(defun c++-template-args-cont (langelem)
-  "Control indentation of template parameters handling the special case of '>'.
-   Possible Values:
-   0   : The first non-ws character is '>'. Line it up under 'template'.
-   nil : Otherwise, return nil and run next lineup function."
-  (save-excursion
-    (beginning-of-line)
-    (if (re-search-forward "^[\t ]*>" (line-end-position) t)
-        0)))
+;; (defun c++-template-args-cont (langelem)
+;;   "Control indentation of template parameters handling the special case of '>'.
+;;    Possible Values:
+;;    0   : The first non-ws character is '>'. Line it up under 'template'.
+;;    nil : Otherwise, return nil and run next lineup function."
+;;   (save-excursion
+;;     (beginning-of-line)
+;;     (if (re-search-forward "^[\t ]*>" (line-end-position) t)
+;;         0)))
 
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (c-set-offset 'template-args-cont
-                          '(c++-template-args-cont c-lineup-template-args +))))
+;; (add-hook 'c++-mode-hook
+;;           (lambda ()
+;;             (c-set-offset 'template-args-cont
+;;                           '(c++-template-args-cont c-lineup-template-args +))))
 
 (provide 'jpb-cpp11)
