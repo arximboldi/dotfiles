@@ -1,0 +1,25 @@
+[core]
+	editor = emacsclient -a emacs24
+	excludesfile = /home/raskolnikov/.gitignore
+[user]
+	name = Juan Pedro Bolívar Puente
+	email = raskolnikov@gnu.org
+[push]
+	default = simple
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	cp = cheery-pick
+        lol = log --graph --decorate --pretty=oneline --abbrev-commit
+        lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+[color]
+        branch = auto
+        diff = auto
+        interactive = auto
+        status = auto
+[gui]
+	fontdiff = -family \"DejaVu Sans Mono\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+[credential]
+	helper = cache --timeout=360000
