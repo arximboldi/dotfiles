@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [ $# -gt 0 ]
-then
-    emacsclient -a "/usr/bin/emacs24-x" $* &
-else
-    emacsclient -a "/usr/bin/emacs24-x" ~/doc/notes/notes.org $* &
-fi
