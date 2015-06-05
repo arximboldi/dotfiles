@@ -208,6 +208,11 @@
 (provide 'jpb-devel)
 
 ;;
+;; Coffee
+;;
+(require 'coffee-mode)
+
+;;
 ;; Update copyright
 ;;
 
