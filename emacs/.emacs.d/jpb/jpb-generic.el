@@ -151,4 +151,17 @@ Also returns nil if pid is nil."
 (add-hook 'write-file-hooks 'time-stamp)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;;
+;; Show mode-line as inactive when no focus. Really helps when using
+;; xmonad, IMHO
+;;
+
+(add-hook 'focus-out-hook
+          (lambda ()
+            (copy-face 'mode-line '--mode-line-backup)
+            (copy-face 'mode-line-inactive 'mode-line)))
+(add-hook 'focus-in-hook
+          (lambda ()
+            (copy-face '--mode-line-backup 'mode-line)))
+
 (provide 'jpb-generic)
