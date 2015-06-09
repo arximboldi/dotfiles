@@ -35,6 +35,9 @@ alias se='SUDO_EDITOR=\"emacsclient -c -a emacs" sudoedit'
 alias cmnt="cmake -G Ninja .. && ninja && ctest -V"
 alias cmn="cmake -G Ninja .."
 
+# ipython
+alias p=ipython
+
 # ableton
 alias abl-configure="modules/build-system/scripts/configure.py"
 alias abl-build="modules/build-system/scripts/build.py"
