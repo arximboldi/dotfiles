@@ -134,6 +134,10 @@ main = do
         , ((mask, xK_End),       spawn $ "mpc stop")
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
+        -- take a screenshot of entire display
+        , ((noModMask, xK_Print), spawn "gnome-screenshot")
+        , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
+        , ((mask, xK_Print), spawn "gnome-screenshot -i")
         -- Maximize
         , ((mask .|. shiftMask, xK_plus ), sendMessage MagnifyMore)
         , ((mask .|. shiftMask, xK_minus), sendMessage MagnifyLess)
@@ -201,13 +205,15 @@ main = do
   runProcessWithInput "killall" ["taffybar-linux-x86_64"] ""
   runProcessWithInput "killall" ["mpDris", "-9"] ""
   runProcessWithInput "killall" ["wallpaperd"] ""
+  runProcessWithInput "killall" ["ibus-daemon"] ""
   spawnPipe "wallpaperd"
   spawnPipe "mpDris"
   spawnPipe "gnome-settings-daemon"
   spawnPipe "tracker-control -s"
   spawnPipe "nautilus -n"
   spawnPipe "nm-applet"
-  spawnPipe "sleep 1 && ~/.cabal/bin/taffybar"
+  spawnPipe "ibus-daemon"
+  spawnPipe "taffybar"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
