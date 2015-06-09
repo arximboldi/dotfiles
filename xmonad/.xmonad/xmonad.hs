@@ -203,7 +203,7 @@ main = do
   runProcessWithInput "killall" ["wallpaperd"] ""
   spawnPipe "wallpaperd"
   spawnPipe "mpDris"
-  spawnPipe "cinnamon-settings-daemon"
+  spawnPipe "gnome-settings-daemon"
   spawnPipe "tracker-control -s"
   spawnPipe "nautilus -n"
   spawnPipe "nm-applet"
