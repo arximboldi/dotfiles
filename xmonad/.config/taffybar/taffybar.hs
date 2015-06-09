@@ -37,7 +37,7 @@ main = do
         return [totalLoad, systemLoad]
 
       label str color = do
-        l <- labelNew Nothing
+        l <- labelNew (Nothing :: Maybe String)
         labelSetMarkup l (colorize color "" str)
         widgetShowAll l
         return $ toWidget l
