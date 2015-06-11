@@ -60,10 +60,7 @@
 
 ;; Fix emacs not finding commands in my custom path
 (defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$"
-                          ""
-                          (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+  (let ((path-from-shell (shell-command-to-string "bash -i -c 'echo $PATH' 2> /dev/null")))
     (setenv "PATH" path-from-shell)
     (setq eshell-path-env path-from-shell) ; for eshell users
     (setq exec-path (split-string path-from-shell path-separator))))
@@ -72,7 +69,7 @@
 ;; Fix shit
 
 (setq shell-file-name "bash")
-(setq shell-command-switch "-ic")
+(setq shell-command-switch "-c")
 
 (put 'scroll-left 'disabled nil)
 (put 'downcase-region 'disabled nil)
