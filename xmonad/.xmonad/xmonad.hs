@@ -208,6 +208,7 @@ main = do
   spawnPipe "xsettingsd"
   spawnPipe "synclient TapButton1=1"
   spawnPipe "mpDris"
+  spawnPipe "xfce4-power-manager --restart"
   spawnPipe "xfce4-volumed-pulse --no-daemon"
   spawnPipe "tracker-control --start"
   spawnPipe "nautilus --no-default-window"
