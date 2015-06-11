@@ -1,0 +1,6 @@
+[submodule "xmonad/.xmonad/wallpaperd"]
+	path = xmonad/.xmonad/wallpaperd
+	url = http://projects.pekdon.net/git/wallpaperd.git
+[submodule "_deps/xfce4-volumed-pulse"]
+	path = _deps/xfce4-volumed-pulse
+	url = https://code.lefolgoc.net/mrpouit/xfce4-volumed-pulse.git
