@@ -170,6 +170,7 @@ main = do
         [ resource    =? "Do"            --> doIgnore
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
+        , className =? "Xfce4-notifyd"   --> doIgnore
 
         , className =? "Cinelerra"               --> doFloat
         , className =? "sun-applet-Main"         --> doFloat
