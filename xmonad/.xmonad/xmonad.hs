@@ -204,16 +204,15 @@ main = do
   runProcessWithInput "killall" ["nm-applet"] ""
   runProcessWithInput "killall" ["taffybar-linux-x86_64"] ""
   runProcessWithInput "killall" ["mpDris", "-9"] ""
-  runProcessWithInput "killall" ["ibus-daemon"] ""
   spawnPipe "nitrogen --restore"
   spawnPipe "xsettingsd"
   spawnPipe "synclient TapButton1=1"
   spawnPipe "mpDris"
-  spawnPipe "tracker-control -s"
-  spawnPipe "nautilus -n"
+  spawnPipe "tracker-control --start"
+  spawnPipe "nautilus --no-default-window"
   spawnPipe "nm-applet"
-  spawnPipe "ibus-daemon"
-  spawnPipe "taffybar"
+  spawnPipe "ibus-daemon --replace"
+  spawnPipe "sleep 1 && taffybar"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
