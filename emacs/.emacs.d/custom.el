@@ -69,6 +69,7 @@
       (0.1870967741935484 . 0.6190476190476191)
       (0.1870967741935484 . 0.35714285714285715)))))
  '(focus-follows-mouse t)
+ '(ggtags-update-on-save nil)
  '(global-hl-line-mode t)
  '(haskell-mode-hook
    (quote
