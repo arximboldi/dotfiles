@@ -102,6 +102,7 @@
            (fboundp
             (quote rainbow-mode))
            (rainbow-mode 1)))))
+ '(savehist-mode t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1)
  '(scroll-step 1)
