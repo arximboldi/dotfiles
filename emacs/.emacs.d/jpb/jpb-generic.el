@@ -71,6 +71,10 @@
 (setq shell-file-name "bash")
 (setq shell-command-switch "-c")
 
+(defadvice compile (around use-bashrc activate)
+  (let ((shell-command-switch "-ic"))
+    ad-do-it))
+
 (put 'scroll-left 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
@@ -152,7 +156,6 @@ Also returns nil if pid is nil."
 ;; Show mode-line as inactive when no focus. Really helps when using
 ;; xmonad, IMHO
 ;;
-
 (add-hook 'focus-out-hook
           (lambda ()
             (copy-face 'mode-line '--mode-line-backup)
