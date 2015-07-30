@@ -9,10 +9,15 @@ export LCVER=3.7
 export LC="ccache clang-$LCVER"
 export LXX="ccache clang++-$LCVER"
 
+export GC="ccache gcc-5"
+export GXX="ccache g++-5"
+export SHLIB_GXXLD="g++-5"
+
 export CCVER=4.9
 export CC="ccache gcc-$CCVER"
 export CXX="ccache g++-$CCVER"
 export SHLIB_CXXLD="g++-$CCVER"
+
 # export CCFLAGS="-fdiagnostics-color=always"
 # export CXXFLAGS="-fdiagnostics-color=always"
 
