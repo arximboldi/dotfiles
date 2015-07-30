@@ -35,6 +35,9 @@ alias se='SUDO_EDITOR=\"emacsclient -c -a emacs" sudoedit'
 alias cmnt="cmake -G Ninja .. && ninja && ctest -V"
 alias cmn="cmake -G Ninja .."
 
+alias cmmt="cmake -G 'Unix Makefiles' .. && make -j 4 && ctest -V"
+alias cmm="cmake -G 'Unix Makefiles' .."
+
 # ipython
 alias p=ipython
 
