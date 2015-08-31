@@ -1,4 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+
+if [ -d "$HOME/usr/bin" ] ; then
+    PATH="$HOME/usr/bin:$PATH"
+fi
+
 cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
 if [ -d "$cachedir" ]; then
 	cache=$cachedir/dmenu_run
@@ -12,4 +17,4 @@ fi
 	else
 		dmenu.xft "$@" < "$cache"
 	fi
-) | ${SHELL:-"/bin/sh"} &
+) | ${SHELL:-"/bin/bash"} &
