@@ -33,10 +33,10 @@ alias emacs='emacsclient -a emacs24'
 alias se='SUDO_EDITOR=\"emacsclient -c -a emacs" sudoedit'
 
 # cmake
-alias cmnt="cmake -G Ninja .. && ninja && ctest -V"
+alias cmnt="cmake -G Ninja .. && ninja && ctest --output-on-failure"
 alias cmn="cmake -G Ninja .."
 
-alias cmmt="cmake -G 'Unix Makefiles' .. && make -j 4 && ctest -V"
+alias cmmt="cmake -G 'Unix Makefiles' .. && make -j 4 && ctest --output-on-failure"
 alias cmm="cmake -G 'Unix Makefiles' .."
 
 # ipython
