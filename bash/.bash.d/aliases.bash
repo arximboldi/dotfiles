@@ -18,7 +18,8 @@ alias la='ls --color=auto -A'
 alias l='ls --color=auto -CF'
 
 # rm
-alias rma='rimraf *'
+alias rm='echo "This is not the command you are looking for."; false'
+alias tra='trash *'
 
 # Open like from nautilus
 alias open=xdg-open
