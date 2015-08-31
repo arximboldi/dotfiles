@@ -8,7 +8,7 @@
 ;;
 ;; GIT
 ;;
-(add-hook 'magit-status-mode-hook 'magit-filenotify-mode)
+;; (add-hook 'magit-status-mode-hook 'magit-filenotify-mode)
 
 ;;
 ;; Flymake
