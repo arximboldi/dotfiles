@@ -114,6 +114,7 @@
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(user-mail-address "raskolnikov@es.gnu.org")
  '(vc-follow-symlinks t)
+ '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
  '(yas/root-directory "/home/raskolnikov/.emacs.d/snippets" nil (yasnippet))
  '(zoom-frame/buffer (quote buffer)))
 (custom-set-faces
