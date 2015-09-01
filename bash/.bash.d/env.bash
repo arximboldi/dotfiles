@@ -5,18 +5,14 @@ export USER="Juan Pedro Bolívar Puente"
 export EDITOR="emacsclient -a emacs24"
 
 
-export LCVER=3.7
+export LCVER=3.8
 export LC="ccache clang-$LCVER"
 export LXX="ccache clang++-$LCVER"
 
-export GC="ccache gcc-5"
-export GXX="ccache g++-5"
-export SHLIB_GXXLD="g++-5"
-
-export CCVER=4.9
-export CC="ccache gcc-$CCVER"
-export CXX="ccache g++-$CCVER"
-export SHLIB_CXXLD="g++-$CCVER"
+export GCVER=5
+export GC="ccache gcc-$GCVER"
+export GXX="ccache g++-$GCVER"
+export SHLIB_GXXLD="g++-$GCVER"
 
 # export CCFLAGS="-fdiagnostics-color=always"
 # export CXXFLAGS="-fdiagnostics-color=always"
