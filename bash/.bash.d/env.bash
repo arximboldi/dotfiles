@@ -17,6 +17,9 @@ export SHLIB_GXXLD="g++-$GCVER"
 # export CCFLAGS="-fdiagnostics-color=always"
 # export CXXFLAGS="-fdiagnostics-color=always"
 
+export GOPATH=~/.go-path
+
+add-path $GOPATH/bin
 add-path /home/raskolnikov/usr/bin
 add-path /home/raskolnikov/.cabal/bin
 
