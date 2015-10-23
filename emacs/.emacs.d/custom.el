@@ -92,6 +92,7 @@
  '(jmaker-make-compiler-options "-g")
  '(line-number-mode t)
  '(line-spacing 4)
+ '(magit-diff-use-overlays nil)
  '(menu-bar-mode nil)
  '(multi-term-dedicated-select-after-open-p t)
  '(mumamo-chunk-coloring 2)
