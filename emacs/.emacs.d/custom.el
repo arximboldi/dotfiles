@@ -120,6 +120,7 @@
  '(user-mail-address "raskolnikov@es.gnu.org")
  '(vc-follow-symlinks t)
  '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
+ '(web-mode-markup-indent-offset 2)
  '(yas/root-directory "/home/raskolnikov/.emacs.d/snippets" nil (yasnippet))
  '(zoom-frame/buffer (quote buffer)))
 (custom-set-faces
