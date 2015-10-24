@@ -21,4 +21,10 @@
 
 (setq gnus-always-read-dribble-file t)
 
+(setq jabber-account-list
+      '(("magnicida@gmail.com"
+         (:network-server . "talk.google.com")
+         (:port . 443)
+         (:connection-type . ssl))))
+
 (provide 'jpb-mail)
