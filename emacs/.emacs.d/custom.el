@@ -58,7 +58,7 @@
  '(custom-enabled-themes (quote (jpb-tangoish)))
  '(custom-safe-themes
    (quote
-    ("4c1a8d0143d6b934e0850ccad0834a0ff5ce560429d7943951b5eb63926ddc42" "e0d172b92241af14b48eeec945acbfa630f375d977894b8c53fde080b612bace" "46c1851dcac429f36a456bf15faf9e182fdd0d7e8b0ce2187994b99980c93c49" "0e02eb0f034e42b40cd57186bb3829daad7ad5e9c3c7f92290ab6ec2b2d8b9fe" "3160bcafe2e03bcf965eee0d65cbdc633edea5b537b6362bcc5a843ac3fe1f92" default)))
+    ("c1775eea5ecc640e09e69a5c07a746745e7d7348d2202521ca4e18c76ebd50c3" "4c1a8d0143d6b934e0850ccad0834a0ff5ce560429d7943951b5eb63926ddc42" "e0d172b92241af14b48eeec945acbfa630f375d977894b8c53fde080b612bace" "46c1851dcac429f36a456bf15faf9e182fdd0d7e8b0ce2187994b99980c93c49" "0e02eb0f034e42b40cd57186bb3829daad7ad5e9c3c7f92290ab6ec2b2d8b9fe" "3160bcafe2e03bcf965eee0d65cbdc633edea5b537b6362bcc5a843ac3fe1f92" default)))
  '(custom-theme-directory "~/.emacs.d/themes")
  '(debug-on-error (quote (nil)))
  '(ecb-layout-window-sizes
