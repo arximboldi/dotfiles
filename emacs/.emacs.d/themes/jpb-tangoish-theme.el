@@ -84,6 +84,13 @@
  '(mode-line-inactive ((t (:inherit mode-line :background "#2d2d2d" :foreground "#999" :weight light))))
  '(scroll-bar ((t nil)))
  '(vertical-border ((((type x tty)) (:inherit mode-line-inactive :foreground "#222"))))
- '(comint-highlight-prompt ((t nil))))
+ '(comint-highlight-prompt ((t nil)))
+
+ '(jabber-activity-face ((t (:foreground "lime green" :weight bold))))
+ '(jabber-chat-prompt-foreign ((t (:foreground "light coral" :weight bold))))
+ '(jabber-chat-prompt-local ((t (:foreground "cornflower blue" :weight bold))))
+ '(jabber-rare-time-face ((t (:foreground "yellow green" :underline t))))
+ '(jabber-roster-user-online ((t (:foreground "deep sky blue" :slant normal :weight bold))))
+ '(jabber-activity-personal-face ((t (:foreground "royal blue" :weight bold)))))
 
 (provide-theme 'jpb-tangoish)
