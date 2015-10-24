@@ -100,7 +100,8 @@
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
  '(safe-local-variable-values
    (quote
-    ((web-mode-markup-indent-offset . 4)
+    ((web-mode-markup-indent-offset . 2)
+     (web-mode-markup-indent-offset . 4)
      (web-mode-markup-indent-offset . 80)
      (web-markup-indent-offset . 80)
      (coffee-tab-width . 4)
@@ -114,7 +115,7 @@
  '(scroll-step 1)
  '(send-mail-function nil)
  '(show-paren-mode t)
- '(sort-fold-case t t)
+ '(sort-fold-case t)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(user-mail-address "raskolnikov@es.gnu.org")
