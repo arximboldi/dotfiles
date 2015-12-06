@@ -1,4 +1,6 @@
 
+export MPD_HOST=192.168.42.1
+
 export EMAIL="raskolnikov@gnu.org"
 export USERNAME="Juan Pedro Bolívar Puente"
 
