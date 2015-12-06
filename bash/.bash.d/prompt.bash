@@ -23,6 +23,11 @@ set_prompt () {
         PS1+="$red$fancyx$reset "
     fi
 
+    LOCAL=(nexus9)
+    if [[ ! $LOCAL =~ $HOSTNAME ]]; then
+        PS1+="$red\\h $reset"
+    fi
+
     if [[ $EUID == 0 ]]; then
         PS1+="$red\\u$reset"
     else
