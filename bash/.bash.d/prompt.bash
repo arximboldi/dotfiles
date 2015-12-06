@@ -23,8 +23,7 @@ set_prompt () {
         PS1+="$red$fancyx$reset "
     fi
 
-    LOCAL=(nexus9)
-    if [[ ! $LOCAL =~ $HOSTNAME ]]; then
+    if [ -n "$SSH_CLIENT" ]; then
         PS1+="$red\\h $reset"
     fi
 
