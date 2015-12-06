@@ -31,3 +31,7 @@ export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
     source ~/soft/google-cloud-sdk/completion.bash.inc
 [ -f ~/.travis/travis.sh ] && \
     source ~/.travis/travis.sh
+
+# Guix
+export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+add-path /home/raskolnikov/.guix-profile/bin
