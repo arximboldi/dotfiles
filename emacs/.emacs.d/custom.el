@@ -121,7 +121,7 @@
  '(scroll-step 1)
  '(send-mail-function nil)
  '(show-paren-mode t)
- '(sort-fold-case t)
+ '(sort-fold-case t t)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(user-mail-address "raskolnikov@es.gnu.org")
