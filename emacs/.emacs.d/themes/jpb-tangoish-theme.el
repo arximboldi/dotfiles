@@ -91,6 +91,7 @@
  '(jabber-chat-prompt-local ((t (:foreground "cornflower blue" :weight bold))))
  '(jabber-rare-time-face ((t (:foreground "yellow green" :underline t))))
  '(jabber-roster-user-online ((t (:foreground "deep sky blue" :slant normal :weight bold))))
- '(jabber-activity-personal-face ((t (:foreground "royal blue" :weight bold)))))
+ '(jabber-activity-personal-face ((t (:foreground "royal blue" :weight bold))))
+ '(jabber-roster-user-away ((t (:foreground "chartreuse" :slant italic :weight normal)))))
 
 (provide-theme 'jpb-tangoish)
