@@ -49,6 +49,7 @@
 ; (gtk_accel_path "<Actions>/DirViewActions/Copy" "<Primary>c")
 (gtk_accel_path "<Actions>/DirViewActions/Trash" "Delete")
 (gtk_accel_path "<Actions>/ShellActions/Up" "BackSpace")
+(gtk_accel_path "<Actions>/ShellActions/Back" "BackSpace")
 ; (gtk_accel_path "<Actions>/DirViewActions/LocationOpenInNewTab" "")
 ; (gtk_accel_path "<Actions>/ShellActions/LocationProperties" "")
 ; (gtk_accel_path "<Actions>/ShellActions/Zoom Normal" "<Primary>0")
