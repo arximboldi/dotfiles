@@ -8,6 +8,7 @@
 
 import XMonad
 import System.Exit
+import System.Posix.Env
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -202,6 +203,7 @@ main = do
           checkDialog = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DIALOG"
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
+  putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   runProcessWithInput "killall" ["nm-applet"] ""
   runProcessWithInput "killall" ["taffybar-linux-x86_64"] ""
   runProcessWithInput "killall" ["mpDris", "-9"] ""
