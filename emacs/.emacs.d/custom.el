@@ -47,6 +47,7 @@
  '(ansi-color-names-vector
    ["black" "red" "green yellow" "yellow" "deep sky blue" "magenta" "cyan" "white"])
  '(clojure-defun-style-default-indent t)
+ '(clojure-indent-style t)
  '(coffee-extend-comments nil)
  '(coffee-tab-width 4)
  '(column-number-mode t)
