@@ -116,6 +116,7 @@
            (fboundp
             (quote rainbow-mode))
            (rainbow-mode 1)))))
+ '(sass-indent-offset 4)
  '(savehist-mode t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1)
