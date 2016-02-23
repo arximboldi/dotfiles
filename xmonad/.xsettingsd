@@ -7,7 +7,8 @@ Gtk/ColorScheme ""
 Gtk/CursorBlinkTimeout 10
 Gtk/CursorThemeName "Adwaita"
 Gtk/CursorThemeSize 24
-Gtk/DecorationLayout ""
+#Gtk/DecorationLayout "<'menu:minimize,maximize,close'>"
+Gtk/DecorationLayout "<''>"
 Gtk/EnableAnimations 1
 Gtk/FontName "Sans 9"
 Gtk/IMModule ""
