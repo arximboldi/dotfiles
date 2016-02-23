@@ -26,6 +26,10 @@ alias open=xdg-open
 
 # git
 alias gsuri="git submodule update --recursive --init"
+# http://stackoverflow.com/a/11366713/677381
+alias gignore="git update-index --assume-unchanged"
+alias gunignore="git update-index --no-assume-unchanged"
+alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
 
 # emacs
 alias e='emacsclient -a emacs24'
