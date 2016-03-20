@@ -1,16 +1,31 @@
-style "default" {
-  bg[NORMAL] = "#1d1d1d"
-  fg[NORMAL] = "#777"
-  text[NORMAL] = "#777"
+style "taffybar-default" {
+  color["black"] = "#000000"
+  color["white"] = "#ffffff"
+  color["green"] = "#00ff00"
+  color["red"]   = "#ff0000"
+
+  color["numix-dark-gray"] = "#1d1d1d"
+  color["numix-light-gray"] = "#777"
+  color["numix-red"] = "#D64937"
+
+  bg[NORMAL]   = @numix-dark-gray
+  fg[NORMAL]   = @numix-light-gray
+  text[NORMAL] = @numix-light-gray
+  fg[PRELIGHT] = @green
+  bg[PRELIGHT] = @numix-dark-gray
+
   font_name = "Sans Bold 9"
 }
 
-style "window-switcher" {
-  bg[NORMAL] = "#1d1d1d"
-  fg[NORMAL] = "#D64937"
-  text[NORMAL] = "#D64937"
-  font_name = "Sans Bold 9"
+style "taffybar-active-window" = "taffybar-default" {
+  fg[NORMAL] = @numix-red
 }
 
-widget "Taffybar" style "default"
-widget "*WindowSwitcher*" style "window-switcher"
+style "taffybar-notification-button" = "taffybar-default" {
+  text[NORMAL] = @red
+  fg[NORMAL]   = @red
+}
+
+widget "Taffybar*" style "taffybar-default"
+widget "Taffybar*WindowSwitcher*label" style "taffybar-active-window"
+widget "*NotificationCloseButton" style "taffybar-notification-button"
