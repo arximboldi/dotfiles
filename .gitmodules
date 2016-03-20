@@ -4,3 +4,9 @@
 [submodule "_deps/xfce4-volumed-pulse"]
 	path = _deps/xfce4-volumed-pulse
 	url = https://code.lefolgoc.net/mrpouit/xfce4-volumed-pulse.git
+[submodule "_deps/gtk3-nocsd"]
+	path = _deps/gtk3-nocsd
+	url = https://github.com/PCMan/gtk3-nocsd
+[submodule "xmonad/.themes/Numix"]
+	path = xmonad/.themes/Numix
+	url = git@github.com:arximboldi/Numix.git
