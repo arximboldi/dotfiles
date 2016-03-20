@@ -236,4 +236,5 @@ main = do
     , manageHook         = manageHook' <+> manageDocks
     , layoutHook         = avoidStruts $ layout'
     , startupHook        = setDefaultCursor xC_arrow
+    , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook
     }
