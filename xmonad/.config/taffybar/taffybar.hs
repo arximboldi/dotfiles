@@ -24,12 +24,12 @@ import Text.Printf
 
 main :: IO ()
 main = do
-  let bgc = 0.11372
+  let bgc = 0.1691
   let bg = (bgc, bgc, bgc)
-  let fg = (0.4, 0.4, 0.4, 1)
-  let darkText = "#444"
-  let lightText = "#888"
-  let selected = "#D64937"
+  let fg = (0.45, 0.45, 0.45, 1)
+  let darkText = "#555"
+  let lightText = "#999"
+  let selected = "#F0544C"
 
   let memCallback = do
         mi <- parseMeminfo
