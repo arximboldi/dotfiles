@@ -153,6 +153,14 @@ Also returns nil if pid is nil."
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;
+;; Update current list of installed packages
+;;
+(defun dotfiles-save-installed-packages ()
+  (interactive)
+  (with-temp-file "~/dotfiles/emacs-installed-packages"
+    (print package-activated-list (current-buffer))))
+
+;;
 ;; Show mode-line as inactive when no focus. Really helps when using
 ;; xmonad, IMHO
 ;;
