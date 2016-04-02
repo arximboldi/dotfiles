@@ -38,10 +38,10 @@ import System.Taffybar.Hooks.PagerHints
 
 main :: IO ()
 main = do
-  let backgroundColor = "#2d2d2d"
-      headerColor     = "#1d1d1d"
-      focusedColor    = "#D64937"
-      textColor       = "#bbbbbb"
+  let backgroundColor = "#444444"
+      headerColor     = "#2d2d2d"
+      focusedColor    = "#F0544C"
+      textColor       = "#eeeeee"
       textFont        = "Sans-9:bold"
       xpConfig        = defaultXPConfig
         { font              = "xft:" ++ textFont
