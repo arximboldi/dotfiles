@@ -27,6 +27,9 @@ main = do
   let bgc = 0.11372
   let bg = (bgc, bgc, bgc)
   let fg = (0.4, 0.4, 0.4, 1)
+  let darkText = "#444"
+  let lightText = "#888"
+  let selected = "#D64937"
 
   let memCallback = do
         mi <- parseMeminfo
@@ -44,7 +47,7 @@ main = do
 
   let memCfg = defaultGraphConfig
         { graphDataColors = [ fg ]
-        , graphLabel = Just $ colorize "#444" "" "  MEM "
+        , graphLabel = Just $ colorize darkText "" "  MEM "
         , graphBackgroundColor = bg
         , graphBorderColor = bg
         , graphPadding = 0
@@ -54,7 +57,7 @@ main = do
         { graphDataColors = [ fg
                             , fg
                             ]
-        , graphLabel = Just $ colorize "#444" "" "  CPU "
+        , graphLabel = Just $ colorize darkText "" "  CPU "
         , graphBackgroundColor = bg
         , graphBorderColor = bg
         , graphPadding = 0
@@ -62,10 +65,10 @@ main = do
         }
       logCfg = defaultPagerConfig
         { activeWorkspace = colorize "yellow" "" . escape
-        , emptyWorkspace = colorize "#444" "" . escape
-        , hiddenWorkspace = colorize "#888" "" . escape
+        , emptyWorkspace = colorize darkText "" . escape
+        , hiddenWorkspace = colorize lightText "" . escape
         , visibleWorkspace = escape
-        , widgetSep = colorize "#444" "" "   |   "
+        , widgetSep = colorize darkText "" "   |   "
        }
       batCfg = (defaultBarConfig colorFunc)
         { barBorderColor = bg
@@ -84,17 +87,17 @@ main = do
               title  track  = maybe "[unknown]" id (trackTitle  track)
               display track = "<span fgcolor='#D64937'>▶</span>  " ++
                               printf "%s - %s" (artist track) (title track) ++
-                              colorize "#444" "" "    | "
+                              colorize darkText "" "    | "
 
-  let clock = textClockNew Nothing (colorize "#D64937" "" "%a %b %_d %H:%M") 1
+  let clock = textClockNew Nothing (colorize selected "" "%a %b %_d %H:%M") 1
       logger = taffyPagerNew logCfg
       mpris = mprisNew mpdCfg
       bat = batteryBarNew batCfg 1
-      bat' = label "  BAT " "#444"
+      bat' = label "  BAT " darkText
       mem = pollingGraphNew memCfg 1 memCallback
       cpu = pollingGraphNew cpuCfg 1 cpuCallback
       tray = systrayNew
-      sep = label "   |   " "#444"
+      sep = label "   |   " darkText
       sep' = label "  " ""
       sep'' = label "   " ""
 
