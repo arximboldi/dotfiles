@@ -30,5 +30,3 @@
 (require 'jpb-keys)
 
 (desktop-save-mode 1)
-(desktop-load-default)
-(desktop-read)
