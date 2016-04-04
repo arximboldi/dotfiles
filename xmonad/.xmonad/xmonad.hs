@@ -211,18 +211,15 @@ main = do
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
-  runProcessWithInput "killall" ["nm-applet"] ""
-  runProcessWithInput "killall" ["taffybar-linux-x86_64"] ""
-  runProcessWithInput "killall" ["mpDris", "-9"] ""
-  runProcessWithInput "killall" ["xfce4-panel"] ""
+  spawnPipe "xfdesktop -D -R"
   spawnPipe "xfsettingsd --replace --no-daemon"
-  spawnPipe "xfdesktop -D"
-  spawnPipe "xfce4-panel -d"
-  spawnPipe "mpDris"
   spawnPipe "tracker-control --start"
   spawnPipe "nautilus --no-default-window"
-  spawnPipe "nm-applet"
   spawnPipe "ibus-daemon --replace"
+  spawnPipe "pidof mpDris || mpDris"
+  spawnPipe "pidof nm-applet || nm-applet"
+  spawnPipe $ "xdotool search --sync --class Xfdesktop && " ++
+    "((pidof xfce4-panel && xfce4-panel -d -r) || xfce4-panel -d)"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
