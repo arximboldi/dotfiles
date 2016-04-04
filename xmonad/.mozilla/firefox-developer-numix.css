@@ -5,27 +5,27 @@
  */
 :root[devtoolstheme="dark"] {
   /* Chrome */
-  --chrome-background-color: #1d1d1d;
+  --chrome-background-color: #444444;
   --chrome-color: #999;
-  --chrome-secondary-background-color: #2D2D2D;
+  --chrome-secondary-background-color: #333333;
   --chrome-navigator-toolbox-separator-color: rgba(0,0,0,.2);
   --chrome-nav-bar-separator-color: rgba(0,0,0,.0);
-  --chrome-nav-buttons-background: #1d1d1d;
+  --chrome-nav-buttons-background: #2d2d2d;
   --chrome-nav-buttons-hover-background: #000000;
   --chrome-selection-color: #fff;
-  --chrome-selection-background-color: #D64937;
+  --chrome-selection-background-color: #F0544C;
 
   /* Tabs */
   --tabs-toolbar-color: #777777;
-  --tab-background-color: #1d1d1d;
+  --tab-background-color: #222222;
   --tab-color: #777777;
   --tab-hover-background-color: #000000;
   --tab-separator-color: #2d2d2d;
   --tab-selection-color: #DCDCDC;
-  --tab-selection-background-color: #2D2D2D;
+  --tab-selection-background-color: #333333;
   --tab-selection-box-shadow: 0 3px 0 #D64937 inset,
-                                     0 8px 3px -5px #2D2D2D inset,
-                                     0 -1px 0 #2D2D2D inset;
+                                     0 8px 3px -5px #333333 inset,
+                                     0 -1px 0 #333333 inset;
   --pinned-tab-glow: radial-gradient(22px at center calc(100% - 2px), rgba(76,158,217,0.9) 13%, rgba(0,0,0,0.4) 16%, transparent 70%);
 
   /* Toolbar buttons */
@@ -46,7 +46,7 @@
   --verified-identity-box-backgroundcolor: transparent;
 
   /* Url and search bars */
-  --url-and-searchbar-background-color: #1D1D1D;
+  --url-and-searchbar-background-color: #222222;
   --url-and-searchbar-color: #fff;
   --urlbar-dropmarker-region: rect(0px, 11px, 14px, 0px);
   --urlbar-dropmarker-active-region: rect(0px, 22px, 14px, 11px);
