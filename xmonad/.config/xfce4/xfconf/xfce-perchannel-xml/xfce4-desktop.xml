@@ -164,4 +164,7 @@
     <property name="window-width" type="int" value="636"/>
     <property name="window-height" type="int" value="492"/>
   </property>
+  <property name="windowlist-menu" type="empty">
+    <property name="show" type="bool" value="true"/>
+  </property>
 </channel>

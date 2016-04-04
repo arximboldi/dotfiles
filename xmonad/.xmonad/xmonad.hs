@@ -20,11 +20,14 @@ import XMonad.Util.Run
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.InsertPosition as I
 
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Circle
 import XMonad.Layout.Magnifier
 import XMonad.Layout.Renamed
+import XMonad.Layout.Gaps as G
+
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Navigation2D
 import XMonad.Prompt
@@ -120,7 +123,8 @@ main = do
         -- Deincrement the number of windows in the master area
         , ((mask, xK_period), sendMessage (IncMasterN (-1)))
         -- toggle the status bar gap
-        , ((mask, xK_b), sendMessage ToggleStruts)
+        -- , ((mask, xK_b), sendMessage ToggleStruts)
+        , ((mask, xK_b), sendMessage $ G.ToggleGaps)
         -- Quit xmonad
         , ((mask .|. shiftMask, xK_q), io (exitWith ExitSuccess))
         -- Restart xmonad
@@ -163,9 +167,11 @@ main = do
 
   let layout' = smartBorders normalLayout
         where
-          tallLayout  = Tall 1 (3/100) (6/10)
-          circleLayout = renamed [ Replace "Circle" ] $ magnifiercz' (100/80) Circle
-          normalLayout = circleLayout ||| tallLayout ||| Full
+          gap = G.gaps [(G.U, 22)]
+          tallLayout  =  gap $ Tall 1 (3/100) (6/10)
+          circleLayout = gap $ renamed [ Replace "Circle" ] $ magnifiercz' (100/80) Circle
+          fullLayout = gap $ Full
+          normalLayout = circleLayout ||| tallLayout ||| fullLayout
 
   let manageHook' = composeAll
         [ resource    =? "Do"            --> doIgnore
