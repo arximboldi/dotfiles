@@ -213,6 +213,7 @@ main = do
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   spawnPipe "xfdesktop -D -R"
   spawnPipe "xfsettingsd --replace --no-daemon"
+  spawnPipe "xfce4-power-manager --restart"
   spawnPipe "tracker-control --start"
   spawnPipe "nautilus --no-default-window"
   spawnPipe "ibus-daemon --replace"
