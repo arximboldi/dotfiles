@@ -172,6 +172,7 @@ main = do
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
         , className =? "Xfce4-notifyd"   --> doIgnore
+        , className =? "Xfdesktop"       --> I.insertPosition I.End I.Older
 
         , className =? "Cinelerra"               --> doFloat
         , className =? "sun-applet-Main"         --> doFloat
@@ -209,6 +210,7 @@ main = do
   runProcessWithInput "killall" ["mpDris", "-9"] ""
   runProcessWithInput "killall" ["xfce4-panel"] ""
   spawnPipe "xfsettingsd --replace --no-daemon"
+  spawnPipe "xfdesktop -D"
   spawnPipe "xfce4-panel -d"
   spawnPipe "mpDris"
   spawnPipe "tracker-control --start"
