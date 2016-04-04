@@ -211,6 +211,7 @@ main = do
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
+  spawnPipe "compton -c -r 6 -t -9 -l -9 -i 0.75 -f -D 4 --no-fading-openclose"
   spawnPipe "xfdesktop -D -R"
   spawnPipe "xfsettingsd --replace --no-daemon"
   spawnPipe "xfce4-power-manager --restart"
@@ -225,7 +226,7 @@ main = do
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
-    , borderWidth        = 4
+    , borderWidth        = 0
     , modMask            = mod4Mask
     , workspaces         = [ "web", "emacs", "misc", "mail" ]
     , normalBorderColor  = backgroundColor

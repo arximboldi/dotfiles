@@ -36,6 +36,7 @@
       <property name="autohide-behavior" type="uint" value="0"/>
       <property name="length-adjust" type="bool" value="true"/>
       <property name="disable-struts" type="bool" value="true"/>
+      <property name="leave-opacity" type="uint" value="60"/>
     </property>
   </property>
   <property name="plugins" type="empty">
