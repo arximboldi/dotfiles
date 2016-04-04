@@ -19,7 +19,7 @@
         <value type="int" value="8"/>
         <value type="int" value="25"/>
         <value type="int" value="6"/>
-        <value type="int" value="15"/>
+        <value type="int" value="7"/>
         <value type="int" value="14"/>
         <value type="int" value="22"/>
         <value type="int" value="5"/>
@@ -64,14 +64,17 @@
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="megasync"/>
         <value type="string" value="guake"/>
-        <value type="string" value="ibus-ui-gtk3"/>
-        <value type="string" value="ibus panel"/>
         <value type="string" value="task manager"/>
-        <value type="string" value="pidgin"/>
+        <value type="string" value="ibus-ui-gtk3"/>
+        <value type="string" value="orage"/>
         <value type="string" value="gmpc"/>
+        <value type="string" value="ibus panel"/>
+        <value type="string" value="pidgin"/>
+        <value type="string" value="smuxi-frontend-gnome"/>
         <value type="string" value="volti"/>
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="scp-dbus-service.py"/>
+        <value type="string" value="bitmask"/>
       </property>
       <property name="size-max" type="uint" value="22"/>
     </property>
@@ -80,9 +83,6 @@
     <property name="plugin-13" type="string" value="separator">
       <property name="style" type="uint" value="1"/>
       <property name="expand" type="bool" value="true"/>
-    </property>
-    <property name="plugin-15" type="string" value="pulseaudio">
-      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
     </property>
     <property name="plugin-8" type="string" value="separator">
       <property name="style" type="uint" value="1"/>
@@ -99,6 +99,9 @@
     </property>
     <property name="plugin-2" type="string" value="separator">
       <property name="style" type="uint" value="3"/>
+    </property>
+    <property name="plugin-7" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
     </property>
   </property>
   <property name="configver" type="int" value="2"/>
