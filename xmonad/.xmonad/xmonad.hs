@@ -207,21 +207,14 @@ main = do
   runProcessWithInput "killall" ["nm-applet"] ""
   runProcessWithInput "killall" ["taffybar-linux-x86_64"] ""
   runProcessWithInput "killall" ["mpDris", "-9"] ""
-  runProcessWithInput "killall" ["xfce4-notifyd"] ""
-  runProcessWithInput "killall" ["xfce4-volumed-pulse"] ""
-  spawnPipe "/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd"
-  spawnPipe "nitrogen --restore"
-  spawnPipe "synclient TapButton1=1"
+  runProcessWithInput "killall" ["xfce4-panel"] ""
   spawnPipe "xfsettingsd --replace --no-daemon"
+  spawnPipe "xfce4-panel -d"
   spawnPipe "mpDris"
-  spawnPipe "xfce4-power-manager --restart"
-  spawnPipe "xfce4-volumed-pulse --no-daemon"
   spawnPipe "tracker-control --start"
   spawnPipe "nautilus --no-default-window"
-  spawnPipe "volti"
   spawnPipe "nm-applet"
   spawnPipe "ibus-daemon --replace"
-  spawnPipe "sleep 1 && taffybar"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
