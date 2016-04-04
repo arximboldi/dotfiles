@@ -168,7 +168,7 @@ main = do
   let layout' = smartBorders normalLayout
         where
           gap = G.gaps [(G.U, 22)]
-          tallLayout  =  gap $ Tall 1 (3/100) (6/10)
+          tallLayout  =  gap $ renamed [ Replace "Tall" ] $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
           circleLayout = gap $ renamed [ Replace "Circle" ] $ magnifiercz' (100/80) Circle
           fullLayout = gap $ Full
           normalLayout = circleLayout ||| tallLayout ||| fullLayout
