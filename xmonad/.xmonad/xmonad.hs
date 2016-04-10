@@ -191,6 +191,7 @@ main = do
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
+        , className =? "Pidgin"           --> doShift "mail"
         , className =? "Emacs"            --> doShift "emacs"
 
         , isFullscreen --> doFullFloat
