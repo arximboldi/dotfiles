@@ -123,8 +123,8 @@ main = do
         -- Deincrement the number of windows in the master area
         , ((mask, xK_period), sendMessage (IncMasterN (-1)))
         -- toggle the status bar gap
-        -- , ((mask, xK_b), sendMessage ToggleStruts)
-        , ((mask, xK_b), sendMessage $ G.ToggleGaps)
+        , ((mask, xK_b), sendMessage ToggleStruts)
+        -- , ((mask, xK_b), sendMessage $ G.ToggleGaps)
         -- Quit xmonad
         , ((mask .|. shiftMask, xK_q), io (exitWith ExitSuccess))
         -- Restart xmonad
@@ -167,7 +167,7 @@ main = do
 
   let layout' = smartBorders normalLayout
         where
-          gap = G.gaps [(G.U, 22)]
+          gap = id -- G.gaps [(G.U, 22)]
           tallLayout  =  gap $ renamed [ Replace "Tall" ] $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
           circleLayout = gap $ renamed [ Replace "Circle" ] $ magnifiercz' (100/80) Circle
           fullLayout = gap $ Full
@@ -219,10 +219,11 @@ main = do
   spawnPipe "tracker daemon -s"
   spawnPipe "nautilus --no-default-window"
   spawnPipe "ibus-daemon --replace"
+  spawnPipe "pidof volti || volti"
   spawnPipe "pidof mpDris || mpDris"
   spawnPipe "pidof nm-applet || nm-applet"
-  spawnPipe $ "xdotool search --sync --class Xfdesktop && " ++
-    "((pidof xfce4-panel && xfce4-panel -d -r) || xfce4-panel -d)"
+  runProcessWithInput "xdotool" ["search", "--sync", "--class", "Xfdesktop"] ""
+  spawnPipe "pidof taffybar-linux-x86_64 || taffybar"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
