@@ -3,6 +3,9 @@ if [ "x$EMACS" == "xt" ]; then
     export TERM=xterm
 fi
 
+# Use fancy globs
+shopt -s extglob
+
 # don't put duplicate lines in the history
 HISTCONTROL=ignoreboth
 
