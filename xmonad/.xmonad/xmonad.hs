@@ -225,7 +225,8 @@ main = do
   spawnPipe "pidof mpDris || mpDris"
   spawnPipe "pidof nm-applet || nm-applet"
   spawnPipe "pidof taffybar-linux-x86_64 || taffybar"
-  spawnPipe "xdotool search --sync --onlyvisible Xfdesktop windowlower"
+  spawnPipe "xdotool search --sync --onlyvisible Taffybar windowlower && xdotool search --sync --onlyvisible Xfdesktop windowlower"
+
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
