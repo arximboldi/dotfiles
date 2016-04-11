@@ -178,16 +178,17 @@ main = do
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
         , className =? "Xfce4-notifyd"   --> doIgnore
-        , className =? "Xfdesktop"       --> I.insertPosition I.End I.Older
+        , className =? "Xfdesktop"       --> doHideIgnore
+        , title     =? "Desktop"         --> doHideIgnore
 
-        , className =? "Cinelerra"               --> doFloat
-        , className =? "sun-applet-Main"         --> doFloat
-        , resource  =? "sun-awt-X11-XDialogPeer" --> doFloat
-        , resource  =? "javax.swing.JDialog"     --> doFloat
-        , className =? "Tgcm"                    --> doFloat
-        , className =? "Qjackctl"                --> doFloat
-        , className =? "Qjackctl.real"           --> doFloat
-        , className =? "Mixxx"                   --> doFloat
+        , className =? "Cinelerra"               --> doCenterFloat
+        , className =? "sun-applet-Main"         --> doCenterFloat
+        , resource  =? "sun-awt-X11-XDialogPeer" --> doCenterFloat
+        , resource  =? "javax.swing.JDialog"     --> doCenterFloat
+        , className =? "Tgcm"                    --> doCenterFloat
+        , className =? "Qjackctl"                --> doSideFloat NE
+        , className =? "Qjackctl.real"           --> doSideFloat NE
+        , className =? "Mixxx"                   --> doCenterFloat
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
@@ -195,8 +196,9 @@ main = do
         , className =? "Emacs"            --> doShift "emacs"
 
         , isFullscreen --> doFullFloat
-        , checkDialog --> doFloat
-        , checkMenu   --> doFloat
+
+        , checkDialog --> doCenterFloat
+        , checkMenu   --> doCenterFloat
         ]
         where
           -- http://bbs.archlinux.org/viewtopic.php?id=74839
@@ -222,9 +224,8 @@ main = do
   spawnPipe "pidof volti || volti"
   spawnPipe "pidof mpDris || mpDris"
   spawnPipe "pidof nm-applet || nm-applet"
-  runProcessWithInput "xdotool" ["search", "--sync", "--class", "Xfdesktop"] ""
   spawnPipe "pidof taffybar-linux-x86_64 || taffybar"
-
+  spawnPipe "xdotool search --sync --onlyvisible Xfdesktop windowlower"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
