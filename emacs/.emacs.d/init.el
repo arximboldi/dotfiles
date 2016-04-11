@@ -15,6 +15,8 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/jpb"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/auto-install"))
+(add-to-list 'load-path (expand-file-name "~/.guix-profile/share/emacs/site-lisp"))
+(require 'guix-autoloads nil t)
 
 (require 'package)
 (add-to-list 'package-archives
