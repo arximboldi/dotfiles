@@ -186,8 +186,8 @@ main = do
         , resource  =? "sun-awt-X11-XDialogPeer" --> doCenterFloat
         , resource  =? "javax.swing.JDialog"     --> doCenterFloat
         , className =? "Tgcm"                    --> doCenterFloat
-        , className =? "Qjackctl"                --> doSideFloat NE
-        , className =? "Qjackctl.real"           --> doSideFloat NE
+        , className =? "Qjackctl"                --> doSideFloat SE
+        , className =? "Qjackctl.real"           --> doSideFloat SE
         , className =? "Mixxx"                   --> doCenterFloat
 
         , className =? "Icedove-bin"      --> doShift "mail"
@@ -220,6 +220,7 @@ main = do
   spawnPipe "xfce4-power-manager --restart"
   spawnPipe "tracker daemon -s"
   spawnPipe "nautilus --no-default-window"
+  spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
   spawnPipe "ibus-daemon --replace"
   spawnPipe "pidof volti || volti"
   spawnPipe "pidof mpDris || mpDris"
