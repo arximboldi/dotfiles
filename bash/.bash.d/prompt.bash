@@ -7,6 +7,7 @@ set_prompt () {
     fancyx='\342\234\227'
     checkmark='\342\234\223'
 
+    purple='\[\e[01;35m\]'
     blue='\[\e[01;34m\]'
     blue2='\[\e[00;34m\]'
     white='\[\e[01;37m\]'
@@ -29,6 +30,8 @@ set_prompt () {
 
     if [[ $EUID == 0 ]]; then
         PS1+="$red\\u$reset"
+    elif [[ $GUIX_ENVIRONMENT == "t" ]]; then
+        PS1+="$purple\\u$reset"
     else
         PS1+="$green2\\u$reset"
     fi
