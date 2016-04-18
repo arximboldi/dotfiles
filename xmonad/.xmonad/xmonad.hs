@@ -66,7 +66,7 @@ main = do
                  ++ "' -sb '" ++ focusedColor
                  ++ "' -sf '" ++ headerColor
                  ++ "'"
-      terminalCmd = "gnome-terminal --hide-menubar"
+      terminalCmd = "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server & gnome-terminal --hide-menubar"
 
   let keys' conf@(XConfig {XMonad.modMask = mask}) = M.fromList $
         -- launch a terminal
@@ -174,7 +174,7 @@ main = do
           normalLayout = circleLayout ||| tallLayout ||| fullLayout
 
   let manageHook' = composeAll
-        [ resource    =? "Do"            --> doIgnore
+        [ resource  =? "Do"              --> doIgnore
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
         , className =? "Xfce4-notifyd"   --> doIgnore
