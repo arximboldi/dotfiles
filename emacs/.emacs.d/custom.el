@@ -54,7 +54,7 @@
  '(compilation-always-kill t)
  '(compilation-ask-about-save t)
  '(compilation-scroll-output (quote first-error))
- '(compilation-skip-threshold 2)
+ '(compilation-skip-threshold 1)
  '(confirm-kill-emacs nil)
  '(custom-enabled-themes (quote (jpb-wombatish)))
  '(custom-safe-themes
