@@ -63,7 +63,8 @@
 ;; Key bindings
 ;;
 
-(global-set-key [f7]    'small-shell-toggle-cd)
+(global-set-key [f7]    'small-shell-toggle)
+(global-set-key [C-f7]  'small-shell-toggle-cd)
 (global-set-key [f8]    'compile)
 (global-set-key [f9]    'jpb-gdb)
 (global-set-key [C-f10] 'indent-buffer)
