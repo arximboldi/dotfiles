@@ -140,7 +140,8 @@ main = do
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
         -- Emacs
-        , ((mask, xK_e), spawn $ "wmctrl -xa emacs || (emacsclient -c -e '(ignore)' && wmctrl -xa emacs)")
+        , ((mask, xK_e), spawn $ "wmctrl -xa emacs || emacsclient -c -e '(ignore)'")
+        , ((mask .|. shiftMask, xK_e), spawn $ "emacsclient -c -e '(ignore)'")
         -- take a screenshot of entire display
         , ((noModMask, xK_Print), spawn "gnome-screenshot")
         , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
