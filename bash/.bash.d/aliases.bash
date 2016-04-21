@@ -33,9 +33,12 @@ alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
 
 # emacs
 alias e="emacsclient -t"
-alias ne="emacsclient -c"
+alias ee="emacsclient -n"
+alias ew="emacsclient -n -c"
 alias se="sudo emacsclient -t"
-alias sne="sudo emacsclient -c"
+alias see="sudo emacsclient -n"
+alias sew="sudo emacsclient -n -c"
+complete -r ee
 
 # cmake
 alias cmnt="cmake -G Ninja .. && ninja && ctest --output-on-failure"
