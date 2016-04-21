@@ -7,14 +7,16 @@ set_prompt () {
     fancyx='\342\234\227'
     checkmark='\342\234\223'
 
-    purple='\[\e[01;35m\]'
-    blue='\[\e[01;34m\]'
-    blue2='\[\e[00;34m\]'
-    white='\[\e[01;37m\]'
-    red='\[\e[01;31m\]'
-    green='\[\e[01;32m\]'
-    green2='\[\e[00;32m\]'
-    reset='\[\e[00m\]'
+    purple="\[$(tput bold; tput setaf 5)\]"
+    blue="\[$(tput bold; tput setaf 4)\]"
+    white="\[$(tput bold; tput setaf 7)\]"
+    red="\[$(tput bold; tput setaf 1)\]"
+    green="\[$(tput bold; tput setaf 2)\]"
+
+    blue2="\[$(tput setaf 4)\]"
+    green2="\[$(tput setaf 2)\]"
+
+    reset="\[$(tput sgr0)\]"
 
     PS1=""
 
