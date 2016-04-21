@@ -50,7 +50,6 @@
           '(lambda ()
              (toggle-truncate-lines 1)
              (set-process-query-on-exit-flag (get-process "shell") nil)))
-(setq comint-prompt-read-only t)
 
 (defun colorize-compilation-buffer ()
   (when (eq major-mode 'compilation-mode)

@@ -51,6 +51,7 @@
  '(coffee-extend-comments nil)
  '(coffee-tab-width 4)
  '(column-number-mode t)
+ '(comint-prompt-read-only t)
  '(compilation-always-kill t)
  '(compilation-ask-about-save t)
  '(compilation-scroll-output (quote first-error))
