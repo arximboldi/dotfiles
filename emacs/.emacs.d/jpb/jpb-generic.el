@@ -178,18 +178,11 @@ Also returns nil if pid is nil."
 ;; Show mode-line as inactive when no focus. Really helps when using
 ;; xmonad, IMHO
 ;;
-(defface --mode-line-backup
-  '((t (:inherit mode-line)))
-  "Mode Line face backup"
-  :group 'mode-line)
-(copy-face 'mode-line '--mode-line-backup)
-
 (add-hook 'focus-out-hook
           (lambda ()
-            (copy-face 'mode-line '--mode-line-backup)
             (copy-face 'mode-line-inactive 'mode-line)))
 (add-hook 'focus-in-hook
           (lambda ()
-            (copy-face '--mode-line-backup 'mode-line)))
+            (custom-theme-recalc-face 'mode-line)))
 
 (provide 'jpb-generic)
