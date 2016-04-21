@@ -4,7 +4,9 @@ export MPD_HOST=192.168.42.1
 export EMAIL="raskolnikov@gnu.org"
 export USERNAME="Juan Pedro Bolívar Puente"
 
-export EDITOR="emacsclient -a emacs24"
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -c"
 
 export LCVER=3.8
 export LC="ccache clang-$LCVER"

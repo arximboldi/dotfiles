@@ -32,9 +32,10 @@ alias gunignore="git update-index --no-assume-unchanged"
 alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
 
 # emacs
-alias e='emacsclient -a emacs24'
-alias emacs='emacsclient -a emacs24'
-alias se='SUDO_EDITOR=\"emacsclient -c -a emacs" sudoedit'
+alias e="emacsclient -t"
+alias ne="emacsclient -c"
+alias se="sudo emacsclient -t"
+alias sne="sudo emacsclient -c"
 
 # cmake
 alias cmnt="cmake -G Ninja .. && ninja && ctest --output-on-failure"
