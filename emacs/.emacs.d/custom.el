@@ -123,6 +123,8 @@
  '(show-paren-mode t)
  '(sort-fold-case t t)
  '(tool-bar-mode nil)
+ '(truncate-lines nil)
+ '(truncate-partial-width-windows nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(user-mail-address "raskolnikov@es.gnu.org")
  '(vc-follow-symlinks t)

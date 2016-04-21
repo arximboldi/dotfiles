@@ -40,6 +40,8 @@
 (dolist (hook (list 'term-mode-hook))
   (add-hook hook '(lambda () (yas-minor-mode -1))))
 
+(add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
+
 ;;
 ;; Shell
 ;;
