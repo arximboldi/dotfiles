@@ -138,6 +138,12 @@ Also returns nil if pid is nil."
   (shrink-window (- (window-height) 12))
   (shell))
 
+(defun small-shell-toggle-cd ()
+  (interactive)
+  (shell-toggle-cd)
+  (when (eq (current-buffer) shell-toggle-shell-buffer)
+      (shrink-window (- (window-height) 12))))
+
 (defun small-term ()
   (interactive)
   (multi-term-dedicated-toggle))
