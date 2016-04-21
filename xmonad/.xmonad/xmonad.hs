@@ -78,7 +78,7 @@ main = do
         , ((mask .|. shiftMask, xK_g), windowPromptGoto  xpConfig)
         , ((mask .|. shiftMask, xK_b), windowPromptBring xpConfig)
         -- , ((mask, xK_w), workspacePrompt xpConfig (windows . W.view))
-              -- Directional navigation of windows
+        -- Directional navigation of windows
         , ((mask, xK_Right), windowGo R False)
         , ((mask, xK_Left ), windowGo L False)
         , ((mask, xK_Up   ), windowGo U False)
