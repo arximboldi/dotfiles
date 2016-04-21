@@ -75,8 +75,9 @@
 ;; C++
 ;;
 
-(cmake-ide-setup)
-(setq cmake-ide-build-dir "build")
+;; Disable until errors solved
+;; (cmake-ide-setup)
+;; (setq cmake-ide-build-dir "build")
 
 (setq compilation-window-height 12)
 
