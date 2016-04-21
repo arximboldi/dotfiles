@@ -1,6 +1,6 @@
 ;;; wombat-theme.el --- Custom face theme for Emacs  -*-coding: utf-8 -*-
 
-;; Copyright (C) 2011-2015 Free Software Foundation, Inc.
+;; Copyright (C) 2011-2016 Free Software Foundation, Inc.
 
 ;; Author: Kristoffer Grönlund <krig@koru.se>
 
@@ -119,9 +119,7 @@ diff-header)))))
    '(scroll-bar ((t nil)))
    '(vertical-border ((((type x mac)) (:inherit mode-line-inactive
 :foreground "#444444"))))
-   '(comint-highlight-prompt ((t nil)))
-
-   ))
+   '(comint-highlight-prompt ((t nil :inherit nil)))))
 
 (custom-theme-set-variables
  'jpb-wombatish
