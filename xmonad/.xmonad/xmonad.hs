@@ -223,7 +223,7 @@ main = do
   spawnPipe "tracker daemon -s"
   spawnPipe "nautilus --no-default-window"
   spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
-  spawnPipe "GTK_THEME=Numix:dark emacs --daemon"
+  spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
   spawnPipe "ibus-daemon --replace"
   spawnPipe "pidof volti || volti"
   spawnPipe "pidof mpDris || mpDris"
