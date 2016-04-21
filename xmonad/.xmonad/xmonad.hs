@@ -139,6 +139,8 @@ main = do
         , ((mask, xK_End),       spawn $ "mpc stop")
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
+        -- Emacs
+        , ((mask, xK_e), spawn $ "emacsclient -c -e '(ignore)'")
         -- take a screenshot of entire display
         , ((noModMask, xK_Print), spawn "gnome-screenshot")
         , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
@@ -221,6 +223,7 @@ main = do
   spawnPipe "tracker daemon -s"
   spawnPipe "nautilus --no-default-window"
   spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
+  spawnPipe "GTK_THEME=Numix:dark emacs --daemon"
   spawnPipe "ibus-daemon --replace"
   spawnPipe "pidof volti || volti"
   spawnPipe "pidof mpDris || mpDris"
