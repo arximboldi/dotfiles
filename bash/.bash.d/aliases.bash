@@ -32,12 +32,14 @@ alias gunignore="git update-index --no-assume-unchanged"
 alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
 
 # emacs
+function toemacs() { $* && wmctrl -xa emacs; }
+
 alias e="emacsclient -t"
-alias ee="emacsclient -n"
+alias ee="toemacs emacsclient -n"
 alias ew="emacsclient -n -c"
 alias se="SUDO_EDITOR='emacsclient -t' sudoedit"
-alias see="SUDO_EDITOR='emacsclient' sudoedit -b"
-alias sew="SUDO_EDITOR='emacsclient -c' sudoedit -b"
+alias see="SUDO_EDITOR='emacsclient' toemacs sudoedit -b $*"
+alias sew="SUDO_EDITOR='emacsclient -c' sudoedit -b $*"
 complete -r ee
 
 # cmake
