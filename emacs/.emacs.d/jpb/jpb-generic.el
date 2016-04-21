@@ -185,4 +185,14 @@ Also returns nil if pid is nil."
           (lambda ()
             (custom-theme-recalc-face 'mode-line)))
 
+;;
+;; On terminal frames, do not set the background color
+;;
+;; (defun on-frame-open (&optional frame)
+;;   "If the FRAME created in terminal don't load background color."
+;;   (unless (display-graphic-p frame)
+;;     (set-face-background 'default "unspecified-bg" frame)))
+;;
+;; (add-hook 'after-make-frame-functions 'on-frame-open)
+
 (provide 'jpb-generic)
