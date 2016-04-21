@@ -140,7 +140,7 @@ main = do
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
         -- Emacs
-        , ((mask, xK_e), spawn $ "emacsclient -c -e '(ignore)'")
+        , ((mask, xK_e), spawn $ "wmctrl -xa emacs || (emacsclient -c -e '(ignore)' && wmctrl -xa emacs)")
         -- take a screenshot of entire display
         , ((noModMask, xK_Print), spawn "gnome-screenshot")
         , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
@@ -195,7 +195,6 @@ main = do
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
         , className =? "Pidgin"           --> doShift "mail"
-        , className =? "Emacs"            --> doShift "emacs"
 
         , isFullscreen --> doFullFloat
 
