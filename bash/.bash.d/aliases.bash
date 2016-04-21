@@ -35,9 +35,9 @@ alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
 alias e="emacsclient -t"
 alias ee="emacsclient -n"
 alias ew="emacsclient -n -c"
-alias se="sudo emacsclient -t"
-alias see="sudo emacsclient -n"
-alias sew="sudo emacsclient -n -c"
+alias se="SUDO_EDITOR='emacsclient -t' sudoedit"
+alias see="SUDO_EDITOR='emacsclient' sudoedit -b"
+alias sew="SUDO_EDITOR='emacsclient -c' sudoedit -b"
 complete -r ee
 
 # cmake
