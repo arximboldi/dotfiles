@@ -43,9 +43,10 @@
 ;;
 ;; Shell
 ;;
-(require 'ansi-color)
-(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(require 'xterm-color)
+(add-hook 'comint-preoutput-filter-functions 'xterm-color-filter)
+(setq comint-output-filter-functions (remove 'ansi-color-process-output comint-output-filter-functions))
+(setq font-lock-unfontify-region-function 'xterm-color-unfontify-region)
 (add-hook 'shell-mode-hook
           '(lambda ()
              (toggle-truncate-lines 1)
