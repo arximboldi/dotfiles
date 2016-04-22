@@ -137,6 +137,11 @@ main = do
         , ((mask, xK_Page_Up),   spawn $ "mpc prev")
         , ((mask, xK_Home),      spawn $ "mpc toggle")
         , ((mask, xK_End),       spawn $ "mpc stop")
+        -- Toggle compton config
+        , ((mask, xK_i), spawn $ ("((diff ~/.xmonad/compton.conf ~/.xmonad/compton1.conf && " ++
+                                  "    cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf) " ++
+                                  "  || cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf) " ++
+                                  " && killall -USR1 compton"))
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
         , ((mask .|. shiftMask, xK_n), spawn $ "nautilus -w")
@@ -220,7 +225,7 @@ main = do
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
-  spawnPipe "compton -c -r 6 -t -9 -l -9 -i 0.75 -f -D 4 --no-fading-openclose"
+  spawnPipe "cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
   spawnPipe "xfdesktop -D -R"
   spawnPipe "xfsettingsd --replace --no-daemon"
   spawnPipe "xfce4-power-manager --restart"
