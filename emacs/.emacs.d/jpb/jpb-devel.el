@@ -240,3 +240,19 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+;;
+;; Clojure
+;;
+(defun jpb-cider-connect ()
+  (interactive)
+  (cider-connect "localhost" "7888"))
+
+;; (use 'figwheel-sidecar.repl-api)
+;; (cljs-repl)
+(defun jpb-cider-enable-figwheel-cljs ()
+  (interactive)
+  (cider-interactive-eval
+   "(use 'figwheel-sidecar.repl-api) (cljs-repl)"
+   nil
+   nil))
