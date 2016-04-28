@@ -25,8 +25,10 @@ import XMonad.Hooks.InsertPosition as I
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Circle
 import XMonad.Layout.Magnifier
-import XMonad.Layout.Renamed
+import XMonad.Layout.Renamed as R
 import XMonad.Layout.Gaps as G
+import XMonad.Layout.Minimize
+import XMonad.Layout.BoringWindows as B
 
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Navigation2D
@@ -97,13 +99,13 @@ main = do
         -- Resize viewed windows to the correct size
         , ((mask .|. shiftMask, xK_n), refresh)
         -- Move focus to the next window
-        , ((mask, xK_Tab), windows W.focusDown)
+        , ((mask, xK_Tab), B.focusDown)
         -- Move focus to the next window
-        , ((mask, xK_k), windows W.focusDown)
+        , ((mask, xK_k), B.focusDown)
         -- Move focus to the previous window
-        , ((mask, xK_j), windows W.focusUp)
+        , ((mask, xK_j), B.focusUp)
         -- Move focus to the master window
-        , ((mask, xK_m), windows W.focusMaster)
+        , ((mask, xK_m), B.focusMaster)
         -- Toggle border
         , ((mask,  xK_g ), withFocused toggleBorder)
         -- Swap the focused window and the master window
@@ -156,11 +158,13 @@ main = do
         , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
         , ((mask, xK_Print), spawn "gnome-screenshot -i")
         -- Maximize
-        , ((mask .|. shiftMask, xK_plus ), sendMessage MagnifyMore)
-        , ((mask .|. shiftMask, xK_minus), sendMessage MagnifyLess)
-        , ((mask              , xK_o    ), sendMessage Toggle)
+        -- , ((mask .|. shiftMask, xK_minus ), sendMessage MagnifyMore)
+        -- , ((mask, xK_minus), sendMessage MagnifyLess)
+        -- , ((mask, xK_o    ), sendMessage Toggle)
         -- , ((mask, xK_backslash), withFocused (sendMessage . maximizeRestore))
         -- , ((mask, xK_plus), withFocused (sendMessage . maximize))
+        , ((mask,               xK_o), withFocused minimizeWindow)
+        , ((mask .|. shiftMask, xK_o), sendMessage RestoreNextMinimizedWin)
         ]
         ++
         -- Move workspace
@@ -180,10 +184,10 @@ main = do
   let layout' = smartBorders normalLayout
         where
           gap = id -- G.gaps [(G.U, 22)]
-          tallLayout  =  gap $ renamed [ Replace "Tall" ] $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
-          circleLayout = gap $ renamed [ Replace "Circle" ] $ magnifiercz' (100/80) Circle
-          fullLayout = gap $ Full
-          normalLayout = circleLayout ||| tallLayout ||| fullLayout
+          tallLayout = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
+          circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ gap $ magnifiercz' (100/80) Circle
+          fullLayout = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
+          normalLayout = B.boringWindows (circleLayout ||| tallLayout ||| fullLayout)
 
   let manageHook' = composeAll
         [ resource  =? "Do"              --> doIgnore
