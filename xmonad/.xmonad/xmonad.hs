@@ -171,6 +171,12 @@ main = do
         [((m .|. mask, k), windows $ f i)
             | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
             , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+        ++
+        -- mod-{a,s,d} %! Switch to physical/Xinerama screens 1, 2, or 3
+        -- mod-shift-{a,s,d} %! Move client to screen 1, 2, or 3
+        [((m .|. mask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+            | (key, sc) <- zip [xK_a, xK_s, xK_d] [0..]
+            , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
   let mouseBindings' (XConfig {XMonad.modMask = mask}) = M.fromList $
         -- mod-button1, Set the window to floating mode and move by dragging
