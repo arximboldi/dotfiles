@@ -244,11 +244,11 @@ main = do
   spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
   spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
   spawnPipe "ibus-daemon --replace"
-  spawnPipe "pidof volti || volti"
-  spawnPipe "pidof mpDris || mpDris"
-  spawnPipe "pidof nm-applet || nm-applet"
-  spawnPipe "pidof taffybar-linux-x86_64 || taffybar"
-  spawnPipe "xdotool search --sync --onlyvisible Taffybar windowlower && xdotool search --sync --onlyvisible Xfdesktop windowlower"
+  spawnPipe "killall -w volti; volti"
+  spawnPipe "killall -w mpDris; mpDris"
+  spawnPipe "killall -w nm-applet; nm-applet"
+  spawnPipe "killall -w taffybar-linux-x86_64; taffybar"
+  spawnPipe "xdotool search --sync --onlyvisible Taffybar windowlower && xdotool search --sync --onlyvisible Xfdesktop windowlower && sleep 1 && xdotool search --sync --onlyvisible Xfdesktop windowlower"
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
