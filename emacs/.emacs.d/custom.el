@@ -49,7 +49,7 @@
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "xdg-open")
  '(clojure-defun-style-default-indent t)
- '(clojure-indent-style t)
+ '(clojure-indent-style :align-arguments)
  '(coffee-extend-comments nil)
  '(coffee-tab-width 4)
  '(column-number-mode t)
