@@ -45,9 +45,9 @@ complete -r ee
 alias killemacs="emacsclient -e \"(kill-emacs)\""
 
 # cmake
+alias cmake="/usr/bin/cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 alias cmnt="cmake -G Ninja .. && ninja && ctest --output-on-failure"
 alias cmn="cmake -G Ninja .."
-
 alias cmmt="cmake -G 'Unix Makefiles' .. && make -j 4 && ctest --output-on-failure"
 alias cmm="cmake -G 'Unix Makefiles' .."
 
