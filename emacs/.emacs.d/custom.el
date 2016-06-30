@@ -46,6 +46,8 @@
  '(ansi-color-for-comint-mode t)
  '(ansi-color-names-vector
    ["black" "red" "green yellow" "yellow" "deep sky blue" "magenta" "cyan" "white"])
+ '(browse-url-browser-function (quote browse-url-generic))
+ '(browse-url-generic-program "xdg-open")
  '(clojure-defun-style-default-indent t)
  '(clojure-indent-style t)
  '(coffee-extend-comments nil)
