@@ -104,6 +104,18 @@
  '(menu-bar-mode nil)
  '(multi-term-dedicated-select-after-open-p t)
  '(mumamo-chunk-coloring 2)
+ '(openwith-associations
+   (quote
+    (("\\.pdf\\'" "xdg-open"
+      (file))
+     ("\\.mp3\\'" "xdg-open"
+      (file))
+     ("\\.\\(?:mpe?g\\|avi\\|wmv\\)\\'" "xdg-open"
+      ("-idx" file))
+     ("\\.svg\\'" "inkscape" nil)
+     ("\\.\\(?:jp?g\\|png\\)\\'" "xdg-open"
+      (file)))))
+ '(openwith-mode nil)
  '(package-selected-packages
    (quote
     (cider clojure-cheatsheet zoom-window zoom-frm zeal-at-point yasnippet yaml-mode xterm-color web-mode travis string-utils smex shell-toggle scss-mode sass-mode rust-mode request-deferred rainbow-delimiters projectile neotree multi-term markdown-mode+ magit jack-connect jabber-otr ido-ubiquitous haskell-mode gtags git-messenger gist ggtags geiser flymake-yaml flymake-sass emms dirtree dirtrack-buffer-name-track-mode diminish dedicated cmake-ide clojurescript-mode clojure-mode cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
