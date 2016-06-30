@@ -243,6 +243,7 @@ main = do
   spawnPipe "nautilus --no-default-window"
   spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
   spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
+  spawnPipe "pidof syncthing || syncthing"
   spawnPipe "ibus-daemon --replace"
   spawnPipe "killall -w volti; volti"
   spawnPipe "killall -w mpDris; mpDris"
