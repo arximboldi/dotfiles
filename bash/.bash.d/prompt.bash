@@ -30,6 +30,13 @@ set_prompt () {
         PS1+="$red\\h $reset"
     fi
 
+    PS1+="`if [[ $VIRTUAL_ENV != "" ]]; then
+              printf $purple;
+              printf $(basename $VIRTUAL_ENV);
+              printf " "
+              printf $reset;
+              fi`"
+
     if [[ $EUID == 0 ]]; then
         PS1+="$red\\u$reset"
     elif [[ $GUIX_ENVIRONMENT == "t" ]]; then
