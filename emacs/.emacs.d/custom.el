@@ -97,6 +97,7 @@
  '(jabber-roster-show-title nil)
  '(jabber-vcard-avatars-retrieve nil)
  '(jmaker-make-compiler-options "-g")
+ '(js2-strict-missing-semi-warning nil)
  '(line-number-mode t)
  '(line-spacing 4)
  '(magit-diff-use-overlays nil)
