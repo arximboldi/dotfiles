@@ -11,34 +11,6 @@
 ;; (add-hook 'magit-status-mode-hook 'magit-filenotify-mode)
 
 ;;
-;; Flymake
-;;
-
-(require 'flymake)
-
-(defun flymake-pyflakes-init ()
-  ;; Make sure it's not a remote buffer or flymake would not work
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-		     'flymake-create-temp-inplace))
-	 (local-file (file-relative-name
-		      temp-file
-		      (file-name-directory buffer-file-name))))
-    (list "pyflakes" (list local-file))))
-
-(setq flymake-allowed-file-name-masks '(("\\.py\\'"  flymake-pyflakes-init)
-					("\\.tex\\'" flymake-simple-tex-init)
-					("\\.xml\\'" flymake-xml-init)
-					("\\.cpp\\'" flymake-simple-make-init)))
-
-(defun flymake-get-tex-args (file-name)
-  (list "chktex" (list "-g0" "-r" "-l" (expand-file-name "~/.emacs.d/chktexrc")
-		       "-I" "-q" "-v0" file-name)))
-
-(push '("^\\(\.+\.tex\\):\\([0-9]+\\):\\([0-9]+\\):\\(.+\\)" 1 2 3 4)
-      flymake-err-line-patterns)
-
-
-;;
 ;; Yasnippet
 ;;
 
@@ -48,9 +20,7 @@
 ;;
 ;; Python
 ;;
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (unless (eq buffer-file-name nil) (flymake-mode t))))
+(add-hook 'python-mode-hook 'flycheck-mode)
 
 
 ;;
@@ -61,7 +31,7 @@
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'flymake-mode)
+(add-hook 'LaTeX-mode-hook 'flycheck-mode)
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
 
 (add-hook 'rst-mode-hook 'auto-fill-mode)
@@ -78,6 +48,54 @@
 ;; Disable until errors solved
 ;; (cmake-ide-setup)
 ;; (setq cmake-ide-build-dir "build")
+
+(modern-c++-font-lock-global-mode t)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+;;
+;; Fix C++ lambdas
+;;
+(defadvice c-lineup-arglist (around my activate)
+  "Improve indentation of continued C++11 lambda function opened as argument."
+  (setq ad-return-value
+        (if (and (equal major-mode 'c++-mode)
+                 (ignore-errors
+                   (save-excursion
+                     (goto-char (c-langelem-pos langelem))
+                     ;; Detect "[...](" or "[...]{". preceded by "," or "(",
+                     ;;   and with unclosed brace.
+                     (looking-at ".*[(,][ \t]*\\[[^]]*\\][ \t]*[({][^}]*$"))))
+            0                           ; no additional indent
+          ad-do-it)))                   ; default behavior
+
+;;
+;; Fix C++ enum class
+;;
+
+;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; irony-mode's buffers by irony-mode's function
+(add-hook 'irony-mode-hook
+          (lambda ()
+            (define-key irony-mode-map [remap completion-at-point]
+              'irony-completion-at-point-async)
+            (define-key irony-mode-map [remap complete-symbol]
+              'irony-completion-at-point-async)))
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+;; flycheck
+(add-hook 'c++-mode-hook 'flycheck-mode)
+(add-hook 'c-mode-hook 'flycheck-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+;; eldoc
+(add-hook 'irony-mode-hook 'irony-eldoc)
+
+;;
+;; Compilation
+;;
 
 (setq compilation-window-height 12)
 
@@ -118,6 +136,7 @@
 ;;
 ;; Debug
 ;;
+
 (defun jpb-gdb ()
   (interactive)
   (if (buffer-live-p gud-comint-buffer)
@@ -129,28 +148,32 @@
 ;; Formatings
 ;;
 
+
+; style I want to use in c++ mode
+(c-add-style "jpb"
+	     '("stroustrup"
+	       (indent-tabs-mode . nil)        ; use spaces rather than tabs
+	       (c-basic-offset . 4)            ; indent by four spaces
+	       (c-offsets-alist . ((inline-open . 0)  ; custom indentation rules
+				   (brace-list-open . 0)
+                                   (innamespace . 0)
+				   (statement-case-open . +)))))
+
 (add-hook 'c++-mode-hook
-          (function (lambda ()
-		      (c-set-style "stroustrup")
-		      (setq c-basic-offset 4)
-		      (c-set-offset 'innamespace 0)
-		      (setq indent-tabs-mode nil))))
+          (lambda ()
+            (c-set-style "jpb")))
 
 (add-hook 'php-mode-hook
-          (function (lambda ()
-		      (c-set-style "bsd")
-		      (setq c-basic-offset 4)
-		      (c-set-offset 'innamespace 0)
-		      (setq indent-tabs-mode nil))))
+          (lambda ()
+            (c-set-style "bsd")
+            (setq c-basic-offset 4)
+            (c-set-offset 'innamespace 0)
+            (setq indent-tabs-mode nil)))
 
 (add-to-list 'auto-mode-alist '("\\.tpp\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
 
-(add-hook 'c-mode-common-hook
-	  (function (lambda ()
-		      (auto-fill-mode)
-		      ;;(doxymacs-mode)
-		      )))
+(add-hook 'c-mode-common-hook #'auto-fill-mode)
 
 (defun jpb-enable-cpp-headers ()
   (interactive)
@@ -163,6 +186,7 @@
 ;;
 ;; QML
 ;;
+
 (add-to-list 'auto-mode-alist '("\\.qml\\'" . js-mode))
 
 ;;
@@ -201,18 +225,8 @@
 ;;
 ;; Rainbow
 ;;
-
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
-(cl-loop
- for index from 1 to (- rainbow-delimiters-max-face-count 1) do
- (let* ((face (intern (format "rainbow-delimiters-depth-%d-face" index)))
-        (total rainbow-delimiters-max-face-count)
-        (perc (max (- (+ total 40) (* index 4)) 20)))
-   (set-face-attribute face nil :foreground (format "gray%d" perc))))
-
-(provide 'jpb-devel)
 
 ;;
 ;; Coffee
@@ -256,3 +270,5 @@
    "(use 'figwheel-sidecar.repl-api) (cljs-repl)"
    nil
    nil))
+
+(provide 'jpb-devel)
