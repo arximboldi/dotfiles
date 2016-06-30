@@ -1,4 +1,6 @@
-# name: namespace ...
+# name : namespace XXX { ... } /* namespace XXX */
 # key: ns
 # --
-namespace 
+namespace ${1:name} {
+$0
+} /* namespace $1 */

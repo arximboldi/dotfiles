@@ -1,6 +1,6 @@
 #name : #ifndef XXX; #define XXX; #endif
 # --
-#ifndef ${1:NS}_${2:`(upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`_TPP_}
+#ifndef ${1:NS}_${2:`(upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`_IPP_}
 #define $1_$2
 
 $0

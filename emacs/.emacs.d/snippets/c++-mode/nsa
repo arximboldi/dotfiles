@@ -1,0 +1,6 @@
+# name: namespace { ... } /* namespace */
+# key: nsa
+# --
+namespace {
+$0
+} /* namespace */
