@@ -43,6 +43,8 @@
      ("^executivepaper$" "%(o?)evince %dS -paper 7.25x10.5in %d")
      ("^landscape$" "%(o?)evince %dS -paper a4r -s 0 %d")
      ("." "%(o?)evince %d"))))
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
  '(ansi-color-for-comint-mode t)
  '(ansi-color-names-vector
    ["black" "red" "green yellow" "yellow" "deep sky blue" "magenta" "cyan" "white"])
@@ -89,7 +91,7 @@
     (vc-version-diff gtags-find-tag gtags-find-rtag gtags-find-tag-other-window)))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(ispell-dictionary nil t)
+ '(ispell-dictionary nil)
  '(jabber-alert-presence-message-function (quote jabber-presence-only-chat-open-message))
  '(jabber-history-enabled t)
  '(jabber-roster-line-format " %a %c %-25n %u %-8s  %S (%j)")
