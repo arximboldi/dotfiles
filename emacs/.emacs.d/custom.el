@@ -124,7 +124,14 @@
  '(rainbow-delimiters-max-face-count 10)
  '(safe-local-variable-values
    (quote
-    ((web-mode-markup-indent-offset . 2)
+    ((eval modify-syntax-entry 43 "'")
+     (eval modify-syntax-entry 36 "'")
+     (eval modify-syntax-entry 126 "'")
+     (bug-reference-bug-regexp . "<https?://\\(debbugs\\|bugs\\)\\.gnu\\.org/\\([0-9]+\\)>")
+     (eval c-set-offset
+           (quote innamespace)
+           0)
+     (web-mode-markup-indent-offset . 2)
      (web-mode-markup-indent-offset . 4)
      (web-mode-markup-indent-offset . 80)
      (web-markup-indent-offset . 80)
