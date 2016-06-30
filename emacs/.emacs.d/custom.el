@@ -118,7 +118,7 @@
  '(openwith-mode nil)
  '(package-selected-packages
    (quote
-    (cider clojure-cheatsheet zoom-window zoom-frm zeal-at-point yasnippet yaml-mode xterm-color web-mode travis string-utils smex shell-toggle scss-mode sass-mode rust-mode request-deferred rainbow-delimiters projectile neotree multi-term markdown-mode+ magit jack-connect jabber-otr ido-ubiquitous haskell-mode gtags git-messenger gist ggtags geiser flymake-yaml flymake-sass emms dirtree dirtrack-buffer-name-track-mode diminish dedicated cmake-ide clojurescript-mode clojure-mode cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
+    (cyberpunk-theme skeletor skewer-mode scala-mode cider clojure-cheatsheet zoom-window zoom-frm zeal-at-point yasnippet yaml-mode xterm-color web-mode travis string-utils smex shell-toggle scss-mode sass-mode rust-mode request-deferred rainbow-delimiters projectile neotree multi-term markdown-mode+ magit jack-connect jabber-otr ido-ubiquitous haskell-mode gtags git-messenger gist ggtags geiser flymake-yaml flymake-sass emms dirtree dirtrack-buffer-name-track-mode diminish dedicated cmake-ide clojurescript-mode clojure-mode cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
  '(projectile-global-mode t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
  '(rainbow-delimiters-max-face-count 10)
