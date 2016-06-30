@@ -42,6 +42,8 @@ alias see="SUDO_EDITOR='emacsclient' toemacs sudoedit -b $*"
 alias sew="SUDO_EDITOR='emacsclient -c' sudoedit -b $*"
 complete -r ee
 
+alias killemacs="emacsclient -e \"(kill-emacs)\""
+
 # cmake
 alias cmnt="cmake -G Ninja .. && ninja && ctest --output-on-failure"
 alias cmn="cmake -G Ninja .."
