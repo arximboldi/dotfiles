@@ -62,3 +62,6 @@ alias abl-all="abl-configure && abl-build && abl-run"
 
 # web dev
 alias pjson="python -mjson.tool"
+
+# screen
+alias scr="screen -DR"
