@@ -1,10 +1,14 @@
+file:///home/raskolnikov/dev
+file:///home/raskolnikov/public
+file:///home/raskolnikov/sync
 file:///home/raskolnikov/doc
 file:///home/raskolnikov/pic
 file:///home/raskolnikov/down
-file:///home/raskolnikov/dev
 file:///home/raskolnikov/media/music
 file:///home/raskolnikov/media/videos
-sftp://orion/home/raskolnikov sftp/orion
-sftp://raskolnikov@mjpi/ sftp/mjpi
-ftp://mjpi/ ftp/mjpi
-sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp/es.gnu.org
+sftp://raskolnikov@orion0/home/raskolnikov sftp://orion0
+sftp://orion0:2223/ sftp://mjpi (remote)
+sftp://raskolnikov@mjpi/ sftp://mjpi
+sftp://orion0:2225/ sftp://pickup (remote)
+sftp://pickup/ sftp://pickup
+sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp://es.gnu.org
