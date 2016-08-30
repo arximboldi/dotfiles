@@ -9,6 +9,7 @@
 127.0.1.1	nexus9
 #192.168.0.87	mjpi
 192.168.42.1	mjpi
+192.168.42.2	pickup
 163.172.164.73  orion0
 
 # The following lines are desirable for IPv6 capable hosts
