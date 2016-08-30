@@ -49,6 +49,7 @@ alias sew="SUDO_EDITOR='emacsclient -c' sudoedit -b $*"
 complete -r ee
 
 alias killemacs="emacsclient -e \"(kill-emacs)\" -a false"
+alias compemacs='emacs --batch -l ~/.emacs.d/init.el --eval "(byte-recompile-directory (expand-file-name \"~/.emacs.d\") 0)" --kill'
 
 # cmake
 alias cmake="/usr/bin/cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
