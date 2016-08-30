@@ -13,3 +13,6 @@
 [submodule "_deps/xdotool"]
 	path = _deps/xdotool
 	url = git@github.com:arximboldi/xdotool.git
+[submodule "emacs/.emacs.d/lisp/cc-mode"]
+	path = emacs/.emacs.d/lisp/cc-mode
+	url = git@github.com:arximboldi/cc-mode.git
