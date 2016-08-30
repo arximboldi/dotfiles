@@ -60,6 +60,14 @@
 (helm-projectile-on)
 
 ;;
+;; Multiple cursors
+;;
+(global-set-key (kbd "C-s-c C-s-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;;
 ;; Git
 ;;
 (global-set-key (kbd "C-x g") 'magit-status)
