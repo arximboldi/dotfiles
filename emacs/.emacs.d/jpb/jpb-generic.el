@@ -21,7 +21,6 @@
 ;;
 ;; Term
 ;;
-
 (add-hook 'term-mode-hook
           '(lambda() (set (make-local-variable 'global-hl-line-mode) nil)))
 

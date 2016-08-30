@@ -83,6 +83,14 @@
  '(focus-follows-mouse t)
  '(ggtags-update-on-save nil)
  '(global-hl-line-mode t)
+ '(helm-M-x-fuzzy-match t)
+ '(helm-autoresize-mode nil)
+ '(helm-candidate-separator "▶")
+ '(helm-display-header-line t)
+ '(helm-ff-fuzzy-matching t)
+ '(helm-file-cache-fuzzy-match t)
+ '(helm-mode-fuzzy-match t)
+ '(helm-projectile-fuzzy-match t)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
  '(ido-max-directory-size 30000)
@@ -125,8 +133,9 @@
  '(openwith-mode nil)
  '(package-selected-packages
    (quote
-    (helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr irony-eldoc ido-ubiquitous haskell-mode git-messenger gist geiser flymake-yaml flymake-sass flycheck-irony expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
+    (helm-flx helm-fuzzier helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr irony-eldoc ido-ubiquitous haskell-mode git-messenger gist geiser flymake-yaml flymake-sass flycheck-irony expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
  '(projectile-global-mode t)
+ '(projectile-use-git-grep t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
  '(rainbow-delimiters-max-face-count 10)
  '(safe-local-variable-values
@@ -155,7 +164,7 @@
  '(send-mail-function nil)
  '(shell-toggle-launch-shell (quote shell))
  '(show-paren-mode t)
- '(sort-fold-case t)
+ '(sort-fold-case t t)
  '(tool-bar-mode nil)
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
@@ -171,4 +180,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-M-x-key ((t (:foreground "#aaa" :underline t))))
+ '(helm-buffer-directory ((t (:inherit helm-ff-directory))))
+ '(helm-buffer-file ((t (:inherit helm-ff-file))))
+ '(helm-buffer-not-saved ((t (:foreground "red"))))
+ '(helm-candidate-number ((t (:background "white" :foreground "#333"))))
+ '(helm-ff-directory ((t (:inherit font-lock-builtin-face))))
+ '(helm-ff-dotted-directory ((t (:foreground "#777"))))
+ '(helm-ff-executable ((t (:foreground "yellow green"))))
+ '(helm-ff-file ((t nil)))
+ '(helm-ff-prefix ((t (:foreground "red"))))
+ '(helm-grep-file ((t (:foreground "medium orchid" :underline t))))
+ '(helm-selection ((t (:inherit highlight :weight bold))))
+ '(helm-separator ((t (:foreground "#444"))))
+ '(helm-source-header ((t (:inherit font-lock-builtin-face :weight bold))))
  '(vline ((t (:inherit highlight)))))

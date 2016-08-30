@@ -14,31 +14,47 @@
 ;; IDO
 ;;
 
-(require 'ido-ubiquitous)
-(ido-ubiquitous)
+;; (require 'ido-ubiquitous)
+;; (ido-ubiquitous)
 
-(require 'smex)
+;; (require 'smex)
 
-;; Display ido results vertically, rather than horizontally
-(setq ido-decorations
-      (quote ("\n ▶ " "" "\n   " "\n   ..." "[" "]"
-	      " [No match]"
-	      " [Matched]"
-	      " [Not readable]"
-	      " [Too big]"
-	      " [Confirm]")))
+;; ;; Display ido results vertically, rather than horizontally
+;; (setq ido-decorations
+;;       (quote ("\n ▶ " "" "\n   " "\n   ..." "[" "]"
+;; 	      " [No match]"
+;; 	      " [Matched]"
+;; 	      " [Not readable]"
+;; 	      " [Too big]"
+;; 	      " [Confirm]")))
 
-(defun ido-disable-line-trucation ()
-  (set (make-local-variable 'truncate-lines) nil))
-(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+;; (defun ido-disable-line-trucation ()
+;;   (set (make-local-variable 'truncate-lines) nil))
+;; (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
-(defun jpb-smex-load-and-run ()
-  (interactive)
-  (or (boundp 'smex-cache)
-      (smex-initialize))
-  (global-set-key [(meta x)] 'smex)
-  (smex))
-(global-set-key "\M-x" 'jpb-smex-load-and-run)
+;; (defun jpb-smex-load-and-run ()
+;;   (interactive)
+;;   (or (boundp 'smex-cache)
+;;       (smex-initialize))
+;;   (global-set-key [(meta x)] 'smex)
+;;   (smex))
+;; (global-set-key "\M-x" 'jpb-smex-load-and-run)
+
+;;
+;; Helm
+;;
+(helm-mode 1)
+(helm-flx-mode +1)
+(helm-fuzzier-mode 1)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+(projectile-global-mode 1)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 ;;
 ;; Git
