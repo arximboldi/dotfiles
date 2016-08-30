@@ -49,15 +49,21 @@
 ;; Gtags
 ;;
 
-(global-set-key (kbd "C-c C-f")   'gtags-find-file)
-(global-set-key (kbd "C-c C-t")   'gtags-find-pattern)
-(global-set-key (kbd "M-.")       'gtags-find-tag)
-(global-set-key (kbd "M-,")       'gtags-find-rtag)
-(global-set-key (kbd "C-x 4 .")   'gtags-find-tag-other-window)
+;; (global-set-key (kbd "C-c C-f")   'gtags-find-file)
+;; (global-set-key (kbd "C-c C-t")   'gtags-find-pattern)
+;; (global-set-key (kbd "M-.")       'gtags-find-tag)
+;; (global-set-key (kbd "M-,")       'gtags-find-rtag)
+;; (global-set-key (kbd "C-x 4 .")   'gtags-find-tag-other-window)
 
-(add-hook 'gtags-select-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "RET") 'gtags-select-tag)))
+;; (add-hook 'gtags-select-mode-hook
+;; 	  (lambda ()
+;; 	    (local-set-key (kbd "RET") 'gtags-select-tag)))
+
+(require 'dumb-jump)
+(dumb-jump-mode)
+(global-set-key (kbd "M-.") 'dumb-jump-go)
+(global-set-key (kbd "C-M-.") 'dumb-jump-go-other-window)
+(global-set-key (kbd "M-,") 'dumb-jump-back)
 
 ;;
 ;; Key bindings
@@ -107,7 +113,8 @@
      (add-hook 'python-mode-hook
 	       (lambda ()
 		 (local-set-key (kbd "C-c C-e") 'py-execute-region)
-		 (local-set-key (kbd "C-c C-t")  'gtags-find-pattern)))))
+		 ;;(local-set-key (kbd "C-c C-t")  'gtags-find-pattern)
+                 ))))
 
 (eval-after-load "shell"
   '(progn
