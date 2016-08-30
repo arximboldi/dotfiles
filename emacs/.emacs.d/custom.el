@@ -48,6 +48,7 @@
  '(ansi-color-for-comint-mode t)
  '(ansi-color-names-vector
    ["black" "red" "green yellow" "yellow" "deep sky blue" "magenta" "cyan" "white"])
+ '(auto-revert-use-notify t)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "xdg-open")
  '(clojure-defun-style-default-indent t)
@@ -102,6 +103,8 @@
  '(js2-strict-missing-semi-warning nil)
  '(line-number-mode t)
  '(line-spacing 4)
+ '(magit-auto-revert-immediately nil)
+ '(magit-auto-revert-mode nil)
  '(magit-diff-use-overlays nil)
  '(menu-bar-mode nil)
  '(multi-term-dedicated-select-after-open-p t)
