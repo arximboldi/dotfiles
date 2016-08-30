@@ -21,6 +21,7 @@ export SHLIB_GXXLD="g++-$GCVER"
 # export CXXFLAGS="-fdiagnostics-color=always"
 
 export GOPATH=~/.go-path
+export CTEST_OUTPUT_ON_FAILURE=1
 
 add-path $GOPATH/bin
 add-path /home/raskolnikov/usr/bin
