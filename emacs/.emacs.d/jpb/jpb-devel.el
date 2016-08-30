@@ -286,4 +286,9 @@
    nil
    nil))
 
+;;
+;; Octave
+;;
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+
 (provide 'jpb-devel)
