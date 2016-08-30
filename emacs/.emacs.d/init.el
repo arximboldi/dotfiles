@@ -6,7 +6,7 @@
 ;;
 
 ;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
-(byte-recompile-directory (expand-file-name "~/.emacs.d/jpb") 0)
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d/jpb") 0)
 
 (server-start)
 (remove-hook 'kill-buffer-query-functions
