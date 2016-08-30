@@ -121,6 +121,8 @@
 (defun compile-at (str)
   "Set the compile command to build a selected directory"
   (interactive "DCompilation directory: ")
+  (setq gud-gdb-command-name
+        (concat "cd " str "; gdb -i=mi"))
   (setq compile-command
 	(concat "cd " str "; make")))
 
@@ -141,17 +143,26 @@
 ;; Debug
 ;;
 
-(defun jpb-gdb ()
-  (interactive)
-  (if (buffer-live-p gud-comint-buffer)
-      (gdb-restore-windows)
-    (call-interactively 'gdb)))
-(setq gdb-many-windows t)
+(defun gdb-file (fname)
+  "Set the compile command to build a selected directory"
+  (interactive "fExecutable: ")
+  (gdb (concat "gdb -i=mi " fname)))
+
+;; Force gdb-mi to not dedicate any windows
+(defadvice gdb-display-buffer
+    (after undedicate-gdb-display-buffer)
+  (set-window-dedicated-p ad-return-value nil))
+(ad-activate 'gdb-display-buffer)
+
+(defadvice gdb-set-window-buffer
+    (after undedicate-gdb-set-window-buffer
+           (name &optional ignore-dedi window))
+  (set-window-dedicated-p window nil))
+(ad-activate 'gdb-set-window-buffer)
 
 ;;
 ;; Formatings
 ;;
-
 
 ; style I want to use in c++ mode
 (c-add-style "jpb"
