@@ -3,4 +3,4 @@
 # --
 namespace {
 $0
-} /* namespace */
+} // anonymous namespace
