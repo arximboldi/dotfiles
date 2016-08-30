@@ -47,3 +47,10 @@ add-path $HOME/.guix-profile/sbin
 
 # Clojure
 # export LEIN_FAST_TRAMPOLINE=true
+
+#
+# emscripten
+#
+add-path $HOME/soft/binaryen/build/bin
+add-path $HOME/dev/emsdk
+source $HOME/dev/emsdk/emsdk_set_env.sh
