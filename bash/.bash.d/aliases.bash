@@ -48,7 +48,7 @@ alias see="SUDO_EDITOR='emacsclient' toemacs sudoedit -b $*"
 alias sew="SUDO_EDITOR='emacsclient -c' sudoedit -b $*"
 complete -r ee
 
-alias killemacs="emacsclient -e \"(kill-emacs)\""
+alias killemacs="emacsclient -e \"(kill-emacs)\" -a false"
 
 # cmake
 alias cmake="/usr/bin/cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
