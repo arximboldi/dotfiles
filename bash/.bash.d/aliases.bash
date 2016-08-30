@@ -57,8 +57,9 @@ alias cmn="cmake -G Ninja .."
 alias cmmt="cmake -G 'Unix Makefiles' .. && make -j 4 && ctest --output-on-failure"
 alias cmm="cmake -G 'Unix Makefiles' .."
 
-# ipython
-alias p=ipython
+# math
+alias p="ipython --no-confirm-exit"
+alias o=octave-cli
 
 # ableton
 alias abl-configure="modules/build-system/scripts/configure.py"
