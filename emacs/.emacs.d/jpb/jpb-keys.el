@@ -52,6 +52,9 @@
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z") 'helm-select-action)
+
 (projectile-global-mode 1)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
