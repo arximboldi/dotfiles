@@ -5,6 +5,10 @@
 ;;   Author: Juan Pedro Bolívar Puente
 ;;
 
+(defun jpb-fill-mode ()
+  (setq fill-column 80)
+  (fci-mode))
+
 ;;
 ;; GIT
 ;;
