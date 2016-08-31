@@ -92,9 +92,7 @@
  '(helm-projectile-fuzzy-match t)
  '(helm-split-window-default-side (quote other))
  '(ido-enable-flex-matching t)
- '(ido-everywhere t)
  '(ido-max-directory-size 30000)
- '(ido-mode (quote both) nil (ido))
  '(ido-save-directory-list-file "~/.emacs.d/ido.last")
  '(ido-separator nil)
  '(ido-ubiquitous-command-exceptions
