@@ -183,18 +183,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(helm-M-x-key ((t (:foreground "#aaa" :underline t))))
- '(helm-buffer-directory ((t (:inherit helm-ff-directory))))
- '(helm-buffer-file ((t (:inherit helm-ff-file))))
- '(helm-buffer-not-saved ((t (:foreground "red"))))
- '(helm-candidate-number ((t (:background "white" :foreground "#333"))))
- '(helm-ff-directory ((t (:inherit font-lock-builtin-face))))
- '(helm-ff-dotted-directory ((t (:foreground "#777"))))
- '(helm-ff-executable ((t (:foreground "yellow green"))))
- '(helm-ff-file ((t nil)))
- '(helm-ff-prefix ((t (:foreground "red"))))
- '(helm-grep-file ((t (:foreground "medium orchid" :underline t))))
- '(helm-selection ((t (:inherit highlight :weight bold))))
- '(helm-separator ((t (:foreground "#444"))))
- '(helm-source-header ((t (:inherit font-lock-builtin-face :weight bold))))
- '(vline ((t (:inherit highlight)))))
+)

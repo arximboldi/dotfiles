@@ -37,13 +37,13 @@ are included.")
    `(highlight ((,class (:background "#353535"))))
    `(region ((,class (:background "#444444" :foreground "#f6f3e8"))))
    `(secondary-selection ((,class (:background "#333366" :foreground
-"#f6f3e8"))))
+                                               "#f6f3e8"))))
    `(isearch ((,class (:background "#040404" :foreground "#857b6f"))))
    `(lazy-highlight ((,class (:background "#485058" :foreground "#a0a8b0"))))
    ;; Mode line faces
    `(mode-line ((,class (:background "#444444" :foreground "#f6f3e8"))))
    `(mode-line-inactive ((,class (:background "#444444" :foreground
-"#857b6f"))))
+                                              "#857b6f"))))
    ;; Escape and prompt faces
    `(minibuffer-prompt ((,class (:foreground "#e5786d"))))
    `(escape-glyph ((,class (:foreground "#ddaa6f" :weight bold))))
@@ -96,30 +96,46 @@ are included.")
    `(message-separator ((,class (:foreground "#e5786d" :weight bold))))
 
    '(custom-button ((t (:background "#333" :foreground "#fff" :box
-(:line-width 2 :style released-button)))))
+                                    (:line-width 2 :style released-button)))))
    '(custom-button-mouse ((t (:background "#555" :foreground "#fff"
-:box (:line-width 2 :style released-button)))))
+                                          :box (:line-width 2 :style released-button)))))
    '(diff-added ((t (:inherit diff-changed :foreground "green yellow"))))
    '(diff-file-header ((t (:inverse-video t :weight bold))))
    '(diff-hunk-header ((t (:inherit (magit-item-highlight highlight
-diff-header)))))
+                                                          diff-header)))))
    '(diff-removed ((t (:inherit diff-changed :foreground "tomato"))))
    ;; '(ido-first-match ((t (:foreground "#D64937" :weight bold))))
    ;; '(ido-only-match ((t (:foreground "lawn green"))))
    ;; '(ido-subdir ((t (:foreground "#729FCF"))))
    '(magit-blame-header ((t (:inherit magit-section-title :background "#111"))))
    '(magit-item-highlight ((t (:inherit secondary-selection
-:background "#111"))))
+                                        :background "#111"))))
    '(magit-tag ((t (:background "#5d3703" :foreground "LemonChiffon1"))))
    '(minibuffer-prompt ((t (:foreground "#d64937"))))
    '(mode-line ((t (:background "#d64937" :foreground "black"))))
    '(mode-line-emphasis ((t (:foreground "black" :weight bold))))
    '(mode-line-inactive ((t (:inherit mode-line :background "#2d2d2d"
-:foreground "#999" :weight light))))
+                                      :foreground "#999" :weight light))))
    '(scroll-bar ((t nil)))
    '(vertical-border ((((type x mac)) (:inherit mode-line-inactive
-:foreground "#444444"))))
-   '(comint-highlight-prompt ((t nil :inherit nil)))))
+                                                :foreground "#444444"))))
+   '(comint-highlight-prompt ((t nil :inherit nil)))
+   ;; helm stuff
+   '(helm-M-x-key ((t (:foreground "#aaa" :underline t))))
+   '(helm-buffer-directory ((t (:inherit helm-ff-directory))))
+   '(helm-buffer-file ((t (:inherit helm-ff-file))))
+   '(helm-buffer-not-saved ((t (:foreground "red"))))
+   '(helm-candidate-number ((t (:background "white" :foreground "#333"))))
+   '(helm-ff-directory ((t (:inherit font-lock-builtin-face))))
+   '(helm-ff-dotted-directory ((t (:foreground "#777"))))
+   '(helm-ff-executable ((t (:foreground "yellow green"))))
+   '(helm-ff-file ((t nil)))
+   '(helm-ff-prefix ((t (:foreground "red"))))
+   '(helm-grep-file ((t (:foreground "medium orchid" :underline t))))
+   '(helm-selection ((t (:inherit highlight :weight bold))))
+   '(helm-separator ((t (:foreground "#444"))))
+   '(helm-source-header ((t (:inherit font-lock-builtin-face :weight bold))))
+   '(vline ((t (:inherit highlight))))))
 
 (custom-theme-set-variables
  'jpb-wombatish
