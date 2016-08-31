@@ -117,9 +117,8 @@
  '(magit-auto-revert-mode nil)
  '(magit-diff-use-overlays nil)
  '(menu-bar-mode nil)
- '(mu4e-completing-read-function (quote completing-read))
+ '(mu4e-completing-read-function (quote completing-read) t)
  '(mu4e-maildir "~/mail")
- '(mu4e-view-prefer-html t)
  '(multi-term-dedicated-select-after-open-p t)
  '(mumamo-chunk-coloring 2)
  '(openwith-associations
