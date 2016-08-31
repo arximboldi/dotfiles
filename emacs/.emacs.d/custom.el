@@ -117,6 +117,9 @@
  '(magit-auto-revert-mode nil)
  '(magit-diff-use-overlays nil)
  '(menu-bar-mode nil)
+ '(mu4e-completing-read-function (quote completing-read))
+ '(mu4e-maildir "~/mail")
+ '(mu4e-view-prefer-html t)
  '(multi-term-dedicated-select-after-open-p t)
  '(mumamo-chunk-coloring 2)
  '(openwith-associations
@@ -133,7 +136,7 @@
  '(openwith-mode nil)
  '(package-selected-packages
    (quote
-    (multiple-cursors helm-flx helm-fuzzier helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr irony-eldoc ido-ubiquitous haskell-mode git-messenger gist geiser flymake-yaml flymake-sass flycheck-irony expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
+    (helm-mu multiple-cursors helm-flx helm-fuzzier helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr irony-eldoc ido-ubiquitous haskell-mode git-messenger gist geiser flymake-yaml flymake-sass flycheck-irony expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
  '(projectile-global-mode t)
  '(projectile-use-git-grep t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
