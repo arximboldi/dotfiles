@@ -1,0 +1,79 @@
+#
+# gmail account
+#
+
+IMAPAccount gmail
+Host imap.gmail.com
+User magnicida@gmail.com
+UseIMAPS yes
+PipelineDepth 3
+# genertate with:
+# $ gpg2 --output pass.gpg --symmetric pass
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"imap.gmail.com\" {print $6}'"
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/mail/gmail/
+Inbox ~/mail/gmail/Inbox/
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+# Exclude everything under the internal [Gmail] folder,
+# except the interesting folders
+Patterns * !"[Gmail]/All Mail"
+Create Slave
+Expunge Slave
+Sync Pull
+
+#
+# riseup account
+#
+
+IMAPAccount riseup
+Host mail.riseup.net
+User juanpe
+PipelineDepth 1
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"mail.riseup.net\" {print $6}'"
+
+IMAPStore riseup-remote
+Account riseup
+
+MaildirStore riseup-local
+Path ~/mail/riseup/
+Inbox ~/mail/riseup/Inbox/
+
+Channel riseup
+Master :riseup-remote:
+Slave :riseup-local:
+Patterns *
+Create Slave
+Expunge Slave
+Sync Pull
+
+#
+# gnu account
+#
+
+IMAPAccount gnu
+Host 91.224.149.60 # es.gnu.org
+User raskolnikov
+CertificateFile ~/.mail/es.gnu.org.cert
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"es.gnu.org\" {print $6}'"
+
+IMAPStore gnu-remote
+Account gnu
+
+MaildirStore gnu-local
+Path ~/mail/gnu/
+Inbox ~/mail/gnu/Inbox/
+
+Channel gnu
+Master :gnu-remote:
+Slave :gnu-local:
+Patterns * !.* !dev/*
+Create Slave
+Expunge Slave
+Sync Pull
