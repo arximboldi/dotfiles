@@ -8,6 +8,18 @@
 (setq user-mail-address "raskolnikov@gnu.org"
       user-full-name "Juan Pedro Bolivar Puente")
 
+(setq notmuch-saved-searches
+   '((:name "inbox" :query "tag:inbox and not tag:lists" :key "i" :sort-order newest-first)
+     (:name "lists" :query "tag:inbox and tag:lists" :key "l" :sort-order newest-first)
+     (:name "gnu" :query "tag:inbox and tag:gnu" :key "g" :sort-order newest-first)
+     (:name "riseup" :query "tag:inbox and tag:riseup" :key "r" :sort-order newest-first)
+     (:name "gmail" :query "tag:inbox and tag:gmail" :key "G" :sort-order newest-first)
+     (:name "unread" :query "tag:unread" :key "u" :sort-order newest-first)
+     (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first)
+     (:name "sent" :query "tag:sent" :key "t" :sort-order newest-first)
+     (:name "drafts" :query "tag:draft" :key "d")
+     (:name "all mail" :query "*" :key "a" :sort-order newest-first)))
+
 ;;
 ;; Multiple identitites
 ;;
