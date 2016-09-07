@@ -59,7 +59,20 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
+;;
+;; Email
+;;
 (global-set-key (kbd "C-x m") 'notmuch-mua-new-mail)
+(define-key notmuch-show-mode-map "S"
+  (lambda ()
+    "mark message as spam"
+    (interactive)
+    (notmuch-show-tag (list "+spam" "-inbox"))))
+(define-key notmuch-search-mode-map "S"
+  (lambda (&optional beg end)
+    "mark thread as spam"
+    (interactive (notmuch-search-interactive-region))
+    (notmuch-search-tag (list "+spam" "-inbox") beg end)))
 
 ;;
 ;; Multiple cursors
