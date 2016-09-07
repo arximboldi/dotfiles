@@ -8,6 +8,8 @@
 (setq user-mail-address "raskolnikov@gnu.org"
       user-full-name "Juan Pedro Bolivar Puente")
 
+(require 'notmuch)
+
 (setq notmuch-saved-searches
    '((:name "inbox" :query "tag:inbox and not tag:lists" :key "i" :sort-order newest-first)
      (:name "lists" :query "tag:inbox and tag:lists" :key "l" :sort-order newest-first)
