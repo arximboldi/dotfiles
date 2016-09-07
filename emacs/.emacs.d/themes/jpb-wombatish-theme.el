@@ -136,6 +136,8 @@ are included.")
    '(helm-selection ((t (:inherit highlight :weight bold))))
    '(helm-separator ((t (:foreground "#444"))))
    '(helm-source-header ((t (:inherit font-lock-builtin-face :weight bold))))
+   ;; widgets
+   '(widget-field ((t (:background "#333333" :box (:line-width 1 :color "black" :style pressed-button)))))
    ;; notmuch stuff
    '(notmuch-search-count ((t (:inherit default :foreground "magenta"))))
    '(notmuch-search-date ((t (:inherit default :foreground "dark orchid"))))
