@@ -45,7 +45,7 @@
 (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
 
 (setq notmuch-crypto-process-mime t)
-(setq notmuch-poll-script "~/usr/bin/sync-mail")
+(setq notmuch-poll-script "~/usr/bin/sync-email")
 (setq notmuch-show-logo nil)
 
 (setq sendmail-program "/usr/bin/msmtp"
