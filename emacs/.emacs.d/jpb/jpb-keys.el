@@ -64,16 +64,27 @@
 ;;
 (global-set-key (kbd "C-x m") 'notmuch-mua-new-mail)
 (define-key notmuch-show-mode-map (kbd "C-.") 'browse-url-at-point)
-(define-key notmuch-show-mode-map "S"
-  (lambda ()
-    "mark message as spam"
-    (interactive)
-    (notmuch-show-tag (list "+spam" "-inbox"))))
+
 (define-key notmuch-search-mode-map "S"
   (lambda (&optional beg end)
-    "mark thread as spam"
+    "Mark thread as spam"
     (interactive (notmuch-search-interactive-region))
-    (notmuch-search-tag (list "+spam" "-inbox") beg end)))
+    (notmuch-search-tag (list "+spam" "-inbox") beg end)
+    (notmuch-search-next-thread)))
+
+(define-key notmuch-search-mode-map "f"
+  (lambda (&optional beg end)
+    "Mark thread as important"
+    (interactive (notmuch-search-interactive-region))
+    (notmuch-search-tag (list "+flagged") beg end)
+    (notmuch-search-next-thread)))
+
+(define-key notmuch-search-mode-map "v"
+  (lambda (&optional beg end)
+    "Mark thread as read"
+    (interactive (notmuch-search-interactive-region))
+    (notmuch-search-tag (list "-unread") beg end)
+    (notmuch-search-next-thread)))
 
 ;;
 ;; Multiple cursors
