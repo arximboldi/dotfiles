@@ -1,10 +1,8 @@
 #!/bin/bash
 
 CHANNELS="gmail gnu riseup"
-NOTIFY=~/dotfiles/_deps/notify-send.sh/notify-send.sh
 
-trap 'kill_children' INT
-
+notify_command=~/dotfiles/_deps/notify-send.sh/notify-send.sh
 notify_infinity=100000000
 notify_delay=10000
 
@@ -13,12 +11,12 @@ echo '0' > $notify_file
 
 notify_progress() {
     echo "-- $1"
-    $NOTIFY -R "$notify_file" -i email -t $notify_infinity "Sync email" "$1"
+    $notify_command -R "$notify_file" -i email -t $notify_infinity "Sync email" "$1"
 }
 
 notify_finish() {
     echo "== $1"
-    $NOTIFY -R "$notify_file" -i email -t $notify_delay "Sync email" "$1"
+    $notify_command -R "$notify_file" -i email -t $notify_delay "Sync email" "$1"
 }
 
 kill_children() {
@@ -31,16 +29,36 @@ kill_children() {
     exit 1
 }
 
-notify_progress "Fetching..."
-for i in $CHANNELS; do
-    mbsync $i &
-done
-wait
+do_sync_email() {
+    notify_progress "Fetching..."
+    for i in $CHANNELS; do
+        mbsync $i &
+    done
+    wait
 
-notify_progress "Updating database..."
-result_message=`notmuch new | tail -n 1`
+    notify_progress "Updating database..."
+    result_message=`notmuch new | tail -n 1`
 
-notify_progress "Organizing email..."
-afew --tag --new
+    notify_progress "Organizing email..."
+    afew --tag --new
 
-notify_finish "$result_message"
+    notify_finish "$result_message"
+}
+
+main() {
+    trap 'kill_children' INT
+
+    network_state=`nmcli networking connectivity`
+
+    if [ $network_state = 'full' ]
+    then
+        do_sync_email
+    else
+        notify_finish "No internet connection!"
+        exit 1
+    fi
+
+    exit 0
+}
+
+main
