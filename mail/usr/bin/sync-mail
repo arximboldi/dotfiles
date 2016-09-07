@@ -1,0 +1,46 @@
+#!/bin/bash
+
+CHANNELS="gnu gmail riseup"
+NOTIFY=~/dotfiles/_deps/notify-send.sh/notify-send.sh
+
+trap 'kill_children' INT
+
+notify_infinity=100000000
+notify_delay=10000
+
+notify_file=`mktemp`
+echo '0' > $notify_file
+
+notify_progress() {
+    echo "-- $1"
+    $NOTIFY -R "$notify_file" -i email -t $notify_infinity "Sync email" "$1"
+}
+
+notify_finish() {
+    echo "== $1"
+    $NOTIFY -R "$notify_file" -i email -t $notify_delay "Sync email" "$1"
+}
+
+kill_children() {
+    trap '' INT TERM
+    echo
+    notify_progress "Shutting down..."
+    kill -TERM 0
+    wait
+    notify_finish "...cancelled."
+    exit 1
+}
+
+notify_progress "Fetching..."
+for i in $CHANNELS; do
+    mbsync $i &
+done
+wait
+
+notify_progress "Updating database..."
+result_message=`notmuch new`
+
+notify_progress "Organizing email..."
+afew --tag --new
+
+notify_finish "$MESSAGE"

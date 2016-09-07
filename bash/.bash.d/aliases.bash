@@ -73,3 +73,6 @@ alias pjson="python -mjson.tool"
 
 # screen
 alias scr="screen -DR"
+
+# email
+alias sm="sync-mail"
