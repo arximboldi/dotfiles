@@ -42,6 +42,7 @@
         ("riseup" ("any" "juanpe@riseup.net" both) "riseup")))
 
 (add-hook 'message-setup-hook 'gnus-alias-determine-identity)
+(add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
 
 (setq sendmail-program "/usr/bin/msmtp"
       mail-specify-envelope-from t
