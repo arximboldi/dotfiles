@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CHANNELS="gnu gmail riseup"
+CHANNELS="gmail gnu riseup"
 NOTIFY=~/dotfiles/_deps/notify-send.sh/notify-send.sh
 
 trap 'kill_children' INT
@@ -38,9 +38,9 @@ done
 wait
 
 notify_progress "Updating database..."
-result_message=`notmuch new`
+result_message=`notmuch new | tail -n 1`
 
 notify_progress "Organizing email..."
 afew --tag --new
 
-notify_finish "$MESSAGE"
+notify_finish "$result_message"
