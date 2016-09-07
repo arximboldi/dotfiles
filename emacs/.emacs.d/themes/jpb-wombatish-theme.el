@@ -136,6 +136,14 @@ are included.")
    '(helm-selection ((t (:inherit highlight :weight bold))))
    '(helm-separator ((t (:foreground "#444"))))
    '(helm-source-header ((t (:inherit font-lock-builtin-face :weight bold))))
+   ;; notmuch stuff
+   '(notmuch-search-count ((t (:inherit default :foreground "magenta"))))
+   '(notmuch-search-date ((t (:inherit default :foreground "dark orchid"))))
+   '(notmuch-search-matching-authors ((t (:inherit default :foreground "#aaa"))))
+   '(notmuch-search-subject ((t (:inherit default))))
+   '(notmuch-search-unread-face ((t (:underline "#666" :weight bold))))
+   '(notmuch-tree-match-author-face ((t (:inherit notmuch-search-matching-authors))))
+   '(notmuch-tree-match-date-face ((t (:inherit notmuch-search-date))) t)))
 
 (custom-theme-set-variables
  'jpb-wombatish
