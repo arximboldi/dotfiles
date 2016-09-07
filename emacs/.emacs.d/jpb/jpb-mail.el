@@ -13,26 +13,35 @@
 ;;
 
 ;; Each entry is:
-;; - name
-;; - inherited name
-;; - Name <emi@a.il>
-;; - 'Organization' header
-;; - Extra headers
-;; - Body
-;; - Signature
+;;
+;;  - name
+;;  - inherited name
+;;  - Name <emi@a.il>
+;;  - 'Organization' header
+;;  - Extra headers
+;;  - Body
+;;  - Signature
+
 (setq gnus-alias-identity-alist
-      '(("gmail" nil
-         "Juan Pedro Bolivar Puente <magnicida@gmail.com>"
-         nil (("Fcc" . "~/mail/gmail/Sent")) nil nil)
+      `(("gmail" nil
+         "Juan Pedro Bolívar Puente <magnicida@gmail.com>" nil
+         (("Fcc" . ,(expand-file-name "~/mail/gmail/Sent")))
+         nil nil)
         ("gnu" nil
-         "Juan Pedro Bolivar Puente <raskolnikov@gnu.org>"
-         nil (("Fcc" . "~/mail/gnu/Sent")) nil nil)
-        ("gmail" nil
-         "Juan Pedro Bolivar Puente <juanpe@riseup.net>"
-         nil (("Fcc" . "~/mail/riseup/Sent")) nil nil)))
+         "Juan Pedro Bolívar Puente <raskolnikov@gnu.org>" nil
+         (("Fcc" . ,(expand-file-name "~/mail/gnu/Sent")))
+         nil nil)
+        ("riseup" nil
+         "Juan Pedro Bolívar Puente <juanpe@riseup.net>"
+         nil (("Fcc" . ,(expand-file-name "~/mail/riseup/Sent")))
+         nil nil)))
+
+(setq gnus-alias-default-identity "gnu")
+(setq gnus-alias-identity-rules
+      '(("gmail" ("any" "magnicida@gmail.com" both) "gmail")
+        ("riseup" ("any" "juanpe@riseup.net" both) "riseup")))
 
 (add-hook 'message-setup-hook 'gnus-alias-determine-identity)
-(setq gnus-alias-default-identity "gnu")
 
 (setq sendmail-program "/usr/bin/msmtp"
       mail-specify-envelope-from t
