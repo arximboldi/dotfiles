@@ -44,6 +44,10 @@
 (add-hook 'message-setup-hook 'gnus-alias-determine-identity)
 (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
 
+(setq notmuch-crypto-process-mime t)
+(setq notmuch-poll-script "~/usr/bin/sync-mail")
+(setq notmuch-show-logo nil)
+
 (setq sendmail-program "/usr/bin/msmtp"
       mail-specify-envelope-from t
       mail-envelope-from 'header
