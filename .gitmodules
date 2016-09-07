@@ -16,3 +16,9 @@
 [submodule "emacs/.emacs.d/lisp/cc-mode"]
 	path = emacs/.emacs.d/lisp/cc-mode
 	url = git@github.com:arximboldi/cc-mode.git
+[submodule "_deps/afew"]
+	path = _deps/afew
+	url = git@github.com:teythoon/afew.git
+[submodule "_deps/notify-send.sh"]
+	path = _deps/notify-send.sh
+	url = git@github.com:vlevit/notify-send.sh.git
