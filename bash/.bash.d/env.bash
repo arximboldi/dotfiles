@@ -25,6 +25,15 @@ export SHLIB_GXXLD="g++-$GCVER"
 
 export CTEST_OUTPUT_ON_FAILURE=1
 
+
+#
+# emscripten
+#
+add-path $HOME/soft/binaryen/build/bin
+add-path $HOME/dev/emsdk
+[ -f $HOME/dev/emsdk/emsdk_set_env.sh ] && \
+    source $HOME/dev/emsdk/emsdk_set_env.sh
+
 #
 # Go
 #
@@ -76,10 +85,3 @@ add-path $HOME/.guix-profile/sbin
 # Clojure
 #
 # export LEIN_FAST_TRAMPOLINE=true
-
-#
-# emscripten
-#
-add-path $HOME/soft/binaryen/build/bin
-add-path $HOME/dev/emsdk
-source $HOME/dev/emsdk/emsdk_set_env.sh
