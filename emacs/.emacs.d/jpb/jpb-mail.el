@@ -59,6 +59,7 @@
 (setq notmuch-crypto-process-mime t)
 (setq notmuch-poll-script "~/usr/bin/sync-email")
 (setq notmuch-show-logo nil)
+(setq notmuch-search-oldest-first nil)
 
 (setq sendmail-program "/usr/bin/msmtp"
       mail-specify-envelope-from t
