@@ -22,8 +22,12 @@ query = path:riseup/**
 tags = +riseup
 
 [Filter.3]
-query = from:'*noreply@linkedin.com'
+query = from:noreply@linkedin.com
 tags = +linkedin
+
+[Filter.3]
+query = from:noreply@couchsurfing.com
+tags = +couchsurfing
 
 [Filter.4]
 query = \
@@ -31,6 +35,7 @@ query = \
       tag:lists/hacktivistas or \
       tag:lists/rem or \
       tag:linkedin or \
+      tag:couchsurfing or \
       tag:sent
 tags = -new;-inbox
 
