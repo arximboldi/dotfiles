@@ -86,6 +86,13 @@
     (notmuch-search-tag (list "-unread") beg end)
     (notmuch-search-next-thread)))
 
+(define-key notmuch-search-mode-map "d"
+  (lambda (&optional beg end)
+    "Mark thread for deletion"
+    (interactive (notmuch-search-interactive-region))
+    (notmuch-search-tag (list "+deleted") beg end)
+    (notmuch-search-next-thread)))
+
 ;;
 ;; Multiple cursors
 ;;
