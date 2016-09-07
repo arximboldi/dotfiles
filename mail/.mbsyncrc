@@ -6,7 +6,7 @@ IMAPAccount gmail
 Host imap.gmail.com
 User magnicida@gmail.com
 UseIMAPS yes
-PipelineDepth 3
+# PipelineDepth 4
 # genertate with:
 # $ gpg2 --output pass.gpg --symmetric pass
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"imap.gmail.com\" {print $6}'"
@@ -23,10 +23,10 @@ Master :gmail-remote:
 Slave :gmail-local:
 # Exclude everything under the internal [Gmail] folder,
 # except the interesting folders
-Patterns * !"[Gmail]/All Mail"
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important"
 Create Slave
 Expunge Slave
-Sync Pull
+Sync All
 
 #
 # riseup account
@@ -35,7 +35,7 @@ Sync Pull
 IMAPAccount riseup
 Host mail.riseup.net
 User juanpe
-PipelineDepth 1
+# PipelineDepth 4
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"mail.riseup.net\" {print $6}'"
 
 IMAPStore riseup-remote
@@ -51,7 +51,7 @@ Slave :riseup-local:
 Patterns *
 Create Slave
 Expunge Slave
-Sync Pull
+Sync All
 
 #
 # gnu account
@@ -76,4 +76,4 @@ Slave :gnu-local:
 Patterns * !.* !dev/*
 Create Slave
 Expunge Slave
-Sync Pull
+Sync All
