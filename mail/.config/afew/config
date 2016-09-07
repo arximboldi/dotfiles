@@ -1,0 +1,37 @@
+[SpamFilter]
+
+[KillThreadsFilter]
+
+[ListMailsFilter]
+
+[SentMailsFilter]
+sent_tag = sent
+
+[ArchiveSentMailsFilter]
+
+[Filter.0]
+query = path:gnu/**
+tags = +gnu
+
+[Filter.1]
+query = path:gmail/**
+tags = +gmail
+
+[Filter.2]
+query = path:riseup/**
+tags = +riseup
+
+[Filter.3]
+query = from:'*noreply@linkedin.com'
+tags = +linkedin
+
+[Filter.4]
+query = \
+      tag:lists/hackmeeting or \
+      tag:lists/hacktivistas or \
+      tag:lists/rem or \
+      tag:linkedin or \
+      tag:sent
+tags = -new;-inbox
+
+[InboxFilter]

@@ -2,7 +2,7 @@
 path=/home/raskolnikov/mail
 
 [new]
-tags=new;unread;inbox
+tags=new
 ignore=.uidvalidity;.mbsyncstate;pass
 
 [search]
