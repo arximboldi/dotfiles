@@ -240,7 +240,6 @@ main = do
   spawnPipe "xfsettingsd --replace --no-daemon"
   spawnPipe "xfce4-power-manager --restart"
   spawnPipe "tracker daemon -s"
-  spawnPipe "nautilus --no-default-window"
   spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
   spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
   spawnPipe "pidof syncthing || syncthing"
