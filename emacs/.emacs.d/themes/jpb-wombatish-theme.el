@@ -120,6 +120,7 @@ are included.")
    '(vertical-border ((((type x mac)) (:inherit mode-line-inactive
                                                 :foreground "#444444"))))
    '(comint-highlight-prompt ((t nil :inherit nil)))
+   '(vline ((t (:inherit highlight))))
    ;; helm stuff
    '(helm-M-x-key ((t (:foreground "#aaa" :underline t))))
    '(helm-buffer-directory ((t (:inherit helm-ff-directory))))
@@ -135,7 +136,6 @@ are included.")
    '(helm-selection ((t (:inherit highlight :weight bold))))
    '(helm-separator ((t (:foreground "#444"))))
    '(helm-source-header ((t (:inherit font-lock-builtin-face :weight bold))))
-   '(vline ((t (:inherit highlight))))))
 
 (custom-theme-set-variables
  'jpb-wombatish
