@@ -35,6 +35,7 @@ add-path $GOPATH/bin
 # Local installs
 #
 add-path ~/usr/bin
+add-path ~/.local/bin
 
 #
 # Haskell
