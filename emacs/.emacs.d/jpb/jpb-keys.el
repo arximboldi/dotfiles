@@ -59,6 +59,8 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
+(global-set-key (kbd "C-x m") 'notmuch-mua-new-mail)
+
 ;;
 ;; Multiple cursors
 ;;
