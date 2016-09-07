@@ -39,15 +39,15 @@
 (setq gnus-alias-identity-alist
       `(("gmail" nil
          "Juan Pedro Bolívar Puente <magnicida@gmail.com>" nil
-         (("Fcc" . ,(expand-file-name "~/mail/gmail/Sent")))
+         (("Fcc" . "mail/gmail/Sent"))
          nil nil)
         ("gnu" nil
          "Juan Pedro Bolívar Puente <raskolnikov@gnu.org>" nil
-         (("Fcc" . ,(expand-file-name "~/mail/gnu/Sent")))
+         (("Fcc" . "mail/gnu/Sent"))
          nil nil)
         ("riseup" nil
          "Juan Pedro Bolívar Puente <juanpe@riseup.net>"
-         nil (("Fcc" . ,(expand-file-name "~/mail/riseup/Sent")))
+         nil (("Fcc" . "mail/riseup/Sent"))
          nil nil)))
 
 (setq gnus-alias-default-identity "gnu")
