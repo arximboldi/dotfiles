@@ -10,26 +10,38 @@ sent_tag = sent
 [ArchiveSentMailsFilter]
 
 [Filter.0]
+query = path:*/Junk/**
+tags = +spam
+
+[Filter.1]
+query = path:*/Archives/**
+tags = +archived
+
+[Filter.2]
 query = path:gnu/**
 tags = +gnu
 
-[Filter.1]
+[Filter.3]
 query = path:gmail/**
 tags = +gmail
 
-[Filter.2]
+[Filter.4]
 query = path:riseup/**
 tags = +riseup
 
-[Filter.3]
+[Filter.5]
 query = from:noreply@linkedin.com
 tags = +linkedin
 
-[Filter.3]
+[Filter.6]
 query = from:noreply@couchsurfing.com
 tags = +couchsurfing
 
-[Filter.4]
+[Filter.7]
+query = from:notifications@github.com
+tags = +github
+
+[Filter.8]
 query = \
       tag:lists/hackmeeting or \
       tag:lists/hacktivistas or \
@@ -40,3 +52,19 @@ query = \
 tags = -new;-inbox
 
 [InboxFilter]
+
+[MailMover]
+rename = true
+folders = gmail/Inbox gnu/Inbox riseup/Inbox
+gmail/Inbox   = \
+              'tag:deleted':gmail/Trash \
+              'tag:spam':gmail/Junk \
+              'tag:archived':gmail/Archives
+gnu/Inbox     = \
+              'tag:deleted':gnu/Trash \
+              'tag:spam':gnu/Junk \
+              'tag:archived':gnu/Archives
+riseup/Inbox  = \
+              'tag:deleted':riseup/Trash \
+              'tag:spam':riseup/Junk \
+              'tag:archived':riseup/Archives
