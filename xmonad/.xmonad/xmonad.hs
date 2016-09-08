@@ -32,6 +32,7 @@ import XMonad.Layout.BoringWindows as B
 
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Navigation2D
+import XMonad.Actions.CopyWindow
 import XMonad.Prompt
 import XMonad.Prompt.RunOrRaise
 import XMonad.Prompt.Window
@@ -40,6 +41,25 @@ import XMonad.Util.Cursor
 
 import XMonad.Hooks.EwmhDesktops
 import System.Taffybar.Hooks.PagerHints
+
+-- http://lpaste.net/83047
+
+copyWindowToAll :: (Eq s, Eq i, Eq a) => a -> W.StackSet i l a s sd -> W.StackSet i l a s sd
+copyWindowToAll w s =
+  foldr (copyWindow w) s $ map W.tag (W.workspaces s)
+
+doSticky :: ManageHook
+doSticky =
+  do
+    win <- ask
+    doF $ copyWindowToAll win
+
+doBoring :: ManageHook
+doBoring =
+  do
+    win <- ask
+    liftX (broadcastMessage $ B.Merge "managed" [win])
+    doF id
 
 main :: IO ()
 main = do
@@ -187,19 +207,19 @@ main = do
         , ((mask, button3), (\w -> focus w >> mouseResizeWindow w))
         ]
 
-  let layout' = smartBorders normalLayout
+  let layout' = smartBorders $ B.boringWindows normalLayout
         where
           gap = id -- G.gaps [(G.U, 22)]
           tallLayout = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
           circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ gap $ magnifiercz' (100/80) Circle
           fullLayout = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
-          normalLayout = B.boringWindows (circleLayout ||| tallLayout ||| fullLayout)
+          normalLayout =  circleLayout ||| tallLayout ||| fullLayout
 
   let manageHook' = composeAll
         [ resource  =? "Do"              --> doIgnore
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
-        , className =? "Xfce4-notifyd"   --> doIgnore
+        , className =? "Xfce4-notifyd"   --> doBoring >> doSticky
         , className =? "Xfdesktop"       --> doHideIgnore
         , title     =? "Desktop"         --> doHideIgnore
 
