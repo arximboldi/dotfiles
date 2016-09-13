@@ -2,6 +2,10 @@
 
 CHANNELS="gmail gnu riseup"
 
+afew_command=~/.local/bin/afew
+mbsync_command=mbsync
+notmuch_command=notmuch
+
 notify_command=~/dotfiles/_deps/notify-send.sh/notify-send.sh
 notify_infinity=100000000
 notify_delay=10000
@@ -32,15 +36,15 @@ kill_children() {
 do_sync_email() {
     notify_progress "Fetching..."
     for i in $CHANNELS; do
-        mbsync $i &
+        $mbsync_command $i &
     done
     wait
 
     notify_progress "Updating database..."
-    result_message=`notmuch new | tail -n 1`
+    result_message=`$notmuch_command new | tail -n 1`
 
     notify_progress "Organizing email..."
-    afew --tag --new
+    $afew_command --tag --new
 
     notify_finish "$result_message"
 }
