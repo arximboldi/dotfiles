@@ -8,13 +8,6 @@ fi
 # Use fancy globs
 shopt -s extglob
 
-# don't put duplicate lines in the history
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-shopt -s histappend
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -38,6 +31,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Include other customization points
+source ~/.bash.d/history.bash
 source ~/.bash.d/git-completion.bash
 source ~/.bash.d/functions.bash
 source ~/.bash.d/aliases.bash
