@@ -14,6 +14,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import qualified Data.Char       as C
 import qualified Data.List       as L
+import Data.Ratio ((%))
 
 import XMonad.Util.Run
 
@@ -22,13 +23,16 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.InsertPosition as I
 
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Circle
-import XMonad.Layout.Magnifier
-import XMonad.Layout.Renamed as R
-import XMonad.Layout.Gaps as G
-import XMonad.Layout.Minimize
 import XMonad.Layout.BoringWindows as B
+import XMonad.Layout.Circle
+import XMonad.Layout.Gaps as G
+import XMonad.Layout.Grid
+import XMonad.Layout.IM
+import XMonad.Layout.Magnifier
+import XMonad.Layout.Minimize
+import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.Renamed as R
 
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Navigation2D
@@ -210,10 +214,14 @@ main = do
   let layout' = smartBorders $ B.boringWindows normalLayout
         where
           gap = id -- G.gaps [(G.U, 22)]
-          tallLayout = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
+          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
           circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ gap $ magnifiercz' (100/80) Circle
-          fullLayout = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
-          normalLayout =  circleLayout ||| tallLayout ||| fullLayout
+          fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
+          imLayout     = magnifiercz' (100/80) $ withIM (2%10)
+                         (Or (Role "buddy_list") (Title "magnicida - Skype™"))
+                         (Circle ||| Mirror (GridRatio (12/10)))
+          normalLayout = onWorkspace "im" (imLayout) $
+                         circleLayout ||| tallLayout ||| fullLayout
 
   let manageHook' = composeAll
         [ resource  =? "Do"              --> doIgnore
@@ -234,7 +242,8 @@ main = do
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
-        , className =? "Pidgin"           --> doShift "mail"
+        , className =? "Pidgin"           --> doShift "im"
+        , className =? "Skype"            --> doShift "im"
 
         , isFullscreen --> doFullFloat
 
@@ -275,7 +284,7 @@ main = do
     , focusFollowsMouse  = True
     , borderWidth        = 0
     , modMask            = mod4Mask
-    , workspaces         = [ "web", "emacs", "misc", "mail" ]
+    , workspaces         = [ "web", "emacs", "misc", "im" ]
     , normalBorderColor  = backgroundColor
     , focusedBorderColor = focusedColor
     , keys               = keys'
