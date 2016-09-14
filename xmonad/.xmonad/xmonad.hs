@@ -239,6 +239,7 @@ main = do
         , className =? "Qjackctl"                --> doSideFloat SE
         , className =? "Qjackctl.real"           --> doSideFloat SE
         , className =? "Mixxx"                   --> doCenterFloat
+        , className =? "Gcr-prompter"            --> doCenterFloat
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
