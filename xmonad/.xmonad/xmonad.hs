@@ -217,9 +217,10 @@ main = do
           tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
           circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ gap $ magnifiercz' (100/80) Circle
           fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
-          imLayout     = magnifiercz' (100/80) $ withIM (2%10)
+          imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
                          (Or (Role "buddy_list") (Title "magnicida - Skype™"))
-                         (Circle ||| Mirror (GridRatio (12/10)))
+                         (R.renamed [ R.Replace "Circle" ] Circle |||
+                          R.renamed [ R.Replace "Grid" ] (Mirror (GridRatio (12/10))))
           normalLayout = onWorkspace "im" (imLayout) $
                          circleLayout ||| tallLayout ||| fullLayout
 
