@@ -238,7 +238,6 @@ main = do
         , className =? "Tgcm"                    --> doCenterFloat
         , className =? "Qjackctl"                --> doSideFloat SE
         , className =? "Qjackctl.real"           --> doSideFloat SE
-        , className =? "Mixxx"                   --> doCenterFloat
         , className =? "Gcr-prompter"            --> doCenterFloat
 
         , className =? "Icedove-bin"      --> doShift "mail"
