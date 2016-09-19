@@ -26,13 +26,15 @@ alias rm='echo "This is not the command you are looking for."; false'
 alias tra='trash *'
 
 # Open like from nautilus
-function open()
-{
-    for var in "$@"
-    do
-        xdg-open $var
-    done
-}
+if [ "$(uname)" != "Darwin" ]; then
+    function open()
+    {
+        for var in "$@"
+        do
+            xdg-open $var
+        done
+    }
+fi
 
 # git
 alias gsuri="git submodule update --recursive --init"
