@@ -20,6 +20,18 @@ export GC="ccache gcc-$GCVER"
 export GXX="ccache g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
 
+use-clang() {
+    export CC=$LC
+    export CXX=$LXX
+}
+
+use-gcc() {
+    export CC=$GC
+    export CXX=$GXX
+}
+
+use-gcc
+
 # export CCFLAGS="-fdiagnostics-color=always"
 # export CXXFLAGS="-fdiagnostics-color=always"
 
