@@ -75,7 +75,7 @@
 ;;
 
 (require 'gnus)
-(setq gnus-select-method '(nntp "nntp.aioe.org"))
+(setq gnus-select-method '(nntp "news.eternal-september.org"))
 (add-to-list 'gnus-secondary-select-methods '(nntp "news.gnus.org"))
 (add-to-list 'gnus-secondary-select-methods '(nntp "news.gmane.org"))
 

@@ -84,6 +84,7 @@
  '(focus-follows-mouse t)
  '(ggtags-update-on-save nil)
  '(global-hl-line-mode t)
+ '(gnus-use-dribble-file nil)
  '(helm-M-x-fuzzy-match t)
  '(helm-candidate-separator "▶")
  '(helm-display-header-line t)
