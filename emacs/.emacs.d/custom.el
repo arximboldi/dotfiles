@@ -166,7 +166,7 @@
  '(send-mail-function nil)
  '(shell-toggle-launch-shell (quote shell))
  '(show-paren-mode t)
- '(sort-fold-case t)
+ '(sort-fold-case t t)
  '(tool-bar-mode nil)
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
