@@ -92,6 +92,7 @@
  '(helm-mode-fuzzy-match t)
  '(helm-projectile-fuzzy-match t)
  '(helm-split-window-default-side (quote other))
+ '(horizontal-scroll-bar-mode nil)
  '(ido-enable-flex-matching t)
  '(ido-max-directory-size 30000)
  '(ido-save-directory-list-file "~/.emacs.d/ido.last")
