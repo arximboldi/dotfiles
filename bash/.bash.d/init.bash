@@ -21,9 +21,11 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# enable color support of ls and also add handy aliases
-test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
-        eval "$(dircolors -b)"
+if [ "$(uname)" != "Darwin" ]; then
+    # enable color support of ls and also add handy aliases
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
+            eval "$(dircolors -b)"
+fi
 
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then

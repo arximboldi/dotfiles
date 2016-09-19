@@ -5,7 +5,11 @@ alias reload="source ~/.bashrc"
 alias s=sudo
 
 # colors
-alias ls='ls --color=auto -X --group-directories-first'
+if [ "$(uname)" == "Darwin" ]; then
+    alias ls='gls --color=auto -X --group-directories-first'
+else
+    alias ls='ls --color=auto -X --group-directories-first'
+fi
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
@@ -38,15 +42,18 @@ alias gunignore="git update-index --no-assume-unchanged"
 alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
 
 # emacs
-function toemacs() { $* && wmctrl -xa emacs; }
-
+if [ "$(uname)" == "Darwin" ]; then
+    alias ee="emacsclient -n"
+else
+    function toemacs() { $* && wmctrl -xa emacs; }
+    alias ee="toemacs emacsclient -n"
+    complete -r ee
+fi
 alias e="emacsclient -t"
-alias ee="toemacs emacsclient -n"
 alias ew="emacsclient -n -c"
 alias se="SUDO_EDITOR='emacsclient -t' sudoedit"
 alias see="SUDO_EDITOR='emacsclient' toemacs sudoedit -b $*"
 alias sew="SUDO_EDITOR='emacsclient -c' sudoedit -b $*"
-complete -r ee
 
 alias killemacs="emacsclient -e \"(kill-emacs)\" -a false"
 alias compemacs='emacs --batch -l ~/.emacs.d/init.el --eval "(byte-recompile-directory (expand-file-name \"~/.emacs.d\") 0)" --kill'
