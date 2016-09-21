@@ -81,6 +81,10 @@
 
 (setq gnus-always-read-dribble-file t)
 
+(setq message-directory "~/mail/")
+(setq gnus-directory "~/news/")
+(setq nnfolder-directory "~/mail/archive")
+
 ;;
 ;; Jabber
 ;;
