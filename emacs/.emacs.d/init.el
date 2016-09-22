@@ -34,7 +34,7 @@
 (require 'jpb-devel)
 (require 'jpb-cpp11)
 (require 'jpb-keys)
-(when (eq system-type 'darwing)
+(when (eq system-type 'darwin)
   (require 'jpb-macos))
 
 (desktop-save-mode 1)
