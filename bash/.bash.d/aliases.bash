@@ -61,11 +61,12 @@ alias killemacs="emacsclient -e \"(kill-emacs)\" -a false"
 alias compemacs='emacs --batch -l ~/.emacs.d/init.el --eval "(byte-recompile-directory (expand-file-name \"~/.emacs.d\") 0)" --kill'
 
 # cmake
-alias cmake="/usr/bin/cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
-alias cmnt="cmake -G Ninja .. && ninja && ctest --output-on-failure"
-alias cmn="cmake -G Ninja .."
-alias cmmt="cmake -G 'Unix Makefiles' .. && make -j 4 && ctest --output-on-failure"
-alias cmm="cmake -G 'Unix Makefiles' .."
+alias cmake="\cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+alias c=cmake
+alias cn="cmake -G Ninja"
+alias cn-all="cn .. && ninja && ctest --output-on-failure"
+alias cm="cmake -G 'Unix Makefiles'"
+alias cm-all="cm .. && make -j 4 && ctest --output-on-failure"
 
 # math
 alias p="ipython --no-confirm-exit"
