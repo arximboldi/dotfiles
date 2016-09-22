@@ -145,7 +145,17 @@ are included.")
    '(notmuch-search-subject ((t (:inherit default))))
    '(notmuch-search-unread-face ((t (:underline "#666" :weight bold))))
    '(notmuch-tree-match-author-face ((t (:inherit notmuch-search-matching-authors))))
-   '(notmuch-tree-match-date-face ((t (:inherit notmuch-search-date))) t)))
+   '(notmuch-tree-match-date-face ((t (:inherit notmuch-search-date))) t)
+   ;; company mode stuff
+   '(company-preview ((t (:background "black" :foreground "wheat"))))
+   '(company-preview-common ((t (:inherit company-preview :foreground "#8ac6f2"))))
+   '(company-scrollbar-bg ((t (:background "black"))))
+   '(company-scrollbar-fg ((t (:background "#333333"))))
+   '(company-template-field ((t (:background "black"))))
+   '(company-tooltip ((t (:background "black"))))
+   '(company-tooltip-annotation ((t (:foreground "#888"))))
+   '(company-tooltip-common ((t (:foreground "#8ac6f2"))))
+   '(company-tooltip-selection ((t (:background "#222222"))))))
 
 (custom-theme-set-variables
  'jpb-wombatish
