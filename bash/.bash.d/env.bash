@@ -12,12 +12,12 @@ export VISUAL="emacsclient -c"
 # C++
 #
 export LCVER=3.8
-export LC="ccache clang-$LCVER"
-export LXX="ccache clang++-$LCVER"
+export LC="clang-$LCVER"
+export LXX="clang++-$LCVER"
 
 export GCVER=5
-export GC="ccache gcc-$GCVER"
-export GXX="ccache g++-$GCVER"
+export GC="gcc-$GCVER"
+export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
 
 use-clang() {
@@ -30,7 +30,22 @@ use-gcc() {
     export CXX=$GXX
 }
 
-use-gcc
+disable-ccache() {
+    export CC=${CC#ccache}
+    export CXX=${CXX#ccache}
+}
+
+use-ccache() {
+    disable-ccache
+    export CC="ccache $CC"
+    export CXX="ccache $CXX"
+}
+
+if [ "$(uname)" == "Darwin" ]; then
+    use-clang
+else
+    use-gcc
+fi
 
 # export CCFLAGS="-fdiagnostics-color=always"
 # export CXXFLAGS="-fdiagnostics-color=always"
