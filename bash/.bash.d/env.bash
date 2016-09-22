@@ -70,6 +70,7 @@ add-path $GOPATH/bin
 #
 # Local installs
 #
+add-path /usr/local/bin
 add-path ~/usr/bin
 add-path ~/.local/bin
 
