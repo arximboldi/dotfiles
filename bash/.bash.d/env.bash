@@ -122,13 +122,15 @@ export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 #
 # Guix
 #
-export CPATH=$HOME/.guix-profile/include
-export LIBRARY_PATH=$HOME/.guix-profile/lib
-export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
-export GUILE_LOAD_PATH=$HOME/.guix-profile/share/guile/site/2.0
-export GUILE_LOAD_COMPILED_PATH=$HOME/.guix-profile/share/guile/site/2.0
-add-path $HOME/.guix-profile/bin
-add-path $HOME/.guix-profile/sbin
+if [ -d ~/.guix-profile ]
+   export CPATH=$HOME/.guix-profile/include
+   export LIBRARY_PATH=$HOME/.guix-profile/lib
+   export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+   export GUILE_LOAD_PATH=$HOME/.guix-profile/share/guile/site/2.0
+   export GUILE_LOAD_COMPILED_PATH=$HOME/.guix-profile/share/guile/site/2.0
+   add-path $HOME/.guix-profile/bin
+   add-path $HOME/.guix-profile/sbin
+fi
 
 #
 # Clojure
