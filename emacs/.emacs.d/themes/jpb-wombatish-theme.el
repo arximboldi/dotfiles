@@ -137,7 +137,7 @@ are included.")
    '(helm-separator ((t (:foreground "#444"))))
    '(helm-source-header ((t (:inherit font-lock-builtin-face :weight bold))))
    ;; widgets
-   '(widget-field ((t (:background "#333333" :box (:line-width 1 :color "black" :style pressed-button)))))
+   '(widget-field ((t (:background "#353535" :box (:line-width 1 :color "black" :style pressed-button)))))
    ;; notmuch stuff
    '(notmuch-search-count ((t (:inherit default :foreground "magenta"))))
    '(notmuch-search-date ((t (:inherit default :foreground "dark orchid"))))
@@ -150,12 +150,12 @@ are included.")
    '(company-preview ((t (:background "black" :foreground "wheat"))))
    '(company-preview-common ((t (:inherit company-preview :foreground "#8ac6f2"))))
    '(company-scrollbar-bg ((t (:background "black"))))
-   '(company-scrollbar-fg ((t (:background "#333333"))))
+   '(company-scrollbar-fg ((t (:background "#353535"))))
    '(company-template-field ((t (:background "black"))))
    '(company-tooltip ((t (:background "black"))))
    '(company-tooltip-annotation ((t (:foreground "#888"))))
    '(company-tooltip-common ((t (:foreground "#8ac6f2"))))
-   '(company-tooltip-selection ((t (:background "#222222"))))))
+   '(company-tooltip-selection ((t (:background "#242424" :weight bold))))))
 
 (custom-theme-set-variables
  'jpb-wombatish
