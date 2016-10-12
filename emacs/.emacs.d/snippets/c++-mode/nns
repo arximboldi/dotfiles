@@ -1,5 +1,5 @@
 # name : namespace XXX { ... } /* namespace XXX */
-# key: ns
+# key: nns
 # --
 namespace ${1:name} {
 $0
