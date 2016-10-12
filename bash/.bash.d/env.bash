@@ -20,14 +20,37 @@ export GC="gcc-$GCVER"
 export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
 
+maybe-clean-cmake() {
+    cdir=`basename $PWD`
+    if [ "x$cdir" == "xbuild" ] && \
+           [ -f ../CMakeLists.txt ] && \
+           [ -f ./CMakeCache.txt ] && \
+           [ -d ./CMakeFiles ];
+    then
+        cmake_cc=$(cat CMakeCache.txt | grep CMAKE_C_COMPILER:FILEPATH)
+        cmake_cxx=$(cat CMakeCache.txt | grep CMAKE_CXX_COMPILER:FILEPATH)
+        cc=`test -n $cmake_cc && basename $cmake_cc`
+        cxx=`test -n $cmake_cxx && basename $cmake_cxx`
+        if [ "$cc" != "$CC" ] ||  [ "$cxx" != "$CXX" ];
+        then
+            echo -e "-- CMake cache was using: \tCC=$cc \tCXX=$cxx"
+            echo -e "-- Changing compiler to:  \tCC=$CC \tCXX=$CXX"
+            trash ./CMakeCache.txt
+            trash ./CMakeFiles
+        fi
+    fi
+}
+
 use-clang() {
     export CC=$LC
     export CXX=$LXX
+    maybe-clean-cmake
 }
 
 use-gcc() {
     export CC=$GC
     export CXX=$GXX
+    maybe-clean-cmake
 }
 
 disable-ccache() {
