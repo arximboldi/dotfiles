@@ -5,6 +5,8 @@
 ;;   Author: Juan Pedro Bolívar Puente
 ;;
 
+(require 'compile)
+
 (defun jpb-fill-mode ()
   (setq fill-column 80)
   (fci-mode))
