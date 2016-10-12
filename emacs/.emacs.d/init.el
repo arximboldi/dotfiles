@@ -36,7 +36,3 @@
 (require 'jpb-keys)
 (when (eq system-type 'darwin)
   (require 'jpb-macos))
-
-(desktop-save-mode 1)
-(add-hook 'find-file-hook 'desktop-auto-save-set-timer)
-(add-hook 'after-save-hook 'desktop-auto-save-set-timer)

@@ -13,6 +13,11 @@
 (load custom-file 'noerror)
 
 ;;
+(desktop-save-mode 1)
+(add-hook 'find-file-hook 'desktop-auto-save-set-timer)
+(add-hook 'after-save-hook 'desktop-auto-save-set-timer)
+
+;;
 ;; Compat for apt-utils
 ;;
 (defun make-local-hook (hook)
