@@ -128,10 +128,17 @@
 ;; Debug
 ;;
 
+(setq gdb-many-windows nil)
+
 (defun gdb-file (fname)
   "Set the compile command to build a selected directory"
   (interactive "fExecutable: ")
   (gdb (concat "gdb -i=mi " fname)))
+
+(defun gdb-at (loc)
+  "Set the compile command to build a selected directory"
+  (interactive "DLocation: \n")
+  (gdb (concat "gdb --cd=\"" loc "\" -i=mi")))
 
 ;; Force gdb-mi to not dedicate any windows
 (defadvice gdb-display-buffer
