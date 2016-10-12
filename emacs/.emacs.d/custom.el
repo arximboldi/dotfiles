@@ -177,6 +177,8 @@
  '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
  '(web-mode-markup-indent-offset 2)
  '(yas/root-directory "~/.emacs.d/snippets")
+ '(ycmd-global-config "~/.ycm_extra_conf.py")
+ '(ycmd-server-command (quote ("ycmd")))
  '(zoom-frame/buffer (quote buffer)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

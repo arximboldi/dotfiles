@@ -15,8 +15,6 @@
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony))
 
 ;;
 ;; GIT
@@ -58,31 +56,17 @@
 ;; C++
 ;;
 
-;; Disable until errors solved
-;; (cmake-ide-setup)
-;; (setq cmake-ide-build-dir "build")
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-
-;; replace the `completion-at-point' and `complete-symbol' bindings in
-;; irony-mode's buffers by irony-mode's function
-(add-hook 'irony-mode-hook
-          (lambda ()
-            (define-key irony-mode-map [remap completion-at-point]
-              'irony-completion-at-point-async)
-            (define-key irony-mode-map [remap complete-symbol]
-              'irony-completion-at-point-async)))
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+;; ycmd
+(company-ycmd-setup)
+(flycheck-ycmd-setup)
+(ycmd-eldoc-setup)
+(set-variable 'ycmd-extra-conf-whitelist '("~/dev/*"))
 
 ;; flycheck
+(add-hook 'c-mode-hook 'ycmd-mode)
+(add-hook 'c++-mode-hook 'ycmd-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'c-mode-hook 'flycheck-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-
-;; eldoc
-(add-hook 'irony-mode-hook 'irony-eldoc)
 
 ;;
 ;; Compilation
