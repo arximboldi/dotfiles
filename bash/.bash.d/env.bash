@@ -15,7 +15,7 @@ export LCVER=3.8
 export LC="clang-$LCVER"
 export LXX="clang++-$LCVER"
 
-export GCVER=5
+export GCVER=6
 export GC="gcc-$GCVER"
 export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
