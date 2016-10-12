@@ -13,9 +13,17 @@
 (load custom-file 'noerror)
 
 ;;
+;; Setup desktop mode and notify the world when emacs is ready
+;;
+(defun jpb-notify (msg)
+  (start-process "notify" nil
+                 "notify-send" "-i" "emacs" "Emacs" msg))
+
 (desktop-save-mode 1)
 (add-hook 'find-file-hook 'desktop-auto-save-set-timer)
 (add-hook 'after-save-hook 'desktop-auto-save-set-timer)
+(add-hook 'emacs-startup-hook
+          (lambda () (jpb-notify "Ready to roll!")))
 
 ;;
 ;; Compat for apt-utils
