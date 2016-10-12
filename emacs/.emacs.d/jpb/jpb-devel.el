@@ -149,7 +149,7 @@
 ;; Formatings
 ;;
 
-; style I want to use in c++ mode
+;; style I want to use in c++ mode
 (c-add-style "jpb"
 	     '("stroustrup"
 	       (indent-tabs-mode . nil)        ; use spaces rather than tabs
@@ -206,8 +206,8 @@
   (call-process "global" nil nil nil "-u"))
 
 (defun gtags-update-hook ()
-    (when (gtags-root-dir)
-      (gtags-update)))
+  (when (gtags-root-dir)
+    (gtags-update)))
 
 ;; Not needed, ggtags takes care of this now...
 ;;   (add-hook 'after-save-hook #'gtags-update-hook)
