@@ -155,7 +155,11 @@ are included.")
    '(company-tooltip ((t (:background "black"))))
    '(company-tooltip-annotation ((t (:foreground "#888"))))
    '(company-tooltip-common ((t (:foreground "#8ac6f2"))))
-   '(company-tooltip-selection ((t (:background "#242424" :weight bold))))))
+   '(company-tooltip-selection ((t (:background "#242424" :weight bold))))
+   ;; popup mode stuff
+   '(popup-face ((t (:inherit default :background "black"))))
+   '(popup-menu-mouse-face ((t (:background "#353535"))))
+   '(popup-menu-selection-face ((t (:inherit default :background "#242424" :weight bold))))))
 
 (custom-theme-set-variables
  'jpb-wombatish
