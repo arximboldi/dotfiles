@@ -23,7 +23,8 @@ alias l='ls --color=auto -CF'
 
 # rm
 alias rm='echo "This is not the command you are looking for."; false'
-alias tra='trash *'
+alias trall='trash *'
+alias trtilde='find . -name "*~" -exec trash {} +'
 
 # Open like from nautilus
 if [ "$(uname)" != "Darwin" ]; then
