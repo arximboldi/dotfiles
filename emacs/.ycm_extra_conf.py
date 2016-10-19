@@ -8,7 +8,7 @@ import ycm_core
 
 BASE_FLAGS = [
     '-Wall',
-    '-std=c++11',
+    '-std=c++14',
     '-xc++',
     '-I/usr/lib/'
     '-I/usr/include/'
