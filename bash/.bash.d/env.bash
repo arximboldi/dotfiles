@@ -65,16 +65,14 @@ use-ccache() {
 }
 
 if [ "$(uname)" == "Darwin" ]; then
-    use-clang
+    export CC=$LC
+    export CXX=$LXX
 else
-    use-gcc
+    export CC=$GC
+    export CXX=$GXX
 fi
 
-# export CCFLAGS="-fdiagnostics-color=always"
-# export CXXFLAGS="-fdiagnostics-color=always"
-
 export CTEST_OUTPUT_ON_FAILURE=1
-
 
 #
 # emscripten
