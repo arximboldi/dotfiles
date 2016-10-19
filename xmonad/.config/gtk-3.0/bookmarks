@@ -8,7 +8,7 @@ file:///home/raskolnikov/media/music
 file:///home/raskolnikov/media/videos
 sftp://raskolnikov@orion0/home/raskolnikov sftp://orion0
 sftp://orion0:2223/ sftp://mjpi (remote)
-sftp://raskolnikov@mjpi/ sftp://mjpi
+sftp://mjpi.local/ sftp://mjpi
 sftp://orion0:2225/ sftp://pickup (remote)
-sftp://pickup/ sftp://pickup
+sftp://pickup.local/ sftp://pickup
 sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp://es.gnu.org
