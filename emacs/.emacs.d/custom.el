@@ -58,6 +58,7 @@
  '(coffee-tab-width 4)
  '(column-number-mode t)
  '(comint-prompt-read-only t)
+ '(company-go-gocode-command "~/.go-path/bin/gocode")
  '(compilation-always-kill t)
  '(compilation-ask-about-save t)
  '(compilation-scroll-output (quote first-error))
@@ -85,6 +86,8 @@
  '(ggtags-update-on-save nil)
  '(global-hl-line-mode t)
  '(gnus-use-dribble-file nil)
+ '(go-eldoc-gocode "~/.go-path/bin/gocode")
+ '(godef-command "~/.go-path/bin/godef")
  '(helm-M-x-fuzzy-match t)
  '(helm-candidate-separator "▶")
  '(helm-display-header-line t)
@@ -136,7 +139,7 @@
  '(openwith-mode nil)
  '(package-selected-packages
    (quote
-    (helm-ag company-ycmd flycheck-ycmd gnus-alias cmake-mode nsis-mode emoji-cheat-sheet-plus google-translate babel hackernews helm-smex helm-mu multiple-cursors helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr ido-ubiquitous haskell-mode git-messenger gist geiser flymake-yaml flymake-sass expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
+    (helm-go-package go-playground company-go go-eldoc go-mode helm-ag company-ycmd flycheck-ycmd gnus-alias cmake-mode nsis-mode emoji-cheat-sheet-plus google-translate babel hackernews helm-smex helm-mu multiple-cursors helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr ido-ubiquitous haskell-mode git-messenger gist geiser expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
  '(projectile-global-mode t)
  '(projectile-use-git-grep t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))

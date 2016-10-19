@@ -273,4 +273,20 @@
 ;;
 (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
 
+;;
+;; Go
+;;
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
+(add-hook 'go-mode-hook 'flycheck-mode)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
+(add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 4)
+            (setq indent-tabs-mode 0)
+            (set (make-local-variable 'company-backends) '(company-go))))
+
+(eval-after-load 'go-mode
+  '(substitute-key-definition 'go-import-add 'helm-go-package go-mode-map))
+
 (provide 'jpb-devel)
