@@ -5,12 +5,12 @@
  */
 :root[devtoolstheme="dark"] {
   /* Chrome */
-  --chrome-background-color: #444444;
+  --chrome-background-color: #2e2e2e;
   --chrome-color: #999;
-  --chrome-secondary-background-color: #333333;
+  --chrome-secondary-background-color: #3d3d3d;
   --chrome-navigator-toolbox-separator-color: rgba(0,0,0,.2);
   --chrome-nav-bar-separator-color: rgba(0,0,0,.0);
-  --chrome-nav-buttons-background: #2d2d2d;
+  --chrome-nav-buttons-background: #2e2e2e;
   --chrome-nav-buttons-hover-background: #000000;
   --chrome-selection-color: #fff;
   --chrome-selection-background-color: #F0544C;
@@ -22,7 +22,7 @@
   --tab-hover-background-color: #000000;
   --tab-separator-color: #2d2d2d;
   --tab-selection-color: #DCDCDC;
-  --tab-selection-background-color: #333333;
+  --tab-selection-background-color: #3d3d3d;
   --tab-selection-box-shadow: 0 3px 0 #D64937 inset,
                                      0 8px 3px -5px #333333 inset,
                                      0 -1px 0 #333333 inset;
@@ -32,7 +32,7 @@
   --toolbarbutton-hover-background: rgba(33,33,33,.6) linear-gradient(rgba(33,33,33,.6), rgba(33,33,33,.6)) padding-box;
   --toolbarbutton-hover-boxshadow: none;
   --toolbarbutton-hover-bordercolor: rgba(33,33,33,.6);
-  --toolbarbutton-active-background: rgba(33,33,33,1) linear-gradient(rgba(33,33,33,1), rgba(33,33,33,1)) border-box;
+  --toolbarbutton-active-background: rgba(33,33,33,1);
   --toolbarbutton-active-boxshadow: none;
   --toolbarbutton-active-bordercolor: rgba(33,33,33,.8);
   --toolbarbutton-checkedhover-backgroundcolor: #1D4F73;
