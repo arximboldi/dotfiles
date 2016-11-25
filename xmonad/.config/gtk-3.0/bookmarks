@@ -6,7 +6,8 @@ file:///home/raskolnikov/pic
 file:///home/raskolnikov/down
 file:///home/raskolnikov/media/music
 file:///home/raskolnikov/media/videos
-sftp://raskolnikov@orion0/home/raskolnikov sftp://orion0
+sftp://raskolnikov@orion0:5488/home/raskolnikov sftp://orion0
+sftp://raskolnikov@orion1:5488/home/raskolnikov sftp://orion1
 sftp://orion0:2223/ sftp://mjpi (remote)
 sftp://mjpi.local/ sftp://mjpi
 sftp://orion0:2225/ sftp://pickup (remote)
