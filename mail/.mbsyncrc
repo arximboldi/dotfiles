@@ -77,3 +77,55 @@ Patterns * !.* !dev/*
 Create Slave
 Expunge Slave
 Sync All
+
+#
+# sinusoides account
+#
+
+IMAPAccount sinusoides
+UseIMAPS yes
+Host sinusoid.es
+User juanpe@sinusoid.es
+CertificateFile ~/.mail/sinusoid.es.cert
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"sinusoid.es\" {print $6}'"
+
+IMAPStore sinusoides-remote
+Account sinusoides
+
+MaildirStore sinusoides-local
+Path ~/mail/sinusoides/
+Inbox ~/mail/sinusoides/Inbox/
+
+Channel sinusoides
+Master :sinusoides-remote:
+Slave :sinusoides-local:
+Patterns *
+Create Slave
+Expunge Slave
+Sync All
+
+#
+# sinusoidal account
+#
+
+IMAPAccount sinusoidal
+UseIMAPS yes
+Host sinusoid.al
+User juanpe@sinusoid.al
+CertificateFile ~/.mail/sinusoid.es.cert
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"sinusoid.al\" {print $6}'"
+
+IMAPStore sinusoidal-remote
+Account sinusoidal
+
+MaildirStore sinusoidal-local
+Path ~/mail/sinusoidal/
+Inbox ~/mail/sinusoidal/Inbox/
+
+Channel sinusoidal
+Master :sinusoidal-remote:
+Slave :sinusoidal-local:
+Patterns *
+Create Slave
+Expunge Slave
+Sync All

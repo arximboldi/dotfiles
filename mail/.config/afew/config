@@ -1,5 +1,4 @@
 [SpamFilter]
-
 [KillThreadsFilter]
 
 [ListMailsFilter]
@@ -30,18 +29,26 @@ query = path:riseup/**
 tags = +riseup
 
 [Filter.5]
+query = path:sinusoides/**
+tags = +sinusoides
+
+[Filter.6]
+query = path:sinusoidal/**
+tags = +sinusoidal
+
+[Filter.7]
 query = from:noreply@linkedin.com
 tags = +linkedin
 
-[Filter.6]
+[Filter.8]
 query = from:noreply@couchsurfing.com
 tags = +couchsurfing
 
-[Filter.7]
+[Filter.9]
 query = from:notifications@github.com
 tags = +github
 
-[Filter.8]
+[Filter.10]
 query = \
       tag:lists/hackmeeting or \
       tag:lists/hacktivistas or \
