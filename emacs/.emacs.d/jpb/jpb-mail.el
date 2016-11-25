@@ -5,7 +5,7 @@
 ;;   Author: Juan Pedro Bolívar Puente
 ;;
 
-(setq user-mail-address "raskolnikov@gnu.org"
+(setq user-mail-address "juanpe@sinusoid.es"
       user-full-name "Juan Pedro Bolivar Puente")
 
 (require 'notmuch)
@@ -48,12 +48,24 @@
         ("riseup" nil
          "Juan Pedro Bolívar Puente <juanpe@riseup.net>"
          nil (("Fcc" . "mail/riseup/Sent"))
+         nil nil)
+        ("sinusoides" nil
+         "Juan Pedro Bolívar Puente <juanpe@sinusoid.es>"
+         nil (("Fcc" . "mail/sinusoides/Sent"))
+         nil nil)
+        ("sinusoidal" nil
+         "Juan Pedro Bolívar Puente <juanpe@sinusoid.al>"
+         nil (("Fcc" . "mail/sinusoidal/Sent"))
          nil nil)))
 
-(setq gnus-alias-default-identity "gnu")
+(setq gnus-alias-default-identity "sinusoides")
 (setq gnus-alias-identity-rules
       '(("gmail" ("any" "magnicida@gmail.com" both) "gmail")
-        ("riseup" ("any" "juanpe@riseup.net" both) "riseup")))
+        ("riseup" ("any" "juanpe@riseup.net" both) "riseup")
+        ("sinusoides" ("any" "*@sinusoid.es" both) "sinusoides")
+        ("sinusoidal" ("any" "*@sinusoid.al" both) "sinusoidal")
+        ("gnu" ("any" "*@gnu.org" both) "gnu")
+        ("es.gnu" ("any" "*@es.gnu.org" both) "gnu")))
 
 (add-hook 'message-setup-hook 'gnus-alias-determine-identity)
 (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
