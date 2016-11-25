@@ -11,7 +11,7 @@ export VISUAL="emacsclient -c"
 #
 # C++
 #
-export LCVER=3.8
+export LCVER=3.9
 export LC="clang-$LCVER"
 export LXX="clang++-$LCVER"
 
