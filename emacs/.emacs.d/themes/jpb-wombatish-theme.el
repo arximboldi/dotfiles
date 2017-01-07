@@ -117,8 +117,7 @@ are included.")
    '(mode-line-inactive ((t (:inherit mode-line :background "#2d2d2d"
                                       :foreground "#999" :weight light))))
    '(scroll-bar ((t nil)))
-   '(vertical-border ((((type x mac)) (:inherit mode-line-inactive
-                                                :foreground "#444444"))))
+   '(vertical-border ((((type ns tty x mac)) (:inherit mode-line-inactive :inverse-video t))))
    '(comint-highlight-prompt ((t nil :inherit nil)))
    '(vline ((t (:inherit highlight))))
    ;; helm stuff
