@@ -122,7 +122,7 @@ export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 #
 # Guix
 #
-if [ -d ~/.guix-profile ]
+if [ -d ~/.guix-profile ]; then
    export CPATH=$HOME/.guix-profile/include
    export LIBRARY_PATH=$HOME/.guix-profile/lib
    export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
