@@ -8,12 +8,25 @@ export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c"
 
+
+#
+# General
+#
+is-macos() {
+    [ "$(uname)" == "Darwin" ]
+}
+
 #
 # C++
 #
 export LCVER=3.9
-export LC="clang-$LCVER"
-export LXX="clang++-$LCVER"
+if is-macos; then
+    export LC="/usr/local/opt/llvm/bin/clang-$LCVER"
+    export LXX="/usr/local/opt/llvm/bin/clang-$LCVER"
+else
+    export LC="clang-$LCVER"
+    export LXX="clang++-$LCVER"
+fi
 
 export GCVER=6
 export GC="gcc-$GCVER"
@@ -29,8 +42,8 @@ maybe-clean-cmake() {
     then
         cmake_cc=$(cat CMakeCache.txt | grep CMAKE_C_COMPILER:FILEPATH)
         cmake_cxx=$(cat CMakeCache.txt | grep CMAKE_CXX_COMPILER:FILEPATH)
-        cc=`test -n $cmake_cc && basename $cmake_cc`
-        cxx=`test -n $cmake_cxx && basename $cmake_cxx`
+        cc=`test -n "$cmake_cc" && basename "$cmake_cc"`
+        cxx=`test -n "$cmake_cxx" && basename "$cmake_cxx"`
         if [ "$cc" != "$CC" ] ||  [ "$cxx" != "$CXX" ];
         then
             echo -e "-- CMake cache was using: \tCC=$cc \tCXX=$cxx"
@@ -39,6 +52,12 @@ maybe-clean-cmake() {
             trash ./CMakeFiles
         fi
     fi
+}
+
+use-default() {
+    export CC=cc
+    export CXX=c++
+    maybe-clean-cmake
 }
 
 use-clang() {
@@ -64,9 +83,9 @@ use-ccache() {
     export CXX="ccache $CXX"
 }
 
-if [ "$(uname)" == "Darwin" ]; then
-    export CC=$LC
-    export CXX=$LXX
+if is-macos; then
+    export CC=
+    export CXX=
 else
     export CC=$GC
     export CXX=$GXX
