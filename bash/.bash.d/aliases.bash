@@ -87,3 +87,16 @@ alias scr="screen -DR"
 
 # email
 alias sm="sync-mail"
+
+# latex
+svg2pdf_tex() {
+    fname=$1
+    fname_noext="${fname%.*}"
+    inkscape -D -z --file=$fname --export-pdf=$fname_noext.pdf --export-latex
+}
+
+svg2pdf() {
+    fname=$1
+    fname_noext="${fname%.*}"
+    inkscape -D -z --file=$fname --export-pdf=$fname_noext.pdf
+}
