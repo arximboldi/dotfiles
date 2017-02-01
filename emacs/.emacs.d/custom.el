@@ -144,6 +144,7 @@
  '(projectile-use-git-grep t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
  '(rainbow-delimiters-max-face-count 10)
+ '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
    (quote
     ((eval modify-syntax-entry 43 "'")
@@ -170,7 +171,7 @@
  '(send-mail-function nil)
  '(shell-toggle-launch-shell (quote shell))
  '(show-paren-mode t)
- '(sort-fold-case t)
+ '(sort-fold-case t t)
  '(tool-bar-mode nil)
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
