@@ -276,6 +276,7 @@ main = do
   spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
   spawnPipe "pidof syncthing || syncthing"
   spawnPipe "ibus-daemon --replace"
+  spawnPipe "killall -w redshift-gtk; redshift-gtk -l 52.51:13.4"
   spawnPipe "killall -w volti; volti"
   spawnPipe "killall -w mpDris; mpDris"
   spawnPipe "killall -w nm-applet; nm-applet"
