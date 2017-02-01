@@ -17,6 +17,12 @@ is-macos() {
 }
 
 #
+# local libraries
+#
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export LD_LIBRARY_PATH
+
+#
 # C++
 #
 export LCVER=3.9
