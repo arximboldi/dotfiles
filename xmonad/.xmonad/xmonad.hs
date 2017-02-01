@@ -267,23 +267,23 @@ main = do
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
-  spawnPipe "cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
-  spawnPipe "xfdesktop -D -R"
-  spawnPipe "xfsettingsd --replace --no-daemon"
-  spawnPipe "ibus-daemon --replace"
-  spawnPipe "xfce4-power-manager --restart"
-  spawnPipe "tracker daemon -s"
-  spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
-  spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
-  spawnPipe "pidof syncthing || syncthing"
-  spawnPipe "killall -w redshift-gtk; redshift-gtk -l 52.51:13.4"
-  spawnPipe "killall -w volti; volti"
-  spawnPipe "killall -w mpDris; mpDris"
-  spawnPipe "killall -w nm-applet; nm-applet"
-  spawnPipe "killall -w taffybar-linux-x86_64; taffybar"
-  spawnPipe ("xdotool search --sync --onlyvisible Taffybar windowlower" ++
-              (concat $ take 20 $ repeat
-                " && xdotool search --sync --onlyvisible Xfdesktop windowlower && sleep 0.5"))
+  spawn "cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
+  spawn "xfdesktop -D -R"
+  spawn "xfsettingsd --replace --no-daemon"
+  spawn "ibus-daemon --replace"
+  spawn "xfce4-power-manager --restart"
+  spawn "tracker daemon -s"
+  spawn "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
+  spawn "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
+  spawn "pidof syncthing || syncthing"
+  spawn "killall -w redshift-gtk; redshift-gtk -l 52.51:13.4"
+  spawn "killall -w volti; volti"
+  spawn "killall -w mpDris; mpDris"
+  spawn "killall -w nm-applet; nm-applet"
+  spawn "killall -w taffybar-linux-x86_64; taffybar"
+  spawn ("xdotool search --sync --onlyvisible Taffybar windowlower" ++
+          (concat $ take 20 $ repeat
+            " && xdotool search --sync --onlyvisible Xfdesktop windowlower && sleep 0.5"))
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
