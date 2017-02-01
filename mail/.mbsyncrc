@@ -6,7 +6,7 @@ IMAPAccount gmail
 Host imap.gmail.com
 User magnicida@gmail.com
 UseIMAPS yes
-# PipelineDepth 4
+PipelineDepth 4
 # genertate with:
 # $ gpg2 --output pass.gpg --symmetric pass
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"imap.gmail.com\" {print $6}'"
@@ -35,7 +35,7 @@ Sync All
 IMAPAccount riseup
 Host mail.riseup.net
 User juanpe
-# PipelineDepth 4
+PipelineDepth 4
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"mail.riseup.net\" {print $6}'"
 
 IMAPStore riseup-remote
@@ -110,7 +110,7 @@ Sync All
 
 IMAPAccount sinusoidal
 UseIMAPS yes
-Host sinusoid.al
+Host sinusoid.es
 User juanpe@sinusoid.al
 CertificateFile ~/.mail/sinusoid.es.cert
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"sinusoid.al\" {print $6}'"
