@@ -26,7 +26,7 @@ exclude_tags=deleted;spam
 [user]
 name=Juan Pedro Bolivar Puente
 primary_email=raskolnikov@gnu.org
-other_email=magnicida@gmail.com;juanpe@riseup.net;raskolnikov@es.gnu.org;
+other_email=magnicida@gmail.com;juanpe@riseup.net;raskolnikov@es.gnu.org;juanpe@sinusoid.es;juanpe@sinusoid.al
 
 # Maildir compatibility configuration
 #
