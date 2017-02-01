@@ -108,16 +108,16 @@ export GOPATH=~/.go-path
 add-path $GOPATH/bin
 
 #
+# Haskell
+#
+add-path ~/.cabal/bin
+
+#
 # Local installs
 #
 add-path /usr/local/bin
 add-path ~/usr/bin
 add-path ~/.local/bin
-
-#
-# Haskell
-#
-add-path ~/.cabal/bin
 
 #
 # Node.js
