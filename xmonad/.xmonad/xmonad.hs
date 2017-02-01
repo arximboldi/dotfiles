@@ -175,10 +175,10 @@ main = do
         , ((mask, xK_e), spawn $ "wmctrl -xa emacs || emacsclient -c -e '(ignore)'")
         , ((mask .|. shiftMask, xK_e), spawn $ "emacsclient -c -e '(ignore)'")
         -- Browser
-        , ((mask, xK_w), spawn $ "wmctrl -xa chromium || chromium --allow-file-access-from-files")
-        , ((mask .|. shiftMask, xK_w), spawn $ "chromium  --allow-file-access-from-files")
-        --, ((mask, xK_w), spawn $ "wmctrl -xa firefox || firefox")
-        --, ((mask .|. shiftMask, xK_w), spawn $ "firefox")
+        --, ((mask, xK_w), spawn $ "wmctrl -xa chromium || chromium --allow-file-access-from-files")
+        --, ((mask .|. shiftMask, xK_w), spawn $ "chromium  --allow-file-access-from-files")
+        , ((mask, xK_w), spawn $ "wmctrl -xa firefox || firefox")
+        , ((mask .|. shiftMask, xK_w), spawn $ "firefox")
         -- take a screenshot of entire display
         , ((noModMask, xK_Print), spawn "gnome-screenshot")
         , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")

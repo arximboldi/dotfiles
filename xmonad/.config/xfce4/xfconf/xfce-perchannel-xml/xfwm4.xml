@@ -81,7 +81,7 @@
       <value type="string" value="web"/>
       <value type="string" value="emacs"/>
       <value type="string" value="misc"/>
-      <value type="string" value="mail"/>
+      <value type="string" value="im"/>
     </property>
   </property>
 </channel>
