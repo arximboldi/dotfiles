@@ -213,7 +213,7 @@ main = do
         , ((mask, button3), (\w -> focus w >> mouseResizeWindow w))
         ]
 
-  let layout' = smartBorders $ B.boringWindows normalLayout
+  let layout' = avoidStruts $ smartBorders $ B.boringWindows normalLayout
         where
           gap = id -- G.gaps [(G.U, 22)]
           tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
@@ -296,7 +296,7 @@ main = do
     , keys               = keys'
     , mouseBindings      = mouseBindings'
     , manageHook         = manageHook' <+> manageDocks
-    , layoutHook         = avoidStruts $ layout'
+    , layoutHook         = layout'
     , startupHook        = setDefaultCursor xC_arrow
     , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook
     }
