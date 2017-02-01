@@ -270,18 +270,20 @@ main = do
   spawnPipe "cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
   spawnPipe "xfdesktop -D -R"
   spawnPipe "xfsettingsd --replace --no-daemon"
+  spawnPipe "ibus-daemon --replace"
   spawnPipe "xfce4-power-manager --restart"
   spawnPipe "tracker daemon -s"
   spawnPipe "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
   spawnPipe "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
   spawnPipe "pidof syncthing || syncthing"
-  spawnPipe "ibus-daemon --replace"
   spawnPipe "killall -w redshift-gtk; redshift-gtk -l 52.51:13.4"
   spawnPipe "killall -w volti; volti"
   spawnPipe "killall -w mpDris; mpDris"
   spawnPipe "killall -w nm-applet; nm-applet"
   spawnPipe "killall -w taffybar-linux-x86_64; taffybar"
-  spawnPipe "xdotool search --sync --onlyvisible Taffybar windowlower && xdotool search --sync --onlyvisible Xfdesktop windowlower && sleep 1 && xdotool search --sync --onlyvisible Xfdesktop windowlower"
+  spawnPipe ("xdotool search --sync --onlyvisible Taffybar windowlower" ++
+              (concat $ take 20 $ repeat
+                " && xdotool search --sync --onlyvisible Xfdesktop windowlower && sleep 0.5"))
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
