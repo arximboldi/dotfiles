@@ -281,9 +281,9 @@ main = do
   spawn "killall -w mpDris; mpDris"
   spawn "killall -w nm-applet; nm-applet"
   spawn "killall -w taffybar-linux-x86_64; taffybar"
-  spawn ("xdotool search --sync --onlyvisible Taffybar windowlower" ++
+  spawn ("xdotool search --sync --onlyvisible Taffybar windowlower;" ++
           (concat $ take 20 $ repeat
-            " && xdotool search --sync --onlyvisible Xfdesktop windowlower && sleep 0.5"))
+            "xdotool search --sync --onlyvisible Xfdesktop windowlower; sleep 0.5;"))
 
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
