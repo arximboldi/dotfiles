@@ -51,6 +51,7 @@
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "xdg-open")
  '(calendar-week-start-day 1)
+ '(cider-lein-command "~/usr/bin/lein")
  '(clojure-defun-style-default-indent t)
  '(clojure-indent-style :align-arguments)
  '(coffee-extend-comments nil)
