@@ -16,8 +16,8 @@
 #192.168.0.87	mjpi
 #192.168.42.1	mjpi
 #192.168.42.2	pickup
-163.172.164.73  orion0
 163.172.144.97  orion1
+163.172.181.40  orion3
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
