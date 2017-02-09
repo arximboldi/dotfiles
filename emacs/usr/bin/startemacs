@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if pidof emacs; then
+    notify-send -i emacs "Emacs" "I am already running!"
+else
+    notify-send -i emacs "Emacs" "Starting..."
+    GTK_THEME=Numix:dark emacs --daemon
+fi
