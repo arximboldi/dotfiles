@@ -238,7 +238,8 @@
 
 ;; Clang sanitizer errors
 (add-to-list 'compilation-error-regexp-alist '("^    #[0-9]+ 0x[[:xdigit:]]+ in .* \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)$" 1 2 3))
-(add-to-list 'compilation-error-regexp-alist '("^    #[0-9]+ 0x[[:xdigit:]]+ in .* \\(.*?\\):\\([0-9]+\\)$" 1 2 3))
+(when (eq system-type 'darwin)
+  (add-to-list 'compilation-error-regexp-alist '("^    #[0-9]+ 0x[[:xdigit:]]+ in .* \\(.*?\\):\\([0-9]+\\)$" 1 2 3)))
 
 ;;
 ;; Web mode
