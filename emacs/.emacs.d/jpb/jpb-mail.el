@@ -71,7 +71,7 @@
 (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
 
 (setq notmuch-crypto-process-mime t)
-(setq notmuch-poll-script "~/usr/bin/sync-email")
+(setq notmuch-poll-script "~/usr/bin/getmail")
 (setq notmuch-show-logo nil)
 (setq notmuch-search-oldest-first nil)
 
