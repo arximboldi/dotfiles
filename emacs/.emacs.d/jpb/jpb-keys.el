@@ -91,6 +91,9 @@
     (notmuch-search-tag (list "+deleted") beg end)
     (notmuch-search-next-thread)))
 
+(define-key notmuch-message-mode-map
+  (kbd "C-c i") 'gnus-alias-use-identity)
+
 ;;
 ;; Multiple cursors
 ;;
