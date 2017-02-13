@@ -96,7 +96,8 @@ svg2pdf_tex() {
 }
 
 svg2pdf() {
-    fname=$1
-    fname_noext="${fname%.*}"
-    inkscape -D -z --file=$fname --export-pdf=$fname_noext.pdf
+    for fname; do
+        fname_noext="${fname%.*}"
+        inkscape -D -z --file=$fname --export-pdf=$fname_noext.pdf
+    done
 }
