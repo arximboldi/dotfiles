@@ -12,7 +12,8 @@
 
 # Machines
 127.0.0.1	localhost
-127.0.1.1	nexus9
+#127.0.1.1	ce1
+#127.0.1.1	nexus9
 #192.168.0.87	mjpi
 #192.168.42.1	mjpi
 #192.168.42.2	pickup
