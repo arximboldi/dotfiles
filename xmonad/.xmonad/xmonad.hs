@@ -269,6 +269,7 @@ main = do
   putEnv "GTK_CSD=0"
   putEnv "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0"
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
+  spawn "xset -b"
   spawn "cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
   spawn "xfdesktop -D -R"
   spawn "xfsettingsd --replace --no-daemon"
