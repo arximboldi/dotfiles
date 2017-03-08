@@ -59,7 +59,7 @@ Sync All
 #
 
 IMAPAccount gnu
-UseIMAPS yes
+SSLType IMAPS
 Host es.gnu.org
 User raskolnikov
 CertificateFile ~/.mail/es.gnu.org.cert
