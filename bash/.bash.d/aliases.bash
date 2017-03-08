@@ -97,6 +97,8 @@ alias scr="screen -DR"
 # email
 alias sm="sync-mail"
 
+alias backup="rsync -aq -A -X"
+
 # latex
 svg2pdf_tex() {
     fname=$1
