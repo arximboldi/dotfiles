@@ -37,6 +37,13 @@ After installing the configuration, you may need to do:
 > $ make
 > ```
 
+> ```
+> sudo apt install libxtst-dev libxkbcommon-dev
+> cd _deps/xdotool
+> make
+> sudo make install
+> ```
+
 bash
 ----
 
