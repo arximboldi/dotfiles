@@ -231,7 +231,8 @@
 ;; Update copyright
 ;;
 
-(add-hook 'before-save-hook 'copyright-update)
+;;(add-hook 'before-save-hook 'copyright-update)
+;;(remove-hook 'before-save-hook 'copyright-update)
 
 ;; Python errors
 (add-to-list 'compilation-error-regexp-alist '("^In file \\(.*?\\):\\([0-9]+\\)$" 1 2))
