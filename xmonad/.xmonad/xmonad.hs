@@ -266,6 +266,8 @@ main = do
           checkDialog = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DIALOG"
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
+  putEnv "GTK_CSD=0"
+  putEnv "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0"
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   spawn "cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
   spawn "xfdesktop -D -R"
