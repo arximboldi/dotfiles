@@ -39,3 +39,6 @@ source ~/.bash.d/functions.bash
 source ~/.bash.d/aliases.bash
 source ~/.bash.d/env.bash
 source ~/.bash.d/prompt.bash
+if [ -f ~/.bash.d/private.bash ]; then
+    source ~/.bash.d/private.bash
+fi

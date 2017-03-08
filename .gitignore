@@ -1,3 +1,4 @@
 *~
 *.elc
 *_flymake.*
+bash/.bash.d/private.bash
