@@ -73,6 +73,7 @@
  '(desktop-auto-save-timeout 1)
  '(desktop-load-locked-desktop t)
  '(dired-listing-switches "-al -X --group-directories-first")
+ '(dumb-jump-max-find-time 10)
  '(ecb-layout-window-sizes
    (quote
     (("leftright2"
@@ -116,7 +117,7 @@
  '(jmaker-make-compiler-options "-g")
  '(js2-strict-missing-semi-warning nil)
  '(line-number-mode t)
- '(line-spacing 4)
+ '(line-spacing 0.2)
  '(magit-auto-revert-immediately nil)
  '(magit-auto-revert-mode nil)
  '(magit-diff-use-overlays nil)
@@ -140,6 +141,7 @@
  '(package-selected-packages
    (quote
     (biblio bibretrieve bibslurp company-auctex company-bibtex ebib empos gscholar-bibtex helm-bibtex jade-mode helm-go-package go-playground company-go go-eldoc go-mode helm-ag company-ycmd flycheck-ycmd gnus-alias cmake-mode nsis-mode emoji-cheat-sheet-plus google-translate babel hackernews helm-smex helm-mu multiple-cursors helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr ido-ubiquitous haskell-mode git-messenger gist geiser expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
+ '(projectile-enable-caching t)
  '(projectile-global-mode t)
  '(projectile-use-git-grep t)
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
