@@ -4,6 +4,15 @@ alias reload="source ~/.bashrc"
 # sudo
 alias s=sudo
 
+function script-sudo
+{
+    if [ "${TERM}" == eterm-color ]; then
+        gksudo -- $*
+    else
+        sudo $*
+    fi
+}
+
 # colors
 if [ "$(uname)" == "Darwin" ]; then
     alias ls='gls --color=auto -X --group-directories-first'
