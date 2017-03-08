@@ -5,7 +5,7 @@
 IMAPAccount gmail
 Host imap.gmail.com
 User magnicida@gmail.com
-UseIMAPS yes
+SSLType IMAPS
 PipelineDepth 4
 # genertate with:
 # $ gpg2 --output pass.gpg --symmetric pass
@@ -33,6 +33,7 @@ Sync All
 #
 
 IMAPAccount riseup
+SSLType IMAPS
 Host mail.riseup.net
 User juanpe
 PipelineDepth 4
@@ -58,7 +59,8 @@ Sync All
 #
 
 IMAPAccount gnu
-Host 91.224.149.60 # es.gnu.org
+UseIMAPS yes
+Host es.gnu.org
 User raskolnikov
 CertificateFile ~/.mail/es.gnu.org.cert
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"es.gnu.org\" {print $6}'"
@@ -83,7 +85,7 @@ Sync All
 #
 
 IMAPAccount sinusoides
-UseIMAPS yes
+SSLType IMAPS
 Host sinusoid.es
 User juanpe@sinusoid.es
 CertificateFile ~/.mail/sinusoid.es.cert
@@ -109,7 +111,7 @@ Sync All
 #
 
 IMAPAccount sinusoidal
-UseIMAPS yes
+SSLType IMAPS
 Host sinusoid.es
 User juanpe@sinusoid.al
 CertificateFile ~/.mail/sinusoid.es.cert
