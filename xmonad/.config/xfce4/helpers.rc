@@ -1,5 +1,5 @@
 MailReader=icedove
-WebBrowser=chromium
+WebBrowser=firefox
 FileManager=nautilus
 TerminalEmulator=gnome-terminal
 
