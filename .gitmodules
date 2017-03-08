@@ -22,3 +22,6 @@
 [submodule "_deps/notify-send.sh"]
 	path = _deps/notify-send.sh
 	url = git@github.com:vlevit/notify-send.sh.git
+[submodule "_deps/dmenu2"]
+	path = _deps/dmenu2
+	url = https://github.com/mrshankly/dmenu2.git
