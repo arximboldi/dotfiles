@@ -85,7 +85,7 @@ main = do
         , alwaysHighlight   = True
         , searchPredicate   = L.isInfixOf . map C.toLower
         }
-      dmenuCmd = "~/usr/bin/dmenu_run_xft -b -t "
+      dmenuCmd = "~/usr/bin/dmenu-run-xft -b -t "
                  ++ "  -fn '" ++ textFont
                  ++ "' -nb '" ++ headerColor
                  ++ "' -nf '" ++ textColor
