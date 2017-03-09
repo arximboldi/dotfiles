@@ -82,12 +82,6 @@ alias cm-all="cm .. && make -j 4 && ctest --output-on-failure"
 alias p="ipython --no-confirm-exit"
 alias o=octave-cli
 
-# ableton
-alias abl-configure="modules/build-system/scripts/configure.py"
-alias abl-build="modules/build-system/scripts/build.py"
-alias abl-run="modules/build-system/scripts/run.py"
-alias abl-all="abl-configure && abl-build && abl-run"
-
 # web dev
 alias pjson="python -mjson.tool"
 
