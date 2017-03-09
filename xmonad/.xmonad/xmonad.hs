@@ -144,6 +144,8 @@ main = do
         , ((mask, xK_l), sendMessage Expand)
         -- Push window back into tiling
         , ((mask, xK_t), withFocused $ windows . W.sink)
+        -- Toggle trackpad
+        , ((mask .|. shiftMask, xK_t), spawn $ "~/usr/bin/touchpad-toggle")
         -- Increment the number of windows in the master area
         , ((mask, xK_comma), sendMessage (IncMasterN 1))
         -- Deincrement the number of windows in the master area
