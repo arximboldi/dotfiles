@@ -46,8 +46,9 @@ import XMonad.Util.Cursor
 import XMonad.Hooks.EwmhDesktops
 import System.Taffybar.Hooks.PagerHints
 
--- http://lpaste.net/83047
+import Graphics.X11.ExtraTypes.XF86
 
+-- http://lpaste.net/83047
 copyWindowToAll :: (Eq s, Eq i, Eq a) => a -> W.StackSet i l a s sd -> W.StackSet i l a s sd
 copyWindowToAll w s =
   foldr (copyWindow w) s $ map W.tag (W.workspaces s)
@@ -185,6 +186,9 @@ main = do
         , ((noModMask, xK_Print), spawn "gnome-screenshot")
         , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
         , ((mask, xK_Print), spawn "gnome-screenshot -i")
+        , ((noModMask, xF86XK_Tools), spawn "xfce4-settings-manager")
+        , ((shiftMask, xF86XK_Tools), spawn "gnome-control-center")
+        , ((mask, xF86XK_Tools), spawn "gnome-tweak-tool")
         -- Maximize
         -- , ((mask .|. shiftMask, xK_minus ), sendMessage MagnifyMore)
         -- , ((mask, xK_minus), sendMessage MagnifyLess)
