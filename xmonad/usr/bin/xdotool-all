@@ -1,0 +1,7 @@
+#!/bin/bash
+
+windows=`xdotool search --onlyvisible $1`
+for id in $windows
+do
+    xdotool $2 $id
+done

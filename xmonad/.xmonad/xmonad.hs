@@ -305,4 +305,5 @@ main = do
     , layoutHook         = layout'
     , startupHook        = setDefaultCursor xC_arrow
     , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook
+    , logHook            = spawn "~/usr/bin/xdotool-all Xfce4-notifyd windowraise"
     }
