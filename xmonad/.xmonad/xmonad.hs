@@ -93,7 +93,7 @@ main = do
                  ++ "' -sb '" ++ focusedColor
                  ++ "' -sf '" ++ headerColor
                  ++ "'"
-      terminalCmd = "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server & gnome-terminal --hide-menubar"
+      terminalCmd = "gnome-terminal --hide-menubar"
 
   let keys' conf@(XConfig {XMonad.modMask = mask}) = M.fromList $
         -- launch a terminal
@@ -284,7 +284,6 @@ main = do
   spawn "xfce4-power-manager --restart"
   spawn "tracker daemon -s"
   spawn "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
-  spawn "GTK_THEME=Numix:dark /usr/lib/gnome-terminal/gnome-terminal-server"
   spawn "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
   spawn "pidof syncthing || syncthing"
   spawn "killall -w redshift-gtk; redshift-gtk -l 52.51:13.4"
