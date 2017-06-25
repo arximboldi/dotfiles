@@ -107,4 +107,5 @@ main = do
     , startWidgets = [ sep', logger ]
     , endWidgets = [ sep'', clock, sep, tray, sep, bat, bat', mem, cpu
                    , mpris, sep'' ]
+    , barPosition = Top
     }
