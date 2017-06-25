@@ -150,6 +150,7 @@
 	       (c-offsets-alist . ((inline-open . 0)  ; custom indentation rules
 				   (brace-list-open . 0)
                                    (innamespace . 0)
+                                   (inlambda . 0)
 				   (statement-case-open . +)))))
 
 (add-hook 'c++-mode-hook
@@ -241,9 +242,7 @@
 (add-to-list 'compilation-error-regexp-alist '("File \"\\(.*?\\)\", Line \\([0-9]+\\):$" 1 2))
 
 ;; Clang sanitizer errors
-(add-to-list 'compilation-error-regexp-alist '("^    #[0-9]+ 0x[[:xdigit:]]+ in .* \\(.*?\\):\\([0-9]+\\):\\([0-9]+\\)$" 1 2 3))
-(when (eq system-type 'darwin)
-  (add-to-list 'compilation-error-regexp-alist '("^    #[0-9]+ 0x[[:xdigit:]]+ in .* \\(.*?\\):\\([0-9]+\\)$" 1 2 3)))
+(add-to-list 'compilation-error-regexp-alist '("^    #[0-9]+ 0x[[:xdigit:]]+ in .* \\(.*?\\):\\([0-9]+\\):?\\([0-9]+\\)?$" 1 2 3))
 
 ;;
 ;; Web mode
