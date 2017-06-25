@@ -296,6 +296,7 @@ main = do
           (concat $ take 20 $ repeat
             "xdotool search --sync --onlyvisible Xfdesktop windowlower; sleep 0.5;"))
 
+  spawn "mpd"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
