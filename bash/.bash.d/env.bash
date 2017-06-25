@@ -39,6 +39,11 @@ export GC="gcc-$GCVER"
 export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
 
+clean-cmake() {
+    trash ./CMakeCache.txt
+    trash ./CMakeFiles
+}
+
 maybe-clean-cmake() {
     cdir=`basename $PWD`
     if [ "x$cdir" == "xbuild" ] && \
