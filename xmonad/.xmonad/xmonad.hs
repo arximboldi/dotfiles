@@ -246,6 +246,7 @@ main = do
         , resource  =? "javax.swing.JDialog"     --> doCenterFloat
         , className =? "Tgcm"                    --> doCenterFloat
         , className =? "Qjackctl"                --> doSideFloat SE
+        , className =? "qjackctl"                --> doSideFloat SE
         , className =? "Qjackctl.real"           --> doSideFloat SE
         , className =? "Gcr-prompter"            --> doCenterFloat
 
