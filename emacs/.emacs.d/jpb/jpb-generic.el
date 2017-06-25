@@ -153,13 +153,13 @@ Also returns nil if pid is nil."
   (interactive)
   (shell-toggle nil)
   (when (eq (current-buffer) shell-toggle-shell-buffer)
-      (shrink-window (- (window-height) 12))))
+    (shrink-window (- (window-height) 12))))
 
 (defun small-shell-toggle-cd ()
   (interactive)
   (shell-toggle-cd)
   (when (eq (current-buffer) shell-toggle-shell-buffer)
-      (shrink-window (- (window-height) 12))))
+    (shrink-window (- (window-height) 12))))
 
 (defun small-term ()
   (interactive)
@@ -179,8 +179,8 @@ Also returns nil if pid is nil."
                                     initial-input hist def
                                     inherit-input-method)
   (helm--completing-read-default prompt collection predicate t
-                                 initial-input hist def
-                                 inherit-input-method))
+                                initial-input hist def
+                                inherit-input-method))
 (setq mu4e-completing-read-function 'jpb-helm-mu-completing-read)
 
 (add-hook 'write-file-hooks 'time-stamp)
