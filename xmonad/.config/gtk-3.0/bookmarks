@@ -6,6 +6,7 @@ file:///home/raskolnikov/pic
 file:///home/raskolnikov/down
 file:///home/raskolnikov/media/music
 file:///home/raskolnikov/media/videos
+sftp://nexus9.local/home/raskolnikov sftp://nexus9
 sftp://raskolnikov@orion1:5488/home/raskolnikov sftp://orion1
 sftp://orion3/home/raskolnikov sftp://orion3
 sftp://orion0:2223/ sftp://mjpi (remote)
