@@ -16,8 +16,9 @@
 ;; Setup desktop mode and notify the world when emacs is ready
 ;;
 (defun jpb-notify (msg)
-  (start-process "notify" nil
-                 "notify-send" "-i" "emacs" "Emacs" msg))
+  (when (not (eq system-type 'darwin))
+    (start-process "notify" nil
+                   "notify-send" "-i" "emacs" "Emacs" msg)))
 
 (add-hook 'emacs-startup-hook
           (lambda () (jpb-notify "Ready to roll!")))
