@@ -1,12 +1,24 @@
 
-del-path()
-{
-    PATH=${PATH//":$1"/} # delete in the middle or at the end
-    PATH=${PATH//"$1:"/} # delete at the beginning
-}
-
 add-path()
 {
-    del-path $1
-    PATH="$1:$PATH" # prepend to beginning
+    var=$1
+    del-path $var $@
+    shift
+    for path in $@
+    do
+        declare -gx $var="$path${!var:+":${!var}"}"
+    done
+}
+
+del-path()
+{
+    var=$1
+    shift
+    for path in $@
+    do
+        declare -gx $var=${!var//":$path:"/:} #delete all instances in the middle
+        declare -gx $var=${!var/%":$path"/} #delete any instance at the end
+        declare -gx $var=${!var/#"$path:"/} #delete any instance at the beginning
+        declare -gx $var=${!var//"$path"/} #delete singleton instance
+    done
 }

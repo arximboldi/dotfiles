@@ -1,5 +1,5 @@
 
-export MPD_HOST=192.168.42.1
+#export MPD_HOST=192.168.42.1
 
 export EMAIL="raskolnikov@gnu.org"
 export USERNAME="Juan Pedro Bolívar Puente"
@@ -8,6 +8,35 @@ export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c"
 
+#
+# Guile
+#
+add-path GUILE_LOAD_PATH . ... $HOME/dev/immer/build/extra/guile
+export GUILE_AUTO_COMPILE=1
+
+#
+# Guix
+#
+export GUIX_LD_WRAPPER_ALLOW_IMPURITIES=1
+add-path GUIX_PACKAGE_PATH "$HOME/dotfiles/guix"
+add-path GUILE_LOAD_PATH "$HOME/dotfiles/guix"
+
+if [ -d ~/.guix-profile ]; then
+    add-path GUIX_LOCPATH "$HOME/.guix-profile/lib/locale"
+    add-path PATH "$HOME/.guix-profile/bin" "$HOME/.guix-profile/sbin"
+    #add-path LD_LIBRARY_PATH "/usr/lib/x86_64-linux-gnu" "/usr/lib" "$HOME/.guix-profile/lib"
+    add-path LIBRARY_PATH "/usr/lib/x86_64-linux-gnu" "/usr/lib" "$HOME/.guix-profile/lib"
+    add-path CPATH "/usr/include" "$HOME/.guix-profile/include"
+    add-path C_INCLUDE_PATH "/usr/include" "$HOME/.guix-profile/include"
+    add-path CPLUS_INCLUDE_PATH "/usr/include" "$HOME/.guix-profile/include"
+    add-path INFOPATH "$HOME/.guix-profile/share/info"
+    add-path PKG_CONFIG_PATH "$HOME/.guix-profile/lib/pkgconfig"
+    add-path ACLOCAL_PATH "$HOME/.guix-profile/share/aclocal"
+    add-path GUILE_LOAD_COMPILED_PATH "$HOME/.guix-profile/lib/guile/2.2/ccache"
+    add-path GUILE_LOAD_PATH "$HOME/.guix-profile/share/guile/site/2.0"
+    add-path BASH_LOADABLES_PATH "/home/raskolnikov/.guix-profile/lib/bash"
+    add-path TERMINFO_DIRS "/home/raskolnikov/.guix-profile/share/terminfo"
+fi
 
 #
 # General
@@ -17,10 +46,12 @@ is-macos() {
 }
 
 #
-# local libraries
+# local installations
 #
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-export LD_LIBRARY_PATH
+add-path LD_LIBRARY_PATH "/usr/local/lib"
+add-path PATH /usr/local/bin
+add-path PATH ~/usr/bin
+add-path PATH ~/.local/bin
 
 #
 # C++
@@ -83,6 +114,12 @@ use-gcc() {
     maybe-clean-cmake
 }
 
+use-guix() {
+    export CC=$HOME/.guix-profile/bin/gcc
+    export CXX=$HOME/.guix-profile/bin/g++
+    maybe-clean-cmake
+}
+
 disable-ccache() {
     export CC=${CC#ccache}
     export CXX=${CXX#ccache}
@@ -107,8 +144,8 @@ export CTEST_OUTPUT_ON_FAILURE=1
 #
 # emscripten
 #
-add-path $HOME/soft/binaryen/build/bin
-add-path $HOME/dev/emsdk
+add-path PATH $HOME/soft/binaryen/build/bin
+add-path PATH $HOME/dev/emsdk
 [ -f $HOME/dev/emsdk/emsdk_set_env.sh ] && \
     source $HOME/dev/emsdk/emsdk_set_env.sh
 
@@ -116,19 +153,12 @@ add-path $HOME/dev/emsdk
 # Go
 #
 export GOPATH=~/.go-path
-add-path $GOPATH/bin
+add-path PATH $GOPATH/bin
 
 #
 # Haskell
 #
-add-path ~/.cabal/bin
-
-#
-# Local installs
-#
-add-path /usr/local/bin
-add-path ~/usr/bin
-add-path ~/.local/bin
+add-path PATH ~/.cabal/bin
 
 #
 # Node.js
@@ -150,19 +180,6 @@ export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
     source ~/.travis/travis.sh
 
 #
-# Guix
-#
-if [ -d ~/.guix-profile ]; then
-   export CPATH=$HOME/.guix-profile/include
-   export LIBRARY_PATH=$HOME/.guix-profile/lib
-   export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
-   export GUILE_LOAD_PATH=$HOME/.guix-profile/share/guile/site/2.0
-   export GUILE_LOAD_COMPILED_PATH=$HOME/.guix-profile/share/guile/site/2.0
-   add-path $HOME/.guix-profile/bin
-   add-path $HOME/.guix-profile/sbin
-fi
-
-#
 # Clojure
 #
 # export LEIN_FAST_TRAMPOLINE=true
@@ -172,4 +189,9 @@ fi
 #
 export CONSCRIPT_HOME="$HOME/.conscript"
 export CONSCRIPT_OPTS="-Dfile.encoding=UTF-8"
-export PATH=$CONSCRIPT_HOME/bin:$PATH
+add-path PATH $CONSCRIPT_HOME/bin
+
+#
+# Ruby
+#
+add-path PATH $HOME/.gem/ruby/2.3.0/bin
