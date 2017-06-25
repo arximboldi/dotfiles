@@ -1,0 +1,32 @@
+#!/bin/bash
+# https://gist.github.com/RichardBronosky/56d8f614fab2bacdd8b048fb58d0c0c7
+
+if [[ -p /dev/stdin ]]; then # stdin is a pipe
+    p0=1
+else
+    p0=0
+fi
+
+if [[ -t 0 ]]; then          # stdin is a tty
+    t0=1
+else
+    t0=0
+fi
+
+if [[ -t 1 ]]; then          # stdout is a tty
+    t1=1
+else
+    t1=0
+fi
+
+if [[ $p0 -eq 1 || $t0 -eq 0 ]]; then # stdin is pipe-ish
+    cat | xclip -selection clipboard # so send it to the pasteboard
+    if [[ $t1 -eq 0 ]]; then # also, stdout is not a tty (meaning it must be a pipe or redirection)
+        xclip -selection clipboard -o # so pass that pipe/redirection the content of the pasteboard (enables `man tee` like chaining)
+    fi
+else # stdin is not a pipe
+    xclip -selection clipboard -o # so output the pasteboard
+    if [[ $t1 -eq 1 ]]; then # stdout is a tty (so we don't have to be strict about not altering the output)
+        echo # prevent the prompt from being on the same line
+    fi
+fi
