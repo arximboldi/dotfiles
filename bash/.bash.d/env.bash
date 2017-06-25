@@ -25,7 +25,7 @@ export LD_LIBRARY_PATH
 #
 # C++
 #
-export LCVER=3.9
+export LCVER=4.0
 if is-macos; then
     export LC="/usr/local/opt/llvm/bin/clang-$LCVER"
     export LXX="/usr/local/opt/llvm/bin/clang-$LCVER"
@@ -34,7 +34,7 @@ else
     export LXX="clang++-$LCVER"
 fi
 
-export GCVER=6
+export GCVER=7
 export GC="gcc-$GCVER"
 export GXX="g++-$GCVER"
 export SHLIB_GXXLD="g++-$GCVER"
