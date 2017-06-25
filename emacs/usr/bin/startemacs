@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+source ~/.bash.d/init.bash
 
 if pidof emacs; then
     notify-send -i emacs "Emacs" "I am already running!"

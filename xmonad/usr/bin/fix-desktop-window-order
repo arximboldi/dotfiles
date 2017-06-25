@@ -1,0 +1,7 @@
+#!/bin/bash
+
+xdotool search --sync --onlyvisible Taffybar windowlower
+until xdotool search --sync --onlyvisible Xfdesktop windowlower;
+do
+    :
+done

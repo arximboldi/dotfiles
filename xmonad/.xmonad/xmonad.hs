@@ -285,17 +285,14 @@ main = do
   spawn "xfce4-power-manager --restart"
   spawn "tracker daemon -s"
   spawn "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
-  spawn "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
+  spawn "~/usr/bin/startemacs"
   spawn "pidof syncthing || syncthing"
   spawn "killall -w redshift-gtk; redshift-gtk -l 52.51:13.4"
   spawn "killall -w pa-applet; ~/dotfiles/_deps/pa-applet/src/pa-applet"
   spawn "killall -w mpDris; mpDris"
   spawn "killall -w nm-applet; nm-applet"
   spawn "killall -w taffybar-linux-x86_64; taffybar"
-  spawn ("xdotool search --sync --onlyvisible Taffybar windowlower;" ++
-          (concat $ take 20 $ repeat
-            "xdotool search --sync --onlyvisible Xfdesktop windowlower; sleep 0.5;"))
-
+  spawn "~/usr/bin/fix-desktop-window-order"
   spawn "mpd"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
