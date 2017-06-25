@@ -288,7 +288,7 @@ main = do
   spawn "pidof emacs || GTK_THEME=Numix:dark emacs --daemon"
   spawn "pidof syncthing || syncthing"
   spawn "killall -w redshift-gtk; redshift-gtk -l 52.51:13.4"
-  spawn "killall -w volti; volti"
+  spawn "killall -w pa-applet; ~/dotfiles/_deps/pa-applet/src/pa-applet"
   spawn "killall -w mpDris; mpDris"
   spawn "killall -w nm-applet; nm-applet"
   spawn "killall -w taffybar-linux-x86_64; taffybar"
