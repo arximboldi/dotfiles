@@ -1,6 +1,7 @@
 #!/bin/bash
 
-CHANNELS="gmail gnu riseup sinusoides sinusoidal"
+#CHANNELS="gmail gnu riseup sinusoides sinusoidal"
+CHANNELS="gnu riseup sinusoides sinusoidal"
 
 afew_command=~/.local/bin/afew
 mbsync_command=mbsync
