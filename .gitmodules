@@ -25,3 +25,6 @@
 [submodule "_deps/dmenu2"]
 	path = _deps/dmenu2
 	url = https://github.com/mrshankly/dmenu2.git
+[submodule "_deps/pa-applet"]
+	path = _deps/pa-applet
+	url = git@github.com:arximboldi/pa-applet.git
