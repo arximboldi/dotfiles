@@ -106,3 +106,31 @@ svg2pdf() {
         inkscape -D -z --file=$fname --export-pdf=$fname_noext.pdf
     done
 }
+
+pa-jack-start()
+{
+    pactl load-module module-jack-sink channels=2
+    pactl load-module module-jack-source channels=2
+    pacmd set-default-sink jack_out
+    pacmd set-default-source jack_in
+}
+
+pa-jack-stop()
+{
+    SINKID=$(pactl list | grep -B 1 "Name: module-jack-sink" | grep Module | sed 's/[^0-9]//g')
+    SOURCEID=$(pactl list | grep -B 1 "Name: module-jack-source" | grep Module | sed 's/[^0-9]//g')
+    pactl unload-module $SINKID
+    pactl unload-module $SOURCEID
+}
+
+gdbwait()
+{
+    progstr=$1
+    progpid=""
+    while [ "$progpid" = "" ]; do
+        progpid=`pgrep -n $progstr`
+    done
+    gdb -p $progpid
+}
+
+alias jack-hw="jackd -P70 -t5000 -dalsa -dhw:0 -r44100 -p128 -n2 -s -Xseq -o2"
