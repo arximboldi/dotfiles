@@ -47,11 +47,14 @@
  '(ansi-color-for-comint-mode t)
  '(ansi-color-names-vector
    ["black" "red" "green yellow" "yellow" "deep sky blue" "magenta" "cyan" "white"])
+ '(ansi-term-color-vector
+   [unspecified "#FFFFFF" "#d15120" "#5f9411" "#d2ad00" "#6b82a7" "#a66bab" "#6b82a7" "#505050"] t)
  '(auto-revert-use-notify t)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "xdg-open")
  '(calendar-week-start-day 1)
  '(cider-lein-command "~/usr/bin/lein")
+ '(clang-format-executable "clang-format-4.0")
  '(clojure-defun-style-default-indent t)
  '(clojure-indent-style :align-arguments)
  '(coffee-extend-comments nil)
@@ -81,7 +84,9 @@
       (0.1870967741935484 . 0.6190476190476191)
       (0.1870967741935484 . 0.35714285714285715)))))
  '(fci-always-use-textual-rule t)
+ '(fci-rule-character-color "#d9d9d9")
  '(fci-rule-color "#444")
+ '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(focus-follows-mouse t)
  '(ggtags-update-on-save nil)
  '(global-hl-line-mode t)
@@ -146,7 +151,11 @@
  '(recentf-max-saved-items 1000)
  '(safe-local-variable-values
    (quote
-    ((eval modify-syntax-entry 43 "'")
+    ((eval add-hook
+           (quote before-save-hook)
+           (function clang-format-buffer)
+           nil t)
+     (eval modify-syntax-entry 43 "'")
      (eval modify-syntax-entry 36 "'")
      (eval modify-syntax-entry 126 "'")
      (bug-reference-bug-regexp . "<https?://\\(debbugs\\|bugs\\)\\.gnu\\.org/\\([0-9]+\\)>")
