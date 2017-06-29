@@ -1,11 +1,6 @@
-;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolivar Puente
-;;
+;;; emacs config file -- Juan Pedro Bolívar Puente
 
-(defun jpb-toggle-fullscreen ()
+(defun @toggle-fullscreen ()
   (interactive)
   (toggle-menu-bar-mode-from-frame)
   (toggle-tool-bar-mode-from-frame))
@@ -22,23 +17,23 @@
 ;; ;; Display ido results vertically, rather than horizontally
 ;; (setq ido-decorations
 ;;       (quote ("\n ▶ " "" "\n   " "\n   ..." "[" "]"
-;; 	      " [No match]"
-;; 	      " [Matched]"
-;; 	      " [Not readable]"
-;; 	      " [Too big]"
-;; 	      " [Confirm]")))
+;;            " [No match]"
+;;            " [Matched]"
+;;            " [Not readable]"
+;;            " [Too big]"
+;;            " [Confirm]")))
 
 ;; (defun ido-disable-line-trucation ()
 ;;   (set (make-local-variable 'truncate-lines) nil))
 ;; (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
-;; (defun jpb-smex-load-and-run ()
+;; (defun @smex-load-and-run ()
 ;;   (interactive)
 ;;   (or (boundp 'smex-cache)
 ;;       (smex-initialize))
 ;;   (global-set-key [(meta x)] 'smex)
 ;;   (smex))
-;; (global-set-key "\M-x" 'jpb-smex-load-and-run)
+;; (global-set-key "\M-x" '@smex-load-and-run)
 
 ;;
 ;; Helm
@@ -118,24 +113,25 @@
 ;; (global-set-key (kbd "C-x 4 .")   'gtags-find-tag-other-window)
 
 ;; (add-hook 'gtags-select-mode-hook
-;; 	  (lambda ()
-;; 	    (local-set-key (kbd "RET") 'gtags-select-tag)))
+;;        (lambda ()
+;;          (local-set-key (kbd "RET") 'gtags-select-tag)))
 
 (require 'dumb-jump)
 (dumb-jump-mode)
 (global-set-key (kbd "M-.") 'dumb-jump-go)
 (global-set-key (kbd "C-M-.") 'dumb-jump-go-other-window)
 (global-set-key (kbd "M-,") 'dumb-jump-back)
+(global-set-key (kbd "S-DEL") 'delete-indentation)
 
 ;;
 ;; Key bindings
 ;;
 
-(global-set-key [f7]    'small-shell-toggle)
-(global-set-key [C-f7]  'small-shell-toggle-cd)
+(global-set-key [f7]    '@small-shell-toggle)
+(global-set-key [C-f7]  '@small-shell-toggle-cd)
 (global-set-key [f8]    'compile)
-(global-set-key [f9]    'jpb-gdb)
-(global-set-key [C-f10] 'indent-buffer)
+(global-set-key [f9]    '@gdb)
+(global-set-key [C-f10] '@indent-buffer)
 (global-set-key [f12]   'zoom-window-zoom)
 
 ;; Windmode rocks
@@ -145,8 +141,8 @@
 (global-set-key [C-M-up]    'windmove-up)
 
 ;; Scrolling
-(global-set-key '[C-M-up] 'scroll-down-keep-cursor)
-(global-set-key '[C-M-down] 'scroll-up-keep-cursor)
+(global-set-key '[C-M-up] '@scroll-down-keep-cursor)
+(global-set-key '[C-M-down] '@scroll-up-keep-cursor)
 
 ;; Zooming
 (global-set-key (kbd "C-+")      'zoom-frm-in)
@@ -155,7 +151,7 @@
 (global-set-key [C-kp-subtract]  'zoom-frm-out)
 
 ;; Go to minibuffer
-(global-set-key (kbd "C-c m") 'jpb-goto-minibuffer)
+(global-set-key (kbd "C-c m") '@goto-minibuffer)
 
 (defun set-newline-and-indent ()
   (local-set-key (kbd "RET") 'newline-and-indent))
@@ -173,24 +169,23 @@
 (eval-after-load "python-mode"
   '(progn
      (add-hook 'python-mode-hook
-	       (lambda ()
-		 (local-set-key (kbd "C-c C-e") 'py-execute-region)
-		 ;;(local-set-key (kbd "C-c C-t")  'gtags-find-pattern)
+               (lambda ()
+                 (local-set-key (kbd "C-c C-e") 'py-execute-region)
+                 ;;(local-set-key (kbd "C-c C-t")  'gtags-find-pattern)
                  ))))
 
 (eval-after-load "shell"
   '(progn
      (add-hook 'shell-mode-hook
-	       '(lambda ()
-		  (define-key shell-mode-map "\C-m"
-		    '(lambda ()
-		       (interactive)
-		       (comint-send-input)
-		       (condition-case err (kill-buffer "*Completions*") ())
-		       (message "Input sent")))))))
+               '(lambda ()
+                  (define-key shell-mode-map "\C-m"
+                    '(lambda ()
+                       (interactive)
+                       (comint-send-input)
+                       (condition-case err (kill-buffer "*Completions*") ())
+                       (message "Input sent")))))))
 
 (global-set-key [f5] 'toggle-php-html-mode)
-
 
 ;;
 ;; Camelscore
@@ -210,13 +205,13 @@
 (defun dasherize  (s) (mapconcat 'downcase   (split-name s) "-"))
 (defun colonize   (s) (mapconcat 'capitalize (split-name s) "::"))
 
-(defun camelscore (s)
+(defun @camelscore (s)
       (cond ;;((string-match-p "\:"  s) (camelcase s))
-	    ((string-match-p "-" s)   (camelcase s)) ;; (colonize s))
-	    ((string-match-p "_" s)   (dasherize s))
-	    (t                        (underscore s))))
+            ((string-match-p "-" s)   (camelcase s)) ;; (colonize s))
+            ((string-match-p "_" s)   (dasherize s))
+            (t                        (underscore s))))
 
-(defun camelscore-word-at-point ()
+(defun @camelscore-word-at-point ()
   (interactive)
   (let* ((case-fold-search nil)
          ;; (beg (and (skip-chars-backward "[:alnum:]:_-") (point)))
@@ -227,6 +222,6 @@
          (cml (camelscore txt)) )
     (if cml (progn (delete-region beg end) (insert cml)))))
 
-(global-set-key (kbd "C-c a") 'camelscore-word-at-point)
+(global-set-key (kbd "C-c a") '@camelscore-word-at-point)
 
-(provide 'jpb-keys)
+(provide 'init-keys)

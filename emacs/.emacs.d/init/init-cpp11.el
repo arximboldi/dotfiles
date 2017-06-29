@@ -1,11 +1,4 @@
-;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolívar Puente
-;;
-;; http://stackoverflow.com/questions/8549351/c11-mode-or-settings-for-emacs
-;;
+;; emacs config file -- Juan Pedro Bolívar Puente
 
 (require 'font-lock)
 
@@ -66,4 +59,4 @@
 ;;             (c-set-offset 'template-args-cont
 ;;                           '(c++-template-args-cont c-lineup-template-args +))))
 
-(provide 'jpb-cpp11)
+(provide 'init-cpp11)

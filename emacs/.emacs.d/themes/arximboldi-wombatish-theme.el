@@ -1,4 +1,5 @@
-;;; wombat-theme.el --- Custom face theme for Emacs  -*-coding: utf-8 -*-
+;;; emacs config file -- Juan Pedro Bolívar Puente
+;;; based on the standard wombatish theme
 
 ;; Copyright (C) 2011-2016 Free Software Foundation, Inc.
 
@@ -21,7 +22,7 @@
 
 ;;; Code:
 
-(deftheme jpb-wombatish
+(deftheme arximboldi-wombatish
   "Medium-contrast faces with a dark gray background.
 Adapted, with permission, from a Vim color scheme by Lars H. Nielsen.
 Basic, Font Lock, Isearch, Gnus, Message, and Ansi-Color faces
@@ -29,7 +30,7 @@ are included.")
 
 (let ((class '((class color) (min-colors 89))))
   (custom-theme-set-faces
-   'jpb-wombatish
+   'arximboldi-wombatish
    `(default ((,class (:background "#242424" :foreground "#f6f3e8"))))
    `(cursor ((,class (:background "yellow"))))
    ;; Highlighting faces
@@ -161,14 +162,8 @@ are included.")
    '(popup-menu-selection-face ((t (:inherit default :background "#242424" :weight bold))))))
 
 (custom-theme-set-variables
- 'jpb-wombatish
+ 'arximboldi-wombatish
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682"
                             "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]))
 
-(provide-theme 'jpb-wombatish)
-
-;; Local Variables:
-;; no-byte-compile: t
-;; End:
-
-;;; jpb-wombatish-theme.el ends here
+(provide-theme 'arximboldi-wombatish)

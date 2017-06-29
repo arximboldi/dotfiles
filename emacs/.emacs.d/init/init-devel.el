@@ -1,13 +1,8 @@
-;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolívar Puente
-;;
+;;; emacs config file -- Juan Pedro Bolívar Puente
 
 (require 'compile)
 
-(defun jpb-fill-mode ()
+(defun @fill-mode ()
   (setq fill-column 80)
   (fci-mode))
 
@@ -15,24 +10,24 @@
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-
 ;;
 ;; GIT
 ;;
+
 ;; (add-hook 'magit-status-mode-hook 'magit-filenotify-mode)
 
 ;;
 ;; Yasnippet
 ;;
 
-(require 'yasnippet)
+;; (require 'yasnippet)
 ;; (yas-global-mode 1)
 
 ;;
 ;; Python
 ;;
-(add-hook 'python-mode-hook 'flycheck-mode)
 
+(add-hook 'python-mode-hook 'flycheck-mode)
 
 ;;
 ;; LaTeX
@@ -50,7 +45,6 @@
 
 (setq reftex-plug-into-AUCTeX t)
 (setq-default TeX-master nil)
-
 
 ;;
 ;; C++
@@ -74,41 +68,41 @@
 
 (setq compilation-window-height 12)
 
-(defun compile-here ()
+(defun @compile-here ()
   "Set the compilation directory to the current one"
   (interactive)
   (setq compile-command
-	(concat "cd " (file-name-directory (buffer-file-name)) "; make")))
+        (concat "cd " (file-name-directory (buffer-file-name)) "; make")))
 
-(defun compile-this ()
+(defun @compile-this ()
   "Set the compile command to make this file if there is no makefile around"
   (interactive)
   (unless (or (file-exists-p "makefile")
-	      (file-exists-p "Makefile"))
+              (file-exists-p "Makefile"))
     (set (make-local-variable 'compile-command)
-	 (concat "make -k "
-		 (file-name-sans-extension (buffer-file-name))))))
+         (concat "make -k "
+                 (file-name-sans-extension (buffer-file-name))))))
 
-(defun compile-at (str)
+(defun @compile-at (str)
   "Set the compile command to build a selected directory"
   (interactive "DCompilation directory: ")
   (setq gud-gdb-command-name
         (concat "cd " str "; gdb -i=mi"))
   (setq compile-command
-	(concat "cd " str "; make")))
+        (concat "cd " str "; make")))
 
-(defun compile-leave ()
+(defun @compile-leave ()
   (interactive)
   (setq compilation-finish-function nil))
 
-(defun compile-close ()
+(defun @compile-close ()
   (interactive)
   (setq compilation-finish-function
-	(lambda (buf str)
-	  (if (string-match "exited abnormally" str)
-	      (message "Compilation errors, press C-x ` to visit")
-	    (run-at-time 0.5 nil 'delete-windows-on buf)
-	    (message "NO COMPILATION ERRORS :-)")))))
+        (lambda (buf str)
+          (if (string-match "exited abnormally" str)
+              (message "Compilation errors, press C-x ` to visit")
+            (run-at-time 0.5 nil 'delete-windows-on buf)
+            (message "NO COMPILATION ERRORS :-)")))))
 
 ;;
 ;; Debug
@@ -116,12 +110,12 @@
 
 (setq gdb-many-windows nil)
 
-(defun gdb-file (fname)
+(defun @gdb-file (fname)
   "Set the compile command to build a selected directory"
   (interactive "fExecutable: ")
   (gdb (concat "gdb -i=mi " fname)))
 
-(defun gdb-at (loc)
+(defun @gdb-at (loc)
   "Set the compile command to build a selected directory"
   (interactive "DLocation: \n")
   (gdb (concat "gdb --cd=\"" loc "\" -i=mi")))
@@ -143,19 +137,19 @@
 ;;
 
 ;; style I want to use in c++ mode
-(c-add-style "jpb"
-	     '("stroustrup"
-	       (indent-tabs-mode . nil)        ; use spaces rather than tabs
-	       (c-basic-offset . 4)            ; indent by four spaces
-	       (c-offsets-alist . ((inline-open . 0)  ; custom indentation rules
-				   (brace-list-open . 0)
+(c-add-style "arximboldi"
+             '("stroustrup"
+               (indent-tabs-mode . nil)
+               (c-basic-offset . 4)
+               (c-offsets-alist . ((inline-open . 0)
+                                   (brace-list-open . 0)
                                    (innamespace . 0)
                                    (inlambda . 0)
-				   (statement-case-open . +)))))
+                                   (statement-case-open . +)))))
 
 (add-hook 'c++-mode-hook
           (lambda ()
-            (c-set-style "jpb")))
+            (c-set-style "arximboldi")))
 
 (add-hook 'php-mode-hook
           (lambda ()
@@ -169,11 +163,11 @@
 
 (add-hook 'c-mode-common-hook #'auto-fill-mode)
 
-(defun jpb-enable-cpp-headers ()
+(defun @enable-cpp-headers ()
   (interactive)
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)))
 
-(defun jpb-disable-cpp-headers ()
+(defun @disable-cpp-headers ()
   (interactive)
   (setq auto-mode-alist (remove '("\\.h\\'" . c++-mode) auto-mode-alist)))
 
@@ -254,39 +248,41 @@
 ;;
 ;; Clojure
 ;;
-(defun jpb-cider-connect ()
+
+(defun @cider-connect ()
   (interactive)
   (cider-connect "localhost" "7888"))
 
-;; (use 'figwheel-sidecar.repl-api)
-;; (cljs-repl)
-(defun jpb-cider-enable-figwheel-cljs ()
+(defun @cider-enable-figwheel-cljs ()
   (interactive)
   (cider-interactive-eval
    "(use 'figwheel-sidecar.repl-api) (cljs-repl)"
    nil
    nil))
 
-
 (use-package parinfer
   :ensure t
+  :config
+  (parinfer-strategy-add 'instantly
+    '(parinfer-smart-tab:dwim-right
+      parinfer-smart-tab:dwim-left))
   :bind
-  (("C-," . parinfer-toggle-mode))
+  (:map parinfer-mode-map
+        ("<tab>" . parinfer-smart-tab:dwim-right)
+        ("S-<tab>" . parinfer-smart-tab:dwim-left)
+        ("<backtab>" . parinfer-smart-tab:dwim-left)
+        ("C-," . parinfer-toggle-mode)
+        :map parinfer-region-mode-map
+        ("<tab>" . parinfer-smart-tab:dwim-right)
+        ("S-<tab>" . parinfer-smart-tab:dwim-left)
+        ("<backtab>" . parinfer-smart-tab:dwim-left))
   :init
   (progn
     (setq parinfer-extensions
-          '(defaults       ; should be included.
-             pretty-parens  ; different paren styles for different modes.
-             evil           ; If you use Evil.
-             ;;lispy          ; If you use Lispy. With this extension, you should install Lispy and do not enable lispy-mode directly.
-             ;;paredit        ; Introduce some paredit commands.
-             smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
-             smart-yank))   ; Yank behavior depend on mode.
-    (add-hook 'clojure-mode-hook #'parinfer-mode)
-    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
-    (add-hook 'common-lisp-mode-hook #'parinfer-mode)
-    (add-hook 'scheme-mode-hook #'parinfer-mode)
-    (add-hook 'lisp-mode-hook #'parinfer-mode)))
+          '(defaults
+             pretty-parens
+             smart-tab
+             smart-yank))))
 
 ;;
 ;; Octave
@@ -314,4 +310,4 @@
 ;;
 (require 'gyp)
 
-(provide 'jpb-devel)
+(provide 'init-devel)

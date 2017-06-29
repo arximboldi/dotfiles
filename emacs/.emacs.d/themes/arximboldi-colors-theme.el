@@ -1,14 +1,9 @@
-;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolívar Puente
-;;
+;;; emacs theme -- Juan Pedro Bolívar Puente
 
-(deftheme jpb-colors)
+(deftheme arximboldi-colors)
 
 (custom-theme-set-faces
- 'jpb-colors
+ 'arximboldi-colors
 
  '(bold ((t (:bold t :weight bold))))
  '(bold-italic ((t (:bold t :foreground "beige" :weight bold))))
@@ -260,4 +255,4 @@
  '(vertical-border ((((type x tty)) (:inherit mode-line-inactive :foreground "#222"))))
  '(comint-highlight-prompt ((t nil))))
 
-(provide-theme 'jpb-colors)
+(provide-theme 'arximboldi-colors)

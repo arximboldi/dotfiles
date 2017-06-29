@@ -1,9 +1,4 @@
-;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolívar Puente
-;;
+;;; emacs config file -- Juan Pedro Bolívar Puente
 
 (setq user-mail-address "juanpe@sinusoid.es"
       user-full-name "Juan Pedro Bolivar Puente")
@@ -107,4 +102,4 @@
          (:port . 443)
          (:connection-type . ssl))))
 
-(provide 'jpb-mail)
+(provide 'init-mail)

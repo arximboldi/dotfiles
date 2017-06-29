@@ -1,9 +1,4 @@
-;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolivar Puente
-;;
+;;; emacs config file -- Juan Pedro Bolívar Puente
 
 ;;
 ;; Emacs default options in another file.
@@ -15,13 +10,14 @@
 ;;
 ;; Setup desktop mode and notify the world when emacs is ready
 ;;
-(defun jpb-notify (msg)
+
+(defun @notify (msg)
   (when (not (eq system-type 'darwin))
     (start-process "notify" nil
                    "notify-send" "-i" "emacs" "Emacs" msg)))
 
 (add-hook 'emacs-startup-hook
-          (lambda () (jpb-notify "Ready to roll!")))
+          (lambda () (@notify "Ready to roll!")))
 
 ;;
 ;; Compat for apt-utils
@@ -68,7 +64,6 @@
   (when (eq major-mode 'compilation-mode)
     (ansi-color-apply-on-region compilation-filter-start (point-max))))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-
 
 ;; Fix emacs not finding commands in my custom path
 (defun set-exec-path-from-shell-PATH ()
@@ -120,60 +115,60 @@ Also returns nil if pid is nil."
         (kill-buffer nil))))
   nil)
 
-(defun join-lines ()
+(defun @join-lines ()
   (interactive)
   (setq fill-column 100000)
   (fill-paragraph nil)
   (setq fill-column 78))
 
-(defun reload-dotemacs ()
+(defun @reload-dotemacs ()
   (interactive)
   (load-file "~/.emacs"))
 
-(defun indent-buffer ()
+(defun @indent-buffer ()
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 
-(defun scroll-down-keep-cursor ()
+(defun @scroll-down-keep-cursor ()
   (interactive)
   (scroll-down 1))
 
-(defun scroll-up-keep-cursor ()
+(defun @scroll-up-keep-cursor ()
   (interactive)
   (scroll-up 1))
 
-(defun small-shell ()
+(defun @small-shell ()
   (interactive)
   (split-window-vertically)
   (other-window 1)
   (shrink-window (- (window-height) 12))
   (shell))
 
-(defun small-shell-toggle ()
+(defun @small-shell-toggle ()
   (interactive)
   (shell-toggle nil)
   (when (eq (current-buffer) shell-toggle-shell-buffer)
     (shrink-window (- (window-height) 12))))
 
-(defun small-shell-toggle-cd ()
+(defun @small-shell-toggle-cd ()
   (interactive)
   (shell-toggle-cd)
   (when (eq (current-buffer) shell-toggle-shell-buffer)
     (shrink-window (- (window-height) 12))))
 
-(defun small-term ()
+(defun @small-term ()
   (interactive)
   (multi-term-dedicated-toggle))
 
-(defun small-eshell ()
+(defun @small-eshell ()
   (interactive)
   (split-window-vertically)
   (other-window 1)
   (shrink-window (- (window-height) 12))
   (eshell))
 
-(defun jpb-helm-mu-completing-read (prompt
+(defun @helm-mu-completing-read (prompt
                                     collection
                                     &optional
                                     predicate require-match
@@ -182,7 +177,7 @@ Also returns nil if pid is nil."
   (helm--completing-read-default prompt collection predicate t
                                 initial-input hist def
                                 inherit-input-method))
-(setq mu4e-completing-read-function 'jpb-helm-mu-completing-read)
+(setq mu4e-completing-read-function '@helm-mu-completing-read)
 
 (add-hook 'write-file-hooks 'time-stamp)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -190,7 +185,7 @@ Also returns nil if pid is nil."
 ;;
 ;; Update current list of installed packages
 ;;
-(defun dotfiles-save-installed-packages ()
+(defun @dotfiles-save-installed-packages ()
   (interactive)
   (with-temp-file "~/dotfiles/emacs-installed-packages"
     (print package-activated-list (current-buffer))))
@@ -221,7 +216,7 @@ Also returns nil if pid is nil."
 ;; https://emacs.stackexchange.com/questions/13080/reloading-directory-local-variables#13096
 ;;
 
-(defun reload-dir-locals-for-current-buffer ()
+(defun @reload-dir-locals-for-current-buffer ()
   "reload dir locals for the current buffer"
   (interactive)
   (let ((enable-local-variables :all))
@@ -372,4 +367,4 @@ Also returns nil if pid is nil."
  (add-hook 'prog-mode-hook
            #'add-fira-code-symbol-keywords))
 
-(provide 'jpb-generic)
+(provide 'init-generic)

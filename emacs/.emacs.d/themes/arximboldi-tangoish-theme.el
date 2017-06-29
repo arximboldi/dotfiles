@@ -1,14 +1,8 @@
-;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolívar Puente
-;;
-;; Ported from tango-2-theme
-;;
+;;; emacs theme -- Juan Pedro Bolívar Puente
+;;; ported from tango-2-theme
 
-(deftheme jpb-tangoish
-  "jpb-tangoish color theme")
+(deftheme arximboldi-tangoish
+  "arximboldi-tangoish color theme")
 
 (defvar numix-colors-alist
   '(("numix-dark-bg-color" . "#2d2d2d")
@@ -31,7 +25,7 @@ Also bind `class' to ((class color) (min-colors 89))."
 
 (numix-with-color-variables
  (custom-theme-set-faces
-  'jpb-tangoish
+  'arximboldi-tangoish
   `(default ((t (:background ,numix-dark-bg-color :foreground ,numix-light-fg-color :height 150 :family "Inconsolata"))))
   `(cursor ((t (:foreground "black" :background "yellow"))))
   `(fringe ((t (:background ,numix-dark-bg-color :foreground ,numix-dark-fg-color))))
@@ -76,7 +70,6 @@ Also bind `class' to ((class color) (min-colors 89))."
   `(show-paren-mismatch-face ((t (:background "#ad7fa8" :foreground "#2e3436"))))
 
   ;; Customized by me
-
   `(custom-button ((t (:background "#333" :foreground "#fff" :box (:line-width 2 :style released-button)))))
   `(custom-button-mouse ((t (:background "#555" :foreground "#fff" :box (:line-width 2 :style released-button)))))
   `(diff-added ((t (:inherit diff-changed :foreground "green yellow"))))
@@ -101,4 +94,4 @@ Also bind `class' to ((class color) (min-colors 89))."
   `(jabber-activity-personal-face ((t (:foreground "royal blue" :weight bold))))
   `(jabber-roster-user-away ((t (:foreground "chartreuse" :slant italic :weight normal))))))
 
-(provide-theme 'jpb-tangoish)
+(provide-theme 'arximboldi-tangoish)
