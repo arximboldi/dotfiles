@@ -249,6 +249,10 @@
 ;; Clojure
 ;;
 
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'c-mode-common-hook 'rainbow-delimiters-mode)
+
 (defun @cider-connect ()
   (interactive)
   (cider-connect "localhost" "7888"))
