@@ -231,7 +231,6 @@
  '(zmacs-region ((t (:background "DarkSlateBlue"))))
 
  ;; Moved here from custom
- '(default ((t (:background "#000000" :foreground "white" :height 150 :family "Inconsolata"))))
  '(custom-button ((t (:background "#333" :foreground "#fff" :box (:line-width 2 :style released-button)))))
  '(custom-button-mouse ((t (:background "#555" :foreground "#fff" :box (:line-width 2 :style released-button)))))
  '(diff-added ((t (:inherit diff-changed :foreground "green yellow"))))

@@ -26,7 +26,6 @@ Also bind `class' to ((class color) (min-colors 89))."
 (numix-with-color-variables
  (custom-theme-set-faces
   'arximboldi-tangoish
-  `(default ((t (:background ,numix-dark-bg-color :foreground ,numix-light-fg-color :height 150 :family "Inconsolata"))))
   `(cursor ((t (:foreground "black" :background "yellow"))))
   `(fringe ((t (:background ,numix-dark-bg-color :foreground ,numix-dark-fg-color))))
   `(highlight ((t (:background ,numix-bg-color))))
