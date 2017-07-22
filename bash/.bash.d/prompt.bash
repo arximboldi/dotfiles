@@ -39,7 +39,7 @@ set_prompt () {
 
     if [[ $EUID == 0 ]]; then
         PS1+="$red\\u$reset"
-    elif [[ $GUIX_ENVIRONMENT == "t" ]]; then
+    elif [[ ! -z "$GUIX_ENVIRONMENT" ]]; then
         PS1+="$purple\\u$reset"
     else
         PS1+="$green2\\u$reset"
