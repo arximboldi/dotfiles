@@ -146,8 +146,8 @@ export CTEST_OUTPUT_ON_FAILURE=1
 #
 add-path PATH $HOME/soft/binaryen/build/bin
 add-path PATH $HOME/dev/emsdk
-[ -f $HOME/dev/emsdk/emsdk_set_env.sh ] && \
-    source $HOME/dev/emsdk/emsdk_set_env.sh
+#[ -f $HOME/dev/emsdk/emsdk_set_env.sh ] && \
+#    source $HOME/dev/emsdk/emsdk_set_env.sh
 
 #
 # Go
