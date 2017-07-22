@@ -36,6 +36,11 @@ if [ -d ~/.guix-profile ]; then
     add-path GUILE_LOAD_PATH "$HOME/.guix-profile/share/guile/site/2.0"
     add-path BASH_LOADABLES_PATH "/home/raskolnikov/.guix-profile/lib/bash"
     add-path TERMINFO_DIRS "/home/raskolnikov/.guix-profile/share/terminfo"
+#
+# Nix
+#
+if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then
+    source $HOME/.nix-profile/etc/profile.d/nix.sh
 fi
 
 #
