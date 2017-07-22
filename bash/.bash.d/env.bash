@@ -13,6 +13,7 @@ export VISUAL="emacsclient -c"
 #
 add-path GUILE_LOAD_PATH . ... $HOME/dev/immer/build/extra/guile
 export GUILE_AUTO_COMPILE=1
+export GUILE_WARN_DEPRECATED=no
 
 #
 # Guix
@@ -20,6 +21,7 @@ export GUILE_AUTO_COMPILE=1
 export GUIX_LD_WRAPPER_ALLOW_IMPURITIES=1
 add-path GUIX_PACKAGE_PATH "$HOME/dotfiles/guix"
 add-path GUILE_LOAD_PATH "$HOME/dotfiles/guix"
+add-path GUILE_LOAD_PATH "$HOME/usr/guile"
 
 if [ -d ~/.guix-profile ]; then
     add-path GUIX_LOCPATH "$HOME/.guix-profile/lib/locale"
