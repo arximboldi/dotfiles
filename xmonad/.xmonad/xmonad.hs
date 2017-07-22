@@ -72,7 +72,7 @@ main = do
       headerColor     = "#2d2d2d"
       focusedColor    = "#F0544C"
       textColor       = "#ddd"
-      textFont        = "Inconsolata-18:bold"
+      textFont        = "FiraCode-18:bold"
       xpConfig        = defaultXPConfig
         { font              = "xft:" ++ textFont
         , bgColor           = headerColor
@@ -219,12 +219,12 @@ main = do
         , ((mask, button3), (\w -> focus w >> mouseResizeWindow w))
         ]
 
-  let layout' = avoidStruts $ smartBorders $ B.boringWindows normalLayout
+  let layout' = avoidStruts $ smartBorders $ B.boringWindows $ normalLayout
         where
-          gap = id -- G.gaps [(G.U, 22)]
-          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ gap $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
-          circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ gap $ magnifiercz' (100/80) Circle
-          fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ gap $ Full
+          -- gap = G.gaps [(G.U, 100)]
+          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
+          circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ magnifiercz' (100/80) Circle
+          fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ Full
           imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
                          (Or (Role "buddy_list") (Title "magnicida - Skype™"))
                          (R.renamed [ R.Replace "Circle" ] Circle |||
@@ -287,11 +287,11 @@ main = do
   spawn "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
   spawn "~/usr/bin/startemacs"
   spawn "pidof syncthing || syncthing"
-  spawn "killall -w redshift-gtk; redshift-gtk -l 52.51:13.4"
+  spawn "pidof redshift || redshift-gtk -l 52.51:13.4"
   spawn "killall -w pa-applet; ~/dotfiles/_deps/pa-applet/src/pa-applet"
   spawn "killall -w mpDris; mpDris"
   spawn "killall -w nm-applet; nm-applet"
-  spawn "killall -w taffybar-linux-x86_64; taffybar"
+  spawn "killall -w taffybar-linux-x86_64; ~/.cabal/bin/taffybar"
   spawn "~/usr/bin/fix-desktop-window-order"
   spawn "mpd"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
@@ -307,6 +307,6 @@ main = do
     , manageHook         = manageHook' <+> manageDocks
     , layoutHook         = layout'
     , startupHook        = setDefaultCursor xC_arrow
-    , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook
+    , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook <+> docksEventHook
     , logHook            = spawn "~/usr/bin/xdotool-all Xfce4-notifyd windowraise"
     }
