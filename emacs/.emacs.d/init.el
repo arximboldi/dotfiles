@@ -1,9 +1,4 @@
-;;
-;; GNU Emacs configuration file
-;; ----------------------------
-;;
-;;   Author: Juan Pedro Bolivar Puente
-;;
+;;; emacs config file -- Juan Pedro Bolívar Puente
 
 (server-start)
 (remove-hook 'kill-buffer-query-functions
@@ -27,6 +22,7 @@
 (package-initialize)
 
 (require 'init-generic)
+(require 'init-fira-code)
 (require 'init-mail)
 (require 'init-devel)
 (require 'init-cpp11)
