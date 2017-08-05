@@ -82,15 +82,78 @@
 ;;
 
 (require 'gnus)
+(require 'nnfolder)
+
 (setq gnus-select-method '(nntp "news.eternal-september.org"))
-(add-to-list 'gnus-secondary-select-methods '(nntp "news.gnus.org"))
-(add-to-list 'gnus-secondary-select-methods '(nntp "news.gmane.org"))
+;;(setq gnus-select-method '(nntp "news.qwest.net"))
+;;(setq gnus-select-method '(nntp "usenet.ptd.net"))
+(setq gnus-secondary-select-methods
+      '((nntp "news.gnus.org")
+        (nntp "news.gmane.org")
+        (nnfolder "archive"
+                  (nnfolder-directory   "~/mail/archive")
+                  (nnfolder-active-file "~/mail/archive/active")
+                  (nnfolder-get-new-mail nil)
+                  (nnfolder-inhibit-expiry t))))
 
 (setq gnus-always-read-dribble-file t)
 
 (setq message-directory "~/mail/")
+(setq message-auto-save-directory "~/mail/drafts")
 (setq gnus-directory "~/news/")
+(setq mail-source-directory "~/mail/")
 (setq nnfolder-directory "~/mail/archive")
+
+(setq elmo-archive-folder-path "~/mail"
+      elmo-localdir-folder-path "~/mail"
+      elmo-search-namazu-default-index-path "~/mail")
+
+(setq gnus-article-sort-functions
+      '((not gnus-article-sort-by-date)
+        (not gnus-article-sort-by-number)))
+
+;;
+;; Wanderlust
+;;
+
+(setq wl-message-ignored-field-list '("^.*:"))
+(setq wl-message-visible-field-list
+      '("^Newsgroups:"
+        "^Newsgroup:"
+        "^To:"
+        "^Cc:"
+        "^From:"
+        "^Subject:"
+        "^Date:"))
+(setq wl-summary-width 256)
+(defun @wl-summary-prepared-hook ()
+  (save-excursion
+    (wl-summary-rescan "number" t)))
+(add-hook 'wl-summary-prepared-hook '@wl-summary-prepared-hook)
+
+(require 'elmo)
+(require 'elmo-search)
+(or (assq 'notmuch-elmo elmo-search-engine-alist)
+      (elmo-search-register-engine
+       'notmuch-elmo 'local-file
+       :prog "notmuch"
+       :args '("search" "--output=files" "tag:elmo"
+               elmo-search-replace-single-quotes)
+       :charset 'utf-8))
+
+(setq elmo-folder-update-confirm nil
+      elmo-folder-update-threshold 5000
+      elmo-msgdb-directory "~/mail/elmo"
+      elmo-search-default-engine 'notmuch-elmo)
+(setq wl-prefetch-threshold 20000000
+      wl-quicksearch-folder "[]"
+      wl-score-files-directory "~/mail/elmo/"
+      wl-summary-line-format "%T %Y-%M-%D %h:%m %5(%C%)%t %18(%f%)  %s"
+      wl-summary-width 256
+      wl-default-spec ""
+      wl-highlight-highlight-citation-too t
+      wl-interactive-exit nil
+      wl-nntp-posting-server "news.gmane.org")
 
 ;;
 ;; Jabber

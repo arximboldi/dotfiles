@@ -1,0 +1,45 @@
+#
+# Folder definition file
+# This file is generated automatically by Wanderlust/2.15.9 (Almost Unreal).
+#
+# If you edit this file by hand, be sure that comment lines
+# will be washed out by wl-fldmgr.
+#
+
+isocpp {
+    -gmane.comp.lang.c++.isocpp.general@news.gmane.org
+    -gmane.comp.lang.c++.isocpp.proposals@news.gmane.org
+    -gmane.comp.lang.c++.isocpp.features@news.gmane.org
+    -gmane.comp.lang.c++.isocpp.ub@news.gmane.org
+}
+boost {
+    -gmane.comp.lib.boost.devel@news.gmane.org
+    -gmane.comp.lib.boost.user@news.gmane.org
+    -gmane.comp.lib.boost.steering@news.gmane.org
+    -gmane.comp.lib.boost.planning@news.gmane.org
+}
+guile {
+    -gmane.lisp.guile.user@news.gmane.org
+}
+haskell {
+    -gmane.comp.lang.haskell.cafe@news.gmane.org
+    -gmane.comp.lang.haskell.beginners@news.gmane.org
+}
+linux-audio {
+    -gmane.linux.audio.announce@news.gmane.org
+    -gmane.linux.audio.devel@news.gmane.org
+    -gmane.linux.audio.users@news.gmane.org
+    -gmane.comp.multimedia.mixxx.devel@news.gmane.org
+}
+psychosynth {
+    -gmane.comp.gnu.psychosynth.user@news.gmane.org
+    -gmane.comp.gnu.psychosynth.devel@news.gmane.org
+}
+emacs {
+    -gmane.mail.wanderlust.general@news.gmane.org
+    -gmane.mail.notmuch.general@news.gmane.org
+}
+
+# petname definition (access group, folder in access group)
+
+# end of file.
