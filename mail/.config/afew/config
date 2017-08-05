@@ -58,6 +58,14 @@ query = \
       tag:sent
 tags = -new;-inbox
 
+[Filter.11]
+query = path:gmane/**
+tags = +gmane
+
+[Filter.12]
+query = path:elmo/**
+tags = +elmo
+
 [InboxFilter]
 
 [MailMover]
