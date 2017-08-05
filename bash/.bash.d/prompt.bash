@@ -7,16 +7,17 @@ set_prompt () {
     fancyx='\342\234\227'
     checkmark='\342\234\223'
 
-    purple="\[$(tput bold; tput setaf 5)\]"
-    blue="\[$(tput bold; tput setaf 4)\]"
-    white="\[$(tput bold; tput setaf 7)\]"
-    red="\[$(tput bold; tput setaf 1)\]"
-    green="\[$(tput bold; tput setaf 2)\]"
-
-    blue2="\[$(tput setaf 4)\]"
-    green2="\[$(tput setaf 2)\]"
-
-    reset="\[$(tput sgr0)\]"
+    if tput init 2> /dev/null; then
+       purple="\[$(tput bold; tput setaf 5)\]"
+       cyan="\[$(tput bold; tput setaf 6)\]"
+       blue="\[$(tput bold; tput setaf 4)\]"
+       white="\[$(tput bold; tput setaf 7)\]"
+       red="\[$(tput bold; tput setaf 1)\]"
+       green="\[$(tput bold; tput setaf 2)\]"
+       blue2="\[$(tput setaf 4)\]"
+       green2="\[$(tput setaf 2)\]"
+       reset="\[$(tput sgr0)\]"
+    fi
 
     PS1=""
 
@@ -39,8 +40,10 @@ set_prompt () {
 
     if [[ $EUID == 0 ]]; then
         PS1+="$red\\u$reset"
-    elif [[ ! -z "$GUIX_ENVIRONMENT" ]]; then
+    elif is-guix-environment; then
         PS1+="$purple\\u$reset"
+    elif is-nix-shell; then
+        PS1+="$cyan\\u$reset"
     else
         PS1+="$green2\\u$reset"
     fi

@@ -133,4 +133,8 @@ gdbwait()
     gdb -p $progpid
 }
 
+# jack
 alias jack-hw="jackd -P70 -t5000 -dalsa -dhw:0 -r44100 -p128 -n2 -s -Xseq -o2"
+
+# guix
+alias guix-shell="guix environment --ad-hoc"

@@ -18,6 +18,7 @@ export GUILE_WARN_DEPRECATED=no
 #
 # Guix
 #
+export GIT_SSL_CAINFO=/etc/ssl/certs/ca-certificates.crt
 export GUIX_LD_WRAPPER_ALLOW_IMPURITIES=1
 add-path GUIX_PACKAGE_PATH "$HOME/dotfiles/guix"
 add-path GUILE_LOAD_PATH "$HOME/dotfiles/guix"
@@ -43,15 +44,25 @@ fi
 #
 # Nix
 #
-if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then
-    source $HOME/.nix-profile/etc/profile.d/nix.sh
+if [ -z "$NIX_LINK" ]; then
+    if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then
+        source $HOME/.nix-profile/etc/profile.d/nix.sh
+    fi
 fi
 
 #
 # General
 #
 is-macos() {
-    [ "$(uname)" == "Darwin" ]
+    [[ "$(uname)" == "Darwin" ]]
+}
+
+is-guix-environment() {
+    [[ ! -z "$GUIX_ENVIRONMENT" ]]
+}
+
+is-nix-shell() {
+    [[ ! -z "$NIX_STORE" ]]
 }
 
 #
@@ -140,15 +151,18 @@ use-ccache() {
     export CXX="ccache $CXX"
 }
 
+export CTEST_OUTPUT_ON_FAILURE=1
+
 if is-macos; then
-    export CC=
-    export CXX=
+    : # noop
+elif is-guix-environment; then
+    echo "-- setting up guix environment: $GUIX_ENVIRONMENT"
+    export CC=$GUIX_ENVIRONMENT/bin/gcc
+    export CXX=$GUIX_ENVIRONMENT/bin/c++
 else
     export CC=$GC
     export CXX=$GXX
 fi
-
-export CTEST_OUTPUT_ON_FAILURE=1
 
 #
 # emscripten
