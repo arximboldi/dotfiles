@@ -10,6 +10,14 @@
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; Documentatio
+(require 'eldoc)
+(add-hook 'after-init-hook 'global-eldoc-mode)
+
+;; Projects
+(require 'projectile)
+(add-to-list 'projectile-project-root-files ".travis.yml")
+
 ;;
 ;; GIT
 ;;
@@ -54,13 +62,16 @@
 (company-ycmd-setup)
 (flycheck-ycmd-setup)
 (ycmd-eldoc-setup)
+
 (set-variable 'ycmd-extra-conf-whitelist '("~/dev/*"))
 
 ;; flycheck
 (add-hook 'c-mode-hook 'ycmd-mode)
+(add-hook 'c-mode-hook 'flycheck-mode)
+(add-hook 'c-mode-hook 'ycmd-eldoc-setup)
 (add-hook 'c++-mode-hook 'ycmd-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
-(add-hook 'c-mode-hook 'flycheck-mode)
+(add-hook 'c++-mode-hook 'ycmd-eldoc-setup)
 
 ;;
 ;; Compilation
