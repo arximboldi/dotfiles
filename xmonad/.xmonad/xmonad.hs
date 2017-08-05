@@ -227,10 +227,8 @@ main = do
           fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ Full
           imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
                          (Or (Role "buddy_list") (Title "magnicida - Skype™"))
-                         (R.renamed [ R.Replace "Circle" ] Circle |||
-                          R.renamed [ R.Replace "Grid" ] (Mirror (GridRatio (12/10))))
-          normalLayout = onWorkspace "im" (imLayout) $
-                         circleLayout ||| tallLayout ||| fullLayout
+                         (circleLayout ||| tallLayout ||| fullLayout)
+          normalLayout = circleLayout ||| tallLayout ||| fullLayout
 
   let manageHook' = composeAll
         [ resource  =? "Do"              --> doIgnore
@@ -253,6 +251,7 @@ main = do
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
         , className =? "Pidgin"           --> doShift "im"
+        , className =? "org.gnome.Polari" --> doShift "im"
         , className =? "Skype"            --> doShift "im"
 
         , isFullscreen --> doFullFloat
