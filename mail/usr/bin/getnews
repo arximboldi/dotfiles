@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#CHANNELS="gmail gnu riseup sinusoides sinusoidal"
+CHANNELS="gnu riseup sinusoides sinusoidal"
+
+afew_command=~/.local/bin/afew
+slrnpull_command=slrnpull
+notmuch_command=notmuch
+
+notify_command=~/dotfiles/_deps/notify-send.sh/notify-send.sh
+notify_infinity=100000000
+notify_delay=10000
+
+notify_file=`mktemp`
+echo '0' > $notify_file
+
+notify_progress() {
+    echo "-- $1"
+    $notify_command -R "$notify_file" -i email -t $notify_infinity "Sync news" "$1"
+}
+
+notify_finish() {
+    echo "== $1"
+    $notify_command -R "$notify_file" -i email -t $notify_delay "Sync news" "$1"
+}
+
+do_sync_news() {
+    notify_progress "Fetching..."
+    $slrnpull_command -h news.gmane.org -d ~/mail/gmane --new-groups
+    $slrnpull_command -h news.gmane.org -d ~/mail/gmane --expire
+
+    notify_progress "Updating database..."
+    result_message=`$notmuch_command new | tail -n 1`
+
+    notify_progress "Organizing news..."
+    $afew_command --tag --new
+
+    notify_finish "$result_message"
+}
+
+main() {
+    trap 'kill_children' INT
+
+    network_state=`nmcli networking connectivity`
+
+    if [ $network_state = 'full' ]
+    then
+        do_sync_news
+    else
+        notify_finish "No internet connection!"
+        exit 1
+    fi
+
+    exit 0
+}
+
+main
