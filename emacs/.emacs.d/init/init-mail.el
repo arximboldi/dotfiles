@@ -34,23 +34,23 @@
 (setq gnus-alias-identity-alist
       `(("gmail" nil
          "Juan Pedro Bolívar Puente <magnicida@gmail.com>" nil
-         (("Fcc" . "mail/gmail/Sent"))
+         (("Fcc" . "gmail/Sent"))
          nil nil)
         ("gnu" nil
          "Juan Pedro Bolívar Puente <raskolnikov@gnu.org>" nil
-         (("Fcc" . "mail/gnu/Sent"))
+         (("Fcc" . "gnu/Sent"))
          nil nil)
         ("riseup" nil
          "Juan Pedro Bolívar Puente <juanpe@riseup.net>"
-         nil (("Fcc" . "mail/riseup/Sent"))
+         nil (("Fcc" . "riseup/Sent"))
          nil nil)
         ("sinusoides" nil
          "Juan Pedro Bolívar Puente <juanpe@sinusoid.es>"
-         nil (("Fcc" . "mail/sinusoides/Sent"))
+         nil (("Fcc" . "sinusoides/Sent"))
          nil nil)
         ("sinusoidal" nil
          "Juan Pedro Bolívar Puente <juanpe@sinusoid.al>"
-         nil (("Fcc" . "mail/sinusoidal/Sent"))
+         nil (("Fcc" . "sinusoidal/Sent"))
          nil nil)))
 
 (setq gnus-alias-default-identity "sinusoides")
