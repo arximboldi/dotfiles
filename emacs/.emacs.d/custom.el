@@ -184,6 +184,7 @@
  '(python-shell-prompt-alist (quote (("ipython" . "^In \\[[0-9]+\\]: *") (t . "^>>> "))))
  '(rainbow-delimiters-max-face-count 10)
  '(recentf-max-saved-items 1000)
+ '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
     ((eval add-hook
@@ -247,6 +248,7 @@
      (360 . "#268bd2"))))
  '(vc-annotate-very-old-color nil)
  '(vc-follow-symlinks t)
+ '(visible-bell nil)
  '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
  '(web-mode-markup-indent-offset 2)
  '(weechat-color-list
