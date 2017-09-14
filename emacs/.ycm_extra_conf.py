@@ -10,8 +10,10 @@ BASE_FLAGS = [
     '-Wall',
     '-std=c++1z',
     '-xc++',
-    '-I/usr/lib/'
-    '-I/usr/include/'
+    '-I/usr/lib/',
+    '-I/usr/include/',
+    '-I/usr/local/opt/llvm/include',
+    '-I/usr/local/opt/llvm/include/c++/v1',
 ]
 
 SOURCE_EXTENSIONS = [
@@ -29,6 +31,11 @@ HEADER_EXTENSIONS = [
     '.hpp',
     '.hh'
 ]
+
+def remove_compiler_from_flags(flags):
+    while flags and flags[0] and flags[0][0] != '-':
+        flags = flags[1:]
+    return flags
 
 def find_similar_file_in_database(dbpath, filename):
     import json
@@ -145,19 +152,21 @@ def flags_for_compilation_database(root, filename):
         if not compilation_info:
             logging.info("No compilation info for " + filename + " in compilation database")
             return None
-        return make_relative_paths_in_flags_absolute(
-            compilation_info.compiler_flags_,
-            compilation_info.compiler_working_dir_)
+        return remove_compiler_from_flags(
+            make_relative_paths_in_flags_absolute(
+                compilation_info.compiler_flags_,
+                compilation_info.compiler_working_dir_))
     except Exception, err:
         logging.info("Error while trying to get flags for " + filename + " in compilation database")
         logging.error(err)
         return None
 
 def flags_for_file(filename):
+    logging.info("Finding flags for: " + filename)
     root = os.path.realpath(filename)
     compilation_db_flags = flags_for_compilation_database(root, filename)
     if compilation_db_flags:
-        final_flags = compilation_db_flags
+        final_flags = BASE_FLAGS + compilation_db_flags
     else:
         final_flags = BASE_FLAGS
         clang_flags = flags_for_clang_complete(root)
