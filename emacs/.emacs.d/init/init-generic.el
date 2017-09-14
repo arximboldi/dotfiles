@@ -67,7 +67,11 @@
 
 ;; Fix emacs not finding commands in my custom path
 (defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (shell-command-to-string "bash -i -c 'echo $PATH' 2> /dev/null")))
+  (let* ((cmd (if (file-exists-p "/usr/local/bin/bash")
+                  ;; on mac we want to use the shell from brew, if installed
+                  "/usr/local/bin/bash -i -c 'echo $PATH' 2> /dev/null"
+                "bash -i -c 'echo $PATH' 2> /dev/null"))
+         (path-from-shell (shell-command-to-string cmd)))
     (setenv "PATH" path-from-shell)
     (setq eshell-path-env path-from-shell) ; for eshell users
     (setq exec-path (split-string path-from-shell path-separator))))
