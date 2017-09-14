@@ -17,6 +17,7 @@
 ;; Projects
 (require 'projectile)
 (add-to-list 'projectile-project-root-files ".travis.yml")
+(add-to-list 'projectile-project-root-files ".editorconfig")
 
 ;;
 ;; GIT
