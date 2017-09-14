@@ -21,14 +21,14 @@
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
+(when (eq system-type 'darwin)
+  (require 'init-macos))
 (require 'init-generic)
 (require 'init-fira-code)
 (require 'init-mail)
 (require 'init-devel)
 (require 'init-cpp11)
 (require 'init-keys)
-(when (eq system-type 'darwin)
-  (require 'init-macos))
 
 (desktop-save-mode 1)
 (add-hook 'find-file-hook 'desktop-auto-save-set-timer)
