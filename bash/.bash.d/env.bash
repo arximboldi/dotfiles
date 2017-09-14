@@ -73,6 +73,9 @@ fi
 # Nix
 #
 if [ -z "$NIX_LINK" ]; then
+    if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix.sh ]; then
+        source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+    fi
     if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then
         source $HOME/.nix-profile/etc/profile.d/nix.sh
     fi
