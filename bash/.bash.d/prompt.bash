@@ -7,7 +7,8 @@ set_prompt () {
     fancyx='\342\234\227'
     checkmark='\342\234\223'
 
-    if tput init 2> /dev/null; then
+    # only call tput if it works
+    if tput bold &> /dev/null; then
        purple="\[$(tput bold; tput setaf 5)\]"
        cyan="\[$(tput bold; tput setaf 6)\]"
        blue="\[$(tput bold; tput setaf 4)\]"
