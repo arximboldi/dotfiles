@@ -34,6 +34,7 @@ Sync All
 
 IMAPAccount riseup
 SSLType IMAPS
+SSLVersions TLSv1.2
 Host mail.riseup.net
 User juanpe
 PipelineDepth 4
@@ -86,6 +87,7 @@ Sync All
 
 IMAPAccount sinusoides
 SSLType IMAPS
+SSLVersions TLSv1.2
 Host sinusoid.es
 User juanpe@sinusoid.es
 CertificateFile ~/.mail/sinusoid.es.cert
@@ -112,6 +114,7 @@ Sync All
 
 IMAPAccount sinusoidal
 SSLType IMAPS
+SSLVersions TLSv1.2
 Host sinusoid.es
 User juanpe@sinusoid.al
 CertificateFile ~/.mail/sinusoid.es.cert
