@@ -1,7 +1,7 @@
 
 source ~/.bash.d/git-prompt.sh
 
-set_prompt () {
+function set_prompt {
     lastcmd=$? # Must come first!
 
     fancyx='\342\234\227'
@@ -63,4 +63,4 @@ set_prompt () {
     PS1+=" "
 }
 
-PROMPT_COMMAND='set_prompt'
+PROMPT_COMMAND=set_prompt
