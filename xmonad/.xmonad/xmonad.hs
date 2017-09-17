@@ -251,8 +251,10 @@ main = do
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
         , className =? "Pidgin"           --> doShift "im"
-        , className =? "org.gnome.Polari" --> doShift "im"
+        , className =? "Org.gnome.Polari" --> doShift "im"
         , className =? "Skype"            --> doShift "im"
+
+        , className =? "Screenkey"        --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
 
         , isFullscreen --> doFullFloat
 
