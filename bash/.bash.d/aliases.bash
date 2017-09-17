@@ -59,7 +59,7 @@ if [ "$(uname)" == "Darwin" ]; then
 else
     function toemacs() { $* && wmctrl -xa emacs; }
     alias ee="toemacs emacsclient -n"
-    complete -r ee
+    complete -r ee 2> /dev/null
 fi
 alias e="emacsclient -t"
 alias ew="emacsclient -n -c"
