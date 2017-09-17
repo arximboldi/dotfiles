@@ -217,7 +217,9 @@ add-path PATH ~/.cabal/bin
 #
 # Node.js
 #
-export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
+export NPM_PACKAGES="${HOME}/.npm-packages"
+export NODE_PATH="${NPM_PACKAGES}"
+add-path PATH "${NPM_PACKAGES}/bin"
 
 #
 # Google cloud stuff
