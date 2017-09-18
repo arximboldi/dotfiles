@@ -55,6 +55,8 @@ add-path GUILE_LOAD_PATH "$HOME/usr/guile"
 if [ -d ~/.guix-profile ]; then
     add-path GUIX_LOCPATH "$HOME/.guix-profile/lib/locale"
     add-path PATH "$HOME/.guix-profile/bin" "$HOME/.guix-profile/sbin"
+    add-path GUILE_LOAD_PATH "$HOME/.guix-profile/share/guile/site/2.2"
+    add-path GUILE_LOAD_COMPILED_PATH "$HOME/.guix-profile/lib/guile/2.2/site-ccache"
     #add-path LD_LIBRARY_PATH "$HOME/.guix-profile/lib" "/usr/lib/x86_64-linux-gnu" "/usr/lib"
     #add-path LIBRARY_PATH "$HOME/.guix-profile/lib" "/usr/lib" "/usr/lib/x86_64-linux-gnu"
     #add-path CPATH "$HOME/.guix-profile/include" "/usr/include" "/usr/include/x86_64-linux-gnu"
@@ -63,8 +65,6 @@ if [ -d ~/.guix-profile ]; then
     #add-path INFOPATH "$HOME/.guix-profile/share/info"
     #add-path PKG_CONFIG_PATH "$HOME/.guix-profile/lib/pkgconfig"
     #add-path ACLOCAL_PATH "$HOME/.guix-profile/share/aclocal"
-    #add-path GUILE_LOAD_COMPILED_PATH "$HOME/.guix-profile/lib/guile/2.2/ccache"
-    #add-path GUILE_LOAD_PATH "$HOME/.guix-profile/share/guile/site/2.0"
     #add-path BASH_LOADABLES_PATH "/home/raskolnikov/.guix-profile/lib/bash"
     #add-path TERMINFO_DIRS "/home/raskolnikov/.guix-profile/share/terminfo"
 fi
