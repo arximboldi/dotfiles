@@ -15,36 +15,39 @@
                  "recent emacsen), not from the older and less maintained "
                  "python-mode.el")))
 
-(defadvice python-indent-calculate-levels (after gyp-outdent-closing-parens
-                                                 activate)
-  "De-indent closing parens, braces, and brackets in gyp-mode."
-  (when (and (eq major-mode 'gyp-mode)
-             (string-match "^ *[])}][],)}]* *$"
-                           (buffer-substring-no-properties
-                            (line-beginning-position) (line-end-position))))
-    (setf (first python-indent-levels)
-          (- (first python-indent-levels) python-continuation-offset))))
+(defun gyp-mode-legacy-advices ()
+  "These don't work with latest python-mode versions..."
 
-(defadvice python-indent-guess-indent-offset (around
-                                              gyp-indent-guess-indent-offset
-                                              activate)
-  "Guess correct indent offset in gyp-mode."
-  (or (and (not (eq major-mode 'gyp-mode))
-           ad-do-it)
-      (save-excursion
-        (save-restriction
-          (widen)
-          (goto-char (point-min))
-          ;; Find first line ending with an opening brace that is not a comment.
-          (or (and (re-search-forward "\\(^[[{]$\\|^.*[^#].*[[{]$\\)")
-                   (forward-line)
-                   (/= (current-indentation) 0)
-                   (set (make-local-variable 'python-indent-offset)
-                        (current-indentation))
-                   (set (make-local-variable 'python-continuation-offset)
-                        (current-indentation)))
-              (message "Can't guess gyp indent offset, using default: %s"
-                       python-continuation-offset))))))
+  (defadvice python-indent-calculate-levels (after gyp-outdent-closing-parens
+                                                   activate)
+    "De-indent closing parens, braces, and brackets in gyp-mode."
+    (when (and (eq major-mode 'gyp-mode)
+               (string-match "^ *[])}][],)}]* *$"
+                             (buffer-substring-no-properties
+                              (line-beginning-position) (line-end-position))))
+      (setf (first python-indent-levels)
+            (- (first python-indent-levels) python-continuation-offset))))
+
+  (defadvice python-indent-guess-indent-offset (around
+                                                gyp-indent-guess-indent-offset
+                                                activate)
+    "Guess correct indent offset in gyp-mode."
+    (or (and (not (eq major-mode 'gyp-mode))
+             ad-do-it)
+        (save-excursion
+          (save-restriction
+            (widen)
+            (goto-char (point-min))
+            ;; Find first line ending with an opening brace that is not a comment.
+            (or (and (re-search-forward "\\(^[[{]$\\|^.*[^#].*[[{]$\\)")
+                     (forward-line)
+                     (/= (current-indentation) 0)
+                     (set (make-local-variable 'python-indent-offset)
+                          (current-indentation))
+                     (set (make-local-variable 'python-continuation-offset)
+                          (current-indentation)))
+                (message "Can't guess gyp indent offset, using default: %s"
+                         python-continuation-offset)))))))
 
 (define-derived-mode gyp-mode python-mode "Gyp"
   "Major mode for editing .gyp files. See http://code.google.com/p/gyp/"
