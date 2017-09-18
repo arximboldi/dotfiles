@@ -79,6 +79,7 @@
  '(debug-on-error (quote (nil)))
  '(desktop-auto-save-timeout 1)
  '(desktop-load-locked-desktop t)
+ '(desktop-restore-frames nil)
  '(dired-listing-switches "-al -X --group-directories-first")
  '(dumb-jump-max-find-time 10)
  '(ecb-layout-window-sizes
