@@ -37,6 +37,12 @@ del-path()
 }
 
 #
+# local installations
+#
+add-path LD_LIBRARY_PATH /usr/local/lib
+add-path PATH /usr/local/bin
+
+#
 # Guile
 #
 add-path GUILE_LOAD_PATH . ... $HOME/dev/immer/build/extra/guile
@@ -97,12 +103,10 @@ is-nix-shell() {
 }
 
 #
-# local installations
+# User installations
 #
-add-path LD_LIBRARY_PATH "/usr/local/lib"
-add-path PATH /usr/local/bin
-add-path PATH ~/usr/bin
-add-path PATH ~/.local/bin
+add-path LD_LIBRARY_PATH "$HOME/usr/lib"
+add-path PATH "$HOME/usr/bin"
 
 #
 # C++
