@@ -74,6 +74,8 @@
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'ycmd-eldoc-setup)
 
+(add-to-list 'auto-mode-alist '("\\.mm\\'" . c++-mode))
+
 ;;
 ;; Compilation
 ;;
