@@ -52,7 +52,8 @@ export GUILE_WARN_DEPRECATED=no
 #
 # Guix
 #
-export GIT_SSL_CAINFO=/etc/ssl/certs/ca-certificates.crt
+
+# export GIT_SSL_CAINFO=/etc/ssl/certs/ca-certificates.crt
 export GUIX_LD_WRAPPER_ALLOW_IMPURITIES=1
 add-path GUIX_PACKAGE_PATH "$HOME/dotfiles/guix"
 add-path GUILE_LOAD_PATH "$HOME/dotfiles/guix"
