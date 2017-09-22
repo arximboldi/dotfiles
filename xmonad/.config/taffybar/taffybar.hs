@@ -24,11 +24,11 @@ import Text.Printf
 
 main :: IO ()
 main = do
-  let bgc = 0.1691
+  let bgc = 0.0468
   let bg = (bgc, bgc, bgc)
-  let fg = (0.45, 0.45, 0.45, 1)
-  let darkText = "#555"
-  let lightText = "#999"
+  let fg = (0.43, 0.43, 0.43, 1)
+  let darkText = "#444"
+  let lightText = "#aaa"
   let selected = "#F0544C"
 
   let memCallback = do
@@ -68,7 +68,7 @@ main = do
         , emptyWorkspace = colorize darkText "" . escape
         , hiddenWorkspace = colorize lightText "" . escape
         , visibleWorkspace = escape
-        , widgetSep = colorize darkText "" "   |   "
+        , widgetSep = colorize darkText "" "   ╱   "
        }
       batCfg = (defaultBarConfig colorFunc)
         { barBorderColor = bg
@@ -87,7 +87,7 @@ main = do
               title  track  = maybe "[unknown]" id (trackTitle  track)
               display track = "<span fgcolor='#D64937'>▶</span>  " ++
                               printf "%s - %s" (artist track) (title track) ++
-                              colorize darkText "" "    | "
+                              colorize darkText "" "    ╱ "
 
   let clock = textClockNew Nothing (colorize selected "" "%a %b %_d %H:%M") 1
       logger = taffyPagerNew logCfg
@@ -97,7 +97,7 @@ main = do
       mem = pollingGraphNew memCfg 1 memCallback
       cpu = pollingGraphNew cpuCfg 1 cpuCallback
       tray = systrayNew
-      sep = label "   |   " darkText
+      sep = label "   ╱   " darkText
       sep' = label "  " ""
       sep'' = label "   " ""
 

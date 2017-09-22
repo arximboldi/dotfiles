@@ -4,7 +4,7 @@ style "taffybar-default" {
   color["green"] = "#00ff00"
   color["red"]   = "#ff0000"
 
-  color["numix-dark-gray"] = "#2d2d2d"
+  color["numix-dark-gray"] = "#0C0C0D"
   color["numix-light-gray"] = "#777"
   color["numix-red"] = "#F0544C"
 

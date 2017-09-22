@@ -69,10 +69,10 @@ doBoring =
 main :: IO ()
 main = do
   let backgroundColor = "#444444"
-      headerColor     = "#2d2d2d"
+      headerColor     = "#0c0c0c"
       focusedColor    = "#F0544C"
       textColor       = "#ddd"
-      textFont        = "FiraCode-18:bold"
+      textFont        = "Cantarell-20:bold"
       xpConfig        = defaultXPConfig
         { font              = "xft:" ++ textFont
         , bgColor           = headerColor
