@@ -232,8 +232,7 @@ Also returns nil if pid is nil."
   (interactive)
   (let ((prev-themes custom-enabled-themes))
     (call-interactively 'load-theme)
-    (if (not (equal prev-themes custom-enabled-themes))
-        (dolist (theme prev-themes)
-          (disable-theme theme)))))
+    (dolist (theme prev-themes)
+      (disable-theme theme))))
 
 (provide 'init-generic)
