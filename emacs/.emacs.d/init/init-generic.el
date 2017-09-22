@@ -228,4 +228,12 @@ Also returns nil if pid is nil."
 
 (defmacro comment (&rest a))
 
+(defun @switch-theme ()
+  (interactive)
+  (let ((prev-themes custom-enabled-themes))
+    (call-interactively 'load-theme)
+    (if (not (equal prev-themes custom-enabled-themes))
+        (dolist (theme prev-themes)
+          (disable-theme theme)))))
+
 (provide 'init-generic)
