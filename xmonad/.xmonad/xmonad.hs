@@ -296,7 +296,7 @@ main = do
   spawn "killall -w pa-applet; ~/dotfiles/_deps/pa-applet/src/pa-applet"
   spawn "killall -w mpDris; mpDris"
   spawn "killall -w nm-applet; nm-applet"
-  spawn "killall -w taffybar-linux-x86_64; ~/.cabal/bin/taffybar"
+  spawn "killall -w taffybar-linux-x86_64; taffybar"
   spawn "~/usr/bin/fix-desktop-window-order"
   spawn "mpd"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
