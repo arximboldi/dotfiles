@@ -222,8 +222,9 @@ main = do
   let layout' = avoidStruts $ smartBorders $ B.boringWindows $ normalLayout
         where
           -- gap = G.gaps [(G.U, 100)]
-          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ magnifiercz' (100/80) $ Tall 1 (3/100) (6/10)
-          circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ magnifiercz' (100/80) Circle
+          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ magnify $ Tall 1 (3/100) (6/10)
+          circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ magnify Circle
+          magnify      = magnifiercz' (100/80)
           fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ Full
           imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
                          (Or (Role "buddy_list") (Title "magnicida - Skype™"))
