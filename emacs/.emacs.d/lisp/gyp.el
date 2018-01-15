@@ -60,8 +60,8 @@
 
 (defun gyp-set-indentation ()
   "Hook function to configure python indentation to suit gyp mode."
-  (set (make-local-variable 'python-indent-offset) 2)
-  (set (make-local-variable 'python-continuation-offset) 2)
+  (set (make-local-variable 'python-indent-offset) 4)
+  (set (make-local-variable 'python-continuation-offset) 4)
   (set (make-local-variable 'python-indent-guess-indent-offset) t)
   (python-indent-guess-indent-offset))
 
