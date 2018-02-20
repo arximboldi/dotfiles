@@ -86,6 +86,7 @@ if [ -z "$NIX_LINK" ]; then
     if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then
         source $HOME/.nix-profile/etc/profile.d/nix.sh
     fi
+    add-path NIX_PATH "ssh-config-file=$HOME/.ssh/nix-ssh-config"
 fi
 
 #
