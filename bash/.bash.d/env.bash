@@ -110,6 +110,9 @@ is-nix-shell() {
 add-path LD_LIBRARY_PATH "$HOME/usr/lib"
 add-path PATH "$HOME/usr/bin"
 
+add-path LD_LIBRARY_PATH "$HOME/.local/lib"
+add-path PATH "$HOME/.local/bin"
+
 #
 # C++
 #
