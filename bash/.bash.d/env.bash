@@ -116,7 +116,7 @@ add-path PATH "$HOME/.local/bin"
 #
 # C++
 #
-export LCVER=4.0
+export LCVER=5.0
 if is-macos; then
     export LC="/usr/local/opt/llvm/bin/clang-$LCVER"
     export LXX="/usr/local/opt/llvm/bin/clang-$LCVER"
