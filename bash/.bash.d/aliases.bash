@@ -138,3 +138,10 @@ alias jack-hw="jackd -P70 -t5000 -dalsa -dhw:0 -r44100 -p128 -n2 -s -Xseq -o2"
 
 # guix
 alias guix-shell="guix environment --ad-hoc"
+
+function counter-ncurses-meta-meta()
+{
+    mplayer -fs /home/raskolnikov/media/videos/terminator/render3.webm \
+            > /dev/null \
+            2> /dev/null
+}
