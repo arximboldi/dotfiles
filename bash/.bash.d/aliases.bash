@@ -41,7 +41,7 @@ if [ "$(uname)" != "Darwin" ]; then
     {
         for var in "$@"
         do
-            xdg-open $var
+            xdg-open "$var"
         done
     }
 fi
