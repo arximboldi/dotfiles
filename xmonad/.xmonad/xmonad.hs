@@ -167,10 +167,10 @@ main = do
         , ((mask, xK_Home),      spawn $ "mpc toggle")
         , ((mask, xK_End),       spawn $ "mpc stop")
         -- Toggle compton config
-        , ((mask, xK_i), spawn $ ("((diff ~/.xmonad/compton.conf ~/.xmonad/compton1.conf && " ++
-                                  "    cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf) " ++
-                                  "  || cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf) " ++
-                                  " && killall -USR1 compton"))
+        --, ((mask, xK_i), spawn $ ("((diff ~/.xmonad/compton.conf ~/.xmonad/compton2.conf && " ++
+        --                          "    cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf) " ++
+        --                          "  || cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf) " ++
+        --                          " && killall -USR1 compton"))
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
         , ((mask .|. shiftMask, xK_n), spawn $ "nautilus -w")
@@ -248,6 +248,7 @@ main = do
         , className =? "qjackctl"                --> doSideFloat SE
         , className =? "Qjackctl.real"           --> doSideFloat SE
         , className =? "Gcr-prompter"            --> doCenterFloat
+        , className =? "Emoji-keyboard"          --> doCenterFloat
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
@@ -284,7 +285,7 @@ main = do
   putEnv "QT_QPA_PLATFORMTHEME=lxqt"
   spawn "xset -b"
   spawn "xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1"
-  spawn "cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
+  --spawn "cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
   spawn "xfdesktop -D -R"
   spawn "xfsettingsd --replace --no-daemon"
   spawn "ibus-daemon --replace"
@@ -303,11 +304,11 @@ main = do
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
-    , borderWidth        = 0
+    , borderWidth        = 4
     , modMask            = mod4Mask
     , workspaces         = [ "web", "emacs", "misc", "im" ]
-    , normalBorderColor  = backgroundColor
-    , focusedBorderColor = focusedColor
+    , normalBorderColor  = "#242424" --backgroundColor
+    , focusedBorderColor = backgroundColor --focusedColor
     , keys               = keys'
     , mouseBindings      = mouseBindings'
     , manageHook         = manageHook' <+> manageDocks
