@@ -23,7 +23,7 @@
 [gui]
 	fontdiff = -family Inconsolata -size 12 -weight normal -slant roman -underline 0 -overstrike 0
 [credential]
-	helper = cache --timeout=360000
+	helper = store
 [branch]
 	autosetupmerge = true
 [pull]
