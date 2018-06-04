@@ -175,7 +175,7 @@
  '(openwith-mode nil)
  '(package-selected-packages
    (quote
-    (elm-mode char-menu charmap visual-fill-column nix-mode solarized-theme use-package parinfer color-theme-sanityinc-tomorrow twilight-bright-theme twilight-theme github-theme emojify dockerfile-mode clang-format sublimity ag biblio bibretrieve bibslurp company-auctex company-bibtex ebib empos gscholar-bibtex helm-bibtex jade-mode helm-go-package go-playground company-go go-eldoc go-mode helm-ag company-ycmd flycheck-ycmd gnus-alias cmake-mode nsis-mode emoji-cheat-sheet-plus google-translate babel hackernews helm-smex helm-mu multiple-cursors helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr ido-ubiquitous haskell-mode git-messenger gist geiser expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
+    (wanderlust elm-mode char-menu charmap visual-fill-column nix-mode solarized-theme use-package parinfer color-theme-sanityinc-tomorrow twilight-bright-theme twilight-theme github-theme emojify dockerfile-mode clang-format sublimity ag biblio bibretrieve bibslurp company-auctex company-bibtex ebib empos gscholar-bibtex helm-bibtex jade-mode helm-go-package go-playground company-go go-eldoc go-mode helm-ag company-ycmd flycheck-ycmd gnus-alias cmake-mode nsis-mode emoji-cheat-sheet-plus google-translate babel hackernews helm-smex helm-mu multiple-cursors helm-make helm-notmuch helm-package helm-unicode swiper-helm helm-projectile helm nm notmuch notmuch-labeler fill-column-indicator zoom-window zoom-frm zeal-at-point yaml-mode xterm-color web-mode w3 vline travis string-utils smex skewer-mode skeletor shell-toggle scss-mode sass-mode rust-mode request-deferred realgud rainbow-delimiters projectile nginx-mode neotree multi-term monokai-theme modern-cpp-font-lock markdown-mode+ magit-filenotify jack-connect jabber-otr ido-ubiquitous haskell-mode git-messenger gist geiser expand-region ensime emms dumb-jump dirtree dirtrack-buffer-name-track-mode diminish dedicated cyberpunk-theme cmake-ide clojurescript-mode clojure-cheatsheet cljsbuild-mode circe bitlbee auctex apt-utils adaptive-wrap)))
  '(pdf-view-midnight-colors (quote ("#969896" . "#f8eec7")))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
@@ -217,7 +217,7 @@
  '(shell-toggle-launch-shell (quote shell))
  '(show-paren-mode t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
- '(sort-fold-case nil)
+ '(sort-fold-case nil t)
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")
  '(tool-bar-mode nil)
