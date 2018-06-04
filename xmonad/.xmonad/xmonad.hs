@@ -296,18 +296,18 @@ main = do
   spawn "pidof syncthing || syncthing"
   spawn "pidof redshift || redshift-gtk -l 52.51:13.4"
   spawn "killall -w pa-applet; ~/dotfiles/_deps/pa-applet/src/pa-applet"
-  spawn "killall -w mpDris; mpDris"
   spawn "killall -w nm-applet; nm-applet"
   spawn "killall -w taffybar-linux-x86_64; taffybar"
   spawn "~/usr/bin/fix-desktop-window-order"
-  spawn "mpd"
+  spawn "killall -w mpd; mpd"
+  spawn "killall -w mpDris; mpDris"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
     , borderWidth        = 4
     , modMask            = mod4Mask
     , workspaces         = [ "web", "emacs", "misc", "im" ]
-    , normalBorderColor  = "#242424" --backgroundColor
+    , normalBorderColor  = headerColor --"#242424" --backgroundColor
     , focusedBorderColor = backgroundColor --focusedColor
     , keys               = keys'
     , mouseBindings      = mouseBindings'
