@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 if [ -d "$HOME/usr/bin" ] ; then
     export PATH="$HOME/usr/bin:$PATH"
 fi
