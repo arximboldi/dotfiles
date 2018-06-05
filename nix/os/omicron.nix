@@ -42,6 +42,9 @@ in
       };
     };
   };
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="156d", ATTR{idProduct}=="4007", GROUP="wheel"
+  '';
   environment.systemPackages = with pkgs; [
     zile
     emacs
