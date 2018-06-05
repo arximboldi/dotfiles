@@ -184,7 +184,7 @@ Also returns nil if pid is nil."
 (setq mu4e-completing-read-function '@helm-mu-completing-read)
 
 (add-hook 'write-file-hooks 'time-stamp)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;
 ;; Update current list of installed packages
