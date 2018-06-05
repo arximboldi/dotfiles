@@ -49,7 +49,7 @@ in
     zile
     emacs
     firefox
-    git
+    gitAndTools.gitFull
     stow
     wget
     libnotify
@@ -64,6 +64,14 @@ in
     pa_applet
     usbutils
     trash-cli
+    psmisc
+    glxinfo
+    qtcreator
+    qt59.full
+    gdb
+    cmake
+    gcc
+    pavucontrol
   ];
 
   fonts = {
