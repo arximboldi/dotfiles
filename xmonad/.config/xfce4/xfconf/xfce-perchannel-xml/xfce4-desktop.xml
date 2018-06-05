@@ -44,7 +44,7 @@
             <value type="uint" value="65535"/>
           </property>
           <property name="image-style" type="int" value="5"/>
-          <property name="last-image" type="string" value="/home/raskolnikov/pic/wallpaper/Isg3D8.jpg"/>
+          <property name="last-image" type="string" value="/home/raskolnikov/pic/wallpaper/autechre_00291247.jpg"/>
         </property>
         <property name="workspace2" type="empty">
           <property name="color-style" type="int" value="1"/>
@@ -110,7 +110,7 @@
         <property name="workspace1" type="empty">
           <property name="color-style" type="int" value="0"/>
           <property name="image-style" type="int" value="5"/>
-          <property name="last-image" type="string" value="/home/raskolnikov/pic/wallpaper/Isg3D8.jpg"/>
+          <property name="last-image" type="string" value="/home/raskolnikov/pic/wallpaper/autechre_00291247.jpg"/>
           <property name="color1" type="array">
             <value type="uint" value="7936"/>
             <value type="uint" value="16128"/>
