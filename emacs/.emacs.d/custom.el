@@ -188,7 +188,8 @@
  '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
-    ((eval add-hook
+    ((indent-tabs-mode . f)
+     (eval add-hook
            (quote before-save-hook)
            (function clang-format-buffer)
            nil t)
