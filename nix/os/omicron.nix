@@ -115,7 +115,11 @@ in
   users.extraUsers.raskolnikov = {
      isNormalUser = true;
      uid = 1000;
-     extraGroups = [ "wheel" "networkmanager" ];
+     extraGroups = [
+       "wheel"
+       "audio"
+       "users"
+     ];
   };
 
   system.stateVersion = "18.03";
