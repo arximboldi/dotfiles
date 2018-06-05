@@ -1,6 +1,7 @@
 [core]
 	editor = emacsclient -a emacs24
 	excludesfile = ~/.gitignore-global
+	autocrlf = false
 [user]
 	name = Juan Pedro Bolívar Puente
 	email = raskolnikov@gnu.org
