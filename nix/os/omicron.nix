@@ -1,5 +1,18 @@
 { config, pkgs, ... }:
+
+let
+  musnixSrc = (import <nixpkgs> {}).fetchFromGitHub {
+    owner  = "musnix";
+    repo   = "musnix";
+    rev    = "cec9d0529977e2db2a273f33c3261620098465ed";
+    sha256 = "1ybja7i5c8nh0drlp4pjxkp3v6zp7f8hi8d8nwbsgf2ym9cxjlwf";
+};
+
+in
 {
+  imports = [ musnixSrc.outPath ];
+  musnix.enable = true;
+
   boot.loader.grub.device = "/dev/sdb";
   networking.hostName = "nixos";
 
