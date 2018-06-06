@@ -72,6 +72,7 @@ in
     cmake
     gcc
     pavucontrol
+    chromium
   ];
 
   fonts = {
