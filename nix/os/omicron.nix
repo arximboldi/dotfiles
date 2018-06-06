@@ -97,10 +97,10 @@ in
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.systemWide = true;
   hardware.pulseaudio.daemon.config = {
-    default-fragments = 2;
-    default-fragment-size-msec = 125;
-    realtime-scheduling = "yes";
-    realtime-priority = 5;
+    # default-fragments = 2;
+    # default-fragment-size-msec = 125;
+    # realtime-scheduling = "yes";
+    # realtime-priority = 5;
   };
 
   services.xserver.enable = true;
