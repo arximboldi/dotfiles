@@ -161,9 +161,9 @@
                                    (inlambda . 0)
                                    (statement-case-open . +)))))
 
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (c-set-style "arximboldi")))
+;;(add-hook 'c++-mode-hook
+;;          (lambda ()
+;;            (c-set-style "arximboldi")))
 
 (add-hook 'php-mode-hook
           (lambda ()
@@ -327,5 +327,84 @@
 ;; Gyp
 ;;
 (require 'gyp)
+
+;;
+;; mtronix
+;;
+(defun mtronix-lineup-member-init-intro (langelem)
+  "Line up member initialization under last '::' E.g:
+
+SampleClass::NestedClass::NestedClass(int param1, int param2)
+                        : BaseClass(),
+                          _member1(param1),
+                          _member2(param2)"
+  (save-excursion
+    (back-to-indentation)
+    (if (c-langelem-pos langelem)
+        (goto-char (c-langelem-pos langelem)))
+    (let* ((eol (c-point 'eol))
+           (found-colon nil))
+      (while (c-syntactic-re-search-forward "::" eol t t)
+        (setq found-colon t))
+      (if found-colon
+          (vector (max 0 (- (current-column) 2)))
+        (back-to-indentation)
+        (vector (max 0 (+ (current-column) c-basic-offset)))))))
+
+
+;; mtronix indent style
+(c-add-style "mtronix" 
+             '((c-basic-offset . 4)
+               (c-comment-only-line-offset . 0)
+               (c-offsets-alist
+                ;; double indentation in arglists with paren at EOL
+                (arglist-intro         . ++)
+                (arglist-close         . ++)
+                ;; indentation of non-empty arglists to opening paren
+                (arglist-cont          . (c-lineup-gcc-asm-reg 0))
+                (arglist-cont-nonempty . (c-lineup-gcc-asm-reg c-lineup-arglist))
+                (arglist-close . c-lineup-arglist)
+
+                ;; indentation of member initializer after constructor
+                (member-init-intro     . mtronix-lineup-member-init-intro)
+                (member-init-cont      . c-lineup-multi-inher)
+
+                ;; indent definitions where type is on different line from
+                ;; variable name
+                (statement-cont . +)
+                
+                ;; copied from bsd-mode
+                (statement-block-intro . +)
+                (knr-argdecl-intro . +)
+                (substatement-open . 0)
+                (substatement-label . 0)
+                (label . 0)
+                (statement-cont . +)
+                (inline-open . 0)
+                (inexpr-class . 0))
+
+               ;; backslashes in macros
+               (c-backslash-column . 52)
+               (c-backslash-max-column . 79)
+
+               ;; auto-newline configuration for braces 
+               (c-hanging-braces-alist 
+                (substatement-open before after)
+                (arglist-cont-nonempty))
+               
+               ;; auto-newline configuration for semicolons
+               (c-hanging-semi&comma-criteria
+                c-semi&comma-no-newlines-before-nonblanks
+                c-semi&comma-no-newlines-for-oneline-inliners
+                c-semi&comma-inside-parenlist)))
+             
+;; make mtronix the default style
+(setq c-default-style (nconc '((c-mode . "mtronix")
+                               (c++-mode . "mtronix"))
+                             c-default-style))
+
+(@enable-cpp-headers)
+
+(setq cmake-tab-width 4)
 
 (provide 'init-devel)
