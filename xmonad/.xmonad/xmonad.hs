@@ -86,7 +86,7 @@ main = do
         , alwaysHighlight   = True
         , searchPredicate   = L.isInfixOf . map C.toLower
         }
-      dmenuCmd = "~/usr/bin/dmenu-run-xft -b -t "
+      dmenuCmd = "~/usr/bin/dmenu-run-xft -b "
                  ++ "  -fn '" ++ textFont
                  ++ "' -nb '" ++ headerColor
                  ++ "' -nf '" ++ textColor
@@ -295,7 +295,7 @@ main = do
   spawn "~/usr/bin/startemacs"
   spawn "pidof syncthing || syncthing"
   spawn "pidof redshift || redshift-gtk -l 52.51:13.4"
-  spawn "killall -w pa-applet; ~/dotfiles/_deps/pa-applet/src/pa-applet"
+  spawn "killall -w pa-applet; pa-applet"
   spawn "killall -w nm-applet; nm-applet"
   spawn "killall -w blueman-applet; blueman-applet"
   spawn "killall -w taffybar-linux-x86_64; taffybar"
