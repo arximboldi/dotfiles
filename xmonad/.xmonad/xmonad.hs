@@ -316,5 +316,5 @@ main = do
     , layoutHook         = layout'
     , startupHook        = setDefaultCursor xC_arrow
     , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook <+> docksEventHook
-    , logHook            = spawn "~/usr/bin/xdotool-all Xfce4-notifyd windowraise"
+    --, logHook            = spawn "~/usr/bin/xdotool-all Xfce4-notifyd windowraise"
     }
