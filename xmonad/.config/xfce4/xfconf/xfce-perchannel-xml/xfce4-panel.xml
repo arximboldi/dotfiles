@@ -16,12 +16,9 @@
         <value type="int" value="3"/>
         <value type="int" value="24"/>
         <value type="int" value="16"/>
-        <value type="int" value="10"/>
         <value type="int" value="8"/>
         <value type="int" value="25"/>
         <value type="int" value="6"/>
-        <value type="int" value="7"/>
-        <value type="int" value="14"/>
         <value type="int" value="17"/>
         <value type="int" value="22"/>
         <value type="int" value="5"/>
@@ -33,7 +30,7 @@
         <value type="uint" value="17476"/>
         <value type="uint" value="65535"/>
       </property>
-      <property name="size" type="uint" value="22"/>
+      <property name="size" type="uint" value="32"/>
       <property name="mode" type="uint" value="0"/>
       <property name="autohide-behavior" type="uint" value="0"/>
       <property name="length-adjust" type="bool" value="true"/>
