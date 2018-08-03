@@ -2,10 +2,12 @@
 #127.0.0.1	news.ycombinator.com
 #127.0.0.1	www.facebook.com
 #127.0.0.1	www.eldiario.es
-127.0.0.1	www.elpais.es
-127.0.0.1	elpais.com
-127.0.0.1	www.elmundo.es
+#127.0.0.1	www.elpais.es
+#127.0.0.1	elpais.com
+#127.0.0.1	www.elmundo.es
 #127.0.0.1	www.reddit.com
+#127.0.0.1	www.twitter.com
+#127.0.0.1	twitter.com
 
 # machines
 127.0.0.1	localhost
@@ -25,65 +27,3 @@ fe00::0 ip6-localnet
 ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#127.0.0.1	www.twitter.com
-#127.0.0.1	twitter.com
