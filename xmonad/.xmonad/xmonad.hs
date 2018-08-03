@@ -277,7 +277,7 @@ main = do
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
   putEnv "GTK_CSD=0"
-  putEnv "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0"
+  --putEnv "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0"
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   putEnv "QT_STYLE_OVERRIDE=breeze"
   putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
