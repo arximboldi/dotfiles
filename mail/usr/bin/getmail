@@ -1,27 +1,34 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #CHANNELS="gmail gnu riseup sinusoides sinusoidal"
 CHANNELS="gnu riseup sinusoides sinusoidal"
 
-afew_command=~/.local/bin/afew
+afew_command=afew
 mbsync_command=mbsync
 notmuch_command=notmuch
 
-notify_command=~/dotfiles/_deps/notify-send.sh/notify-send.sh
-notify_infinity=100000000
+notify_infinity=100000
 notify_delay=10000
 
-notify_file=`mktemp`
-echo '0' > $notify_file
+do-notify() {
+    argument=""
+    last_id=`echo $notify_id | sed 's/[^0-9]//g'`
+    if [ -n "$last_id" ]; then
+        argument="-r $last_id"
+        notify_id=$last_id
+    fi
+    notify_id=`notify-desktop $argument "$@"`
+    export notify_id
+}
 
 notify_progress() {
     echo "-- $1"
-    $notify_command -R "$notify_file" -i email -t $notify_infinity "Sync email" "$1"
+    do-notify -i email -t $notify_infinity "Sync email" "$1"
 }
 
 notify_finish() {
     echo "== $1"
-    $notify_command -R "$notify_file" -i email -t $notify_delay "Sync email" "$1"
+    do-notify -i email -t $notify_delay "Sync email" "$1"
 }
 
 kill_children() {

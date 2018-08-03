@@ -58,11 +58,11 @@
     # utils
     stow
     wget
-    libnotify
     usbutils
     trash-cli
     psmisc
     glxinfo
+    htop
 
     # desktop
     numix-gtk-theme
@@ -75,6 +75,16 @@
     xdotool-arximboldi
     pa_applet
     pavucontrol
+    blueman
+    syncthing
+    libnotify
+
+    # mail
+    notmuch
+    isync
+    afew
+    notify-desktop
+    gnupg
   ];
 
   fonts = {
@@ -110,7 +120,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   # Enable the X11 windowing system.
   services.xserver = {
