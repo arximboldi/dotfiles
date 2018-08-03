@@ -54,7 +54,8 @@
  '(browse-url-generic-program "xdg-open")
  '(calendar-week-start-day 1)
  '(cider-lein-command "~/usr/bin/lein")
- '(clang-format-executable "clang-format")
+ '(clang-format-executable
+   "/home/raskolnikov/dev/abl/source-utils/bin/linux/clang-format")
  '(clojure-defun-style-default-indent t)
  '(clojure-indent-style :align-arguments)
  '(coffee-extend-comments nil)
@@ -217,7 +218,7 @@
  '(shell-toggle-launch-shell (quote shell))
  '(show-paren-mode t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
- '(sort-fold-case nil)
+ '(sort-fold-case nil t)
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")
  '(tool-bar-mode nil)
