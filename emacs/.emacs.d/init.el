@@ -30,6 +30,6 @@
 (require 'init-cpp11)
 (require 'init-keys)
 
-(desktop-save-mode 1)
-(add-hook 'find-file-hook 'desktop-auto-save-set-timer)
-(add-hook 'after-save-hook 'desktop-auto-save-set-timer)
+;; (desktop-save-mode 1)
+;; (add-hook 'find-file-hook 'desktop-auto-save-set-timer)
+;; (add-hook 'after-save-hook 'desktop-auto-save-set-timer)
