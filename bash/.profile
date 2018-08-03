@@ -20,3 +20,4 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+if [ -e /home/raskolnikov/.nix-profile/etc/profile.d/nix.sh ]; then . /home/raskolnikov/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
