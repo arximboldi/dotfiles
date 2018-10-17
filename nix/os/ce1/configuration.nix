@@ -22,12 +22,13 @@ in
     musnixSrc.outPath
   ];
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "ce1";
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Berlin"; # "America/Vancouver"; # "America/New_York"; # "Europe/Berlin";
+  # damn rubygems...
+  # networking.enableIPv6 = false;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
@@ -121,17 +122,9 @@ in
     enable = true;
     enableSSHSupport = true;
   };
-
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
-  # Enable CUPS to print documents.
   services.printing.enable = true;
   services.printing.drivers = [ unstable.brgenml1cupswrapper ];
 
@@ -156,7 +149,6 @@ in
     package = pkgs.pulseaudioFull;
   };
 
-  # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     layout = "us";
