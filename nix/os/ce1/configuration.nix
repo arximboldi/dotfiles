@@ -191,6 +191,15 @@ in
 
   virtualisation.virtualbox.host.enable = true;
 
+  networking.hosts = {
+    "163.172.144.97" = ["orion1"];
+    "163.172.181.40" = ["orion3"];
+    # zen
+    "127.0.0.1" = [
+      #"twitter.com"
+    ];
+  };
+
   services.printing.enable = true;
   services.printing.drivers = [ unstable.brgenml1cupswrapper ];
 
