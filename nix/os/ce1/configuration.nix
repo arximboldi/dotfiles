@@ -4,9 +4,21 @@
 
 { config, pkgs, ... }:
 
+let
+  unstable = import <nixos-unstable> {};
+
+  musnixSrc = (import <nixpkgs> {}).fetchFromGitHub {
+    owner  = "musnix";
+    repo   = "musnix";
+    rev    = "cec9d0529977e2db2a273f33c3261620098465ed";
+    sha256 = "1ybja7i5c8nh0drlp4pjxkp3v6zp7f8hi8d8nwbsgf2ym9cxjlwf";
+  };
+
+in
 {
   imports = [
     ./hardware-configuration.nix
+    musnixSrc.outPath
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -119,6 +131,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  musnix.enable = true;
   sound.enable = true;
   hardware.pulseaudio = {
     enable = true;
