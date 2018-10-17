@@ -117,6 +117,7 @@ in
     ];
   };
 
+  i18n.inputMethod.enabled = "ibus";
   programs.bash.enableCompletion = true;
   programs.gnupg.agent = {
     enable = true;
