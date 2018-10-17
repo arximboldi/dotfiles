@@ -235,7 +235,8 @@ main = do
         [ resource  =? "Do"              --> doIgnore
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
-        , className =? "Xfce4-notifyd"   --> doBoring >> doSticky
+        -- , className =? "Xfce4-notifyd"   --> doBoring >> doSticky
+        -- , className =? "Dunst"   --> doBoring >> doSticky
         , className =? "Xfdesktop"       --> doHideIgnore
         , title     =? "Desktop"         --> doHideIgnore
 
@@ -286,6 +287,8 @@ main = do
   spawn "xset -b"
   spawn "xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1"
   --spawn "cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
+  --spawn "killall -w notify-osd; killall -w xfce4-notifyd;  notify-osd"
+  spawn "killall -w notify-osd; killall -w xfce4-notifyd; killall -w dunst; dunst"
   spawn "xfdesktop -D -R"
   spawn "xfsettingsd --replace --no-daemon"
   spawn "ibus-daemon --replace"
@@ -316,5 +319,5 @@ main = do
     , layoutHook         = layout'
     , startupHook        = setDefaultCursor xC_arrow
     , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook <+> docksEventHook
-    --, logHook            = spawn "~/usr/bin/xdotool-all Xfce4-notifyd windowraise"
+    , logHook            = spawn "~/usr/bin/xdotool-all Dunst windowraise"
     }
