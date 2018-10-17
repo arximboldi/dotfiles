@@ -139,9 +139,32 @@ alias jack-hw="jackd -P70 -t5000 -dalsa -dhw:0 -r44100 -p128 -n2 -s -Xseq -o2"
 # guix
 alias guix-shell="guix environment --ad-hoc"
 
-function counter-ncurses-meta-meta()
+function counter-ncurses-meta-meta-meetingcpp17()
 {
     mplayer -fs /home/raskolnikov/media/videos/terminator/render3.webm \
+            > /dev/null \
+            2> /dev/null
+}
+
+function fake-spinner()
+{
+    sp="/-\|"
+    echo -n ' '
+    echo -n "$*  "
+    for i in $(seq 1 20)
+    do
+        printf "\b${sp:i++%${#sp}:1}"
+        sleep 0.1s
+    done
+    echo
+}
+
+function counter-ncurses-meta-meta()
+{
+    fake-spinner "== activating flux compressor"
+    fake-spinner "== gradient descent on worm-hole"
+    fake-spinner "== trascending meta-temporal existentiality"
+    mplayer -fs /home/raskolnikov/media/videos/cppcon18/video-4.mp4 \
             > /dev/null \
             2> /dev/null
 }
