@@ -44,7 +44,7 @@ import XMonad.Prompt.Window
 import XMonad.Util.Cursor
 
 import XMonad.Hooks.EwmhDesktops
-import System.Taffybar.Hooks.PagerHints
+import System.Taffybar.Support.PagerHints
 
 import Graphics.X11.ExtraTypes.XF86
 
@@ -195,8 +195,8 @@ main = do
         -- , ((mask, xK_o    ), sendMessage Toggle)
         -- , ((mask, xK_backslash), withFocused (sendMessage . maximizeRestore))
         -- , ((mask, xK_plus), withFocused (sendMessage . maximize))
-        , ((mask,               xK_o), withFocused minimizeWindow)
-        , ((mask .|. shiftMask, xK_o), sendMessage RestoreNextMinimizedWin)
+        -- , ((mask,               xK_o), withFocused minimizeWindow)
+        -- , ((mask .|. shiftMask, xK_o), sendMessage RestoreNextMinimizedWin)
         ]
         ++
         -- Move workspace
