@@ -147,6 +147,16 @@ in
   hardware.pulseaudio = {
     enable = true;
     package = pkgs.pulseaudioFull;
+    daemon.config = {
+      enable-remixing = "no";
+      enable-lfe-remixing = "no";
+    };
+    extraConfig = ''
+      .nofail
+      load-module module-remap-sink sink_name=ka6stereo sink_properties="device.description='Komplete Audio 6 Stereo'" remix=no master=alsa_output.usb-Native_Instruments_Komplete_Audio_6_781D08CA-00.analog-surround-50 channels=2 master_channel_map=front-left,front-right channel_map=front-left,front-right
+      set-default-sink ka6stereo
+      .fail
+    '';
   };
 
   services.xserver = {
