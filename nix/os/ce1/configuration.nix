@@ -173,6 +173,7 @@ in
        "users"
        "scanner"
        "lp"
+       "networkmanager"
      ];
   };
 
