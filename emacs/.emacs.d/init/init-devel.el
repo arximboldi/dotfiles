@@ -18,6 +18,7 @@
 (require 'projectile)
 (add-to-list 'projectile-project-root-files ".travis.yml")
 (add-to-list 'projectile-project-root-files ".editorconfig")
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;;
 ;; GIT
