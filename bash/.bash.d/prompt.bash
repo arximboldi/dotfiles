@@ -60,6 +60,13 @@ function set_prompt {
          esac`$(__git_prompt)$reset"
     fi
 
+    tab_name=""
+    tab_name+="\w"
+    if is-nix-shell; then
+        tab_name+=" (nix)"
+    fi
+    PS1+="\[\e]0;$tab_name\007\]"
+
     PS1+=" "
 }
 
