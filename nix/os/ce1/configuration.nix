@@ -64,10 +64,71 @@ in
     zile
     emacs
     gitAndTools.gitFull
+    (python.withPackages (ps: with ps; [
+      ipython
+    ]))
+    ruby
+    gcc
+    gnumake
+    icu
+    unstable.clang-tools
+    cmake
 
-    # browsers
+    # internet
     firefox
     chromium
+    google-chrome
+    pidgin
+    pidgin-otr
+    unstable.skype
+    unstable.slack
+    unstable.soulseekqt
+    unstable.qt5.full
+    gnome3.polari
+    unstable.youtube-dl
+
+    # mail
+    notmuch
+    isync
+    afew
+    notify-desktop
+    gnupg
+    msmtp
+
+    # media
+    smplayer
+    mpv
+    mplayer
+    vlc
+    libvdpau
+    libvdpau-va-gl
+    ffmpeg-full
+    mpd
+    cantata
+    gmpc
+    mpdris2
+    calibre
+    qjackctl
+    jack2Full
+
+    # editing
+    gimp-with-plugins
+    inkscape
+    libreoffice-fresh
+    xournal
+    pdftk
+    gcolor2
+    blender
+    unstable.shotcut
+    unstable.ladspaPlugins
+    unstable.kdenlive
+    unstable.frei0r
+    unstable.breeze-icons
+
+    # gaming
+    wineStaging
+    # ioquake3
+    # unvanquished
 
     # utils
     stow
@@ -77,6 +138,11 @@ in
     psmisc
     glxinfo
     htop
+    ntfs3g
+    xorg.xkill
+    appimage-run
+    lsof
+    virtualbox
 
     # desktop
     numix-gtk-theme
@@ -92,14 +158,10 @@ in
     blueman
     syncthing
     libnotify
-
-    # mail
-    notmuch
-    isync
-    afew
-    notify-desktop
-    gnupg
+    system-config-printer
     unstable.brgenml1lpr
+    # notify-osd-customizable
+    dunst
   ];
 
   fonts = {
@@ -114,6 +176,8 @@ in
       fira-mono
       fira-code
       fira-code-symbols
+      source-sans-pro
+      emojione
     ];
   };
 
