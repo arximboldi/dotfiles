@@ -128,6 +128,7 @@ in
   services.printing.enable = true;
   services.printing.drivers = [ unstable.brgenml1cupswrapper ];
 
+  hardware.opengl.driSupport32Bit = true;
 
   hardware.sane = {
     enable = true;
@@ -144,6 +145,8 @@ in
 
   musnix.enable = true;
   sound.enable = true;
+  nixpkgs.config.pulseaudio = true;
+  hardware.bluetooth.enable = true;
   hardware.pulseaudio = {
     enable = true;
     package = pkgs.pulseaudioFull;
@@ -163,6 +166,7 @@ in
     enable = true;
     layout = "us";
     xkbOptions = "eurosign:e";
+    displayManager.gdm.enable = false;
     displayManager.lightdm.enable = true;
     desktopManager.gnome3.enable = true;
     desktopManager.xfce.enable = true;
