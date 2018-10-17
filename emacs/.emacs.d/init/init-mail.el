@@ -70,7 +70,7 @@
 (setq notmuch-show-logo nil)
 (setq notmuch-search-oldest-first nil)
 
-(setq sendmail-program "/usr/bin/msmtp"
+(setq sendmail-program "/run/current-system/sw/bin/msmtp"
       mail-specify-envelope-from t
       mail-envelope-from 'header
       message-sendmail-envelope-from 'header)
