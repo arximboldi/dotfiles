@@ -18,6 +18,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
     musnixSrc.outPath
   ];
 
@@ -97,6 +98,7 @@ in
     afew
     notify-desktop
     gnupg
+    unstable.brgenml1lpr
   ];
 
   fonts = {
@@ -131,6 +133,21 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [ unstable.brgenml1cupswrapper ];
+
+
+  hardware.sane = {
+    enable = true;
+    brscan4 = {
+      enable = true;
+      netDevices = {
+        home = {
+          model = "DCP-L2520DW";
+          ip = "192.168.0.4";
+        };
+      };
+    };
+  };
 
   musnix.enable = true;
   sound.enable = true;
@@ -162,6 +179,8 @@ in
        "wheel"
        "audio"
        "users"
+       "scanner"
+       "lp"
      ];
   };
 
