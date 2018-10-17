@@ -19,11 +19,17 @@
       </property>
       <property name="Synaptics_Two-Finger_Scrolling" type="array">
         <value type="int" value="1"/>
-        <value type="int" value="1"/>
+        <value type="int" value="0"/>
       </property>
       <property name="Synaptics_Circular_Scrolling" type="int" value="0"/>
       <property name="Synaptics_Circular_Scrolling_Trigger" type="int" value="0"/>
       <property name="Device_Enabled" type="int" value="1"/>
+      <property name="libinput_Scroll_Method_Enabled" type="array">
+        <value type="int" value="1"/>
+        <value type="int" value="0"/>
+        <value type="int" value="0"/>
+      </property>
+      <property name="libinput_Tapping_Enabled" type="int" value="1"/>
     </property>
   </property>
   <property name="DisableTouchpadWhileTyping" type="bool" value="true"/>
