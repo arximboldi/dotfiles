@@ -118,20 +118,6 @@ add-path PATH "$HOME/.local/bin"
 #
 # C++
 #
-export LCVER=5.0
-if is-macos; then
-    export LC="/usr/local/opt/llvm/bin/clang-$LCVER"
-    export LXX="/usr/local/opt/llvm/bin/clang-$LCVER"
-else
-    export LC="clang-$LCVER"
-    export LXX="clang++-$LCVER"
-fi
-
-export GCVER=7
-export GC="gcc-$GCVER"
-export GXX="g++-$GCVER"
-export SHLIB_GXXLD="g++-$GCVER"
-
 clean-cmake() {
     trash ./CMakeCache.txt
     trash ./CMakeFiles
@@ -161,24 +147,6 @@ maybe-clean-cmake() {
 use-default() {
     export CC=cc
     export CXX=c++
-    maybe-clean-cmake
-}
-
-use-clang() {
-    export CC=$LC
-    export CXX=$LXX
-    maybe-clean-cmake
-}
-
-use-gcc() {
-    export CC=$GC
-    export CXX=$GXX
-    maybe-clean-cmake
-}
-
-use-guix() {
-    export CC=$HOME/.guix-profile/bin/gcc
-    export CXX=$HOME/.guix-profile/bin/g++
     maybe-clean-cmake
 }
 
