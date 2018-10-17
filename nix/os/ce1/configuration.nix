@@ -189,6 +189,7 @@ in
   };
   services.openssh.enable = true;
 
+  virtualisation.virtualbox.host.enable = true;
 
   services.printing.enable = true;
   services.printing.drivers = [ unstable.brgenml1cupswrapper ];
