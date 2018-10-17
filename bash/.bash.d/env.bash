@@ -89,6 +89,8 @@ if [ -z "$NIX_LINK" ]; then
     add-path NIX_PATH "ssh-config-file=$HOME/.ssh/nix-ssh-config"
 fi
 
+export NIX_REMOTE=daemon
+
 #
 # General
 #
