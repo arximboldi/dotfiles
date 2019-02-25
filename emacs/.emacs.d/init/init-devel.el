@@ -247,6 +247,9 @@
 (add-to-list 'compilation-error-regexp-alist '("^    #[0-9]+ 0x[[:xdigit:]]+ in .* \\(.*?\\):\\([0-9]+\\):?\\([0-9]+\\)?$" 1 2 3))
 (add-to-list 'compilation-error-regexp-alist '("^Assertion failed: .*, file \\(.*?\\), line \\([0-9]+\\)\.$" 1 2 3))
 
+;; QML errors
+(add-to-list 'compilation-error-regexp-alist '("^file://\\(.*?\\):\\([0-9]+\\) \\(.*\\)$" 1 2))
+
 ;;
 ;; Web mode
 ;;
