@@ -3,6 +3,7 @@
 (require 'compile)
 
 (defun @fill-mode ()
+  (interactive)
   (setq fill-column 80)
   (fci-mode))
 
@@ -19,6 +20,10 @@
 (add-to-list 'projectile-project-root-files ".travis.yml")
 (add-to-list 'projectile-project-root-files ".editorconfig")
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(add-to-list 'projectile-globally-ignored-directories "third-party")
+(add-to-list 'projectile-globally-ignored-directories "third_party")
+(add-to-list 'projectile-globally-ignored-directories "Third_Party")
+(setq projectile-indexing-method 'alien)
 
 ;;
 ;; GIT
@@ -61,21 +66,46 @@
 ;;
 
 ;; ycmd
-(company-ycmd-setup)
-(flycheck-ycmd-setup)
-(ycmd-eldoc-setup)
-
-(set-variable 'ycmd-extra-conf-whitelist '("~/dev/*"))
-
-;; flycheck
-(add-hook 'c-mode-hook 'ycmd-mode)
-(add-hook 'c-mode-hook 'flycheck-mode)
-(add-hook 'c-mode-hook 'ycmd-eldoc-setup)
-(add-hook 'c++-mode-hook 'ycmd-mode)
-(add-hook 'c++-mode-hook 'flycheck-mode)
-(add-hook 'c++-mode-hook 'ycmd-eldoc-setup)
+;; (company-ycmd-setup)
+;; (flycheck-ycmd-setup)
+;; (ycmd-eldoc-setup)
+;; (set-variable 'ycmd-extra-conf-whitelist '("~/dev/*"))
+;; (add-hook 'c-mode-hook 'ycmd-mode)
+;; (add-hook 'c-mode-hook 'flycheck-mode)
+;; (add-hook 'c-mode-hook 'ycmd-eldoc-setup)
+;; (add-hook 'c++-mode-hook 'ycmd-mode)
+;; (add-hook 'c++-mode-hook 'flycheck-mode)
+;; (add-hook 'c++-mode-hook 'ycmd-eldoc-setup)
 
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . c++-mode))
+
+(c-add-style "arximboldi"
+             '("stroustrup"
+               (indent-tabs-mode . nil)
+               (c-basic-offset . 4)
+               (c-offsets-alist . ((inline-open . 0)
+                                   (brace-list-open . 0)
+                                   (innamespace . 0)
+                                   (inlambda . 0)
+                                   (statement-case-open . +)))))
+
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (setq fill-column 80)
+            (c-set-style "arximboldi")))
+
+(add-to-list 'auto-mode-alist '("\\.tpp\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
+
+(add-hook 'c-mode-common-hook #'auto-fill-mode)
+
+(defun @enable-cpp-headers ()
+  (interactive)
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)))
+
+(defun @disable-cpp-headers ()
+  (interactive)
+  (setq auto-mode-alist (remove '("\\.h\\'" . c++-mode) auto-mode-alist)))
 
 ;;
 ;; Compilation
@@ -148,43 +178,9 @@
 (ad-activate 'gdb-set-window-buffer)
 
 ;;
-;; Formatings
+;; Bazel
 ;;
-
-;; style I want to use in c++ mode
-(c-add-style "arximboldi"
-             '("stroustrup"
-               (indent-tabs-mode . nil)
-               (c-basic-offset . 4)
-               (c-offsets-alist . ((inline-open . 0)
-                                   (brace-list-open . 0)
-                                   (innamespace . 0)
-                                   (inlambda . 0)
-                                   (statement-case-open . +)))))
-
-(add-hook 'c++-mode-hook
-          (lambda ()
-            (c-set-style "arximboldi")))
-
-(add-hook 'php-mode-hook
-          (lambda ()
-            (c-set-style "bsd")
-            (setq c-basic-offset 4)
-            (c-set-offset 'innamespace 0)
-            (setq indent-tabs-mode nil)))
-
-(add-to-list 'auto-mode-alist '("\\.tpp\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++-mode))
-
-(add-hook 'c-mode-common-hook #'auto-fill-mode)
-
-(defun @enable-cpp-headers ()
-  (interactive)
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)))
-
-(defun @disable-cpp-headers ()
-  (interactive)
-  (setq auto-mode-alist (remove '("\\.h\\'" . c++-mode) auto-mode-alist)))
+(add-to-list 'auto-mode-alist '("\\BUILD\\'" . bazel-mode))
 
 ;;
 ;; QML
@@ -262,6 +258,13 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+(add-hook 'php-mode-hook
+          (lambda ()
+            (c-set-style "bsd")
+            (setq c-basic-offset 4)
+            (c-set-offset 'innamespace 0)
+            (setq indent-tabs-mode nil)))
 
 ;;
 ;; Clojure
