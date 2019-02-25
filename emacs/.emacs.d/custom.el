@@ -54,8 +54,7 @@
  '(browse-url-generic-program "xdg-open")
  '(calendar-week-start-day 1)
  '(cider-lein-command "~/usr/bin/lein")
- '(clang-format-executable
-   "/home/raskolnikov/dev/abl/source-utils/bin/linux/clang-format")
+ '(clang-format-executable "/run/current-system/sw/bin/clang-format")
  '(clojure-defun-style-default-indent t)
  '(clojure-indent-style :align-arguments)
  '(coffee-extend-comments nil)
