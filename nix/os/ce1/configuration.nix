@@ -75,40 +75,6 @@ in
       };
     };
 
-    mixxx-latest = with pkgs; stdenv.mkDerivation rec {
-      name = "mixxx-${version}";
-      version = "2.0.0";
-      src = fetchFromGitHub {
-        owner = "mixxxdj";
-        repo = "mixxx";
-        rev = "release-${version}";
-        sha256 = "0pipmkv5fig2pajlh5nnmxyfil7mv5l86cw6rh8jbkcr9hman9bp";
-      };
-      nativeBuildInputs = [ scons makeWrapper ];
-      buildInputs = [
-        chromaprint fftw flac faad2 glibcLocales mp4v2 libid3tag libmad libopus libshout libsndfile
-        libusb1 libvorbis opusfile pkgconfig portaudio portmidi protobuf qt5.full
-        rubberband sqlite taglib upower
-      ];
-      sconsFlags = [
-        "build=release"
-        "optimize=native"
-        "qtdir=${qt5.full}"
-        "faad=1"
-        "opus=1"
-      ];
-      fixupPhase = ''
-        wrapProgram $out/bin/mixxx \
-          --set LOCALE_ARCHIVE ${glibcLocales}/lib/locale/locale-archive;
-      '';
-      meta = with stdenv.lib; {
-        homepage = https://mixxx.org;
-        description = "Digital DJ mixing software";
-        license = licenses.gpl2Plus;
-        maintainers = [ maintainers.aszlig maintainers.goibhniu maintainers.bfortz ];
-        platforms = platforms.linux;
-      };
-    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -295,8 +261,8 @@ in
     enable = true;
     package = pkgs.pulseaudioFull;
     daemon.config = {
-      enable-remixing = "no";
-      enable-lfe-remixing = "no";
+      # enable-remixing = "no";
+      # enable-lfe-remixing = "no";
     };
   };
 
