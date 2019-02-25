@@ -189,7 +189,29 @@
  '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
-    ((bug-reference-bug-regexp . "\\(\\(?:[Ii]ssue \\|[Ff]ixe[ds] \\|[Rr]esolve[ds]? \\|[Cc]lose[ds]? \\|[Pp]\\(?:ull [Rr]equest\\|[Rr]\\) \\|(\\)#\\([0-9]+\\))?\\)")
+    ((eval c-set-offset
+           (quote access-label)
+           (quote -))
+     (eval c-set-offset
+           (quote substatement-open)
+           0)
+     (eval c-set-offset
+           (quote arglist-cont-nonempty)
+           (quote +))
+     (eval c-set-offset
+           (quote arglist-cont)
+           0)
+     (eval c-set-offset
+           (quote arglist-intro)
+           (quote +))
+     (eval c-set-offset
+           (quote inline-open)
+           0)
+     (eval c-set-offset
+           (quote defun-open)
+           0)
+     (indicate-empty-lines . t)
+     (bug-reference-bug-regexp . "\\(\\(?:[Ii]ssue \\|[Ff]ixe[ds] \\|[Rr]esolve[ds]? \\|[Cc]lose[ds]? \\|[Pp]\\(?:ull [Rr]equest\\|[Rr]\\) \\|(\\)#\\([0-9]+\\))?\\)")
      (indent-tabs-mode . f)
      (eval add-hook
            (quote before-save-hook)
