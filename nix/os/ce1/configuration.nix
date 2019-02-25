@@ -7,7 +7,23 @@
 let
   unstable = import <nixos-unstable> {};
 
-  musnixSrc = (import <nixpkgs> {}).fetchFromGitHub {
+  fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
+
+  nixos-1803 = import (fetchFromGitHub {
+    owner  = "nixos";
+    repo   = "nixpkgs-channels";
+    rev    = "138f2cc707d7ee13d93c86db3285460e244c402c";
+    sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
+  }) {};
+
+  mozilla = import (fetchFromGitHub {
+    owner  = "mozilla";
+    repo   = "nixpkgs-mozilla";
+    rev    = "0d64cf67dfac2ec74b2951a4ba0141bc3e5513e8";
+    sha256 = "0ngj2rk898rq73rq2rkwjax9p34mjlh3arj8w9npwwd6ljncarmh";
+  });
+
+  musnix-src = fetchFromGitHub {
     owner  = "musnix";
     repo   = "musnix";
     rev    = "cec9d0529977e2db2a273f33c3261620098465ed";
@@ -19,7 +35,7 @@ in
   imports = [
     ./hardware-configuration.nix
     <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
-    musnixSrc.outPath
+    musnix-src.outPath
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -27,22 +43,25 @@ in
 
   networking.hostName = "ce1";
   time.timeZone = "Europe/Berlin"; # "America/Vancouver"; # "America/New_York"; # "Europe/Berlin";
-  # damn rubygems...
-  # networking.enableIPv6 = false;
+  # Damn Rubygems and Bitbucket...
+  networking.enableIPv6 = false;
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ mozilla ];
+
   nixpkgs.config.packageOverrides = pkgs: {
-    xdotool-arximboldi = pkgs.stdenv.mkDerivation rec {
+
+    xdotool-arximboldi = with pkgs; stdenv.mkDerivation rec {
       name = "xdotool-${version}";
       version = "git";
-      src = pkgs.fetchFromGitHub {
+      src = fetchFromGitHub {
         owner = "arximboldi";
         repo = "xdotool";
         rev = "61ac3d0bad281e94a5d7b33316a72d48444aa60d";
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
-      nativeBuildInputs = with pkgs; [ pkgconfig perl ];
-      buildInputs = with pkgs; with xorg; [ libX11 libXtst xextproto libXi libXinerama libxkbcommon ];
+      nativeBuildInputs = [ pkgconfig perl ];
+      buildInputs = with xorg; [ libX11 libXtst xextproto libXi libXinerama libxkbcommon ];
       preBuild = ''
         mkdir -p $out/lib
       '';
@@ -51,8 +70,43 @@ in
         homepage = http://www.semicomplete.com/projects/xdotool/;
         description = "Fake keyboard/mouse input, window management, and more";
         license = pkgs.stdenv.lib.licenses.bsd3;
-        maintainers = with pkgs.stdenv.lib.maintainers; [viric];
-        platforms = with pkgs.stdenv.lib.platforms; linux;
+        maintainers = with stdenv.lib.maintainers; [viric];
+        platforms = with stdenv.lib.platforms; linux;
+      };
+    };
+
+    mixxx-latest = with pkgs; stdenv.mkDerivation rec {
+      name = "mixxx-${version}";
+      version = "2.0.0";
+      src = fetchFromGitHub {
+        owner = "mixxxdj";
+        repo = "mixxx";
+        rev = "release-${version}";
+        sha256 = "0pipmkv5fig2pajlh5nnmxyfil7mv5l86cw6rh8jbkcr9hman9bp";
+      };
+      nativeBuildInputs = [ scons makeWrapper ];
+      buildInputs = [
+        chromaprint fftw flac faad2 glibcLocales mp4v2 libid3tag libmad libopus libshout libsndfile
+        libusb1 libvorbis opusfile pkgconfig portaudio portmidi protobuf qt5.full
+        rubberband sqlite taglib upower
+      ];
+      sconsFlags = [
+        "build=release"
+        "optimize=native"
+        "qtdir=${qt5.full}"
+        "faad=1"
+        "opus=1"
+      ];
+      fixupPhase = ''
+        wrapProgram $out/bin/mixxx \
+          --set LOCALE_ARCHIVE ${glibcLocales}/lib/locale/locale-archive;
+      '';
+      meta = with stdenv.lib; {
+        homepage = https://mixxx.org;
+        description = "Digital DJ mixing software";
+        license = licenses.gpl2Plus;
+        maintainers = [ maintainers.aszlig maintainers.goibhniu maintainers.bfortz ];
+        platforms = platforms.linux;
       };
     };
   };
@@ -64,6 +118,7 @@ in
     zile
     emacs
     gitAndTools.gitFull
+    mercurialFull
     (python.withPackages (ps: with ps; [
       ipython
     ]))
@@ -73,9 +128,17 @@ in
     icu
     unstable.clang-tools
     cmake
+    docker
+    ycmd
+    silver-searcher
+    clang-tools
+   	python36Packages.livereload
+    gdb
+    rustfmt
+    wireshark
 
     # internet
-    firefox
+    latest.firefox-bin
     chromium
     google-chrome
     pidgin
@@ -83,9 +146,11 @@ in
     unstable.skype
     unstable.slack
     unstable.soulseekqt
-    unstable.qt5.full
     gnome3.polari
     unstable.youtube-dl
+    tdesktop
+    signal-desktop
+    wire-desktop
 
     # mail
     notmuch
@@ -106,10 +171,13 @@ in
     mpd
     cantata
     gmpc
+    mpc_cli
     mpdris2
     calibre
     qjackctl
     jack2Full
+    gnome3.cheese
+    unstable.mixxx
 
     # editing
     gimp-with-plugins
@@ -119,11 +187,9 @@ in
     pdftk
     gcolor2
     blender
-    unstable.shotcut
-    unstable.ladspaPlugins
-    unstable.kdenlive
-    unstable.frei0r
-    unstable.breeze-icons
+    imagemagickBig
+    okular
+    poppler_utils
 
     # gaming
     wineStaging
@@ -149,7 +215,7 @@ in
     numix-cursor-theme
     numix-icon-theme
     numix-icon-theme-circle
-    taffybar
+    nixos-1803.taffybar
     dmenu
     ibus
     xdotool-arximboldi
@@ -160,7 +226,6 @@ in
     libnotify
     system-config-printer
     unstable.brgenml1lpr
-    # notify-osd-customizable
     dunst
   ];
 
@@ -182,6 +247,9 @@ in
   };
 
   i18n.inputMethod.enabled = "ibus";
+  programs.ibus = {
+    enable = true;
+  };
   programs.bash.enableCompletion = true;
   programs.gnupg.agent = {
     enable = true;
@@ -190,6 +258,7 @@ in
   services.openssh.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.docker.enable = true;
 
   networking.hosts = {
     "163.172.144.97" = ["orion1"];
@@ -229,12 +298,6 @@ in
       enable-remixing = "no";
       enable-lfe-remixing = "no";
     };
-    extraConfig = ''
-      .nofail
-      load-module module-remap-sink sink_name=ka6stereo sink_properties="device.description='Komplete Audio 6 Stereo'" remix=no master=alsa_output.usb-Native_Instruments_Komplete_Audio_6_781D08CA-00.analog-surround-50 channels=2 master_channel_map=front-left,front-right channel_map=front-left,front-right
-      set-default-sink ka6stereo
-      .fail
-    '';
   };
 
   services.xserver = {
@@ -252,6 +315,15 @@ in
     };
   };
 
+  programs.wireshark.enable = true;
+  programs.dconf.enable = true;
+  security.pam.services.lightdm.enableGnomeKeyring = true;
+  services.dbus.packages = [ pkgs.gnome3.gnome-keyring pkgs.gnome3.gcr ];
+  services.gnome3 = {
+      gnome-keyring.enable = true;
+      seahorse.enable = true;
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.raskolnikov = {
      isNormalUser = true;
@@ -263,6 +335,8 @@ in
        "scanner"
        "lp"
        "networkmanager"
+       "docker"
+       "wireshark"
      ];
   };
 
