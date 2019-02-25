@@ -9,7 +9,6 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/init"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/cc-mode"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/auto-install"))
 (add-to-list 'load-path (expand-file-name "~/.guix-profile/share/emacs/site-lisp"))
 (require 'guix-autoloads nil t)
@@ -27,7 +26,6 @@
 (require 'init-fira-code)
 (require 'init-mail)
 (require 'init-devel)
-(require 'init-cpp11)
 (require 'init-keys)
 
 ;; (desktop-save-mode 1)
