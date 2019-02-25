@@ -187,6 +187,7 @@
  '(rainbow-delimiters-max-face-count 10)
  '(recentf-max-saved-items 1000)
  '(ring-bell-function (quote ignore))
+ '(rust-format-on-save t)
  '(safe-local-variable-values
    (quote
     ((eval c-set-offset
