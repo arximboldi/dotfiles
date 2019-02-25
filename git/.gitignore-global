@@ -4,3 +4,7 @@ GPATH
 GRTAGS
 GTAGS
 .gdb_history
+.projectile
+.dumbjump
+.dumbjumpignore
+/core
