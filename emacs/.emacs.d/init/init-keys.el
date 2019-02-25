@@ -6,36 +6,6 @@
   (toggle-tool-bar-mode-from-frame))
 
 ;;
-;; IDO
-;;
-
-;; (require 'ido-ubiquitous)
-;; (ido-ubiquitous)
-
-;; (require 'smex)
-
-;; ;; Display ido results vertically, rather than horizontally
-;; (setq ido-decorations
-;;       (quote ("\n ▶ " "" "\n   " "\n   ..." "[" "]"
-;;            " [No match]"
-;;            " [Matched]"
-;;            " [Not readable]"
-;;            " [Too big]"
-;;            " [Confirm]")))
-
-;; (defun ido-disable-line-trucation ()
-;;   (set (make-local-variable 'truncate-lines) nil))
-;; (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
-
-;; (defun @smex-load-and-run ()
-;;   (interactive)
-;;   (or (boundp 'smex-cache)
-;;       (smex-initialize))
-;;   (global-set-key [(meta x)] 'smex)
-;;   (smex))
-;; (global-set-key "\M-x" '@smex-load-and-run)
-
-;;
 ;; Helm
 ;;
 (helm-mode 1)
