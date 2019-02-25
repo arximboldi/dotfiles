@@ -222,9 +222,9 @@ main = do
   let layout' = avoidStruts $ smartBorders $ B.boringWindows $ normalLayout
         where
           -- gap = G.gaps [(G.U, 100)]
+          magnify      = id -- magnifiercz' (100/80)
           tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ magnify $ Tall 1 (3/100) (6/10)
           circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ magnify Circle
-          magnify      = magnifiercz' (100/80)
           fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ Full
           imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
                          (Or (Role "buddy_list") (Title "magnicida - Skype™"))
@@ -307,7 +307,7 @@ main = do
   spawn "killall -w taffybar-linux-x86_64; taffybar"
   spawn "~/usr/bin/fix-desktop-window-order"
   spawn "killall -w mpd; mpd"
-  spawn "killall -w mpDris; mpDris"
+  spawn "killall -w mpDris2; mpDris2"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
