@@ -83,6 +83,7 @@
  '(desktop-restore-frames nil)
  '(dired-listing-switches "-al -X --group-directories-first")
  '(dumb-jump-max-find-time 10)
+ '(dumb-jump-prefer-searcher (quote ag))
  '(ecb-layout-window-sizes
    (quote
     (("leftright2"
