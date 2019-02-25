@@ -332,4 +332,9 @@
 ;;
 (require 'gyp)
 
+;;
+;; Nix
+;;
+(add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
+
 (provide 'init-devel)
