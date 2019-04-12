@@ -102,9 +102,11 @@ in
     gdb
     rustfmt
     wireshark
+    zeal
+    llvm
 
     # internet
-    latest.firefox-bin
+    unstable.firefox
     chromium
     google-chrome
     pidgin
@@ -143,7 +145,12 @@ in
     qjackctl
     jack2Full
     gnome3.cheese
+
+    # music
     unstable.mixxx
+    helm
+    vkeybd
+    vmpk
 
     # editing
     gimp-with-plugins
@@ -175,6 +182,7 @@ in
     appimage-run
     lsof
     virtualbox
+    hamster-time-tracker
 
     # desktop
     numix-gtk-theme
@@ -209,6 +217,11 @@ in
       fira-code-symbols
       source-sans-pro
       emojione
+      roboto
+      roboto-mono
+      source-code-pro
+      iosevka
+      iosevka-bin
     ];
   };
 
