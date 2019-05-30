@@ -209,7 +209,6 @@ in
     numix-icon-theme-circle
     nixos-1803.taffybar
     dmenu
-    ibus
     xdotool-arximboldi
     pa_applet
     pavucontrol
@@ -243,10 +242,6 @@ in
     ];
   };
 
-  i18n.inputMethod.enabled = "ibus";
-  programs.ibus = {
-    enable = true;
-  };
   programs.bash.enableCompletion = true;
   programs.gnupg.agent = {
     enable = true;
