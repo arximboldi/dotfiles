@@ -168,3 +168,6 @@ function counter-ncurses-meta-meta()
             > /dev/null \
             2> /dev/null
 }
+
+[ -f ~/dev/prenav/env.bash ] && \
+    source ~/dev/prenav/env.bash
