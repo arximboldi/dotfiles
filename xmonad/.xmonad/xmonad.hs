@@ -300,6 +300,7 @@ main = do
   spawn "~/usr/bin/startemacs"
   spawn "pidof syncthing || syncthing"
   spawn "pidof redshift || redshift-gtk -l 52.51:13.4"
+  spawn "dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect"
   spawn "killall -w pa-applet; pa-applet"
   spawn "killall -w nm-applet; nm-applet"
   spawn "killall -w blueman-applet; blueman-applet"
