@@ -42,7 +42,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "ce1";
-  time.timeZone = "Europe/Berlin"; # "America/Vancouver"; # "America/New_York"; # "Europe/Berlin";
+  time.timeZone = "Europe/Berlin"; # "Europe/Moscow"; # "America/Vancouver"; # "America/New_York"; # "Europe/Berlin";
   # Damn Rubygems and Bitbucket...
   networking.enableIPv6 = false;
 
