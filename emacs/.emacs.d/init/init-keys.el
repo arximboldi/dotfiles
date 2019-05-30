@@ -27,6 +27,7 @@
 ;;
 ;; Email
 ;;
+(global-set-key (kbd "C-c s") 'helm-notmuch)
 (global-set-key (kbd "C-x m") 'notmuch-mua-new-mail)
 (define-key notmuch-show-mode-map (kbd "C-.") 'browse-url-at-point)
 
