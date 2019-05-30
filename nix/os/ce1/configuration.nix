@@ -114,6 +114,7 @@ in
     unstable.skype
     unstable.slack
     unstable.soulseekqt
+    unstable.qt5.qtbase
     gnome3.polari
     unstable.youtube-dl
     tdesktop
@@ -145,6 +146,11 @@ in
     qjackctl
     jack2Full
     gnome3.cheese
+    sound-juicer
+    lame
+    audacity
+    gthumb
+    gpodder
 
     # music
     unstable.mixxx
@@ -183,6 +189,18 @@ in
     lsof
     virtualbox
     hamster-time-tracker
+    lm_sensors
+    stress-ng
+    gparted
+    hfsprogs
+    pv
+    cv
+
+    # lte internet
+    modemmanager
+    mobile_broadband_provider_info
+    usb-modeswitch
+    usb-modeswitch-data
 
     # desktop
     numix-gtk-theme
