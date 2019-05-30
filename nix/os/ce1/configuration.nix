@@ -257,6 +257,8 @@ in
   virtualisation.virtualbox.host.enable = true;
   virtualisation.docker.enable = true;
 
+  systemd.services.modem-manager.enable = true;
+
   networking.hosts = {
     "163.172.144.97" = ["orion1"];
     "163.172.181.40" = ["orion3"];
