@@ -139,6 +139,9 @@ alias jack-hw="jackd -P70 -t5000 -dalsa -dhw:0 -r44100 -p128 -n2 -s -Xseq -o2"
 # guix
 alias guix-shell="guix environment --ad-hoc"
 
+alias pa-hdmi="pactl set-card-profile 0 output:hdmi-stereo+input:analog-stereo"
+alias pa-normal="pactl set-card-profile 0 output:analog-stereo+input:analog-stereo"
+
 function counter-ncurses-meta-meta-meetingcpp17()
 {
     mplayer -fs /home/raskolnikov/media/videos/terminator/render3.webm \
