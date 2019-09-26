@@ -54,3 +54,12 @@ git
 ---
 
 Git configuration too, yeah!
+
+macos
+-----
+
+Note:
+```
+chsh -s
+```
+https://stackoverflow.com/questions/453236/how-to-set-my-default-shell-on-mac
