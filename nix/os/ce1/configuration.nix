@@ -275,7 +275,7 @@ in
       netDevices = {
         home = {
           model = "DCP-L2520DW";
-          ip = "192.168.0.4";
+          ip = "192.168.178.2";
         };
       };
     };
