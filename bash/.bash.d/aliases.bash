@@ -14,7 +14,7 @@ function script-sudo
 }
 
 # colors
-if ! is-nix-shell && [ "$(uname)" == "Darwin" ]; then
+if ! is-nix-shell && [ "$(uname)" == "Darwin" ] && ! [ "$(which ls)" == "/run/current-system/sw/bin/ls" ]; then
     alias ls='gls --color=auto -X --group-directories-first'
 else
     alias ls='ls --color=auto -X --group-directories-first'

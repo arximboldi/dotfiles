@@ -87,9 +87,10 @@ if [ -z "$NIX_LINK" ]; then
         source $HOME/.nix-profile/etc/profile.d/nix.sh
     fi
     add-path NIX_PATH "ssh-config-file=$HOME/.ssh/nix-ssh-config"
+    del-path NIX_PATH "/nix/var/nix/profiles/per-user/root/channels"
 fi
 
-export NIX_REMOTE=daemon
+# export NIX_REMOTE=daemon
 
 #
 # General
