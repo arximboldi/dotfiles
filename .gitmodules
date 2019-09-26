@@ -1,30 +1,12 @@
 [submodule "xmonad/.xmonad/wallpaperd"]
 	path = xmonad/.xmonad/wallpaperd
 	url = http://projects.pekdon.net/git/wallpaperd.git
-[submodule "_deps/xfce4-volumed-pulse"]
-	path = _deps/xfce4-volumed-pulse
-	url = https://code.lefolgoc.net/mrpouit/xfce4-volumed-pulse.git
 [submodule "_deps/gtk3-nocsd"]
 	path = _deps/gtk3-nocsd
 	url = https://github.com/PCMan/gtk3-nocsd
 [submodule "xmonad/.themes/Numix"]
 	path = xmonad/.themes/Numix
 	url = git@github.com:arximboldi/Numix.git
-[submodule "_deps/xdotool"]
-	path = _deps/xdotool
-	url = git@github.com:arximboldi/xdotool.git
 [submodule "emacs/.emacs.d/lisp/cc-mode"]
 	path = emacs/.emacs.d/lisp/cc-mode
 	url = git@github.com:arximboldi/cc-mode.git
-[submodule "_deps/afew"]
-	path = _deps/afew
-	url = git@github.com:teythoon/afew.git
-[submodule "_deps/notify-send.sh"]
-	path = _deps/notify-send.sh
-	url = git@github.com:vlevit/notify-send.sh.git
-[submodule "_deps/dmenu2"]
-	path = _deps/dmenu2
-	url = https://github.com/mrshankly/dmenu2.git
-[submodule "_deps/pa-applet"]
-	path = _deps/pa-applet
-	url = git@github.com:arximboldi/pa-applet.git
