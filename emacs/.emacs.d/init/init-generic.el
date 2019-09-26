@@ -57,15 +57,22 @@
 ;; (setq comint-output-filter-functions (remove 'ansi-color-process-output comint-output-filter-functions))
 ;; (setq font-lock-unfontify-region-function 'xterm-color-unfontify-region)
 
+(ignore-errors
+  (require 'ansi-color)
+  (defun @colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook '@colorize-compilation-buffer))
+
 (add-hook 'shell-mode-hook
           '(lambda ()
              (toggle-truncate-lines 1)
              (set-process-query-on-exit-flag (get-process "shell") nil)))
 
-(defun colorize-compilation-buffer ()
-  (when (eq major-mode 'compilation-mode)
-    (ansi-color-apply-on-region compilation-filter-start (point-max))))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+;; (defun colorize-compilation-buffer ()
+;;   (when (eq major-mode 'compilation-mode)
+;;     (ansi-color-apply-on-region compilation-filter-start (point-max))))
+;; (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;; Fix emacs not finding commands in my custom path
 (defun set-exec-path-from-shell-PATH ()
