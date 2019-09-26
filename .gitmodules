@@ -7,6 +7,3 @@
 [submodule "xmonad/.themes/Numix"]
 	path = xmonad/.themes/Numix
 	url = git@github.com:arximboldi/Numix.git
-[submodule "emacs/.emacs.d/lisp/cc-mode"]
-	path = emacs/.emacs.d/lisp/cc-mode
-	url = git@github.com:arximboldi/cc-mode.git
