@@ -85,25 +85,27 @@ in
     emacs
     gitAndTools.gitFull
     mercurialFull
-    (python.withPackages (ps: with ps; [
+    ((python.withPackages (ps: with ps; [
       ipython
-    ]))
+      livereload
+    ])).override (args: { ignoreCollisions = true; }))
     ruby
     gcc
+    clang
     gnumake
     icu
-    unstable.clang-tools
+    clang-tools
     cmake
     docker
     ycmd
     silver-searcher
     clang-tools
-   	python36Packages.livereload
     gdb
     rustfmt
     wireshark
     zeal
     llvm
+    mmv
 
     # internet
     unstable.firefox
@@ -142,6 +144,7 @@ in
     gmpc
     mpc_cli
     mpdris2
+    mpdas
     calibre
     qjackctl
     jack2Full
@@ -155,8 +158,7 @@ in
     # music
     unstable.mixxx
     helm
-    vkeybd
-    vmpk
+    vkeybd    vmpk
 
     # editing
     gimp-with-plugins
@@ -169,6 +171,8 @@ in
     imagemagickBig
     okular
     poppler_utils
+    dia
+    blender
 
     # gaming
     wineStaging
@@ -218,6 +222,7 @@ in
     system-config-printer
     unstable.brgenml1lpr
     dunst
+    xorg.xhost
   ];
 
   fonts = {
