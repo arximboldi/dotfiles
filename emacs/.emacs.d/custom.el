@@ -187,7 +187,7 @@
  '(rainbow-delimiters-max-face-count 10)
  '(recentf-max-saved-items 1000)
  '(ring-bell-function (quote ignore))
- '(rust-format-on-save t)
+ '(rust-format-on-save nil)
  '(safe-local-variable-values
    (quote
     ((clang-format-executable . "/home/raskolnikov/dev/abl/source-utils/bin/linux/clang-format")
@@ -244,7 +244,7 @@
  '(shell-toggle-launch-shell (quote shell))
  '(show-paren-mode t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
- '(sort-fold-case nil)
+ '(sort-fold-case nil t)
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")
  '(tool-bar-mode nil)
