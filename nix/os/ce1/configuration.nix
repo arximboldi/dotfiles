@@ -16,18 +16,11 @@ let
     sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
   }) {};
 
-  mozilla = import (fetchFromGitHub {
-    owner  = "mozilla";
-    repo   = "nixpkgs-mozilla";
-    rev    = "0d64cf67dfac2ec74b2951a4ba0141bc3e5513e8";
-    sha256 = "0ngj2rk898rq73rq2rkwjax9p34mjlh3arj8w9npwwd6ljncarmh";
-  });
-
   musnix-src = fetchFromGitHub {
     owner  = "musnix";
     repo   = "musnix";
-    rev    = "cec9d0529977e2db2a273f33c3261620098465ed";
-    sha256 = "1ybja7i5c8nh0drlp4pjxkp3v6zp7f8hi8d8nwbsgf2ym9cxjlwf";
+    rev    = "ec088e16dee5103b41bb422000e518a8f95926c4";
+    sha256 = "196zpyk3ngaglx2hmpzg285r8lqhw74bbs5c6m77gg4mq6ai9fdn";
   };
 
 in
