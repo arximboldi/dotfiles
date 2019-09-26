@@ -47,11 +47,9 @@ in
   networking.enableIPv6 = false;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ mozilla ];
 
   nixpkgs.config.packageOverrides = pkgs: {
-
-    xdotool-arximboldi = with pkgs; stdenv.mkDerivation rec {
+    xdotool-arximboldi = with pkgs; xdotool.overrideDerivation (attrs: rec {
       name = "xdotool-${version}";
       version = "git";
       src = fetchFromGitHub {
@@ -60,21 +58,7 @@ in
         rev = "61ac3d0bad281e94a5d7b33316a72d48444aa60d";
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
-      nativeBuildInputs = [ pkgconfig perl ];
-      buildInputs = with xorg; [ libX11 libXtst xextproto libXi libXinerama libxkbcommon ];
-      preBuild = ''
-        mkdir -p $out/lib
-      '';
-      makeFlags = "PREFIX=$(out)";
-      meta = {
-        homepage = http://www.semicomplete.com/projects/xdotool/;
-        description = "Fake keyboard/mouse input, window management, and more";
-        license = pkgs.stdenv.lib.licenses.bsd3;
-        maintainers = with stdenv.lib.maintainers; [viric];
-        platforms = with stdenv.lib.platforms; linux;
-      };
-    };
-
+    });
   };
 
   # List packages installed in system profile. To search, run:
