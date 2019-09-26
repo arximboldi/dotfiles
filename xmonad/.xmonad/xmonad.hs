@@ -306,8 +306,9 @@ main = do
   spawn "killall -w blueman-applet; blueman-applet"
   spawn "killall -w taffybar-linux-x86_64; taffybar"
   spawn "~/usr/bin/fix-desktop-window-order"
-  spawn "killall -w mpd; mpd"
+  spawn "killall -w mpd; killall -w mpdas; mpd; mpdas"
   spawn "killall -w mpDris2; mpDris2"
+  spawn "nautilus -n -h"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
