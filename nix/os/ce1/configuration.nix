@@ -250,7 +250,13 @@ in
     "163.172.181.40" = ["orion3"];
     # zen
     "127.0.0.1" = [
-      #"twitter.com"
+#      "twitter.com"
+#      "www.twitter.com"
+#      "eldiario.es"
+#      "www.eldiario.es"
+#      "elmundo.es"
+#      "elpais.es"
+#      "elpais.com"
     ];
   };
 
