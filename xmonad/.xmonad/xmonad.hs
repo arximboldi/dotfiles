@@ -66,10 +66,12 @@ doBoring =
     liftX (broadcastMessage $ B.Merge "managed" [win])
     doF id
 
+altMask = mod1Mask
+
 main :: IO ()
 main = do
   let backgroundColor = "#444444"
-      headerColor     = "#0c0c0c"
+      headerColor     = "#000000"
       focusedColor    = "#F0544C"
       textColor       = "#ddd"
       textFont        = "Cantarell-20:bold"
@@ -106,15 +108,15 @@ main = do
         , ((mask .|. shiftMask, xK_b), windowPromptBring xpConfig)
         -- , ((mask, xK_w), workspacePrompt xpConfig (windows . W.view))
         -- Directional navigation of windows
-        , ((mask, xK_Right), windowGo R False)
-        , ((mask, xK_Left ), windowGo L False)
-        , ((mask, xK_Up   ), windowGo U False)
-        , ((mask, xK_Down ), windowGo D False)
-          -- Swap adjacent windows
-        , ((mask .|. shiftMask, xK_Right), windowSwap R False)
-        , ((mask .|. shiftMask, xK_Left ), windowSwap L False)
-        , ((mask .|. shiftMask, xK_Up   ), windowSwap U False)
-        , ((mask .|. shiftMask, xK_Down ), windowSwap D False)
+        -- , ((mask, xK_Right), windowGo R False)
+        -- , ((mask, xK_Left ), windowGo L False)
+        -- , ((mask, xK_Up   ), windowGo U False)
+        -- , ((mask, xK_Down ), windowGo D False)
+        -- Swap adjacent windows
+        -- , ((mask .|. shiftMask, xK_Right), windowSwap R False)
+        -- , ((mask .|. shiftMask, xK_Left ), windowSwap L False)
+        -- , ((mask .|. shiftMask, xK_Up   ), windowSwap U False)
+        -- , ((mask .|. shiftMask, xK_Down ), windowSwap D False)
         -- close focused window
         , ((mask, xK_c), kill)
          -- Rotate through the available layout algorithms
@@ -162,11 +164,24 @@ main = do
         , ((mask .|. shiftMask, xK_ntilde), spawn $ "gnome-screensaver-command -lock")
         , ((mask .|. shiftMask, xK_comma),  spawn $ "sleep 1;xset dpms force off")
         -- GMPC
-        , ((mask, xK_Page_Down), spawn $ "mpc next")
-        , ((mask, xK_Page_Up),   spawn $ "mpc prev")
-        , ((mask, xK_Home),      spawn $ "mpc toggle")
-        , ((mask, xK_End),       spawn $ "mpc stop")
-        -- Toggle compton config
+        --, ((mask, xK_Page_Down), spawn $ "mpc next")
+        --, ((mask, xK_Page_Up),   spawn $ "mpc prev")
+        --, ((mask, xK_Home),      spawn $ "mpc toggle")
+        --, ((mask, xK_End),       spawn $ "mpc stop")
+        , ((noModMask, xF86XK_AudioNext), spawn $ "mpc next")
+        , ((noModMask, xF86XK_AudioPrev), spawn $ "mpc prev")
+        , ((noModMask, xF86XK_AudioPlay), spawn $ "mpc toggle")
+        , ((noModMask, xF86XK_AudioStop), spawn $ "mpc stop")
+        -- Fucking dumb keyboards
+        -- , ((altMask, xK_Up),                    spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Page_Up")
+        -- , ((altMask, xK_Down),                  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Page_Down")
+        -- , ((altMask, xK_Left),                  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Home")
+        -- , ((altMask, xK_Right),                 spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key End")
+        -- , ((controlMask .|. altMask, xK_Up),    spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Control+Page_Up")
+        -- , ((controlMask .|. altMask, xK_Down),  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Control+Page_Down")
+        -- , ((controlMask .|. altMask, xK_Left),  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Control+Home")
+        -- , ((controlMask .|. altMask, xK_Right), spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Control+End")
+       -- Toggle compton config
         --, ((mask, xK_i), spawn $ ("((diff ~/.xmonad/compton.conf ~/.xmonad/compton2.conf && " ++
         --                          "    cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf) " ++
         --                          "  || cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf) " ++
@@ -183,12 +198,13 @@ main = do
         , ((mask, xK_w), spawn $ "wmctrl -xa firefox || firefox")
         , ((mask .|. shiftMask, xK_w), spawn $ "firefox")
         -- take a screenshot of entire display
-        , ((noModMask, xK_Print), spawn "gnome-screenshot")
-        , ((shiftMask, xK_Print), spawn "gnome-screenshot -w -B")
-        , ((mask, xK_Print), spawn "gnome-screenshot -i")
-        , ((noModMask, xF86XK_Tools), spawn "xfce4-settings-manager")
-        , ((shiftMask, xF86XK_Tools), spawn "gnome-control-center")
-        , ((mask, xF86XK_Tools), spawn "gnome-tweak-tool")
+        , ((noModMask, xK_Print),        spawn "gnome-screenshot")
+        , ((shiftMask, xK_Print),        spawn "gnome-screenshot -w -B")
+        , ((mask,      xK_Print),        spawn "gnome-screenshot -i")
+        , ((noModMask, xF86XK_Tools),    spawn "xfce4-settings-manager")
+        , ((shiftMask, xF86XK_Tools),    spawn "gnome-control-center")
+        , ((mask,      xF86XK_Tools),    spawn "gnome-tweak-tool")
+        , ((noModMask, xF86XK_Explorer), spawn "xfce4-display-settings -m")
         -- Maximize
         -- , ((mask .|. shiftMask, xK_minus ), sendMessage MagnifyMore)
         -- , ((mask, xK_minus), sendMessage MagnifyLess)
