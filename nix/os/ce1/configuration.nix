@@ -243,6 +243,7 @@ in
   virtualisation.docker.enable = true;
 
   systemd.services.modem-manager.enable = true;
+  services.blueman.enable = true;
 
   networking.hosts = {
     "163.172.144.97" = ["orion1"];
