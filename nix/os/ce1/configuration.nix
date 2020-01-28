@@ -61,6 +61,7 @@ in
     zile
     emacs
     gitAndTools.gitFull
+    git-lfs
     mercurialFull
     ((python.withPackages (ps: with ps; [
       ipython
@@ -131,6 +132,8 @@ in
     audacity
     gthumb
     gpodder
+    amule
+    anbox
 
     # music
     unstable.mixxx
@@ -176,6 +179,7 @@ in
     hfsprogs
     pv
     cv
+    alarm-clock-applet
 
     # lte internet
     modemmanager
@@ -200,6 +204,10 @@ in
     unstable.brgenml1lpr
     dunst
     xorg.xhost
+    xvkbd
+    xbindkeys
+    xautomation
+    xmacro
   ];
 
   fonts = {
