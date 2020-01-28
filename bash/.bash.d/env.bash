@@ -231,3 +231,34 @@ add-path PATH $CONSCRIPT_HOME/bin
 # Ruby
 #
 add-path PATH $HOME/.gem/ruby/2.3.0/bin
+
+#
+# Utils for saving and reloading environment
+#
+export ENV_STORAGE=~/.bash.d/saved
+test -d $ENV_STORAGE || mkdir $ENV_STORAGE
+
+blacklisted-env () {
+    case $1 in
+        PWD|OLDPWD|SHELL|ENV_STORAGE) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+save-env () {
+    rm "$ENV_STORAGE/$1.sh"
+    local VAR
+    for VAR in $(compgen -A export); do
+        blacklisted-env $VAR || \
+            echo "export $VAR='${!VAR}'" >> "$ENV_STORAGE/$1.sh"
+    done
+}
+
+restore-env () {
+    local VAR
+    for VAR in $(compgen -A export); do
+        blacklisted-env $VAR || \
+            unset $VAR
+    done
+    source "$ENV_STORAGE/$1.sh"
+}
