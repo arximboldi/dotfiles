@@ -15,6 +15,10 @@
     trash-cli
     gitFull
     clang-tools
+    ((python.withPackages (ps: with ps; [
+      ipython
+      livereload
+    ])).override (args: { ignoreCollisions = true; }))
     # cmake
     # (python3.withPackages (ps: [ps.setuptools ps.pip]))
   ];
