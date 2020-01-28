@@ -246,7 +246,7 @@ blacklisted-env () {
 }
 
 save-env () {
-    rm "$ENV_STORAGE/$1.sh"
+    rm -f "$ENV_STORAGE/$1.sh"
     local VAR
     for VAR in $(compgen -A export); do
         blacklisted-env $VAR || \
