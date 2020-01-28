@@ -308,12 +308,10 @@ in
 
   programs.wireshark.enable = true;
   programs.dconf.enable = true;
+  programs.seahorse.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
   services.dbus.packages = [ pkgs.gnome3.gnome-keyring pkgs.gnome3.gcr ];
-  services.gnome3 = {
-      gnome-keyring.enable = true;
-      seahorse.enable = true;
-  };
+  services.gnome3.gnome-keyring.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.raskolnikov = {
