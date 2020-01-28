@@ -8,3 +8,4 @@ GTAGS
 .dumbjump
 .dumbjumpignore
 /core
+.DS_Store
