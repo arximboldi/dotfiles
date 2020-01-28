@@ -328,6 +328,7 @@ in
        "wireshark"
      ];
   };
+  nix.trustedUsers = [ "raskolnikov" ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
