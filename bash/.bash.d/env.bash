@@ -254,7 +254,7 @@ save-env () {
     done
 }
 
-restore-env () {
+load-env () {
     local VAR
     for VAR in $(compgen -A export); do
         blacklisted-env $VAR || \
