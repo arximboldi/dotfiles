@@ -66,7 +66,9 @@ in
     ((python.withPackages (ps: with ps; [
       ipython
       livereload
+      pafy
     ])).override (args: { ignoreCollisions = true; }))
+    clipgrab
     ruby
     gcc
     clang
@@ -96,7 +98,6 @@ in
     unstable.soulseekqt
     unstable.qt5.qtbase
     gnome3.polari
-    unstable.youtube-dl
     tdesktop
     signal-desktop
     wire-desktop
