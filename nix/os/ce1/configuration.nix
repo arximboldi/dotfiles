@@ -63,7 +63,7 @@ in
     gitAndTools.gitFull
     git-lfs
     mercurialFull
-    ((python.withPackages (ps: with ps; [
+    ((python3.withPackages (ps: with ps; [
       ipython
       livereload
       pafy
@@ -86,10 +86,11 @@ in
     zeal
     llvm
     mmv
+    bazel
 
     # internet
     unstable.firefox
-    chromium
+    unstable.chromium
     google-chrome
     pidgin
     pidgin-otr
@@ -97,6 +98,7 @@ in
     unstable.slack
     unstable.soulseekqt
     unstable.qt5.qtbase
+    unstable.zoom-us
     gnome3.polari
     tdesktop
     signal-desktop
@@ -157,6 +159,7 @@ in
 
     # gaming
     wineStaging
+    steam
     # ioquake3
     # unvanquished
 
@@ -173,7 +176,6 @@ in
     appimage-run
     lsof
     virtualbox
-    hamster-time-tracker
     lm_sensors
     stress-ng
     gparted
@@ -209,6 +211,7 @@ in
     xbindkeys
     xautomation
     xmacro
+    xsettingsd
   ];
 
   fonts = {
@@ -304,6 +307,7 @@ in
       enable = true;
       enableContribAndExtras = true;
       extraPackages = hs: [hs.taffybar];
+      haskellPackages = nixos-1803.haskellPackages;
     };
   };
 

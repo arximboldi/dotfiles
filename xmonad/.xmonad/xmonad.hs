@@ -44,7 +44,7 @@ import XMonad.Prompt.Window
 import XMonad.Util.Cursor
 
 import XMonad.Hooks.EwmhDesktops
-import System.Taffybar.Support.PagerHints
+import System.Taffybar.Hooks.PagerHints
 
 import Graphics.X11.ExtraTypes.XF86
 
@@ -300,6 +300,7 @@ main = do
   putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
   putEnv "QT_SCALE_FACTOR=1"
   putEnv "QT_QPA_PLATFORMTHEME=lxqt"
+  putEnv "GTK_THEME=Numix"
   --putEnv "XMODIFIERS=@im=ibus"
   --putEnv "QT_IM_MODULE=ibus"
   spawn "xset -b"
@@ -307,8 +308,10 @@ main = do
   --spawn "cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
   --spawn "killall -w notify-osd; killall -w xfce4-notifyd;  notify-osd"
   spawn "killall -w notify-osd; killall -w xfce4-notifyd; killall -w dunst; dunst"
+  --spawn "gsettings set org.gnome.desktop.interface gtk-theme 'Numix'"
+  --spawn "gsettings set org.gnome.desktop.interface icon-theme 'Numix Circle'"
+  spawn "xfsettingsd --replace"
   spawn "xfdesktop -D -R"
-  spawn "xfsettingsd --replace --no-daemon"
   --spawn "ibus-daemon --replace"
   spawn "xfce4-power-manager --restart"
   spawn "tracker daemon -s"
@@ -320,11 +323,11 @@ main = do
   spawn "killall -w pa-applet; pa-applet"
   spawn "killall -w nm-applet; nm-applet"
   spawn "killall -w blueman-applet; blueman-applet"
-  spawn "killall -w taffybar-linux-x86_64; taffybar"
   spawn "~/usr/bin/fix-desktop-window-order"
   spawn "killall -w mpd; killall -w mpdas; mpd; mpdas"
   spawn "killall -w mpDris2; mpDris2"
   spawn "nautilus -n -h"
+  spawn "killall -w taffybar-linux-x86_64; taffybar"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
