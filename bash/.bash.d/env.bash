@@ -90,7 +90,11 @@ if [ -z "$NIX_LINK" ]; then
     del-path NIX_PATH "/nix/var/nix/profiles/per-user/root/channels"
 fi
 
-# export NIX_REMOTE=daemon
+if [ -d /var/run/opengl-driver ]; then
+    export LIBGL_DRIVERS_PATH=/var/run/opengl-driver/lib/dri
+    add-path LD_LIBRARY_PATH /var/run/opengl-driver/lib
+fi
+
 
 #
 # General
