@@ -141,7 +141,8 @@ in
     # music
     unstable.mixxx
     helm
-    vkeybd    vmpk
+    vkeybd
+    vmpk
 
     # editing
     gimp-with-plugins
