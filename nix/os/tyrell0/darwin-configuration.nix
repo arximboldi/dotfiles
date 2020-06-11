@@ -7,6 +7,9 @@
   environment.systemPackages = with pkgs; [
     # iterm2
     # slack
+    gdb
+    lldb
+    valgrind
     vim
     emacs
     stow
@@ -24,27 +27,27 @@
   ];
 
   # Other software
-  #   homebrew
+  #   - homebrew
   #   - conan
   #
-  # fonts.enableFontDir = true;
-  # fonts.fonts = with pkgs; [
-  #   corefonts
-  #   inconsolata
-  #   ubuntu_font_family
-  #   dejavu_fonts
-  #   fira
-  #   fira-mono
-  #   fira-code
-  #   fira-code-symbols
-  #   source-sans-pro
-  #   emojione
-  #   roboto
-  #   roboto-mono
-  #   source-code-pro
-  #   iosevka
-  #   iosevka-bin
-  # ];
+  fonts.enableFontDir = true;
+  fonts.fonts = with pkgs; [
+    corefonts
+    inconsolata
+    ubuntu_font_family
+    dejavu_fonts
+    fira
+    fira-mono
+    fira-code
+    fira-code-symbols
+    source-sans-pro
+    # emojione
+    roboto
+    roboto-mono
+    source-code-pro
+    iosevka
+    iosevka-bin
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
