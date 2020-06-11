@@ -1,5 +1,10 @@
 ;;; emacs config file -- Juan Pedro Bolívar Puente
 
+(set-face-attribute 'default nil
+                    :family "Iosevka"
+                    :height 140
+                    :weight 'normal)
+
 (server-start)
 (remove-hook 'kill-buffer-query-functions
 	     'server-kill-buffer-query-function)
