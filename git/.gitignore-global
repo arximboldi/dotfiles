@@ -9,3 +9,4 @@ GTAGS
 .dumbjumpignore
 /core
 .DS_Store
+bash/.bash.d/saved
