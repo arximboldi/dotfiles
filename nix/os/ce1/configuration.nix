@@ -253,16 +253,6 @@ in
   networking.hosts = {
     "163.172.144.97" = ["orion1"];
     "163.172.181.40" = ["orion3"];
-    # zen
-    "127.0.0.1" = [
-#      "twitter.com"
-#      "www.twitter.com"
-#      "eldiario.es"
-#      "www.eldiario.es"
-#      "elmundo.es"
-#      "elpais.es"
-#      "elpais.com"
-    ];
   };
 
   services.printing.enable = true;
