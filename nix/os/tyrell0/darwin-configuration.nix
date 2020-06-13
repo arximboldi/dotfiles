@@ -17,13 +17,13 @@
     coreutils
     trash-cli
     gitFull
+    gitAndTools.gh
     clang-tools
-    ((python.withPackages (ps: with ps; [
+    cmake
+    (python3.withPackages (ps: with ps; [
       ipython
       livereload
-    ])).override (args: { ignoreCollisions = true; }))
-    # cmake
-    # (python3.withPackages (ps: [ps.setuptools ps.pip]))
+    ]))
   ];
 
   # Other software
@@ -37,7 +37,7 @@
     ubuntu_font_family
     dejavu_fonts
     fira
-    fira-mono
+    #fira-mono
     fira-code
     fira-code-symbols
     source-sans-pro
@@ -66,4 +66,5 @@
   # $ sysctl -n hw.ncpu
   nix.maxJobs = 1;
   nix.buildCores = 1;
+  nix.trustedUsers = ["raskolnikov"];
 }
