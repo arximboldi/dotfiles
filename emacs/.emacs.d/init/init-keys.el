@@ -107,6 +107,9 @@
 (global-set-key [C-f10] '@indent-buffer)
 (global-set-key [f12]   'zoom-window-zoom)
 
+(global-set-key (kbd "C-c C-l") 'compile)
+(global-set-key (kbd "C-c C-k") 'recompile)
+
 ;; Windmode rocks
 (global-set-key [C-M-left]  'windmove-left)
 (global-set-key [C-M-right] 'windmove-right)
