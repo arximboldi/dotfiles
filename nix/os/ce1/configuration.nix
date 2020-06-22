@@ -258,7 +258,7 @@ in
   services.printing.enable = true;
   services.printing.drivers = [ unstable.brgenml1cupswrapper ];
 
-  hardware.opengl.driSupport32Bit = true;
+  #hardware.opengl.driSupport32Bit = true;
 
   hardware.sane = {
     enable = true;
@@ -300,6 +300,16 @@ in
       extraPackages = hs: [hs.taffybar];
       haskellPackages = nixos-1803.haskellPackages;
     };
+    videoDrivers = [ "intel" ];
+    deviceSection = ''
+      Option "DRI" "2"
+      Option "TearFree" "true"
+    '';
+  };
+
+  services.fprintd = {
+    enable = true;
+    package = pkgs.fprintd-thinkpad;
   };
 
   programs.wireshark.enable = true;
