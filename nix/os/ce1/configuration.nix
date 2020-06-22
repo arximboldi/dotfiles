@@ -61,6 +61,7 @@ in
     zile
     emacs
     gitAndTools.gitFull
+    gitAndTools.gh
     git-lfs
     mercurialFull
     ((python3.withPackages (ps: with ps; [
@@ -89,11 +90,20 @@ in
     bazel
 
     # internet
+    # flashplayer
+    transmission-gtk
     unstable.firefox
     unstable.chromium
     google-chrome
-    pidgin
-    pidgin-otr
+    (pidgin.override {
+      plugins = [
+        pidgin-otr
+        purple-facebook
+        purple-hangouts
+        purple-matrix
+        telegram-purple
+      ];
+    })
     unstable.skype
     unstable.slack
     unstable.soulseekqt
@@ -117,9 +127,7 @@ in
     mpv
     mplayer
     vlc
-    libvdpau
-    libvdpau-va-gl
-    ffmpeg-full
+    #ffmpeg-full
     mpd
     cantata
     gmpc
@@ -137,18 +145,21 @@ in
     gpodder
     amule
     anbox
+    subberthehut
+    subdl
 
     # music
-    unstable.mixxx
+    mixxx
     helm
     vkeybd
     vmpk
 
     # editing
     gimp-with-plugins
+    krita
     inkscape
     libreoffice-fresh
-    xournal
+    xournalpp
     pdftk
     gcolor2
     blender
@@ -161,8 +172,12 @@ in
     # gaming
     wineStaging
     steam
-    # ioquake3
+    liquidwar
+    ioquake3
+    quake3pointrelease
+    # liquidwar5
     # unvanquished
+    gnujump
 
     # utils
     stow
@@ -213,6 +228,9 @@ in
     xautomation
     xmacro
     xsettingsd
+    sway
+    unetbootin
+    picom
   ];
 
   fonts = {
