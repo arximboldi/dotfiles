@@ -63,3 +63,5 @@ Note:
 chsh -s
 ```
 https://stackoverflow.com/questions/453236/how-to-set-my-default-shell-on-mac
+
+http://andresabino.com/2015/04/14/codesign-gdb-on-mac-os-x-yosemite-10-10-2/
