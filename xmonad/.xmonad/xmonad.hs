@@ -307,6 +307,7 @@ main = do
   spawn "xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1"
   --spawn "cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
   --spawn "killall -w notify-osd; killall -w xfce4-notifyd;  notify-osd"
+  --spawn "killall -w picom; picom -i 0.9"
   spawn "killall -w notify-osd; killall -w xfce4-notifyd; killall -w dunst; dunst"
   --spawn "gsettings set org.gnome.desktop.interface gtk-theme 'Numix'"
   --spawn "gsettings set org.gnome.desktop.interface icon-theme 'Numix Circle'"
@@ -331,7 +332,7 @@ main = do
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
-    , borderWidth        = 4
+    , borderWidth        = 2
     , modMask            = mod4Mask
     , workspaces         = [ "web", "emacs", "misc", "im" ]
     , normalBorderColor  = headerColor --"#242424" --backgroundColor
