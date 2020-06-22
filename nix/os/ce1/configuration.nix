@@ -286,12 +286,17 @@ in
     };
   };
 
+  hardware.acpilight.enable = true;
+  programs.sway.enable = true;
   services.xserver = {
     enable = true;
     layout = "us";
     xkbOptions = "eurosign:e";
     displayManager.gdm.enable = false;
     displayManager.lightdm.enable = true;
+    displayManager.lightdm.autoLogin = {enable = true; user = "raskolnikov";};
+    displayManager.lightdm.greeters.enso.enable = true;
+    displayManager.defaultSession = "none+xmonad";
     desktopManager.gnome3.enable = true;
     desktopManager.xfce.enable = true;
     windowManager.xmonad = {
