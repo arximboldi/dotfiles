@@ -244,6 +244,9 @@ in
   };
   services.openssh.enable = true;
 
+  # services.picom.enable = true;
+  # services.picom.vSync = true;
+
   virtualisation.virtualbox.host.enable = true;
   virtualisation.docker.enable = true;
 
