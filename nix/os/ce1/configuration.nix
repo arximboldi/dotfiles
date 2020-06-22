@@ -334,7 +334,19 @@ in
        "wireshark"
      ];
   };
-  nix.trustedUsers = [ "raskolnikov" ];
+  users.extraUsers.nikki = {
+     isNormalUser = true;
+     uid = 1001;
+     extraGroups = [
+       "wheel"
+       "audio"
+       "users"
+       "scanner"
+       "lp"
+       "networkmanager"
+     ];
+  };
+  nix.trustedUsers = [ "raskolnikov" "nikki" ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
