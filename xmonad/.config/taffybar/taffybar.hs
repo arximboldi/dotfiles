@@ -3,29 +3,36 @@
 --  Author:     Juan Pedro Bolívar Puente <raskolnikov@es.gnu.org>
 --  Date:       Sat Jan  3 15:00:03 2015
 --
---  Taffybar configuration file.
+--  Taffybar configuration file. Hola. Amigo.
 --
 
 import System.Taffybar
-import System.Taffybar.Systray
-import System.Taffybar.Battery
-import System.Taffybar.Pager
-import System.Taffybar.TaffyPager
-import System.Taffybar.SimpleClock
-import System.Taffybar.MPRIS
-import System.Taffybar.Widgets.PollingGraph
-import System.Taffybar.Widgets.VerticalBar
+import System.Taffybar.SimpleConfig
 
-import System.Information.Memory
-import System.Information.CPU
+import System.Taffybar.Widget
+import System.Taffybar.Widget.Workspaces
+import System.Taffybar.Widget.Battery
+import System.Taffybar.Widget.Generic.PollingBar
+import System.Taffybar.Widget.Generic.PollingGraph
+import System.Taffybar.Widget.Generic.VerticalBar
+import System.Taffybar.Widget.MPRIS2
+import System.Taffybar.Widget.SNITray
+import System.Taffybar.Widget.SimpleClock
+import System.Taffybar.Widget.Util
 
-import Graphics.UI.Gtk
+import System.Taffybar.Information.Memory
+import System.Taffybar.Information.CPU
+import System.Taffybar.Information.Battery
+
+import Data.Text
 import Text.Printf
+
+import GI.Gtk (labelNew, labelSetMarkup, widgetShowAll, toWidget)
 
 main :: IO ()
 main = do
-  let bgc = 0.0468
-  let bg = (bgc, bgc, bgc)
+  let bgc = 0
+  let bg = (bgc, bgc, bgc, 1)
   let fg = (0.43, 0.43, 0.43, 1)
   let darkText = "#444"
   let lightText = "#aaa"
@@ -40,14 +47,14 @@ main = do
         return [totalLoad, systemLoad]
 
       label str color = do
-        l <- labelNew (Nothing :: Maybe String)
-        labelSetMarkup l (colorize color "" str)
+        l <- labelNew (Nothing :: Maybe Text)
+        labelSetMarkup l $ pack $ (colorize color "" str)
         widgetShowAll l
-        return $ toWidget l
+        toWidget l
 
   let memCfg = defaultGraphConfig
         { graphDataColors = [ fg ]
-        , graphLabel = Just $ colorize darkText "" "  MEM "
+        , graphLabel = Just $ pack $ colorize darkText "" "  MEM "
         , graphBackgroundColor = bg
         , graphBorderColor = bg
         , graphPadding = 0
@@ -57,55 +64,36 @@ main = do
         { graphDataColors = [ fg
                             , fg
                             ]
-        , graphLabel = Just $ colorize darkText "" "  CPU "
+        , graphLabel = Just $ pack $ colorize darkText "" " CPU "
         , graphBackgroundColor = bg
         , graphBorderColor = bg
         , graphPadding = 0
         , graphBorderWidth = 0
         }
-      logCfg = defaultPagerConfig
-        { activeWorkspace = colorize "yellow" "" . escape
-        , emptyWorkspace = colorize darkText "" . escape
-        , hiddenWorkspace = colorize lightText "" . escape
-        , visibleWorkspace = escape
-        , widgetSep = colorize darkText "" "   ╱   "
-       }
-      batCfg = (defaultBarConfig colorFunc)
-        { barBorderColor = bg
-        , barBackgroundColor = const bg
-        , barPadding = 2
-        , barWidth = 1
-        }
-        where colorFunc pct
-               | pct < 0.1 = bg
-               | pct < 0.9 = bg
-               | otherwise = bg
-      mpdCfg = defaultMPRISConfig
-        { trackLabel = display
-        }
-        where artist track  = maybe "[unknown]" id (trackArtist track)
-              title  track  = maybe "[unknown]" id (trackTitle  track)
-              display track = "<span fgcolor='#D64937'>▶</span>  " ++
-                              printf "%s - %s" (artist track) (title track) ++
-                              colorize darkText "" "    ╱ "
 
   let clock = textClockNew Nothing (colorize selected "" "%a %b %_d %H:%M") 1
-      logger = taffyPagerNew logCfg
-      mpris = mprisNew mpdCfg
-      bat = batteryBarNew batCfg 1
+      workspaces = workspacesNew defaultWorkspacesConfig
+        { minIcons = 0
+        , maxIcons = Just 0
+        , widgetGap = 4
+        }
+      layout = layoutNew defaultLayoutConfig
+      windowsW = windowsNew defaultWindowsConfig
+      mpris = mpris2New
+      bat = textBatteryNew "$percentage$"
       bat' = label "  BAT " darkText
       mem = pollingGraphNew memCfg 1 memCallback
       cpu = pollingGraphNew cpuCfg 1 cpuCallback
-      tray = systrayNew
+      tray = sniTrayNew
       sep = label "   ╱   " darkText
       sep' = label "  " ""
       sep'' = label "   " ""
 
-  defaultTaffybar defaultTaffybarConfig
+  simpleTaffybar defaultSimpleTaffyConfig
     { barHeight = 26
-    , widgetSpacing = 2
-    , startWidgets = [ sep', logger ]
-    , endWidgets = [ sep'', clock, sep, tray, sep, bat, bat', mem, cpu
-                   , mpris, sep'' ]
+    , widgetSpacing = 0
+    , startWidgets = [ sep', workspaces, sep, layout, sep, windowsW ]
+    , endWidgets = [ sep'', clock, sep, tray, sep, bat, bat', mem, cpu, sep, mpris, sep'' ]
     , barPosition = Top
+    , System.Taffybar.SimpleConfig.barPadding = 0
     }

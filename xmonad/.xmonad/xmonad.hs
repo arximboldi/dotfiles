@@ -44,7 +44,8 @@ import XMonad.Prompt.Window
 import XMonad.Util.Cursor
 
 import XMonad.Hooks.EwmhDesktops
-import System.Taffybar.Hooks.PagerHints
+
+import System.Taffybar.Support.PagerHints (pagerHints)
 
 import Graphics.X11.ExtraTypes.XF86
 
@@ -172,6 +173,8 @@ main = do
         , ((noModMask, xF86XK_AudioPrev), spawn $ "mpc prev")
         , ((noModMask, xF86XK_AudioPlay), spawn $ "mpc toggle")
         , ((noModMask, xF86XK_AudioStop), spawn $ "mpc stop")
+        , ((noModMask, xF86XK_AudioLowerVolume), spawn $ "pulseaudio-ctl down")
+        , ((noModMask, xF86XK_AudioRaiseVolume), spawn $ "pulseaudio-ctl up")
         -- Fucking dumb keyboards
         -- , ((altMask, xK_Up),                    spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Page_Up")
         -- , ((altMask, xK_Down),                  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Page_Down")
@@ -269,9 +272,9 @@ main = do
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
-        , className =? "Pidgin"           --> doShift "im"
-        , className =? "Org.gnome.Polari" --> doShift "im"
-        , className =? "Skype"            --> doShift "im"
+        , className =? "Pidgin"           --> doShift "chat"
+        , className =? "Org.gnome.Polari" --> doShift "chat"
+        , className =? "Skype"            --> doShift "chat"
 
         , className =? "Screenkey"        --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
 
@@ -294,47 +297,19 @@ main = do
           checkMenu   = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
 
   putEnv "GTK_CSD=0"
-  --putEnv "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgtk3-nocsd.so.0"
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   putEnv "QT_STYLE_OVERRIDE=breeze"
   putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
   putEnv "QT_SCALE_FACTOR=1"
   putEnv "QT_QPA_PLATFORMTHEME=lxqt"
   putEnv "GTK_THEME=Numix"
-  --putEnv "XMODIFIERS=@im=ibus"
-  --putEnv "QT_IM_MODULE=ibus"
-  spawn "xset -b"
-  spawn "xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1"
-  --spawn "cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf && compton --config ~/.xmonad/compton.conf --dbus"
-  --spawn "killall -w notify-osd; killall -w xfce4-notifyd;  notify-osd"
-  --spawn "killall -w picom; picom -i 0.9"
-  spawn "killall -w notify-osd; killall -w xfce4-notifyd; killall -w dunst; dunst"
-  --spawn "gsettings set org.gnome.desktop.interface gtk-theme 'Numix'"
-  --spawn "gsettings set org.gnome.desktop.interface icon-theme 'Numix Circle'"
-  spawn "xfsettingsd --replace"
-  spawn "xfdesktop -D -R"
-  --spawn "ibus-daemon --replace"
-  spawn "xfce4-power-manager --restart"
-  spawn "tracker daemon -s"
-  spawn "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
-  spawn "~/usr/bin/startemacs"
-  spawn "pidof syncthing || syncthing"
-  spawn "pidof redshift || redshift-gtk -l 52.51:13.4"
-  spawn "dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect"
-  spawn "killall -w pa-applet; pa-applet"
-  spawn "killall -w nm-applet; nm-applet"
-  spawn "killall -w blueman-applet; blueman-applet"
-  spawn "~/usr/bin/fix-desktop-window-order"
-  spawn "killall -w mpd; killall -w mpdas; mpd; mpdas"
-  spawn "killall -w mpDris2; mpDris2"
-  spawn "nautilus -n -h"
-  spawn "killall -w taffybar-linux-x86_64; taffybar"
+  spawn "~/usr/bin/xmonad-session-script"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
     , borderWidth        = 2
     , modMask            = mod4Mask
-    , workspaces         = [ "web", "emacs", "misc", "im" ]
+    , workspaces         = [ "web", "emacs", "misc", "chat" ]
     , normalBorderColor  = headerColor --"#242424" --backgroundColor
     , focusedBorderColor = backgroundColor --focusedColor
     , keys               = keys'
