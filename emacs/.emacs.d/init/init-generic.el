@@ -249,4 +249,12 @@ Also returns nil if pid is nil."
     (dolist (theme prev-themes)
       (disable-theme theme))))
 
+ (defun @unixify (buffer)
+   "Automate M-% C-q C-m RET C-q C-j RET"
+   (interactive "*b")
+   (save-excursion
+     (goto-char (point-min))
+     (while (search-forward (string ?\C-m) nil t)
+       (replace-match (string ?\C-j) nil t))))
+
 (provide 'init-generic)
