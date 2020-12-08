@@ -4,6 +4,8 @@ alias reload="source ~/.bashrc"
 # sudo
 alias s=sudo
 
+alias girl="echo I love you"
+
 function script-sudo
 {
     if [ "${TERM}" == eterm-color ]; then
