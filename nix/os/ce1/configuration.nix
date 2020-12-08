@@ -9,12 +9,12 @@ let
 
   fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
 
-  nixos-1803 = import (fetchFromGitHub {
-    owner  = "nixos";
-    repo   = "nixpkgs-channels";
-    rev    = "138f2cc707d7ee13d93c86db3285460e244c402c";
-    sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
-  }) {};
+  # nixos-1803 = import (fetchFromGitHub {
+  #   owner  = "nixos";
+  #   repo   = "nixpkgs-channels";
+  #   rev    = "138f2cc707d7ee13d93c86db3285460e244c402c";
+  #   sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
+  # }) {};
 
   musnix-src = fetchFromGitHub {
     owner  = "musnix";
@@ -88,6 +88,8 @@ in
     llvm
     mmv
     bazel
+    google-cloud-sdk
+    nodejs
 
     # internet
     # flashplayer
@@ -106,13 +108,15 @@ in
     })
     unstable.skype
     unstable.slack
-    unstable.soulseekqt
-    unstable.qt5.qtbase
-    unstable.zoom-us
+    soulseekqt
+    qt5.qtbase
+    zoom-us
+    discord
     gnome3.polari
     tdesktop
     signal-desktop
     wire-desktop
+    obs-studio
 
     # mail
     notmuch
@@ -127,7 +131,7 @@ in
     mpv
     mplayer
     vlc
-    #ffmpeg-full
+    ffmpeg-full
     mpd
     cantata
     gmpc
@@ -172,14 +176,17 @@ in
     # gaming
     wineStaging
     steam
+    steam-run
     liquidwar
     ioquake3
     quake3pointrelease
     # liquidwar5
     # unvanquished
     gnujump
+    retroarch
 
     # utils
+    gksu
     stow
     wget
     usbutils
@@ -199,6 +206,7 @@ in
     pv
     cv
     alarm-clock-applet
+    xmagnify
 
     # lte internet
     modemmanager
@@ -211,11 +219,16 @@ in
     numix-cursor-theme
     numix-icon-theme
     numix-icon-theme-circle
-    nixos-1803.taffybar
+    taffybar
+    feh
+    # plasma5.plasma-workspace # for xembedsniproxy
+    haskellPackages.status-notifier-item
     dmenu
     xdotool-arximboldi
     pa_applet
+    pasystray
     pavucontrol
+    pulseaudio-ctl
     blueman
     syncthing
     libnotify
@@ -231,6 +244,7 @@ in
     sway
     unetbootin
     picom
+    gnome3.gnome-tweaks
   ];
 
   fonts = {
@@ -253,6 +267,14 @@ in
       iosevka
       iosevka-bin
     ];
+  };
+
+  nixpkgs.config.retroarch = {
+    enableNeoCD = true;
+    enableMGBA = true;
+    enableMAME = true;
+    enableGenesisPlusGX = true;
+    enableBeetleSNES = true;
   };
 
   programs.bash.enableCompletion = true;
@@ -279,7 +301,9 @@ in
   services.printing.enable = true;
   services.printing.drivers = [ unstable.brgenml1cupswrapper ];
 
-  #hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages = with pkgs; [ libva vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
+  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva vaapiIntel libvdpau-va-gl vaapiVdpau ];
 
   hardware.sane = {
     enable = true;
@@ -296,15 +320,11 @@ in
 
   musnix.enable = true;
   sound.enable = true;
-  nixpkgs.config.pulseaudio = true;
   hardware.bluetooth.enable = true;
   hardware.pulseaudio = {
     enable = true;
+    support32Bit = true;
     package = pkgs.pulseaudioFull;
-    daemon.config = {
-      # enable-remixing = "no";
-      # enable-lfe-remixing = "no";
-    };
   };
 
   hardware.acpilight.enable = true;
@@ -315,7 +335,7 @@ in
     xkbOptions = "eurosign:e";
     displayManager.gdm.enable = false;
     displayManager.lightdm.enable = true;
-    displayManager.lightdm.autoLogin = {enable = true; user = "raskolnikov";};
+    displayManager.autoLogin = {enable = true; user = "raskolnikov";};
     displayManager.lightdm.greeters.enso.enable = true;
     displayManager.defaultSession = "none+xmonad";
     desktopManager.gnome3.enable = true;
@@ -324,20 +344,17 @@ in
       enable = true;
       enableContribAndExtras = true;
       extraPackages = hs: [hs.taffybar];
-      haskellPackages = nixos-1803.haskellPackages;
     };
-    videoDrivers = [ "intel" ];
-    deviceSection = ''
-      Option "DRI" "2"
-      Option "TearFree" "true"
-    '';
+    videoDrivers = [ "modesetting" ];
+    useGlamor = true;
+    # videoDrivers = [ "intel" ];
+    # deviceSection = ''
+    #   Option "DRI" "2"
+    #   Option "TearFree" "true"
+    # '';
   };
 
-  services.fprintd = {
-    enable = true;
-    package = pkgs.fprintd-thinkpad;
-  };
-
+  services.fprintd.enable = true;
   programs.wireshark.enable = true;
   programs.dconf.enable = true;
   programs.seahorse.enable = true;
