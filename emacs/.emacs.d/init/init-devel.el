@@ -188,6 +188,11 @@
 
 (add-to-list 'auto-mode-alist '("\\.qml\\'" . js-mode))
 
+(font-lock-add-keywords
+ 'js-mode
+ '(("\\<\\(readonly\\|signal\\|property\\)\\>[^:]" . font-lock-keyword-face)
+   ("id:\\s-*?\\<\\([[:alpha:]_$]\\(?:\\s_\\|\\sw\\)*\\)\\>" . font-lock-variable-name-face)))
+
 ;;
 ;; Gtags
 ;;
