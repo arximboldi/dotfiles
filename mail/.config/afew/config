@@ -37,18 +37,22 @@ query = path:sinusoidal/**
 tags = +sinusoidal
 
 [Filter.7]
+query = path:runbox/**
+tags = +runbox
+
+[Filter.8]
 query = from:noreply@linkedin.com
 tags = +linkedin
 
-[Filter.8]
+[Filter.9]
 query = from:noreply@couchsurfing.com
 tags = +couchsurfing
 
-[Filter.9]
+[Filter.10]
 query = from:notifications@github.com
 tags = +github
 
-[Filter.10]
+[Filter.11]
 query = \
       tag:lists/hackmeeting or \
       tag:lists/hacktivistas or \
@@ -58,11 +62,11 @@ query = \
       tag:sent
 tags = -new;-inbox
 
-[Filter.11]
+[Filter.12]
 query = path:gmane/**
 tags = +gmane
 
-[Filter.12]
+[Filter.13]
 query = path:elmo/**
 tags = +elmo
 

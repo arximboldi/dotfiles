@@ -134,3 +134,29 @@ Patterns *
 Create Slave
 Expunge Slave
 Sync All
+
+#
+# sinusoides account
+#
+
+IMAPAccount runbox
+SSLType IMAPS
+SSLVersions TLSv1.2
+Host mail.runbox.com
+User juanpe
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"mail.runbox.com\" {print $6}'"
+
+IMAPStore runbox-remote
+Account runbox
+
+MaildirStore runbox-local
+Path ~/mail/runbox/
+Inbox ~/mail/runbox/Inbox/
+
+Channel runbox
+Master :runbox-remote:
+Slave :runbox-local:
+Patterns *
+Create Slave
+Expunge Slave
+Sync All
