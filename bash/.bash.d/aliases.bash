@@ -176,3 +176,6 @@ function counter-ncurses-meta-meta()
 
 [ -f ~/dev/prenav/env.bash ] && \
     source ~/dev/prenav/env.bash
+
+[ -f ~/dev/magnopus/automaton/setup-docker.bash ] && \
+    source ~/dev/magnopus/automaton/setup-docker.bash
