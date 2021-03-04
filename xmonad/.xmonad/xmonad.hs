@@ -33,6 +33,7 @@ import XMonad.Layout.Minimize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed as R
+import XMonad.Layout.Tabbed
 
 import XMonad.Actions.NoBorders
 import XMonad.Actions.Navigation2D
@@ -40,6 +41,7 @@ import XMonad.Actions.CopyWindow
 import XMonad.Prompt
 import XMonad.Prompt.RunOrRaise
 import XMonad.Prompt.Window
+import XMonad.Prompt.Workspace
 
 import XMonad.Util.Cursor
 
@@ -89,7 +91,7 @@ main = do
         , alwaysHighlight   = True
         , searchPredicate   = L.isInfixOf . map C.toLower
         }
-      dmenuCmd = "~/usr/bin/dmenu-run-xft -b "
+      dmenuCmd = "~/usr/bin/dmenu-run-xft -i -b "
                  ++ "  -fn '" ++ textFont
                  ++ "' -nb '" ++ headerColor
                  ++ "' -nf '" ++ textColor
@@ -107,17 +109,7 @@ main = do
         , ((mask .|. shiftMask, xK_p), runOrRaisePrompt xpConfig)
         , ((mask .|. shiftMask, xK_g), windowPromptGoto  xpConfig)
         , ((mask .|. shiftMask, xK_b), windowPromptBring xpConfig)
-        -- , ((mask, xK_w), workspacePrompt xpConfig (windows . W.view))
-        -- Directional navigation of windows
-        -- , ((mask, xK_Right), windowGo R False)
-        -- , ((mask, xK_Left ), windowGo L False)
-        -- , ((mask, xK_Up   ), windowGo U False)
-        -- , ((mask, xK_Down ), windowGo D False)
-        -- Swap adjacent windows
-        -- , ((mask .|. shiftMask, xK_Right), windowSwap R False)
-        -- , ((mask .|. shiftMask, xK_Left ), windowSwap L False)
-        -- , ((mask .|. shiftMask, xK_Up   ), windowSwap U False)
-        -- , ((mask .|. shiftMask, xK_Down ), windowSwap D False)
+        , ((mask, xK_i), workspacePrompt xpConfig (windows . W.view))
         -- close focused window
         , ((mask, xK_c), kill)
          -- Rotate through the available layout algorithms
@@ -165,30 +157,16 @@ main = do
         , ((mask .|. shiftMask, xK_ntilde), spawn $ "gnome-screensaver-command -lock")
         , ((mask .|. shiftMask, xK_comma),  spawn $ "sleep 1;xset dpms force off")
         -- GMPC
-        --, ((mask, xK_Page_Down), spawn $ "mpc next")
-        --, ((mask, xK_Page_Up),   spawn $ "mpc prev")
-        --, ((mask, xK_Home),      spawn $ "mpc toggle")
-        --, ((mask, xK_End),       spawn $ "mpc stop")
+        , ((mask, xK_Page_Down), spawn $ "mpc next")
+        , ((mask, xK_Page_Up),   spawn $ "mpc prev")
+        , ((mask, xK_Home),      spawn $ "mpc toggle")
+        , ((mask, xK_End),       spawn $ "mpc stop")
         , ((noModMask, xF86XK_AudioNext), spawn $ "mpc next")
         , ((noModMask, xF86XK_AudioPrev), spawn $ "mpc prev")
         , ((noModMask, xF86XK_AudioPlay), spawn $ "mpc toggle")
         , ((noModMask, xF86XK_AudioStop), spawn $ "mpc stop")
         , ((noModMask, xF86XK_AudioLowerVolume), spawn $ "pulseaudio-ctl down")
         , ((noModMask, xF86XK_AudioRaiseVolume), spawn $ "pulseaudio-ctl up")
-        -- Fucking dumb keyboards
-        -- , ((altMask, xK_Up),                    spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Page_Up")
-        -- , ((altMask, xK_Down),                  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Page_Down")
-        -- , ((altMask, xK_Left),                  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Home")
-        -- , ((altMask, xK_Right),                 spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key End")
-        -- , ((controlMask .|. altMask, xK_Up),    spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Control+Page_Up")
-        -- , ((controlMask .|. altMask, xK_Down),  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Control+Page_Down")
-        -- , ((controlMask .|. altMask, xK_Left),  spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Control+Home")
-        -- , ((controlMask .|. altMask, xK_Right), spawn $ "xdotool getwindowfocus windowfocus --sync xdotool key Control+End")
-       -- Toggle compton config
-        --, ((mask, xK_i), spawn $ ("((diff ~/.xmonad/compton.conf ~/.xmonad/compton2.conf && " ++
-        --                          "    cp -f ~/.xmonad/compton1.conf ~/.xmonad/compton.conf) " ++
-        --                          "  || cp -f ~/.xmonad/compton2.conf ~/.xmonad/compton.conf) " ++
-        --                          " && killall -USR1 compton"))
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
         , ((mask .|. shiftMask, xK_n), spawn $ "nautilus -w")
@@ -196,18 +174,28 @@ main = do
         , ((mask, xK_e), spawn $ "wmctrl -xa emacs || emacsclient -c -e '(ignore)'")
         , ((mask .|. shiftMask, xK_e), spawn $ "emacsclient -c -e '(ignore)'")
         -- Browser
-        --, ((mask, xK_w), spawn $ "wmctrl -xa chromium || chromium --allow-file-access-from-files")
-        --, ((mask .|. shiftMask, xK_w), spawn $ "chromium  --allow-file-access-from-files")
         , ((mask, xK_w), spawn $ "wmctrl -xa firefox || firefox")
         , ((mask .|. shiftMask, xK_w), spawn $ "firefox")
         -- take a screenshot of entire display
         , ((noModMask, xK_Print),        spawn "gnome-screenshot")
         , ((shiftMask, xK_Print),        spawn "gnome-screenshot -w -B")
         , ((mask,      xK_Print),        spawn "gnome-screenshot -i")
+        -- open configuration manels
         , ((noModMask, xF86XK_Tools),    spawn "xfce4-settings-manager")
         , ((shiftMask, xF86XK_Tools),    spawn "gnome-control-center")
         , ((mask,      xF86XK_Tools),    spawn "gnome-tweak-tool")
         , ((noModMask, xF86XK_Explorer), spawn "xfce4-display-settings -m")
+        , ((mask,      xK_m),            spawn "pavucontrol")
+        -- Directional navigation of windows
+        -- , ((mask, xK_Right), windowGo R False)
+        -- , ((mask, xK_Left ), windowGo L False)
+        -- , ((mask, xK_Up   ), windowGo U False)
+        -- , ((mask, xK_Down ), windowGo D False)
+        -- Swap adjacent windows
+        -- , ((mask .|. shiftMask, xK_Right), windowSwap R False)
+        -- , ((mask .|. shiftMask, xK_Left ), windowSwap L False)
+        -- , ((mask .|. shiftMask, xK_Up   ), windowSwap U False)
+        -- , ((mask .|. shiftMask, xK_Down ), windowSwap D False)
         -- Maximize
         -- , ((mask .|. shiftMask, xK_minus ), sendMessage MagnifyMore)
         -- , ((mask, xK_minus), sendMessage MagnifyLess)
@@ -242,9 +230,10 @@ main = do
         where
           -- gap = G.gaps [(G.U, 100)]
           magnify      = id -- magnifiercz' (100/80)
-          tallLayout   = R.renamed [ R.Replace "Tall" ] $ minimize $ magnify $ Tall 1 (3/100) (6/10)
-          circleLayout = R.renamed [ R.Replace "Circle" ] $ minimize $ magnify Circle
-          fullLayout   = R.renamed [ R.Replace "Full" ] $ minimize $ Full
+          tallLayout   = R.renamed [ R.Replace "tall" ] $ minimize $ magnify $ Tall 1 (3/100) (6/10)
+          circleLayout = R.renamed [ R.Replace "circle" ] $ minimize $ magnify Circle
+          tabbedLayout = R.renamed [ R.Replace "tabbed" ] $ minimize $ magnify simpleTabbed
+          fullLayout   = R.renamed [ R.Replace "full" ] $ minimize $ Full
           imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
                          (Or (Role "buddy_list") (Title "magnicida - Skype™"))
                          (circleLayout ||| tallLayout ||| fullLayout)
@@ -254,8 +243,6 @@ main = do
         [ resource  =? "Do"              --> doIgnore
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
-        -- , className =? "Xfce4-notifyd"   --> doBoring >> doSticky
-        -- , className =? "Dunst"   --> doBoring >> doSticky
         , className =? "Xfdesktop"       --> doHideIgnore
         , title     =? "Desktop"         --> doHideIgnore
 
@@ -269,19 +256,21 @@ main = do
         , className =? "Qjackctl.real"           --> doSideFloat SE
         , className =? "Gcr-prompter"            --> doCenterFloat
         , className =? "Emoji-keyboard"          --> doCenterFloat
+        , className =? "Pavucontrol"             --> (doRectFloat $ W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
+        , className =? "Screenkey"        --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
         , className =? "Pidgin"           --> doShift "chat"
         , className =? "Org.gnome.Polari" --> doShift "chat"
         , className =? "Skype"            --> doShift "chat"
-
-        , className =? "Screenkey"        --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
+        , className =? "Slack"            --> doShift "chat"
+        , className =? "discord"          --> doShift "chat"
+        , className =? "TelegramDesktop"  --> doShift "chat"
 
         , isFullscreen --> doFullFloat
-
-        , checkDialog --> doCenterFloat
-        , checkMenu   --> doCenterFloat
+        , checkDialog  --> doCenterFloat
+        , checkMenu    --> doCenterFloat
         ]
         where
           -- http://bbs.archlinux.org/viewtopic.php?id=74839
