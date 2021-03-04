@@ -42,6 +42,50 @@ in
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
+    mpdevil = with pkgs;  python3Packages.buildPythonApplication rec {
+      pname = "mpdevil";
+      version = "1.1.1";
+      src = fetchGit {
+        url = "https://github.com/SoongNoonien/mpdevil.git";
+        rev = "7969ec54ffa535924f5d3846e6f82bf200899803";
+      };
+      nativeBuildInputs = [ glib gtk3 intltool wrapGAppsHook ];
+      buildInputs = [ glib gtk3 libnotify pango
+                      gsettings-desktop-schemas
+                      gobject-introspection
+                      python3Packages.distutils_extra ];
+      propagatedBuildInputs = with python3Packages; [
+        pygobject3
+        mpd2
+        beautifulsoup4
+        requests
+      ];
+      strictDeps = false;
+      postInstall = ''
+         glib-compile-schemas $out/share/glib-2.0/schemas
+      '';
+    };
+    covergrid = with pkgs;  python3Packages.buildPythonApplication rec {
+      pname = "covergrid";
+      version = "2.1.12";
+      src = fetchGit {
+        url = "https://gitlab.com/coderkun/mcg.git";
+        rev = "17fe4ee8cad2265e0283f33be40508561687cddb";
+      };
+      postInstall = ''
+         cp -r data $out/lib/python3.8/site-packages/mcg/
+         glib-compile-schemas $out/share/glib-2.0/schemas
+      '';
+      nativeBuildInputs = [ glib wrapGAppsHook ];
+      buildInputs = [ glib gtk3 gobject-introspection ];
+      propagatedBuildInputs = with python3Packages; [
+        glib gtk3
+        pygobject3
+        keyring
+        avahi
+      ];
+      strictDeps = false;
+    };
     xdotool-arximboldi = with pkgs; xdotool.overrideDerivation (attrs: rec {
       name = "xdotool-${version}";
       version = "git";
@@ -51,6 +95,21 @@ in
         rev = "61ac3d0bad281e94a5d7b33316a72d48444aa60d";
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
+    });
+    xorg = pkgs.xorg // {
+      xf86videointel = pkgs.xorg.xf86videointel.overrideDerivation (old: {
+        src = fetchGit {
+          url = "https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel.git";
+          rev = "a511f22cdec56504913b457a2e60dafee8e2b570";
+        };
+      });
+    };
+    sidequest-latest = pkgs.sidequest.overrideDerivation (old: rec {
+      version = "0.10.18";
+      src = pkgs.fetchurl {
+				url = "https://github.com/SideQuestVR/SideQuest/releases/download/v0.10.18/SideQuest-0.10.18.tar.xz";
+        sha256 = "1dcn2kqcix48xb87185y5gxl2zkw450qjsfj6snm77y4ici5icwj";
+			};
     });
   };
 
@@ -93,10 +152,11 @@ in
 
     # internet
     # flashplayer
+    thunderbird
     transmission-gtk
     unstable.firefox
     unstable.chromium
-    google-chrome
+    unstable.google-chrome
     (pidgin.override {
       plugins = [
         pidgin-otr
@@ -106,6 +166,9 @@ in
         telegram-purple
       ];
     })
+    # station
+    # franz
+    # rambox
     unstable.skype
     unstable.slack
     soulseekqt
@@ -135,6 +198,8 @@ in
     mpd
     cantata
     gmpc
+    covergrid
+    mpdevil
     mpc_cli
     mpdris2
     mpdas
@@ -151,12 +216,15 @@ in
     anbox
     subberthehut
     subdl
+    easytag
+    picard
 
     # music
     mixxx
     helm
     vkeybd
     vmpk
+    bitwig-studio
 
     # editing
     gimp-with-plugins
@@ -171,19 +239,30 @@ in
     okular
     poppler_utils
     dia
-    blender
+    # houdini
 
     # gaming
     wineStaging
+    winetricks
+    protontricks
     steam
     steam-run
+    sidequest-latest
+    scrcpy
     liquidwar
     ioquake3
     quake3pointrelease
+    quake3e
+    openarena
+    alienarena
+    superTuxKart
     # liquidwar5
     # unvanquished
     gnujump
+    # emulators
     retroarch
+    mame
+    dosbox
 
     # utils
     gksu
@@ -203,10 +282,12 @@ in
     stress-ng
     gparted
     hfsprogs
+    exfat
     pv
     cv
     alarm-clock-applet
     xmagnify
+    wallutils
 
     # lte internet
     modemmanager
@@ -230,6 +311,8 @@ in
     pavucontrol
     pulseaudio-ctl
     blueman
+    gnome3.gnome-bluetooth
+    blueberry
     syncthing
     libnotify
     system-config-printer
@@ -271,10 +354,19 @@ in
 
   nixpkgs.config.retroarch = {
     enableNeoCD = true;
-    enableMGBA = true;
-    enableMAME = true;
+    enableFBNeo = true;
+    enableFBAlpha2012 = true;
+    enableMGBA = false;
+    enableMAME = false;
     enableGenesisPlusGX = true;
     enableBeetleSNES = true;
+    enableSnes9x = true;
+    enableBeetleSaturnHW = true;
+    enableBeetlePSXHW = true;
+    enableDOSBox = true;
+    enableMupen64Plus = true;
+    enableParallelN64 = true;
+    enableNestopia = true;
   };
 
   programs.bash.enableCompletion = true;
@@ -293,6 +385,7 @@ in
   systemd.services.modem-manager.enable = true;
   services.blueman.enable = true;
 
+  networking.firewall.enable = false;
   networking.hosts = {
     "163.172.144.97" = ["orion1"];
     "163.172.181.40" = ["orion3"];
@@ -302,8 +395,9 @@ in
   services.printing.drivers = [ unstable.brgenml1cupswrapper ];
 
   hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages = with pkgs; [ libva vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
-  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva vaapiIntel libvdpau-va-gl vaapiVdpau ];
+  # https://nixos.wiki/wiki/Accelerated_Video_Playback
+  # hardware.opengl.extraPackages = with pkgs; [ libva intel-media-driver vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
+  # hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva vaapiIntel libvdpau-va-gl vaapiVdpau ];
 
   hardware.sane = {
     enable = true;
@@ -347,6 +441,9 @@ in
     };
     videoDrivers = [ "modesetting" ];
     useGlamor = true;
+    deviceSection = ''
+      Option "DRI" "3"
+    '';
     # videoDrivers = [ "intel" ];
     # deviceSection = ''
     #   Option "DRI" "2"
