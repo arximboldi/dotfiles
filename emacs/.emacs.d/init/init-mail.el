@@ -46,11 +46,11 @@
          nil nil)
         ("sinusoides" nil
          "Juan Pedro Bolívar Puente <juanpe@sinusoid.es>"
-         nil (("Fcc" . "sinusoides/Sent"))
+         nil (("Fcc" . "runbox/Sent"))
          nil nil)
         ("sinusoidal" nil
          "Juan Pedro Bolívar Puente <juanpe@sinusoid.al>"
-         nil (("Fcc" . "sinusoidal/Sent"))
+         nil (("Fcc" . "runbox/Sent"))
          nil nil)))
 
 (setq gnus-alias-default-identity "sinusoides")
