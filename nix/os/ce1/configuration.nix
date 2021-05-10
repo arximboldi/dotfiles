@@ -149,6 +149,9 @@ in
     bazel
     google-cloud-sdk
     nodejs
+    puredata
+    wget
+    magic-wormhole
 
     # internet
     # flashplayer
@@ -174,7 +177,7 @@ in
     soulseekqt
     qt5.qtbase
     zoom-us
-    discord
+    unstable.discord
     gnome3.polari
     tdesktop
     signal-desktop
@@ -235,6 +238,7 @@ in
     pdftk
     gcolor2
     blender
+    houdini
     imagemagickBig
     okular
     poppler_utils
@@ -267,7 +271,6 @@ in
     # utils
     gksu
     stow
-    wget
     usbutils
     trash-cli
     psmisc
@@ -294,6 +297,7 @@ in
     mobile_broadband_provider_info
     usb-modeswitch
     usb-modeswitch-data
+    tailscale
 
     # desktop
     numix-gtk-theme
@@ -375,6 +379,7 @@ in
     enableSSHSupport = true;
   };
   services.openssh.enable = true;
+  services.tailscale.enable = true;
 
   # services.picom.enable = true;
   # services.picom.vSync = true;
