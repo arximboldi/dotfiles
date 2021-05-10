@@ -185,7 +185,8 @@ main = do
         , ((shiftMask, xF86XK_Tools),    spawn "gnome-control-center")
         , ((mask,      xF86XK_Tools),    spawn "gnome-tweak-tool")
         , ((noModMask, xF86XK_Explorer), spawn "xfce4-display-settings -m")
-        , ((mask,      xK_m),            spawn "pavucontrol")
+        , ((mask .|. shiftMask, xK_m),   spawn "pavucontrol")
+        , ((mask,      xK_m),            spawn "cantata")
         -- Directional navigation of windows
         -- , ((mask, xK_Right), windowGo R False)
         -- , ((mask, xK_Left ), windowGo L False)
