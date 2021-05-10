@@ -16,19 +16,12 @@ let
   #   sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
   # }) {};
 
-  musnix-src = fetchFromGitHub {
-    owner  = "musnix";
-    repo   = "musnix";
-    rev    = "ec088e16dee5103b41bb422000e518a8f95926c4";
-    sha256 = "196zpyk3ngaglx2hmpzg285r8lqhw74bbs5c6m77gg4mq6ai9fdn";
-  };
-
 in
 {
   imports = [
     ./hardware-configuration.nix
     <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
-    musnix-src.outPath
+    ../common/musnix.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -444,16 +437,13 @@ in
       enableContribAndExtras = true;
       extraPackages = hs: [hs.taffybar];
     };
-    videoDrivers = [ "modesetting" ];
-    useGlamor = true;
-    deviceSection = ''
-      Option "DRI" "3"
-    '';
-    # videoDrivers = [ "intel" ];
-    # deviceSection = ''
-    #   Option "DRI" "2"
-    #   Option "TearFree" "true"
-    # '';
+    #videoDrivers = [ "modesetting" ];
+    #useGlamor = true;
+     videoDrivers = [ "intel" ];
+     deviceSection = ''
+       Option "DRI" "2"
+       Option "TearFree" "true"
+     '';
   };
 
   services.fprintd.enable = true;
