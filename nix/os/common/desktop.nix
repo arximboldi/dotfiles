@@ -204,7 +204,6 @@ in
     pdftk
     gcolor2
     blender
-    houdini
     imagemagickBig
     okular
     poppler_utils
