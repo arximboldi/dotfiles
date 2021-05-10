@@ -9,18 +9,11 @@ let
 
   fetchFromGitHub = (import <nixpkgs> {}).fetchFromGitHub;
 
-  # nixos-1803 = import (fetchFromGitHub {
-  #   owner  = "nixos";
-  #   repo   = "nixpkgs-channels";
-  #   rev    = "138f2cc707d7ee13d93c86db3285460e244c402c";
-  #   sha256 = "0h49j1cbnccqx996x80z7na9p7slnj9liz646s73s55am8wc9q8q";
-  # }) {};
-
 in
 {
   imports = [
     ./hardware-configuration.nix
-    <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
+    ../common/printer.nix
     ../common/musnix.nix
   ];
 
@@ -313,7 +306,7 @@ in
     syncthing
     libnotify
     system-config-printer
-    unstable.brgenml1lpr
+
     dunst
     xorg.xhost
     xvkbd
@@ -389,26 +382,10 @@ in
     "163.172.181.40" = ["orion3"];
   };
 
-  services.printing.enable = true;
-  services.printing.drivers = [ unstable.brgenml1cupswrapper ];
-
   hardware.opengl.driSupport32Bit = true;
   # https://nixos.wiki/wiki/Accelerated_Video_Playback
   # hardware.opengl.extraPackages = with pkgs; [ libva intel-media-driver vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
   # hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva vaapiIntel libvdpau-va-gl vaapiVdpau ];
-
-  hardware.sane = {
-    enable = true;
-    brscan4 = {
-      enable = true;
-      netDevices = {
-        home = {
-          model = "DCP-L2520DW";
-          ip = "192.168.178.2";
-        };
-      };
-    };
-  };
 
   musnix.enable = true;
   sound.enable = true;
