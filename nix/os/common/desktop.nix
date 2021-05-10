@@ -219,16 +219,17 @@ in
     steam-run
     sidequest-latest
     scrcpy
-    liquidwar
     ioquake3
     quake3pointrelease
     quake3e
     openarena
     alienarena
     superTuxKart
+    gnujump
+    # liquidwar
     # liquidwar5
     # unvanquished
-    gnujump
+
     # emulators
     retroarch
     mame
