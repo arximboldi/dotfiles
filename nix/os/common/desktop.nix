@@ -6,6 +6,12 @@ let
 
 in
 {
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nix-community/emacs-overlay/archive/b74d4784e7a508f1a4eeec588c4057510ac2fbbbb.tar.gz;
+  #   }))
+  # ];
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
     mpdevil = with pkgs;  python3Packages.buildPythonApplication rec {
@@ -99,6 +105,7 @@ in
     gcc
     clang
     gnumake
+    ninja
     icu
     clang-tools
     cmake
@@ -118,6 +125,7 @@ in
     puredata
     wget
     magic-wormhole
+    cached-nix-shell
 
     # internet
     # flashplayer
@@ -301,7 +309,7 @@ in
   ];
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       corefonts
@@ -370,6 +378,8 @@ in
     package = pkgs.pulseaudioFull;
   };
 
+  hardware.openrazer.enable = true;
+
   programs.sway.enable = true;
 
   services.xserver = {
@@ -381,7 +391,7 @@ in
     displayManager.autoLogin = {enable = true; user = "raskolnikov";};
     displayManager.lightdm.greeters.enso.enable = true;
     displayManager.defaultSession = "none+xmonad";
-    desktopManager.gnome3.enable = true;
+    desktopManager.gnome.enable = true;
     desktopManager.xfce.enable = true;
     windowManager.xmonad = {
       enable = true;
@@ -395,5 +405,5 @@ in
   programs.seahorse.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
   services.dbus.packages = [ pkgs.gnome3.gnome-keyring pkgs.gnome3.gcr ];
-  services.gnome3.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 }
