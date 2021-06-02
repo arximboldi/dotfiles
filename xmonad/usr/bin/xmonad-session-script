@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o xtrace
+
 killall -rw notify-osd &
 killall -rw xfce4-notifyd &
 killall -rw dunst &
@@ -18,9 +20,9 @@ xset -b
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
 dunst &
 status-notifier-watcher &
-feh --bg-fill ~/pic/wallpaper/autechre_desktop_1680x1050_wallpaper-349586.jpg
-xfsettingsd --replace
-xfce4-power-manager --restart
+feh --bg-fill ~/pic/wallpaper/default.jpg
+xfsettingsd -D --replace --daemon
+xfce4-power-manager --restart --daemon
 taffybar &
 tracker daemon start
 gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
