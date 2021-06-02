@@ -290,29 +290,29 @@
    nil
    nil))
 
-(use-package parinfer
-  :ensure t
-  :config
-  (parinfer-strategy-add 'instantly
-    '(parinfer-smart-tab:dwim-right
-      parinfer-smart-tab:dwim-left))
-  :bind
-  (:map parinfer-mode-map
-        ("<tab>" . parinfer-smart-tab:dwim-right)
-        ("S-<tab>" . parinfer-smart-tab:dwim-left)
-        ("<backtab>" . parinfer-smart-tab:dwim-left)
-        ("C-," . parinfer-toggle-mode)
-        :map parinfer-region-mode-map
-        ("<tab>" . parinfer-smart-tab:dwim-right)
-        ("S-<tab>" . parinfer-smart-tab:dwim-left)
-        ("<backtab>" . parinfer-smart-tab:dwim-left))
-  :init
-  (progn
-    (setq parinfer-extensions
-          '(defaults
-             pretty-parens
-             smart-tab
-             smart-yank))))
+;;(use-package parinfer
+;;  :ensure t
+;;  :config
+;;  (parinfer-strategy-add 'instantly
+;;    '(parinfer-smart-tab:dwim-right
+;;      parinfer-smart-tab:dwim-left))
+;;  :bind
+;;  (:map parinfer-mode-map
+;;        ("<tab>" . parinfer-smart-tab:dwim-right)
+;;        ("S-<tab>" . parinfer-smart-tab:dwim-left)
+;;        ("<backtab>" . parinfer-smart-tab:dwim-left)
+;;        ("C-," . parinfer-toggle-mode)
+;;        :map parinfer-region-mode-map
+;;        ("<tab>" . parinfer-smart-tab:dwim-right)
+;;        ("S-<tab>" . parinfer-smart-tab:dwim-left)
+;;        ("<backtab>" . parinfer-smart-tab:dwim-left))
+;;  :init
+;;  (progn
+;;    (setq parinfer-extensions
+;;          '(defaults
+;;             pretty-parens
+;;             smart-tab
+;;             smart-yank))))
 
 ;;
 ;; Octave
