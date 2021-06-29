@@ -21,7 +21,7 @@
         interactive = auto
         status = auto
 [gui]
-	fontdiff = -family Inconsolata -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family Iosevka -size 18 -weight normal -slant roman -underline 0 -overstrike 0
 	gcwarning = false
 [credential]
 	helper = cache --timeout=360000
