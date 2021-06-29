@@ -126,6 +126,7 @@ in
     wget
     magic-wormhole
     cached-nix-shell
+    pandoc
 
     # internet
     # flashplayer
@@ -195,6 +196,7 @@ in
     subdl
     easytag
     picard
+    vokoscreen
 
     # music
     mixxx
