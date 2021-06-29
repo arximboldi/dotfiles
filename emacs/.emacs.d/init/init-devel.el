@@ -345,4 +345,10 @@
 ;;
 (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
 
+;;
+;; USDA
+;;
+(require 'usda-mode)
+(add-to-list 'auto-mode-alist '("\\.usda\\'" . usda-mode))
+
 (provide 'init-devel)
