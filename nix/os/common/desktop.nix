@@ -126,7 +126,11 @@ in
     wget
     magic-wormhole
     cached-nix-shell
+
     pandoc
+    ispell
+    texlive.combined.scheme-medium
+    gnome.librsvg
 
     # internet
     # flashplayer
