@@ -72,7 +72,7 @@ in
       xf86videointel = pkgs.xorg.xf86videointel.overrideDerivation (old: {
         src = fetchGit {
           url = "https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel.git";
-          rev = "a511f22cdec56504913b457a2e60dafee8e2b570";
+          rev = "31486f40f8e8f8923ca0799aea84b58799754564";
         };
       });
     };

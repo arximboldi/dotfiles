@@ -36,11 +36,11 @@ in
   services.xserver = {
     #videoDrivers = [ "modesetting" ];
     #useGlamor = true;
-     videoDrivers = [ "intel" ];
-     deviceSection = ''
-       Option "DRI" "2"
-       Option "TearFree" "true"
-     '';
+    videoDrivers = [ "intel" ];
+    deviceSection = ''
+      Option "DRI" "2"
+      Option "TearFree" "true"
+    '';
   };
 
   services.fprintd.enable = true;
