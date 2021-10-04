@@ -359,7 +359,7 @@ in
     enableSSHSupport = true;
   };
   services.openssh.enable = true;
-  services.tailscale.enable = true;
+  # services.tailscale.enable = true;
   # services.picom.enable = true;
   # services.picom.vSync = true;
 
@@ -372,6 +372,8 @@ in
   networking.hosts = {
     "163.172.144.97" = ["orion1"];
     "163.172.181.40" = ["orion3"];
+    "78.46.255.228" = ["wendy"];
+    "162.55.172.27" = ["laurie"];
   };
 
   sound.enable = true;

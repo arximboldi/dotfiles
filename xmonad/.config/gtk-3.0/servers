@@ -83,4 +83,14 @@
       </metadata>
     </info>
   </bookmark>
+  <bookmark href="sftp://raskolnikov@bronze-dev.com/" added="2021-09-08T15:38:29.053262Z" modified="2021-09-08T15:38:29.053270Z" visited="2021-09-08T15:38:29.053265Z">
+    <title>/ on bronze-dev.com</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2021-09-08T15:38:29.053267Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
 </xbel>
