@@ -260,7 +260,7 @@ in
     xorg.xkill
     appimage-run
     lsof
-    virtualbox
+    #virtualbox
     lm_sensors
     stress-ng
     gparted
