@@ -176,6 +176,7 @@ in
     mpv
     mplayer
     vlc
+    audacious
     ffmpeg-full
     mpd
     cantata
