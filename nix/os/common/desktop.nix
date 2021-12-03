@@ -158,7 +158,7 @@ in
     zoom-us
     unstable.discord
     gnome3.polari
-    tdesktop
+    unstable.tdesktop
     signal-desktop
     wire-desktop
     obs-studio
