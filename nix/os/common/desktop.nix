@@ -164,7 +164,7 @@ in
     obs-studio
 
     # mail
-    notmuch
+    unstable.notmuch
     isync
     afew
     notify-desktop
