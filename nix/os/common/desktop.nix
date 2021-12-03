@@ -226,6 +226,8 @@ in
     # houdini
 
     # gaming
+    # moonlight-embedded
+    moonlight-qt
     wineStaging
     winetricks
     protontricks
