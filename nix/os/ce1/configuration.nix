@@ -28,7 +28,7 @@ in
 
   systemd.services.modem-manager.enable = true;
   # https://nixos.wiki/wiki/Accelerated_Video_Playback
-  # hardware.opengl.extraPackages = with pkgs; [ libva intel-media-driver vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
+  hardware.opengl.extraPackages = with pkgs; [ libva intel-media-driver vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
   # hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva vaapiIntel libvdpau-va-gl vaapiVdpau ];
 
   hardware.acpilight.enable = true;
