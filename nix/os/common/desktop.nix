@@ -91,14 +91,20 @@ in
     # programming
     zile
     emacs
+    vscode
     gitAndTools.gitFull
     gitAndTools.gh
     git-lfs
     mercurialFull
-    ((python3.withPackages (ps: with ps; [
+    ((unstable.python3.withPackages (ps: with ps; [
       ipython
       livereload
       pafy
+      pyliblo
+      twilio
+      inquirer
+      lxml
+      tabulate
     ])).override (args: { ignoreCollisions = true; }))
     clipgrab
     ruby
@@ -126,6 +132,14 @@ in
     wget
     magic-wormhole
     cached-nix-shell
+    nixops
+    unstable.cachix
+
+    linuxPackages.perf
+    hotspot
+    sysprof
+    valgrind
+    kcachegrind
 
     pandoc
     ispell
@@ -153,6 +167,7 @@ in
     # rambox
     unstable.skype
     unstable.slack
+    unstable.teams
     soulseekqt
     qt5.qtbase
     zoom-us
@@ -183,6 +198,12 @@ in
     gmpc
     covergrid
     mpdevil
+    ncmpc
+    ncmpcpp
+    ario
+    sonata
+    clerk
+    mmtc
     mpc_cli
     mpdris2
     mpdas
@@ -250,6 +271,8 @@ in
     retroarch
     mame
     dosbox
+    qemu
+    qtemu
 
     # utils
     gksu
@@ -304,6 +327,7 @@ in
     libnotify
     system-config-printer
 
+    wmctrl
     dunst
     xorg.xhost
     xvkbd
@@ -356,6 +380,7 @@ in
     enableNestopia = true;
   };
 
+  programs.evince.enable = true;
   programs.bash.enableCompletion = true;
   programs.gnupg.agent = {
     enable = true;
@@ -363,6 +388,7 @@ in
   };
   services.openssh.enable = true;
   # services.tailscale.enable = true;
+  services.sysprof.enable = true;
   # services.picom.enable = true;
   # services.picom.vSync = true;
 

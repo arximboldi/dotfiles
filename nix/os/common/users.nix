@@ -14,6 +14,7 @@
        "networkmanager"
        "docker"
        "wireshark"
+       "sysprof"
      ];
   };
   users.extraUsers.nikki = {
