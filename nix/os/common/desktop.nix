@@ -85,6 +85,10 @@ in
     });
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "python2.7-Pillow-6.2.2"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -237,6 +241,7 @@ in
     krita
     inkscape
     libreoffice-fresh
+    scribus
     xournalpp
     pdftk
     gcolor2
@@ -405,6 +410,7 @@ in
     "78.46.255.228" = ["wendy"];
     "162.55.172.27" = ["laurie"];
     "49.12.219.169" = ["daphne"];
+    "145.239.199.88" = ["andromeda"];
   };
 
   sound.enable = true;
