@@ -7,7 +7,6 @@ file:///home/raskolnikov/pic
 file:///home/raskolnikov/down
 file:///home/raskolnikov/media/music
 file:///home/raskolnikov/media/videos
-sftp://root@andromeda.re/var/lib/transmission sftp://andromeda
 sftp://raskolnikov@bronze-dev.com/home/raskolnikov/public sftp://wendy
 sftp://nexus9.local/home/raskolnikov sftp://nexus9
 sftp://raskolnikov@orion1:5488/home/raskolnikov sftp://orion1
