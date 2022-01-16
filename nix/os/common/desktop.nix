@@ -261,7 +261,7 @@ in
     quake3pointrelease
     quake3e
     openarena
-    alienarena
+    #alienarena
     superTuxKart
     gnujump
     # liquidwar
