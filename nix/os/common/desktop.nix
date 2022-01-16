@@ -185,6 +185,7 @@ in
     notify-desktop
     gnupg
     msmtp
+    evolution
 
     # media
     smplayer
