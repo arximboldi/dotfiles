@@ -196,8 +196,8 @@ in
     mpd
     cantata
     gmpc
-    covergrid
-    mpdevil
+    #covergrid
+    #mpdevil
     ncmpc
     ncmpcpp
     ario
