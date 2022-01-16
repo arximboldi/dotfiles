@@ -6,11 +6,10 @@ let
 
 in
 {
-  # nixpkgs.overlays = [
-  #   (import (builtins.fetchTarball {
-  #     url = https://github.com/nix-community/emacs-overlay/archive/b74d4784e7a508f1a4eeec588c4057510ac2fbbbb.tar.gz;
-  #   }))
-  # ];
+  i18n.extraLocaleSettings = {
+    LC_TIME = "en_GB.UTF-8";
+    LC_MEASUREMENT = "en_GB.UTF-8";
+  };
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
