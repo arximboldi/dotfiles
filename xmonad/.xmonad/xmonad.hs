@@ -165,8 +165,8 @@ main = do
         , ((noModMask, xF86XK_AudioPrev), spawn $ "mpc prev")
         , ((noModMask, xF86XK_AudioPlay), spawn $ "mpc toggle")
         , ((noModMask, xF86XK_AudioStop), spawn $ "mpc stop")
-        , ((noModMask, xF86XK_AudioLowerVolume), spawn $ "pulseaudio-ctl down")
-        , ((noModMask, xF86XK_AudioRaiseVolume), spawn $ "pulseaudio-ctl up")
+        , ((noModMask, xF86XK_AudioLowerVolume), spawn $ "pamixer -d 5")
+        , ((noModMask, xF86XK_AudioRaiseVolume), spawn $ "pamixer -i 5")
         -- Nautilus
         , ((mask, xK_n), spawn $ "nautilus")
         , ((mask .|. shiftMask, xK_n), spawn $ "nautilus -w")

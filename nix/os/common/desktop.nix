@@ -319,7 +319,7 @@ in
     pa_applet
     pasystray
     pavucontrol
-    pulseaudio-ctl
+    pamixer
     blueman
     gnome3.gnome-bluetooth
     blueberry
@@ -406,13 +406,22 @@ in
     "49.12.219.169" = ["daphne"];
   };
 
-  sound.enable = true;
   services.flatpak.enable = true;
 
   hardware.opengl.driSupport32Bit = true;
   hardware.bluetooth.enable = true;
-  hardware.pulseaudio = {
+
+  security.rtkit.enable = true;
+  # sound.enable = true;
+  services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+  hardware.pulseaudio = {
+    enable = false;
     support32Bit = true;
     package = pkgs.pulseaudioFull;
   };
