@@ -187,6 +187,7 @@
 ;;
 
 (add-to-list 'auto-mode-alist '("\\.qml\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
 
 (font-lock-add-keywords
  'js-mode
