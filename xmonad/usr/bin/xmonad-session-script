@@ -40,6 +40,8 @@ mpd &
 mpDris2 &
 taffybar &
 ~/usr/bin/xdotool-all Xfdesktop windowlower
+~/usr/bin/xdotool-all Xfdesktop windowlower
+~/usr/bin/xdotool-all Xfdesktop windowlower
 
 echo ===
 echo done initializing script!!!
