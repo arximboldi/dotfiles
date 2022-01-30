@@ -244,8 +244,9 @@ main = do
         [ resource  =? "Do"              --> doIgnore
         , className =? "stalonetray"     --> doIgnore
         , className =? "trayer"          --> doIgnore
-        , className =? "Xfdesktop"       --> doHideIgnore
-        , title     =? "Desktop"         --> doHideIgnore
+        , className =? "Xfdesktop"       --> doIgnore
+        , className =? "xfdesktop"       --> doIgnore
+        , title     =? "Desktop"         --> doIgnore
 
         , className =? "Cinelerra"               --> doCenterFloat
         , className =? "sun-applet-Main"         --> doCenterFloat

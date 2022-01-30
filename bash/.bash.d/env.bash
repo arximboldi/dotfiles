@@ -267,3 +267,5 @@ load-env () {
     done
     source "$ENV_STORAGE/$1.sh"
 }
+
+XCURSOR_THEME=Adwaita

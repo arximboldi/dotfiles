@@ -2,6 +2,8 @@
 
 set -o xtrace
 
+exec 3>&1 4>&2 >~/.xmonad-session-log 2>&1
+
 killall -rw notify-osd &
 killall -rw xfce4-notifyd &
 killall -rw dunst &
@@ -13,6 +15,7 @@ killall -rw mpd &
 killall -rw mpdas &
 killall -rw mpDris2 &
 killall -rw taffybar &
+killall -rw xfsettings &
 killall -rw status-notifier-watcher &
 wait
 
@@ -20,12 +23,11 @@ xset -b
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
 dunst &
 status-notifier-watcher &
-feh --bg-fill ~/pic/wallpaper/default.jpg
-xfsettingsd -D --replace --daemon
-xfce4-power-manager --restart --daemon
-taffybar &
-tracker daemon start
-gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
+xfsettingsd --replace -D &
+xfdesktop -R -D &
+xfce4-power-manager --restart &
+tracker3 daemon -s &
+gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop &
 ~/usr/bin/startemacs &
 pidof syncthing || syncthing &
 pidof redshift || redshift-gtk -l 52.51:13.4 &
@@ -34,12 +36,13 @@ pasystray -N all &
 nm-applet --sm-disable --indicator &
 blueman-applet &
 mpd &
-mpdas &
+# mpdas &
 mpDris2 &
-nautilus -n -h
-
+taffybar &
+~/usr/bin/xdotool-all Xfdesktop windowlower
 
 echo ===
 echo done initializing script!!!
 echo ===
+
 wait
