@@ -425,6 +425,9 @@ in
     support32Bit = true;
     package = pkgs.pulseaudioFull;
   };
+  services.gnome3.tracker.enable = true;
+  services.gnome3.tracker-miners.enable = true;
+  xdg.portal.gtkUsePortal = true;
 
   hardware.openrazer.enable = true;
 
