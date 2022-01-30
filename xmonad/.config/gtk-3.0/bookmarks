@@ -16,3 +16,4 @@ sftp://mjpi.local/ sftp://mjpi
 sftp://orion0:2225/ sftp://pickup (remote)
 sftp://pickup.local/ sftp://pickup
 sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp://es.gnu.org
+sftp://andromeda.re/var/lib/transmission/Downloads sftp://andromeda.re
