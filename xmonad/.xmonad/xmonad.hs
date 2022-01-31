@@ -259,7 +259,7 @@ main = do
         , className =? "Gcr-prompter"            --> doCenterFloat
         , className =? "Emoji-keyboard"          --> doCenterFloat
         , className =? "Pavucontrol"             --> (doRectFloat $ W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
-        , className =? "Screenkey"        --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
+        , className =? "Screenkey"               --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
 
         , className =? "Icedove-bin"      --> doShift "mail"
         , className =? "Icedove"          --> doShift "mail"
@@ -269,6 +269,8 @@ main = do
         , className =? "Slack"            --> doShift "chat"
         , className =? "discord"          --> doShift "chat"
         , className =? "TelegramDesktop"  --> doShift "chat"
+
+        , title     =? "SoundX AI"       --> doCenterFloat
 
         , isFullscreen --> doFullFloat
         , checkDialog  --> doCenterFloat
