@@ -4,6 +4,15 @@ set -o xtrace
 
 exec 3>&1 4>&2 >~/.xmonad-session-log 2>&1
 
+function xdotool-all-sync() {
+    windows=`xdotool search --sync --onlyvisible $1`
+    for id in $windows
+    do
+        echo running: xdotool $2 $id
+        xdotool $2 $id
+    done
+}
+
 killall -rw notify-osd &
 killall -rw xfce4-notifyd &
 killall -rw dunst &
@@ -39,9 +48,9 @@ mpd &
 # mpdas &
 mpDris2 &
 taffybar &
-~/usr/bin/xdotool-all Xfdesktop windowlower
-~/usr/bin/xdotool-all Xfdesktop windowlower
-~/usr/bin/xdotool-all Xfdesktop windowlower
+for i in 1 2 3; do
+    xdotool-all-sync Xfdesktop windowlower
+done
 
 echo ===
 echo done initializing script!!!
