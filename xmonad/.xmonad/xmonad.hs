@@ -293,7 +293,7 @@ main = do
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   putEnv "QT_STYLE_OVERRIDE=breeze"
   putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
-  putEnv "QT_SCALE_FACTOR=1"
+  putEnv "QT_SCALE_FACTOR=1.25"
   putEnv "QT_QPA_PLATFORMTHEME=lxqt"
   putEnv "GTK_THEME=Numix"
   spawn "~/usr/bin/xmonad-session-script"
@@ -311,5 +311,7 @@ main = do
     , layoutHook         = layout'
     , startupHook        = setDefaultCursor xC_arrow
     , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook <+> docksEventHook
-    , logHook            = spawn "~/usr/bin/xdotool-all Dunst windowraise"
+    , logHook            = do
+        spawn "~/usr/bin/xdotool-all Dunst windowraise"
+        spawn "~/usr/bin/xdotool-all Xfdesktop windowlower"
     }

@@ -48,9 +48,6 @@ mpd &
 # mpdas &
 mpDris2 &
 taffybar &
-for i in 1 2 3; do
-    xdotool-all-sync Xfdesktop windowlower
-done
 
 echo ===
 echo done initializing script!!!
