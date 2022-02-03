@@ -360,7 +360,15 @@ in
       source-code-pro
       iosevka
       iosevka-bin
+      helvetica-neue-lt-std
+      aileron
     ];
+    fontconfig.localConf = ''
+    <alias>
+      <family>Source Sans Pro</family>
+      <prefer><family>Source Sans 3</family></prefer>
+    </alias>
+    '';
   };
 
   nixpkgs.config.retroarch = {
