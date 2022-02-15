@@ -296,6 +296,7 @@ main = do
   putEnv "QT_SCALE_FACTOR=1.25"
   putEnv "QT_QPA_PLATFORMTHEME=lxqt"
   putEnv "GTK_THEME=Numix"
+  putEnv "GPODDER_HOME=/home/raskolnikov/sync/gpodder"
   spawn "~/usr/bin/xmonad-session-script"
   xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
     { terminal           = terminalCmd
