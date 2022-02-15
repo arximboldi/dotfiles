@@ -367,6 +367,10 @@ in
     <alias>
       <family>Source Sans Pro</family>
       <prefer><family>Source Sans 3</family></prefer>
+      <family>Source Sans Pro Black</family>
+      <prefer><family>Source Sans 3 Black</family></prefer>
+      <family>Source Sans Pro Light</family>
+      <prefer><family>Source Sans 3 Light</family></prefer>
     </alias>
     '';
   };
