@@ -47,6 +47,21 @@ in
 
   services.fprintd.enable = true;
 
+  #services.mediatomb.enable = true;
+  #services.mediatomb.openFirewall = true;
+  #services.mediatomb.mediaDirectories = [
+  #  {
+  #    path = "/run/media/raskolnikov/elemento/videos/pelis/erotica/vr";
+  #    recursive = true;
+  #  }
+  #];
+
+  services.minidlna.enable = true;
+  services.minidlna.mediaDirs = [
+    "/run/media/raskolnikov/elemento/videos/pelis/erotica/vr"
+  ];
+  systemd.services.minidlna.serviceConfig.User = pkgs.lib.mkForce "root";
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
