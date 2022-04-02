@@ -12,6 +12,7 @@
       ../common/musnix.nix
       ../common/desktop.nix
       ../common/users.nix
+      ../common/ssh-phone-home.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -22,6 +23,15 @@
 
   nixpkgs.config.allowUnfree = true;
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  services.ssh-phone-home = {
+    enable = true;
+    localUser = "raskolnikov";
+    remoteHostname = "sinusoid.es";
+    remotePort = 5488;
+    remoteUser = "raskolnikov";
+    bindPort = 5489;
+  };
 
   virtualisation.docker.enableNvidia = true;
 
