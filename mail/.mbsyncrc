@@ -160,3 +160,35 @@ Patterns *
 Create Slave
 Expunge Slave
 Sync All
+
+#
+# gmail account
+#
+
+IMAPAccount bronze
+Host imap.gmail.com
+SSLType IMAPS
+AuthMechs LOGIN
+User juanpe@bronze.ai
+# genertate with:
+# $ gpg2 --output pass.gpg --symmetric pass
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"imap.gmail.com\" && $4==\"juanpe@bronze.ai\" {print $6}'"
+
+IMAPStore bronze-remote
+Account bronze
+
+MaildirStore bronze-local
+Path ~/mail/bronze/
+Inbox ~/mail/bronze/Inbox
+Subfolders Verbatim
+
+Channel bronze
+Master :bronze-remote:
+Slave :bronze-local:
+# Exclude everything under the internal [Gmail] folder,
+# except the interesting folders
+# Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important"
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+Create Slave
+Expunge Slave
+Sync All

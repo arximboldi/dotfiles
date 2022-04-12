@@ -11,6 +11,7 @@
      (:name "gnu" :query "tag:inbox and tag:gnu" :key "g" :sort-order newest-first)
      (:name "riseup" :query "tag:inbox and tag:riseup" :key "r" :sort-order newest-first)
      (:name "gmail" :query "tag:inbox and tag:gmail" :key "G" :sort-order newest-first)
+     (:name "bronze" :query "tag:inbox and tag:bronze" :key "b" :sort-order newest-first)
      (:name "unread" :query "tag:unread" :key "u" :sort-order newest-first)
      (:name "flagged" :query "tag:flagged" :key "f" :sort-order newest-first)
      (:name "sent" :query "tag:sent" :key "t" :sort-order newest-first)
@@ -51,6 +52,10 @@
         ("sinusoidal" nil
          "Juan Pedro Bolívar Puente <juanpe@sinusoid.al>"
          nil (("Fcc" . "runbox/Sent"))
+         nil nil)
+        ("bronze" nil
+         "Juan Pedro Bolívar Puente <juanpe@bronze.ai>"
+         nil (("Fcc" . "bronze/Sent"))
          nil nil)))
 
 (setq gnus-alias-default-identity "sinusoides")
@@ -59,6 +64,7 @@
         ("riseup" ("any" "juanpe@riseup.net" both) "riseup")
         ("sinusoides" ("any" "*@sinusoid.es" both) "sinusoides")
         ("sinusoidal" ("any" "*@sinusoid.al" both) "sinusoidal")
+        ("bronze" ("any" "*@bronze.ai" both) "bronze")
         ("gnu" ("any" "*@gnu.org" both) "gnu")
         ("es.gnu" ("any" "*@es.gnu.org" both) "gnu")))
 

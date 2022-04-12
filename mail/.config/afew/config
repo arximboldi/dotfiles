@@ -41,18 +41,22 @@ query = path:runbox/**
 tags = +runbox
 
 [Filter.8]
+query = path:bronze/**
+tags = +bronze
+
+[Filter.9]
 query = from:noreply@linkedin.com
 tags = +linkedin
 
-[Filter.9]
+[Filter.10]
 query = from:noreply@couchsurfing.com
 tags = +couchsurfing
 
-[Filter.10]
+[Filter.11]
 query = from:notifications@github.com
 tags = +github
 
-[Filter.11]
+[Filter.12]
 query = \
       tag:lists/hackmeeting or \
       tag:lists/hacktivistas or \
@@ -62,11 +66,11 @@ query = \
       tag:sent
 tags = -new;-inbox
 
-[Filter.12]
+[Filter.13]
 query = path:gmane/**
 tags = +gmane
 
-[Filter.13]
+[Filter.14]
 query = path:elmo/**
 tags = +elmo
 
@@ -74,11 +78,15 @@ tags = +elmo
 
 [MailMover]
 rename = true
-folders = gmail/Inbox gnu/Inbox riseup/Inbox
+folders = gmail/Inbox gnu/Inbox riseup/Inbox bronze/Inbox
 gmail/Inbox   = \
               'tag:deleted':gmail/Trash \
               'tag:spam':gmail/Junk \
               'tag:archived':gmail/Archives
+bronze/Inbox   = \
+              'tag:deleted':bronze/Trash \
+              'tag:spam':bronze/Junk \
+              'tag:archived':bronze/Archives
 gnu/Inbox     = \
               'tag:deleted':gnu/Trash \
               'tag:spam':gnu/Junk \
