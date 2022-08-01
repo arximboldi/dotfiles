@@ -78,7 +78,7 @@ main = do
       focusedColor    = "#F0544C"
       textColor       = "#ddd"
       textFont        = "Cantarell-20:bold"
-      xpConfig        = defaultXPConfig
+      xpConfig        = def
         { font              = "xft:" ++ textFont
         , bgColor           = headerColor
         , fgColor           = textColor
@@ -107,8 +107,8 @@ main = do
         , ((mask, xK_space), spawn dmenuCmd)
         , ((mask, xK_p), spawn dmenuCmd)
         , ((mask .|. shiftMask, xK_p), runOrRaisePrompt xpConfig)
-        , ((mask .|. shiftMask, xK_g), windowPromptGoto  xpConfig)
-        , ((mask .|. shiftMask, xK_b), windowPromptBring xpConfig)
+        , ((mask .|. shiftMask, xK_g), windowPrompt def Goto wsWindows)
+        , ((mask .|. shiftMask, xK_b), windowPrompt def Bring allWindows)
         , ((mask, xK_i), workspacePrompt xpConfig (windows . W.view))
         -- close focused window
         , ((mask, xK_c), kill)
@@ -161,10 +161,10 @@ main = do
         , ((mask, xK_Page_Up),   spawn $ "mpc prev")
         , ((mask, xK_Home),      spawn $ "mpc toggle")
         , ((mask, xK_End),       spawn $ "mpc stop")
-        , ((noModMask, xF86XK_AudioNext), spawn $ "mpc next")
-        , ((noModMask, xF86XK_AudioPrev), spawn $ "mpc prev")
-        , ((noModMask, xF86XK_AudioPlay), spawn $ "mpc toggle")
-        , ((noModMask, xF86XK_AudioStop), spawn $ "mpc stop")
+        -- , ((noModMask, xF86XK_AudioNext), spawn $ "mpc next")
+        -- , ((noModMask, xF86XK_AudioPrev), spawn $ "mpc prev")
+        -- , ((noModMask, xF86XK_AudioPlay), spawn $ "mpc toggle")
+        -- , ((noModMask, xF86XK_AudioStop), spawn $ "mpc stop")
         , ((noModMask, xF86XK_AudioLowerVolume), spawn $ "pamixer -d 5")
         , ((noModMask, xF86XK_AudioRaiseVolume), spawn $ "pamixer -i 5")
         -- Nautilus
@@ -177,9 +177,9 @@ main = do
         , ((mask, xK_w), spawn $ "wmctrl -xa firefox || firefox")
         , ((mask .|. shiftMask, xK_w), spawn $ "firefox")
         -- take a screenshot of entire display
-        , ((noModMask, xK_Print),        spawn "gnome-screenshot")
-        , ((shiftMask, xK_Print),        spawn "gnome-screenshot -w -B")
-        , ((mask,      xK_Print),        spawn "gnome-screenshot -i")
+        , ((noModMask, xK_Print),        spawn "xfce4-screenshooter -f -s ~/pic")
+        , ((shiftMask, xK_Print),        spawn "xfce4-screenshooter -r -s ~/pic")
+        , ((mask,      xK_Print),        spawn "xfce4-screenshooter")
         -- open configuration manels
         , ((noModMask, xF86XK_Tools),    spawn "xfce4-settings-manager")
         , ((shiftMask, xF86XK_Tools),    spawn "gnome-control-center")
@@ -298,7 +298,7 @@ main = do
   putEnv "GTK_THEME=Numix"
   putEnv "GPODDER_HOME=/home/raskolnikov/sync/gpodder"
   spawn "~/usr/bin/xmonad-session-script"
-  xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ withNavigation2DConfig defaultNavigation2DConfig $ defaultConfig
+  xmonad $ ewmhFullscreen . ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ docks $ def
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
     , borderWidth        = 2
@@ -311,7 +311,7 @@ main = do
     , manageHook         = manageHook' <+> manageDocks
     , layoutHook         = layout'
     , startupHook        = setDefaultCursor xC_arrow
-    , handleEventHook    = handleEventHook defaultConfig <+> fullscreenEventHook <+> docksEventHook
+    , handleEventHook    = handleEventHook def
     , logHook            = do
         spawn "~/usr/bin/xdotool-all Dunst windowraise"
         spawn "~/usr/bin/xdotool-all Xfdesktop windowlower"

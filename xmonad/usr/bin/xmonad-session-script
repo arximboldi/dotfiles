@@ -20,34 +20,40 @@ killall -rw nm-applet &
 killall -rw xfdesktop &
 killall -rw pasystray &
 killall -rw blueman-applet &
-killall -rw mpd &
+# killall -rw mpd &
 killall -rw mpdas &
 killall -rw mpDris2 &
 killall -rw taffybar &
-killall -rw xfsettings &
+# killall -rw xfsettings &
 killall -rw status-notifier-watcher &
 wait
 
 xset -b
+xwallpaper --daemon --clear --zoom ~/pic/wallpaper/autechre_desktop_1680x1050_wallpaper-349586.jpg
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
 dunst &
 status-notifier-watcher &
-xfsettingsd --replace -D &
-xfdesktop -R -D &
-xfce4-power-manager --restart &
-tracker3 daemon -s &
+xfsettingsd --replace -D --daemon
+taffybar &
+tracker3 daemon -s
 gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop &
 ~/usr/bin/startemacs &
 pidof syncthing || syncthing &
-pidof redshift || redshift-gtk -l 52.51:13.4 &
-dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect &
+pidof mpd || mpd &
+# pidof redshift || redshift-gtk -l 52.51:13.4 &
+sleep 1
+
+# This was a hack to get the modem to update and show up
+# dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect &
+
+# start all programs with applets now
+xfce4-power-manager  --restart --daemon
 pasystray -N all &
 nm-applet --sm-disable --indicator &
 blueman-applet &
-mpd &
 # mpdas &
 mpDris2 &
-taffybar &
+
 
 echo ===
 echo done initializing script!!!
