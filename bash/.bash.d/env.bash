@@ -268,4 +268,15 @@ load-env () {
     source "$ENV_STORAGE/$1.sh"
 }
 
+with-env () {
+    local VAR
+    for VAR in $(compgen -A export); do
+        blacklisted-env $VAR || \
+            unset $VAR
+    done
+    source "$ENV_STORAGE/$1.sh"
+    shift
+    $@
+}
+
 XCURSOR_THEME=Adwaita
