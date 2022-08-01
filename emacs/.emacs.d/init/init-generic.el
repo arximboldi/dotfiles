@@ -1,5 +1,7 @@
 ;;; emacs config file -- Juan Pedro Bolívar Puente
 
+(telephone-line-mode 1)
+
 ;;
 ;; Emacs default options in another file.
 ;; Needs to be first thing evah!
