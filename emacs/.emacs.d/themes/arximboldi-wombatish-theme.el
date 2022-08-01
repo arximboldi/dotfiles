@@ -159,7 +159,11 @@ are included.")
    ;; popup mode stuff
    '(popup-face ((t (:inherit default :background "black"))))
    '(popup-menu-mouse-face ((t (:background "#353535"))))
-   '(popup-menu-selection-face ((t (:inherit default :background "#242424" :weight bold))))))
+   '(popup-menu-selection-face ((t (:inherit default :background "#242424" :weight bold))))
+   ;; telephone-line mode stuff
+   '(telephone-line-accent-active ((t (:inherit mode-line :background "#242424"))))
+   '(telephone-line-accent-inactive ((t (:inherit telephone-line-accent-active :background "#444444"))))
+   ))
 
 (custom-theme-set-variables
  'arximboldi-wombatish
