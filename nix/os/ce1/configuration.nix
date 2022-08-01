@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, ... }@arg:
 
 let
   unstable = import <nixos-unstable> {};
@@ -22,6 +22,7 @@ in
 
   networking.hostName = "ce1";
   time.timeZone = "Europe/Berlin"; # "Europe/Moscow"; # "America/Vancouver"; # "America/New_York"; # "Europe/Berlin";
+
   # Damn Rubygems and Bitbucket...
   networking.enableIPv6 = false;
   nixpkgs.config.allowUnfree = true;
@@ -55,10 +56,10 @@ in
   #    recursive = true;
   #  }
   #];
-
   services.minidlna.enable = true;
   services.minidlna.mediaDirs = [
     "/run/media/raskolnikov/elemento/videos/pelis/erotica/vr"
+    "/home/raskolnikov/media/videos"
   ];
   systemd.services.minidlna.serviceConfig.User = pkgs.lib.mkForce "root";
 

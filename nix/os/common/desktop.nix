@@ -4,12 +4,25 @@
 let
   unstable = import <nixos-unstable> {};
 
+  nixos-21_11 = import (
+    let rev = "ec6eaba9dfcfdd11547d75a193e91e26701bf7e3";
+    in builtins.fetchTarball rec {
+      name   = "nixpkgs-${rev}";
+      url    = "https://github.com/arximboldi/nixpkgs/archive/${rev}.tar.gz";
+      sha256 = "018658ypakpg9yxbyzd06vaxzs5956lr30jkfvw0fzn33pp01xdg";
+    }
+  ) {};
+
 in
 {
   i18n.extraLocaleSettings = {
     LC_TIME = "en_GB.UTF-8";
     LC_MEASUREMENT = "en_GB.UTF-8";
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "python2.7-pyjwt-1.7.1"
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
@@ -67,14 +80,6 @@ in
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
     });
-    xorg = pkgs.xorg // {
-      xf86videointel = pkgs.xorg.xf86videointel.overrideDerivation (old: {
-        src = fetchGit {
-          url = "https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel.git";
-          rev = "31486f40f8e8f8923ca0799aea84b58799754564";
-        };
-      });
-    };
     sidequest-latest = pkgs.sidequest.overrideDerivation (old: rec {
       version = "0.10.18";
       src = pkgs.fetchurl {
@@ -89,7 +94,7 @@ in
   environment.systemPackages = with pkgs; [
     # programming
     zile
-    emacs
+    emacs28NativeComp
     vscode
     gitAndTools.gitFull
     gitAndTools.gh
@@ -143,10 +148,12 @@ in
     pandoc
     ispell
     texlive.combined.scheme-medium
-    gnome.librsvg
+    librsvg
 
     # internet
     # flashplayer
+    wirelesstools
+    iw
     thunderbird
     transmission-gtk
     unstable.firefox
@@ -158,13 +165,13 @@ in
         purple-facebook
         purple-hangouts
         purple-matrix
-        telegram-purple
+        #telegram-purple
       ];
     })
     # station
     # franz
     # rambox
-    unstable.skype
+    unstable.skypeforlinux
     unstable.slack
     unstable.teams
     soulseekqt
@@ -249,7 +256,7 @@ in
     # gaming
     # moonlight-embedded
     moonlight-qt
-    wineStaging
+    wine-staging
     winetricks
     protontricks
     steam
@@ -275,7 +282,8 @@ in
     qtemu
 
     # utils
-    gksu
+    # gksu
+    gnome.gnome-terminal
     stow
     usbutils
     trash-cli
@@ -293,14 +301,15 @@ in
     hfsprogs
     exfat
     pv
-    cv
+    progress
     alarm-clock-applet
     xmagnify
     wallutils
+    xwallpaper
 
     # lte internet
     modemmanager
-    mobile_broadband_provider_info
+    mobile-broadband-provider-info
     usb-modeswitch
     usb-modeswitch-data
     tailscale
@@ -339,7 +348,14 @@ in
     unetbootin
     picom
     gnome3.gnome-tweaks
+
+    # https://github.com/NixOS/nixpkgs/issues/43836#issuecomment-419217138
+    hicolor-icon-theme
+    gnome-icon-theme
   ];
+
+  services.xserver.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+  gtk.iconCache.enable = true;
 
   fonts = {
     fontDir.enable = true;
@@ -459,6 +475,7 @@ in
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
+      haskellPackages = pkgs.haskell.packages.ghc8107;
       extraPackages = hs: [hs.taffybar];
     };
   };
@@ -467,6 +484,6 @@ in
   programs.dconf.enable = true;
   programs.seahorse.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
-  services.dbus.packages = [ pkgs.gnome3.gnome-keyring pkgs.gnome3.gcr ];
+  services.dbus.packages = [ pkgs.gnome3.gnome-keyring pkgs.gcr ];
   services.gnome.gnome-keyring.enable = true;
 }
