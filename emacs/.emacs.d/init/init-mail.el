@@ -33,9 +33,13 @@
 ;;  - Signature
 
 (setq gnus-alias-identity-alist
-      `(("gmail" nil
-         "Juan Pedro Bolívar Puente <magnicida@gmail.com>" nil
-         (("Fcc" . "gmail/Sent"))
+      `(;; ("gmail" nil
+        ;;  "Juan Pedro Bolívar Puente <magnicida@gmail.com>" nil
+        ;;  (("Fcc" . "gmail/Sent"))
+        ;;  nil nil)
+        ("bronze" nil
+         "Juan Pedro Bolívar Puente <juanpe@bronze.ai>"
+         nil (("Fcc" . "bronze/Sent"))
          nil nil)
         ("gnu" nil
          "Juan Pedro Bolívar Puente <raskolnikov@gnu.org>" nil
@@ -52,21 +56,19 @@
         ("sinusoidal" nil
          "Juan Pedro Bolívar Puente <juanpe@sinusoid.al>"
          nil (("Fcc" . "runbox/Sent"))
-         nil nil)
-        ("bronze" nil
-         "Juan Pedro Bolívar Puente <juanpe@bronze.ai>"
-         nil (("Fcc" . "bronze/Sent"))
          nil nil)))
 
-(setq gnus-alias-default-identity "sinusoides")
+(setq gnus-alias-default-identity "bronze")
+
 (setq gnus-alias-identity-rules
-      '(("gmail" ("any" "magnicida@gmail.com" both) "gmail")
-        ("riseup" ("any" "juanpe@riseup.net" both) "riseup")
-        ("sinusoides" ("any" "*@sinusoid.es" both) "sinusoides")
-        ("sinusoidal" ("any" "*@sinusoid.al" both) "sinusoidal")
-        ("bronze" ("any" "*@bronze.ai" both) "bronze")
-        ("gnu" ("any" "*@gnu.org" both) "gnu")
-        ("es.gnu" ("any" "*@es.gnu.org" both) "gnu")))
+      '(;("gmail" ("any" "magnicida@gmail.com" both) "gmail")
+        ("bronze"     ("any" "@bronze.ai" both) "bronze")
+        ("riseup"     ("any" "@riseup.net" both) "riseup")
+        ("sinusoides" ("any" "@sinusoid.es" both) "sinusoides")
+        ("sinusoidal" ("any" "@sinusoid.al" both) "sinusoidal")
+        ;;("gnu"        ("any" "@gnu.org" both) "gnu")
+        ;;("es.gnu"     ("any" "@es.gnu.org" both) "gnu")
+        ))
 
 (add-hook 'message-setup-hook 'gnus-alias-determine-identity)
 (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
