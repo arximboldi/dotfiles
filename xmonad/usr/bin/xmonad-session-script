@@ -19,6 +19,7 @@ killall -rw dunst &
 killall -rw nm-applet &
 killall -rw xfdesktop &
 killall -rw pasystray &
+killall -rw xwallpaper &
 killall -rw blueman-applet &
 # killall -rw mpd &
 killall -rw mpdas &
@@ -29,7 +30,7 @@ killall -rw status-notifier-watcher &
 wait
 
 xset -b
-xwallpaper --daemon --clear --zoom ~/pic/wallpaper/autechre_desktop_1680x1050_wallpaper-349586.jpg
+xwallpaper --daemon --clear --zoom ~/pic/wallpaper/default.jpg
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
 dunst &
 status-notifier-watcher &
