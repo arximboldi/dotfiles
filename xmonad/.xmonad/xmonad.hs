@@ -298,7 +298,7 @@ main = do
   putEnv "GTK_THEME=Numix"
   putEnv "GPODDER_HOME=/home/raskolnikov/sync/gpodder"
   spawn "~/usr/bin/xmonad-session-script"
-  xmonad $ ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ docks $ def
+  xmonad $ ewmhFullscreen . ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ docks $ def
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
     , borderWidth        = 2
