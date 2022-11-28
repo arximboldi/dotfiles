@@ -38,3 +38,5 @@
 	clean = git-lfs clean -- %f
 [init]
 	defaultBranch = master
+[github]
+	user = arximboldi
