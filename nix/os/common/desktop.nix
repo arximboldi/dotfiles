@@ -27,6 +27,16 @@ in
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
+    # Compile Mixxx using a PortAudio build that supports JACK
+    # Overriding PortAudio globally causes an expensive rebuild I want to avoid
+    # until the change is merged upstream
+    # https://github.com/NixOS/nixpkgs/pull/157561
+    mixxx = pkgs.mixxx.override {
+      portaudio = pkgs.portaudio.overrideAttrs (attrs: {
+        buildInputs = attrs.buildInputs ++ [ pkgs.jack2 ];
+      });
+    };
+
     mpdevil = with pkgs;  python3Packages.buildPythonApplication rec {
       pname = "mpdevil";
       version = "1.1.1";
