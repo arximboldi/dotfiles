@@ -21,12 +21,12 @@ killall -rw xfdesktop &
 killall -rw pasystray &
 killall -rw xwallpaper &
 killall -rw blueman-applet &
-# killall -rw mpd &
 killall -rw mpdas &
 killall -rw mpDris2 &
 killall -rw taffybar &
-# killall -rw xfsettings &
 killall -rw status-notifier-watcher &
+# killall -rw mpd &
+# killall -rw xfsettings &
 wait
 
 xset -b
