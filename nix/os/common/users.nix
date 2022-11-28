@@ -8,6 +8,7 @@
      extraGroups = [
        "wheel"
        "audio"
+       "pipewire"
        "users"
        "scanner"
        "lp"
@@ -23,6 +24,7 @@
      extraGroups = [
        "wheel"
        "audio"
+       "pipewire"
        "users"
        "scanner"
        "lp"
