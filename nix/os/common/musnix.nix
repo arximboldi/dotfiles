@@ -6,8 +6,8 @@ let
   musnix-src = fetchFromGitHub {
     owner  = "musnix";
     repo   = "musnix";
-    rev    = "ec088e16dee5103b41bb422000e518a8f95926c4";
-    sha256 = "196zpyk3ngaglx2hmpzg285r8lqhw74bbs5c6m77gg4mq6ai9fdn";
+    rev    = "52e344b30a364c709eb314e4f139074a7f81b19b";
+    sha256 = "sha256-crgQuuIXAJvWtheOuyACOeRtym4AERR2SsnE01e0VLc=";
   };
 
 in
@@ -16,4 +16,6 @@ in
     musnix-src.outPath
   ];
   musnix.enable = true;
+  musnix.kernel.realtime = true;
+  musnix.kernel.packages = pkgs.linuxPackages_latest_rt;
 }
