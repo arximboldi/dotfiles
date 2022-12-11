@@ -253,6 +253,7 @@ main = do
         , resource  =? "sun-awt-X11-XDialogPeer" --> doCenterFloat
         , resource  =? "javax.swing.JDialog"     --> doCenterFloat
         , className =? "Tgcm"                    --> doCenterFloat
+        , className =? "QjackCtl"                --> doSideFloat SE
         , className =? "Qjackctl"                --> doSideFloat SE
         , className =? "qjackctl"                --> doSideFloat SE
         , className =? "Qjackctl.real"           --> doSideFloat SE
