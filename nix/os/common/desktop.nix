@@ -377,6 +377,7 @@ in
     syncthing
     libnotify
     system-config-printer
+    simplescreenrecorder
 
     wmctrl
     dunst
