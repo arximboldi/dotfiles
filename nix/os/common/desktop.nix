@@ -1,4 +1,3 @@
-
 { config, pkgs, ... }:
 
 let
@@ -13,31 +12,45 @@ let
     }
   ) {};
 
-in
-{
-  i18n.extraLocaleSettings = {
-    LC_TIME = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-  };
+  arximboldi-overlay = self: super: {
+    # Optimize rubberband as much as possible... it seems to really ba
+    # slow library not sure what more we can do about this...
+    rubberband = super.rubberband.overrideAttrs (attrs: {
+      mesonFlags = ["--buildtype=release"
+                    "--optimization=3"
+                    "-Dcpp_args='-march=native'"];
+      makeFlags = attrs.makeFlags ++ ["-v"];
+      hardeningDisable = [ "all" ];
+    });
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "python2.7-pyjwt-1.7.1"
-    "libdwarf-20181024"
-  ];
+    # This causes too much to rebuild if set for everything... We are
+    # ok with the library sometimes being less optimized?
+    jack2-opt = super.jack2.overrideAttrs (attrs: {
+      CFLAGS   = "-O3 -march=native";
+      CXXFLAGS = "-O3 -march=native";
+      wafFlags = ["-v"];
+      hardeningDisable = [ "all" ];
+    });
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.packageOverrides = pkgs: {
     # Compile Mixxx using a PortAudio build that supports JACK
-    # Overriding PortAudio globally causes an expensive rebuild I want to avoid
-    # until the change is merged upstream
+    # Overriding PortAudio globally causes an expensive rebuild I want
+    # to avoid until the change is merged upstream...
     # https://github.com/NixOS/nixpkgs/pull/157561
-    mixxx = pkgs.mixxx.override {
-      portaudio = pkgs.portaudio.overrideAttrs (attrs: {
-        buildInputs = attrs.buildInputs ++ [ pkgs.jack2 ];
+    mixxx = (super.mixxx.override {
+      rubberband = self.rubberband;
+      portaudio = super.portaudio.overrideAttrs (attrs: {
+        CFLAGS   = "-O3 -march=native";
+        CXXFLAGS = "-O3 -march=native";
+        hardeningDisable = [ "all" ];
+        buildInputs = attrs.buildInputs ++ [self.jack2-opt];
       });
-    };
+    }).overrideAttrs (attrs: {
+      cmakeFlags = attrs.cmakeFlags ++ ["-DOPTIMIZE=native"];
+      makeFlags = ["VERBOSE=1"];
+      hardeningDisable = [ "all" ];
+    });
 
-    mpdevil = with pkgs;  python3Packages.buildPythonApplication rec {
+    mpdevil = with super;  python3Packages.buildPythonApplication rec {
       pname = "mpdevil";
       version = "1.1.1";
       src = fetchGit {
@@ -60,7 +73,7 @@ in
          glib-compile-schemas $out/share/glib-2.0/schemas
       '';
     };
-    covergrid = with pkgs;  python3Packages.buildPythonApplication rec {
+    covergrid = with super;  python3Packages.buildPythonApplication rec {
       pname = "covergrid";
       version = "2.1.12";
       src = fetchGit {
@@ -81,7 +94,7 @@ in
       ];
       strictDeps = false;
     };
-    xdotool-arximboldi = with pkgs; xdotool.overrideDerivation (attrs: rec {
+    xdotool-arximboldi = with super; xdotool.overrideDerivation (attrs: rec {
       name = "xdotool-${version}";
       version = "git";
       src = fetchFromGitHub {
@@ -91,14 +104,29 @@ in
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
     });
-    sidequest-latest = pkgs.sidequest.overrideDerivation (old: rec {
+    sidequest-latest = super.sidequest.overrideDerivation (old: rec {
       version = "0.10.18";
-      src = pkgs.fetchurl {
+      src = super.fetchurl {
 				url = "https://github.com/SideQuestVR/SideQuest/releases/download/v0.10.18/SideQuest-0.10.18.tar.xz";
         sha256 = "1dcn2kqcix48xb87185y5gxl2zkw450qjsfj6snm77y4ici5icwj";
 			};
     });
   };
+
+in
+{
+  i18n.extraLocaleSettings = {
+    LC_TIME = "en_GB.UTF-8";
+    LC_MEASUREMENT = "en_GB.UTF-8";
+  };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "python2.7-pyjwt-1.7.1"
+    "libdwarf-20181024"
+  ];
+
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ arximboldi-overlay ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -149,6 +177,8 @@ in
     cached-nix-shell
     nixops
     unstable.cachix
+    unzip
+    unrar
 
     linuxPackages.perf
     hotspot
@@ -227,9 +257,10 @@ in
     mpdas
     calibre
     qjackctl
-    jack2Full
+    jack2-opt
     gnome3.cheese
     sound-juicer
+    soundconverter
     lame
     audacity
     gthumb
@@ -456,9 +487,9 @@ in
   # sound.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
     pulse.enable = true;
+    alsa.enable = false;
+    alsa.support32Bit = false;
     jack.enable = false;
   };
   hardware.pulseaudio = {
