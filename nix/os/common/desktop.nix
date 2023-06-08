@@ -401,6 +401,7 @@ in
   gtk.iconCache.enable = true;
 
   fonts = {
+    enableDefaultFonts = true;
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
@@ -422,16 +423,20 @@ in
       helvetica-neue-lt-std
       aileron
     ];
-    fontconfig.localConf = ''
-    <alias>
-      <family>Source Sans Pro</family>
-      <prefer><family>Source Sans 3</family></prefer>
-      <family>Source Sans Pro Black</family>
-      <prefer><family>Source Sans 3 Black</family></prefer>
-      <family>Source Sans Pro Light</family>
-      <prefer><family>Source Sans 3 Light</family></prefer>
-    </alias>
-    '';
+    fontconfig.localConf = builtins.readFile ./fontconfig.xml;
+    # fontconfig.defaultFonts = {
+    #   emoji = [ "Noto Color Emoji" ];
+    #   monospace = [ "Noto Sans Mono" "emoji" ];
+    #   sansSerif = [ "Noto Sans" "emoji" ];
+    #   serif = [ "Noto Serif" "emoji" ];
+    # };
+    # fontconfig.defaultFonts = {
+    #   emoji = [ "Noto Color Emoji" ];
+    #   monospace = [  ];
+    #   sansSerif = [  ];
+    #   serif = [  ];
+    # };
+    # fontconfig.defaultFonts.emoji = ["OpenMoji Color"];
   };
 
   nixpkgs.config.retroarch = {
