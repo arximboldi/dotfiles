@@ -293,11 +293,11 @@ main = do
 
   putEnv "GTK_CSD=0"
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
-  putEnv "QT_STYLE_OVERRIDE=breeze"
   putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
+  -- putEnv "QT_STYLE_OVERRIDE=breeze"
   -- putEnv "QT_SCALE_FACTOR=1.25"
-  putEnv "QT_QPA_PLATFORMTHEME=lxqt"
-  putEnv "GTK_THEME=Numix"
+  -- putEnv "QT_QPA_PLATFORMTHEME=lxqt"
+  -- putEnv "GTK_THEME=adw-gtk3"
   putEnv "GPODDER_HOME=/home/raskolnikov/sync/gpodder"
   spawn "~/usr/bin/xmonad-session-script"
   xmonad $ ewmhFullscreen . ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ docks $ def
