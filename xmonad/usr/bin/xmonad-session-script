@@ -25,12 +25,13 @@ killall -rw mpdas &
 killall -rw mpDris2 &
 killall -rw taffybar &
 killall -rw status-notifier-watcher &
+killall -rw picom &
 # killall -rw mpd &
 # killall -rw xfsettings &
 wait
 
 xset -b
-xwallpaper --daemon --clear --zoom ~/pic/wallpaper/default.jpg
+picom -b
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
 dunst &
 status-notifier-watcher &
@@ -48,6 +49,7 @@ sleep 1
 # dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect &
 
 # start all programs with applets now
+xwallpaper --daemon --clear --zoom ~/pic/wallpaper/default.jpg
 xfce4-power-manager  --restart --daemon
 pasystray -N all &
 nm-applet --sm-disable --indicator &
