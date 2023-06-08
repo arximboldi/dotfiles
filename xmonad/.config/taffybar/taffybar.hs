@@ -36,7 +36,7 @@ main = do
   let fg = (0.43, 0.43, 0.43, 1)
   let darkText = "#444"
   let lightText = "#aaa"
-  let selected = "#F0544C"
+  let selected = "#F7EAB0"
 
   let memCallback = do
         mi <- parseMeminfo
@@ -54,7 +54,7 @@ main = do
 
   let memCfg = defaultGraphConfig
         { graphDataColors = [ fg ]
-        , graphLabel = Just $ pack $ colorize darkText "" "  MEM "
+        , graphLabel = Just $ pack $ colorize darkText "" ""
         , graphBackgroundColor = bg
         , graphBorderColor = bg
         , graphPadding = 0
@@ -64,7 +64,7 @@ main = do
         { graphDataColors = [ fg
                             , fg
                             ]
-        , graphLabel = Just $ pack $ colorize darkText "" " CPU "
+        , graphLabel = Just $ pack $ colorize darkText "" ""
         , graphBackgroundColor = bg
         , graphBorderColor = bg
         , graphPadding = 0
@@ -81,19 +81,21 @@ main = do
       windowsW = windowsNew defaultWindowsConfig
       mpris = mpris2New
       bat = textBatteryNew "$percentage$"
-      bat' = label "  BAT " darkText
+      bat' = label "   BAT  " darkText
       mem = pollingGraphNew memCfg 1 memCallback
+      mem' = label "   MEM  " darkText
       cpu = pollingGraphNew cpuCfg 1 cpuCallback
+      cpu' = label "   CPU  " darkText
       tray = sniTrayNew
       sep = label "   ╱   " darkText
       sep' = label "  " ""
       sep'' = label "   " ""
 
   simpleTaffybar defaultSimpleTaffyConfig
-    { barHeight = 26
+    { barHeight = ExactSize 26
     , widgetSpacing = 0
     , startWidgets = [ sep', workspaces, sep, layout, sep, windowsW ]
-    , endWidgets = [ sep'', clock, sep, tray, sep, bat, bat', mem, cpu, sep, mpris, sep'' ]
+    , endWidgets = [ sep'', clock, sep, tray, sep, bat, bat', mem, mem', cpu, cpu', sep, mpris, sep'' ]
     , barPosition = Top
     , System.Taffybar.SimpleConfig.barPadding = 0
     }

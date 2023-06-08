@@ -4,21 +4,21 @@ style "taffybar-default" {
   color["green"] = "#00ff00"
   color["red"]   = "#ff0000"
 
-  color["numix-dark-gray"] = "#0C0C0D"
-  color["numix-light-gray"] = "#777"
-  color["numix-red"] = "#F0544C"
+  color["theme-dark-gray"] = "#0C0C0D"
+  color["theme-light-gray"] = "#777"
+  color["theme-red"] = "#E0DECA"
 
-  bg[NORMAL]   = @numix-dark-gray
-  fg[NORMAL]   = @numix-light-gray
-  text[NORMAL] = @numix-light-gray
+  bg[NORMAL]   = @theme-dark-gray
+  fg[NORMAL]   = @theme-light-gray
+  text[NORMAL] = @theme-light-gray
   fg[PRELIGHT] = @green
-  bg[PRELIGHT] = @numix-dark-gray
+  bg[PRELIGHT] = @theme-dark-gray
 
   font_name = "Cantarell Bold 12"
 }
 
 style "taffybar-active-window" = "taffybar-default" {
-  fg[NORMAL] = @numix-red
+  fg[NORMAL] = @theme-red
 }
 
 style "taffybar-notification-button" = "taffybar-default" {
