@@ -25,12 +25,13 @@ let
 
     # This causes too much to rebuild if set for everything... We are
     # ok with the library sometimes being less optimized?
-    jack2-opt = super.jack2.overrideAttrs (attrs: {
-      CFLAGS   = "-O3 -march=native";
-      CXXFLAGS = "-O3 -march=native";
-      wafFlags = ["-v"];
-      hardeningDisable = [ "all" ];
-    });
+    #
+    # jack2-opt = super.jack2.overrideAttrs (attrs: {
+    #   CFLAGS   = "-O3 -march=native";
+    #   CXXFLAGS = "-O3 -march=native";
+    #   wafFlags = ["-v"];
+    #   hardeningDisable = [ "all" ];
+    # });
 
     # Compile Mixxx using a PortAudio build that supports JACK
     # Overriding PortAudio globally causes an expensive rebuild I want
@@ -38,41 +39,42 @@ let
     # https://github.com/NixOS/nixpkgs/pull/157561
     mixxx = (super.mixxx.override {
       rubberband = self.rubberband;
-      portaudio = super.portaudio.overrideAttrs (attrs: {
-        CFLAGS   = "-O3 -march=native";
-        CXXFLAGS = "-O3 -march=native";
-        hardeningDisable = [ "all" ];
-        buildInputs = attrs.buildInputs ++ [self.jack2-opt];
-      });
+      # portaudio = super.portaudio.overrideAttrs (attrs: {
+      #   CFLAGS   = "-O3 -march=native";
+      #   CXXFLAGS = "-O3 -march=native";
+      #   hardeningDisable = [ "all" ];
+      #   buildInputs = attrs.buildInputs ++ [self.jack2-opt];
+      # });
     }).overrideAttrs (attrs: {
       cmakeFlags = attrs.cmakeFlags ++ ["-DOPTIMIZE=native"];
       makeFlags = ["VERBOSE=1"];
       hardeningDisable = [ "all" ];
     });
 
-    mpdevil = with super;  python3Packages.buildPythonApplication rec {
-      pname = "mpdevil";
-      version = "1.1.1";
-      src = fetchGit {
-        url = "https://github.com/SoongNoonien/mpdevil.git";
-        rev = "7969ec54ffa535924f5d3846e6f82bf200899803";
-      };
-      nativeBuildInputs = [ glib gtk3 intltool wrapGAppsHook ];
-      buildInputs = [ glib gtk3 libnotify pango
-                      gsettings-desktop-schemas
-                      gobject-introspection
-                      python3Packages.distutils_extra ];
-      propagatedBuildInputs = with python3Packages; [
-        pygobject3
-        mpd2
-        beautifulsoup4
-        requests
-      ];
-      strictDeps = false;
-      postInstall = ''
-         glib-compile-schemas $out/share/glib-2.0/schemas
-      '';
-    };
+    # mpdevil = with super;  python3Packages.buildPythonApplication rec {
+    #   pname = "mpdevil";
+    #   version = "1.1.1";
+    #   src = fetchGit {
+    #     url = "https://github.com/SoongNoonien/mpdevil.git";
+    #     rev = "7969ec54ffa535924f5d3846e6f82bf200899803";
+    #   };
+    #   nativeBuildInputs = [ glib gtk3 intltool wrapGAppsHook ];
+    #   buildInputs = [ glib gtk3 libnotify pango
+    #                   gsettings-desktop-schemas
+    #                   gobject-introspection
+    #                   python3Packages.distutils_extra ];
+    #   propagatedBuildInputs = with python3Packages; [
+    #     pygobject3
+    #     mpd2
+    #     beautifulsoup4
+    #     requests
+    #   ];
+    #   strictDeps = false;
+    #   postInstall = ''
+    #      glib-compile-schemas $out/share/glib-2.0/schemas
+    #   '';
+    # };
+
     covergrid = with super;  python3Packages.buildPythonApplication rec {
       pname = "covergrid";
       version = "2.1.12";
@@ -94,6 +96,7 @@ let
       ];
       strictDeps = false;
     };
+
     xdotool-arximboldi = with super; xdotool.overrideDerivation (attrs: rec {
       name = "xdotool-${version}";
       version = "git";
@@ -104,25 +107,37 @@ let
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
     });
-    sidequest-latest = super.sidequest.overrideDerivation (old: rec {
-      version = "0.10.18";
-      src = super.fetchurl {
-				url = "https://github.com/SideQuestVR/SideQuest/releases/download/v0.10.18/SideQuest-0.10.18.tar.xz";
-        sha256 = "1dcn2kqcix48xb87185y5gxl2zkw450qjsfj6snm77y4ici5icwj";
-			};
-    });
+
+    telegram-alias = self.runCommand "telegram-kotatogram" {} ''
+      mkdir -p $out/bin
+      ln -s ${self.kotatogram-desktop}/bin/kotatogram-desktop $out/bin/telegram
+    '';
+
+    # sidequest-latest = super.sidequest.overrideDerivation (old: rec {
+    #   version = "0.10.18";
+    #   src = super.fetchurl {
+		# 		url = "https://github.com/SideQuestVR/SideQuest/releases/download/v0.10.18/SideQuest-0.10.18.tar.xz";
+    #     sha256 = "1dcn2kqcix48xb87185y5gxl2zkw450qjsfj6snm77y4ici5icwj";
+		# 	};
+    # });
   };
 
 in
 {
+  # chromecast support
+  networking.firewall.allowedTCPPorts = [ 8010 ];
+
   i18n.extraLocaleSettings = {
     LC_TIME = "en_GB.UTF-8";
     LC_MEASUREMENT = "en_GB.UTF-8";
   };
 
   nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1u"
+    "python-2.7.18.6"
     "python2.7-pyjwt-1.7.1"
     "libdwarf-20181024"
+    "python2.7-certifi-2021.10.8"
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -133,7 +148,7 @@ in
   environment.systemPackages = with pkgs; [
     # programming
     zile
-    emacs28NativeComp
+    emacsNativeComp
     vscode
     gitAndTools.gitFull
     gitAndTools.gh
@@ -142,7 +157,7 @@ in
     ((unstable.python3.withPackages (ps: with ps; [
       ipython
       livereload
-      pafy
+      # pafy
       pyliblo
       twilio
       inquirer
@@ -220,7 +235,9 @@ in
     zoom-us
     unstable.discord
     gnome3.polari
-    unstable.tdesktop
+    # tdesktop
+    kotatogram-desktop
+    telegram-alias
     signal-desktop
     wire-desktop
     obs-studio
@@ -245,19 +262,19 @@ in
     cantata
     gmpc
     #covergrid
-    #mpdevil
+    mpdevil
     ncmpc
     ncmpcpp
     ario
     sonata
-    clerk
+    #clerk
     mmtc
     mpc_cli
     mpdris2
     mpdas
     calibre
     qjackctl
-    jack2-opt
+    jack2
     gnome3.cheese
     sound-juicer
     soundconverter
@@ -293,7 +310,10 @@ in
     okular
     poppler_utils
     dia
+    figma-linux
     # houdini
+    libsForQt5.kruler
+    libsForQt5.kmag
 
     # gaming
     # moonlight-embedded
@@ -303,7 +323,7 @@ in
     protontricks
     steam
     steam-run
-    sidequest-latest
+    sidequest
     scrcpy
     ioquake3
     quake3pointrelease
@@ -325,6 +345,7 @@ in
 
     # utils
     # gksu
+    gnome.gedit
     gnome.gnome-terminal
     stow
     usbutils
@@ -344,7 +365,7 @@ in
     exfat
     pv
     progress
-    alarm-clock-applet
+    # alarm-clock-applet
     xmagnify
     wallutils
     xwallpaper
@@ -361,10 +382,32 @@ in
     numix-cursor-theme
     numix-icon-theme
     numix-icon-theme-circle
+    adementary-theme
+    lounge-gtk-theme
+    yaru-remix-theme
+    stilo-themes
+    gradience
+    themechanger
+    adw-gtk3
+    adwaita-qt
+    adwaita-qt6
+
     taffybar
     feh
     # plasma5.plasma-workspace # for xembedsniproxy
     haskellPackages.status-notifier-item
+    rofi
+    rofi-mpd
+    rofi-top
+    rofi-calc
+    rofi-bluetooth
+    rofi-file-browser
+    rofi-emoji
+    rofi-pulse-select
+    rofi-power-menu
+    rofimoji
+    #clerk
+    emote
     dmenu
     xdotool-arximboldi
     pa_applet
@@ -391,6 +434,7 @@ in
     unetbootin
     picom
     gnome3.gnome-tweaks
+    pango
 
     # https://github.com/NixOS/nixpkgs/issues/43836#issuecomment-419217138
     hicolor-icon-theme
@@ -409,10 +453,14 @@ in
       inconsolata
       ubuntu_font_family
       dejavu_fonts
+      noto-fonts
+      noto-fonts-emoji
+      openmoji-color
       fira
       fira-mono
       fira-code
       fira-code-symbols
+      twemoji-color-font
       source-sans-pro
       emojione
       roboto
@@ -505,30 +553,44 @@ in
   };
   services.gnome.tracker.enable = true;
   services.gnome.tracker-miners.enable = true;
-  xdg.portal.gtkUsePortal = true;
+  # deprecated?
+  # xdg.portal.gtkUsePortal = true;
 
   hardware.openrazer.enable = true;
 
   programs.sway.enable = true;
 
+  services.pantheon.apps.enable = true;
+  programs.pantheon-tweaks.enable = true;
+
   services.xserver = {
     enable = true;
     layout = "us";
     xkbOptions = "eurosign:e";
+    desktopManager.pantheon.enable = false;
+    desktopManager.gnome.enable = true;
     displayManager.gdm.enable = false;
     displayManager.lightdm.enable = true;
     displayManager.autoLogin = {enable = true; user = "raskolnikov";};
     displayManager.lightdm.greeters.enso.enable = true;
     displayManager.defaultSession = "none+xmonad";
-    desktopManager.gnome.enable = true;
     desktopManager.xfce.enable = true;
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      haskellPackages = pkgs.haskell.packages.ghc8107;
+      # haskellPackages = pkgs.haskell.packages.ghc8107;
       extraPackages = hs: [hs.taffybar];
     };
   };
+
+  # services.xserver.desktopManager.gnome.flashback.customSessions = [
+  #   {
+  #     wmName = "xmonad";
+  #     wmLabel = "XMonad";
+  #     wmCommand = "${pkgs.haskellPackages.xmonad}/bin/xmonad";
+  #     enableGnomePanel = false;
+  #   }
+  # ];
 
   programs.wireshark.enable = true;
   programs.dconf.enable = true;
