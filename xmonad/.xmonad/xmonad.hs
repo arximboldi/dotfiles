@@ -75,7 +75,7 @@ main :: IO ()
 main = do
   let backgroundColor = "#444444"
       headerColor     = "#000000"
-      focusedColor    = "#F0544C"
+      focusedColor    = "#F7EAB0"
       textColor       = "#ddd"
       textFont        = "Cantarell-20:bold"
       xpConfig        = def
@@ -303,7 +303,7 @@ main = do
   xmonad $ ewmhFullscreen . ewmh $ pagerHints $ withUrgencyHook NoUrgencyHook $ docks $ def
     { terminal           = terminalCmd
     , focusFollowsMouse  = True
-    , borderWidth        = 2
+    , borderWidth        = 4
     , modMask            = mod4Mask
     , workspaces         = [ "web", "emacs", "misc", "chat" ]
     , normalBorderColor  = headerColor --"#242424" --backgroundColor
