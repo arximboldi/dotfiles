@@ -263,14 +263,16 @@ main = do
         , className =? "Screenkey"               --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
         , className =? "SimpleScreenRecorder"    --> doSideFloat SE
 
-        , className =? "Icedove-bin"      --> doShift "mail"
-        , className =? "Icedove"          --> doShift "mail"
-        , className =? "Pidgin"           --> doShift "chat"
-        , className =? "Org.gnome.Polari" --> doShift "chat"
-        , className =? "Skype"            --> doShift "chat"
-        , className =? "Slack"            --> doShift "chat"
-        , className =? "discord"          --> doShift "chat"
-        , className =? "TelegramDesktop"  --> doShift "chat"
+        , className =? "Icedove-bin"       --> doShift "mail"
+        , className =? "Icedove"           --> doShift "mail"
+        , className =? "Pidgin"            --> doShift "chat"
+        , className =? "Org.gnome.Polari"  --> doShift "chat"
+        , className =? "Skype"             --> doShift "chat"
+        , className =? "Slack"             --> doShift "chat"
+        , className =? "discord"           --> doShift "chat"
+        , className =? "TelegramDesktop"   --> doShift "chat"
+        , className =? "telegram"          --> doShift "chat"
+        , className =? "KotatogramDesktop" --> doShift "chat"
 
         , title     =? "SoundX AI"       --> doCenterFloat
 
