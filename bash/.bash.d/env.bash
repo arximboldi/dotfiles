@@ -244,7 +244,7 @@ test -d $ENV_STORAGE || mkdir $ENV_STORAGE
 
 blacklisted-env () {
     case $1 in
-        PWD|OLDPWD|SHELL|ENV_STORAGE) return 0 ;;
+        PWD|OLDPWD|SHELL|ENV_STORAGE|shellHook) return 0 ;;
         *) return 1 ;;
     esac
 }
