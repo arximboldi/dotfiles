@@ -27,15 +27,14 @@ killall -rw taffybar &
 killall -rw status-notifier-watcher &
 killall -rw picom &
 # killall -rw mpd &
-# killall -rw xfsettings &
 wait
 
+xsettingsd &
 xset -b
 picom -b
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
 dunst &
 status-notifier-watcher &
-xfsettingsd --replace -D --daemon
 taffybar &
 tracker3 daemon -s
 gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop &
@@ -43,6 +42,7 @@ gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authenticat
 pidof syncthing || syncthing &
 pidof mpd || mpd &
 # pidof redshift || redshift-gtk -l 52.51:13.4 &
+xsettingsd &
 sleep 1
 
 # This was a hack to get the modem to update and show up
@@ -56,6 +56,7 @@ nm-applet --sm-disable --indicator &
 blueman-applet &
 # mpdas &
 mpDris2 &
+xsettingsd &
 
 
 echo ===

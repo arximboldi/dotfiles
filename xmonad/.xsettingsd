@@ -1,42 +1,11 @@
 Gdk/WindowScalingFactor 1
-Gtk/AutoMnemonics 1
-Gtk/ButtonImages 0
-Gtk/CanChangeAccels 0
-Gtk/ColorPalette "black:white:gray50:red:purple:blue:light blue:green:yellow:orange:lavender:brown:goldenrod4:dodger blue:pink:light green:gray10:gray30:gray75:gray90"
-Gtk/ColorScheme ""
-Gtk/CursorBlinkTimeout 10
 Gtk/CursorThemeName "Adwaita"
-Gtk/CursorThemeSize 24
-#Gtk/DecorationLayout "<'menu:minimize,maximize,close'>"
-Gtk/DecorationLayout "<''>"
-Gtk/EnableAnimations 1
-Gtk/FontName "Sans 9"
-Gtk/IMModule ""
-Gtk/IMPreeditStyle "callback"
-Gtk/IMStatusStyle "callback"
-Gtk/KeyThemeName "Default"
-Gtk/MenuBarAccel "F10"
-Gtk/MenuImages 1
-Gtk/Modules ""
-Gtk/RecentFilesEnabled 1
-Gtk/ShellShowsAppMenu 0
-Gtk/ShellShowsMenubar 0
-Gtk/ShowInputMethodMenu 1
-Gtk/ShowUnicodeMenu 1
-Gtk/TimeoutInitial 200
-Gtk/TimeoutRepeat 20
-Gtk/ToolbarIconSize "large"
-Gtk/ToolbarStyle "both-horiz"
-Net/CursorBlink 1
-Net/CursorBlinkTime 1200
-Net/DndDragThreshold 8
-Net/DoubleClickTime 400
-Net/EnableEventSounds 1
-Net/EnableInputFeedbackSounds 0
-Net/FallbackIconTheme "gnome"
-Net/IconThemeName "Numix-Circle"
-Net/SoundThemeName "freedesktop"
-Net/ThemeName "Numix"
+Gtk/FontName "Cantarell 13"
+Gtk/MonospaceFontName "Iosevka 13"
+Gtk/DecorationLayout "menu:"
+Net/IconThemeName "Papirus-Light"
+Net/SoundThemeName "default"
+Net/ThemeName "adw-gtk3"
 Xft/Antialias 1
 Xft/Hinting 1
 Xft/HintStyle "hintslight"
