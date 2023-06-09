@@ -26,13 +26,15 @@ killall -rw mpDris2 &
 killall -rw taffybar &
 killall -rw status-notifier-watcher &
 killall -rw picom &
+killall -rw xfsettingsd &
 # killall -rw mpd &
 wait
 
-xsettingsd &
+#xsettingsd &
 xset -b
 picom -b
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
+xfsettingsd -D --daemon
 dunst &
 status-notifier-watcher &
 taffybar &
