@@ -247,6 +247,7 @@ main = do
         , className =? "Xfdesktop"       --> doIgnore
         , className =? "xfdesktop"       --> doIgnore
         , title     =? "Desktop"         --> doIgnore
+        , className =? "kruler"          --> doIgnore
 
         , className =? "Cinelerra"               --> doCenterFloat
         , className =? "sun-applet-Main"         --> doCenterFloat
@@ -262,6 +263,7 @@ main = do
         , className =? "Pavucontrol"             --> (doRectFloat $ W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
         , className =? "Screenkey"               --> (doRectFloat $ W.RationalRect 0.7 0.8 0.3 0.13)
         , className =? "SimpleScreenRecorder"    --> doSideFloat SE
+        , className =? "kmag"                    --> doSideFloat SE
 
         , className =? "Icedove-bin"       --> doShift "mail"
         , className =? "Icedove"           --> doShift "mail"
