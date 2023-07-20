@@ -167,16 +167,15 @@ in
     clipgrab
     ruby
     gcc
-    clang
     gnumake
     ninja
     icu
-    clang-tools
+    clang_13
+    clang-tools_13
     cmake
     docker
     ycmd
     silver-searcher
-    clang-tools
     gdb
     rustfmt
     wireshark
