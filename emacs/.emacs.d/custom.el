@@ -154,6 +154,7 @@
  '(mu4e-maildir "~/mail")
  '(multi-term-dedicated-select-after-open-p t)
  '(mumamo-chunk-coloring 2)
+ '(notmuch-search-oldest-first nil)
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4"))
  '(openwith-associations
