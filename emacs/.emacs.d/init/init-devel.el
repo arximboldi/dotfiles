@@ -250,7 +250,9 @@
 (add-to-list 'compilation-error-regexp-alist '("^Assertion failed: .*, file \\(.*?\\), line \\([0-9]+\\)\.$" 1 2 3))
 
 ;; QML errors
+(add-to-list 'compilation-error-regexp-alist '("^\\[\\(.*?\\)\\] \\[\\(.*?\\)\\] file://\\(.*?\\):\\([0-9]+\\):\\([0-9]+\\) \\(.*\\)$" 3 4 5))
 (add-to-list 'compilation-error-regexp-alist '("^file://\\(.*?\\):\\([0-9]+\\) \\(.*\\)$" 1 2))
+(add-to-list 'compilation-error-regexp-alist '("^file://\\(.*?\\):\\([0-9]+\\):\\([0-9]+\\) \\(.*\\)$" 1 2 3))
 (add-to-list 'compilation-error-regexp-alist '("^qt.qml.context: file://\\(.*?\\):\\([0-9]+\\):\\([0-9]+\\) \\(.*\\)$" 1 2))
 
 ;;
