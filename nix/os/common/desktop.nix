@@ -170,8 +170,8 @@ in
     gnumake
     ninja
     icu
-    clang_13
-    clang-tools_13
+    clang
+    clang-tools_16
     cmake
     docker
     ycmd
