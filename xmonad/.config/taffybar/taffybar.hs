@@ -36,7 +36,7 @@ main = do
   let fg = (0.43, 0.43, 0.43, 1)
   let darkText = "#444"
   let lightText = "#aaa"
-  let selected = "#F7EAB0"
+  let selected = "#BD93F9"
 
   let memCallback = do
         mi <- parseMeminfo

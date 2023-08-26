@@ -73,9 +73,9 @@ altMask = mod1Mask
 
 main :: IO ()
 main = do
-  let backgroundColor = "#444444"
+  let backgroundColor = "#44475A"
       headerColor     = "#000000"
-      focusedColor    = "#F7EAB0"
+      focusedColor    = "#BD93F9"
       textColor       = "#ddd"
       textFont        = "Cantarell-20:bold"
       xpConfig        = def
