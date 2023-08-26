@@ -74,6 +74,10 @@ tags = +gmane
 query = path:elmo/**
 tags = +elmo
 
+[Filter.15]
+query = path:*/Spam/**
+tags = +spam
+
 [InboxFilter]
 
 [MailMover]
