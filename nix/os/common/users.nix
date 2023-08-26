@@ -31,5 +31,5 @@
        "networkmanager"
      ];
   };
-  nix.trustedUsers = [ "raskolnikov" "nikki" ];
+  nix.settings.trusted-users = [ "raskolnikov" "nikki" ];
 }
