@@ -531,6 +531,7 @@ in
     "49.12.219.169" = ["daphne"];
     "162.55.48.161" = ["suzanne"];
     "167.235.96.165" = ["laurel"];
+    "142.132.141.13" = ["clara"];
   };
 
   services.flatpak.enable = true;
