@@ -390,6 +390,8 @@ in
     adw-gtk3
     adwaita-qt
     adwaita-qt6
+    dracula-theme
+    dracula-icon-theme
 
     taffybar
     feh
