@@ -34,6 +34,8 @@
 (require 'init-devel)
 (require 'init-keys)
 
+(set-cursor-color "yellow")
+
 ;; (desktop-save-mode 1)
 ;; (add-hook 'find-file-hook 'desktop-auto-save-set-timer)
 ;; (add-hook 'after-save-hook 'desktop-auto-save-set-timer)
