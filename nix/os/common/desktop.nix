@@ -170,8 +170,9 @@ in
     gnumake
     ninja
     icu
-    clang
+    clang_16
     clang-tools_16
+    llvm_16
     cmake
     docker
     ycmd
@@ -180,7 +181,6 @@ in
     rustfmt
     wireshark
     zeal
-    llvm
     mmv
     bazel
     google-cloud-sdk
