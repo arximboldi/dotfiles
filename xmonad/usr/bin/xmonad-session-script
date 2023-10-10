@@ -51,7 +51,6 @@ sleep 1
 # dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect &
 
 # start all programs with applets now
-xwallpaper --daemon --clear --zoom ~/pic/wallpaper/default.jpg
 xfce4-power-manager  --restart --daemon
 pasystray -N all &
 nm-applet --sm-disable --indicator &
@@ -59,6 +58,9 @@ blueman-applet &
 # mpdas &
 mpDris2 &
 xsettingsd &
+
+sleep 1
+xwallpaper --daemon --clear --zoom ~/pic/wallpaper/default.jpg
 
 
 echo ===
