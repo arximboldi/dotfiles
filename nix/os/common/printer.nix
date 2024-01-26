@@ -3,7 +3,8 @@
 
 {
   imports = [
-    <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
+    # This explicit import seems to be not needed anymore
+    # <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
   ];
 
   environment.systemPackages = with pkgs; [

@@ -110,7 +110,7 @@ let
 
     telegram-alias = self.runCommand "telegram-kotatogram" {} ''
       mkdir -p $out/bin
-      ln -s ${self.kotatogram-desktop}/bin/kotatogram-desktop $out/bin/telegram
+      ln -s ${unstable.kotatogram-desktop}/bin/kotatogram-desktop $out/bin/telegram
     '';
 
     # sidequest-latest = super.sidequest.overrideDerivation (old: rec {
@@ -142,6 +142,11 @@ in
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ arximboldi-overlay ];
+
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
+  programs.adb.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -189,10 +194,10 @@ in
     wget
     magic-wormhole
     cached-nix-shell
-    nixops
     unstable.cachix
     unzip
     unrar
+    android-tools
 
     linuxPackages.perf
     hotspot
@@ -211,6 +216,7 @@ in
     iw
     thunderbird
     transmission-gtk
+    tor-browser
     unstable.firefox
     unstable.chromium
     unstable.google-chrome
@@ -228,14 +234,15 @@ in
     # rambox
     unstable.skypeforlinux
     unstable.slack
-    unstable.teams
+    # unstable.teams
+    unstable.teams-for-linux
     soulseekqt
     qt5.qtbase
     zoom-us
     unstable.discord
     gnome3.polari
     # tdesktop
-    kotatogram-desktop
+    unstable.kotatogram-desktop
     telegram-alias
     signal-desktop
     wire-desktop
@@ -368,6 +375,7 @@ in
     xmagnify
     wallutils
     xwallpaper
+    gnome-network-displays
 
     # lte internet
     modemmanager

@@ -16,6 +16,7 @@
        "docker"
        "wireshark"
        "sysprof"
+       "adbusers"
      ];
   };
   users.extraUsers.nikki = {
