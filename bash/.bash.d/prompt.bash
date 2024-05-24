@@ -9,15 +9,15 @@ function set_prompt {
 
     # only call tput if it works
     if tput bold &> /dev/null; then
-       purple="\[$(tput bold; tput setaf 5)\]"
-       cyan="\[$(tput bold; tput setaf 6)\]"
-       blue="\[$(tput bold; tput setaf 4)\]"
-       white="\[$(tput bold; tput setaf 7)\]"
-       red="\[$(tput bold; tput setaf 1)\]"
-       green="\[$(tput bold; tput setaf 2)\]"
-       blue2="\[$(tput setaf 4)\]"
-       green2="\[$(tput setaf 2)\]"
-       reset="\[$(tput sgr0)\]"
+        purple="\[$(tput bold; tput setaf 5)\]"
+        cyan="\[$(tput bold; tput setaf 6)\]"
+        blue="\[$(tput bold; tput setaf 4)\]"
+        white="\[$(tput bold; tput setaf 7)\]"
+        red="\[$(tput bold; tput setaf 1)\]"
+        green="\[$(tput bold; tput setaf 2)\]"
+        blue2="\[$(tput setaf 4)\]"
+        green2="\[$(tput setaf 2)\]"
+        reset="\[$(tput sgr0)\]"
     fi
 
     PS1=""
@@ -60,12 +60,14 @@ function set_prompt {
          esac`$(__git_prompt)$reset"
     fi
 
-    tab_name=""
-    tab_name+="\w"
-    if is-nix-shell; then
-        tab_name+=" (nix)"
+    if [ -z "$INSIDE_EMACS" ]; then
+        tab_name=""
+        tab_name+="\w"
+        if is-nix-shell; then
+            tab_name+=" (nix)"
+        fi
+        PS1+="\[\e]0;$tab_name\007\]"
     fi
-    PS1+="\[\e]0;$tab_name\007\]"
 
     PS1+=" "
 }
