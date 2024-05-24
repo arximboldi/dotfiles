@@ -153,7 +153,7 @@ in
   environment.systemPackages = with pkgs; [
     # programming
     zile
-    emacsNativeComp
+    emacs29-gtk3
     vscode
     gitAndTools.gitFull
     gitAndTools.gh
