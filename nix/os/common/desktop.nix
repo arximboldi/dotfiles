@@ -199,6 +199,12 @@ in
     unrar
     android-tools
 
+    gnomeExtensions.x11-gestures
+    gnomeExtensions.tactile
+    gnomeExtensions.reorder-workspaces
+    gnomeExtensions.current-screen-only-for-alternate-tab
+    touchegg
+
     linuxPackages.perf
     hotspot
     sysprof
@@ -532,6 +538,8 @@ in
 
   services.blueman.enable = true;
 
+  services.touchegg.enable = true;
+
   networking.firewall.enable = false;
   networking.hosts = {
     "163.172.144.97" = ["orion1"];
@@ -582,10 +590,10 @@ in
     xkbOptions = "eurosign:e";
     desktopManager.pantheon.enable = false;
     desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = false;
+    #displayManager.gdm.enable = true;
     displayManager.lightdm.enable = true;
     displayManager.autoLogin = {enable = true; user = "raskolnikov";};
-    displayManager.lightdm.greeters.enso.enable = true;
+    displayManager.lightdm.greeters.enso.enable = false;
     displayManager.defaultSession = "none+xmonad";
     desktopManager.xfce.enable = true;
     windowManager.xmonad = {
@@ -595,6 +603,10 @@ in
       extraPackages = hs: [hs.taffybar];
     };
   };
+
+  # add wayland support for slack et al
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  programs.xwayland.enable = true;
 
   # services.xserver.desktopManager.gnome.flashback.customSessions = [
   #   {
