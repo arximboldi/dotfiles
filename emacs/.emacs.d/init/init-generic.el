@@ -76,16 +76,21 @@
 ;;     (ansi-color-apply-on-region compilation-filter-start (point-max))))
 ;; (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
-;; Fix emacs not finding commands in my custom path
+;; Set the most specific shell to use as possible, this fixes some
+;; issues in NixOs, macOS, etc...
+(setq shell-file-name
+      (cond
+       ((file-exists-p "/run/current-system/sw/bin/bash") "/run/current-system/sw/bin/bash")
+       ((file-exists-p "/usr/local/bin/bash") "/usr/local/bin/bash")
+       ((file-exists-p "/usr/bin/bash") "/usr/bin/bash")
+       (t "/bin/sh")))
+(setq shell-command-switch "-c")
+
+;; Fix emacs not finding commands in custom paths... this can happen
+;; when running Emacs directly from a Gnome icon in NixOS, or when
+;; running it in macOS, etc...
 (defun set-exec-path-from-shell-PATH ()
-  (let* ((cmd
-          ;; try use the shell from nixos
-          (if (file-exists-p "/run/current-system/sw/bin/bash")
-              "/run/current-system/sw/bin/bash -i -c 'echo $PATH' 2> /dev/null"
-            ;; on mac we want to use the shell from brew, if installed
-            (if (file-exists-p "/usr/local/bin/bash")
-                "/usr/local/bin/bash -i -c 'echo $PATH' 2> /dev/null"
-              "bash -i -c 'echo $PATH' 2> /dev/null")))
+  (let* ((cmd (concat shell-file-name " -i -c 'echo -n $PATH' 2> /dev/null"))
          (path-from-shell (shell-command-to-string cmd)))
     (setenv "PATH" path-from-shell)
     (setq eshell-path-env path-from-shell) ; for eshell users
@@ -94,10 +99,6 @@
 (when window-system (set-exec-path-from-shell-PATH))
 
 ;; Fix shit
-
-(setq shell-file-name "bash")
-(setq shell-command-switch "-c")
-
 (defadvice compile (around use-bashrc activate)
   (let ((shell-command-switch "-ic"))
     ad-do-it))
