@@ -266,7 +266,8 @@ in
     evolution
 
     # media
-    smplayer
+    unstable.smplayer # unstable for subs
+    haruna
     mpv
     mplayer
     vlc
