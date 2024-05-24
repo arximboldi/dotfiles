@@ -15,39 +15,22 @@ let
   arximboldi-overlay = self: super: {
     # Optimize rubberband as much as possible... it seems to really ba
     # slow library not sure what more we can do about this...
-    rubberband = super.rubberband.overrideAttrs (attrs: {
-      mesonFlags = ["--buildtype=release"
+    rubberband = unstable.rubberband.overrideAttrs (attrs: {
+      mesonFlags = ["-Dtests=disabled"
+                    "--buildtype=release"
                     "--optimization=3"
                     "-Dcpp_args='-march=native'"];
-      makeFlags = attrs.makeFlags ++ ["-v"];
       hardeningDisable = [ "all" ];
     });
-
-    # This causes too much to rebuild if set for everything... We are
-    # ok with the library sometimes being less optimized?
-    #
-    # jack2-opt = super.jack2.overrideAttrs (attrs: {
-    #   CFLAGS   = "-O3 -march=native";
-    #   CXXFLAGS = "-O3 -march=native";
-    #   wafFlags = ["-v"];
-    #   hardeningDisable = [ "all" ];
-    # });
 
     # Compile Mixxx using a PortAudio build that supports JACK
     # Overriding PortAudio globally causes an expensive rebuild I want
     # to avoid until the change is merged upstream...
     # https://github.com/NixOS/nixpkgs/pull/157561
-    mixxx = (super.mixxx.override {
+    mixxx = (unstable.mixxx.override {
       rubberband = self.rubberband;
-      # portaudio = super.portaudio.overrideAttrs (attrs: {
-      #   CFLAGS   = "-O3 -march=native";
-      #   CXXFLAGS = "-O3 -march=native";
-      #   hardeningDisable = [ "all" ];
-      #   buildInputs = attrs.buildInputs ++ [self.jack2-opt];
-      # });
     }).overrideAttrs (attrs: {
       cmakeFlags = attrs.cmakeFlags ++ ["-DOPTIMIZE=native"];
-      makeFlags = ["VERBOSE=1"];
       hardeningDisable = [ "all" ];
     });
 
@@ -267,7 +250,6 @@ in
 
     # media
     unstable.smplayer # unstable for subs
-    haruna
     mpv
     mplayer
     vlc
