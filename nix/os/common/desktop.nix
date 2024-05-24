@@ -108,9 +108,9 @@ let
       };
     });
 
-    telegram-alias = self.runCommand "telegram-kotatogram" {} ''
+    telegram-alias = pkg: self.runCommand "telegram-telegram" {} ''
       mkdir -p $out/bin
-      ln -s ${unstable.kotatogram-desktop}/bin/kotatogram-desktop $out/bin/telegram
+      ln -s ${pkg}/bin/telegram-desktop $out/bin/telegram
     '';
 
     # sidequest-latest = super.sidequest.overrideDerivation (old: rec {
@@ -232,18 +232,20 @@ in
     # station
     # franz
     # rambox
+    # unstable.teams
     unstable.skypeforlinux
     unstable.slack
-    # unstable.teams
     unstable.teams-for-linux
+    unstable.discord
+    unstable.webcord
+    unstable.telegram-desktop
+    (telegram-alias unstable.telegram-desktop)
+
     soulseekqt
     qt5.qtbase
     zoom-us
-    unstable.discord
     gnome3.polari
     # tdesktop
-    unstable.kotatogram-desktop
-    telegram-alias
     signal-desktop
     wire-desktop
     obs-studio
