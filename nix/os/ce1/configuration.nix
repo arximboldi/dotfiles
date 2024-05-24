@@ -37,13 +37,13 @@ in
   hardware.acpilight.enable = true;
 
   services.xserver = {
-    #videoDrivers = [ "modesetting" ];
+    videoDrivers = [ "modesetting" ];
     #useGlamor = true;
-    videoDrivers = [ "intel" ];
-    deviceSection = ''
-      Option "DRI" "2"
-      Option "TearFree" "true"
-    '';
+    #videoDrivers = [ "intel" ];
+    # deviceSection = ''
+    #   Option "DRI" "2"
+    #   Option "TearFree" "true"
+    # '';
   };
 
   services.fprintd.enable = true;
