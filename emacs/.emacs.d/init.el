@@ -5,7 +5,10 @@
                     :height 140
                     :weight 'normal)
 
-(server-start)
+;; start as server if it's not already running
+(load "server")
+(unless (server-running-p) (server-start))
+
 (remove-hook 'kill-buffer-query-functions
 	     'server-kill-buffer-query-function)
 
@@ -20,6 +23,7 @@
 (require 'guix-autoloads nil t)
 
 (require 'package)
+
 ;;(add-to-list 'package-archives
 ;;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
