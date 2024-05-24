@@ -33,7 +33,6 @@
 (when (eq system-type 'darwin)
   (require 'init-macos))
 (require 'init-generic)
-;;(require 'init-fira-code)
 (require 'init-mail)
 (require 'init-devel)
 (require 'init-keys)
