@@ -1,2 +1,2 @@
-source $HOME/.bashrc
-xmonad
+# source $HOME/.bashrc
+# xmonad
