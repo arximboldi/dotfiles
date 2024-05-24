@@ -180,7 +180,7 @@
  '(rainbow-delimiters-max-face-count 10)
  '(recentf-max-saved-items 1000)
  '(ring-bell-function 'ignore)
- '(rust-format-on-save nil)
+ '(rust-format-on-save t)
  '(safe-local-variable-values
    '((clang-format-executable . "/home/raskolnikov/dev/abl/source-utils/bin/linux/clang-format")
      (eval c-set-offset 'access-label '-)
