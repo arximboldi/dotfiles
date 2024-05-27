@@ -8,17 +8,18 @@
     # iterm2
     # slack
     gdb
-    lldb
-    valgrind
+    # valgrind
+    lldb_16
+    llvm_16
+    clang-tools_16
     vim
-    emacs
+    emacs29-macport
     stow
-    bash
+    # bash
     coreutils
     trash-cli
     gitFull
     gitAndTools.gh
-    clang-tools
     cmake
     (python3.withPackages (ps: with ps; [
       ipython
@@ -32,12 +33,12 @@
   #
   fonts.enableFontDir = true;
   fonts.fonts = with pkgs; [
-    corefonts
+    # corefonts
     inconsolata
     ubuntu_font_family
     dejavu_fonts
     fira
-    #fira-mono
+    # fira-mono
     fira-code
     fira-code-symbols
     source-sans-pro
@@ -54,6 +55,8 @@
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
+
+  nix.configureBuildUsers = true;
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.bash.enable = true;
