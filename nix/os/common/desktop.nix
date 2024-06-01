@@ -422,6 +422,7 @@ in
     system-config-printer
     simplescreenrecorder
     vokoscreen-ng
+    # kdePackages.kamoso
 
     wmctrl
     dunst
