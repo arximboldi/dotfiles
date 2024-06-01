@@ -422,6 +422,7 @@ in
     system-config-printer
     simplescreenrecorder
     vokoscreen-ng
+    guvcview
     # kdePackages.kamoso
 
     wmctrl
