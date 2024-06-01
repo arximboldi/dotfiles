@@ -423,6 +423,7 @@ in
     simplescreenrecorder
     vokoscreen-ng
     guvcview
+    uvccapture
     # kdePackages.kamoso
 
     wmctrl
