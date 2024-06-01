@@ -342,7 +342,7 @@ in
 
     # utils
     # gksu
-    gnome.gedit
+    gedit
     gnome.gnome-terminal
     stow
     usbutils
@@ -562,7 +562,7 @@ in
 
   hardware.openrazer.enable = true;
 
-  programs.sway.enable = true;
+  programs.sway.enable = false;
 
   services.pantheon.apps.enable = true;
   programs.pantheon-tweaks.enable = true;

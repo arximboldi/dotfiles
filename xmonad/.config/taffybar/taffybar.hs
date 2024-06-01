@@ -5,6 +5,8 @@
 --
 --  Taffybar configuration file. Hola. Amigo.
 --
+--  Tested: nixos-24.05
+--
 
 import System.Taffybar
 import System.Taffybar.SimpleConfig

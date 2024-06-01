@@ -5,6 +5,8 @@
 --
 --  Xmonad configuration file.
 --
+--  Tested: nixos-24.05
+--
 
 import XMonad
 import System.Exit
@@ -24,7 +26,7 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.InsertPosition as I
 
 import XMonad.Layout.BoringWindows as B
-import XMonad.Layout.Circle
+import XMonad.Layout.CircleEx
 import XMonad.Layout.Gaps as G
 import XMonad.Layout.Grid
 import XMonad.Layout.IM
@@ -232,7 +234,7 @@ main = do
           -- gap = G.gaps [(G.U, 100)]
           magnify      = id -- magnifiercz' (100/80)
           tallLayout   = R.renamed [ R.Replace "tall" ] $ minimize $ magnify $ Tall 1 (3/100) (6/10)
-          circleLayout = R.renamed [ R.Replace "circle" ] $ minimize $ magnify Circle
+          circleLayout = R.renamed [ R.Replace "circle" ] $ minimize $ magnify circleEx
           tabbedLayout = R.renamed [ R.Replace "tabbed" ] $ minimize $ magnify simpleTabbed
           fullLayout   = R.renamed [ R.Replace "full" ] $ minimize $ Full
           imLayout     = R.renamed [ R.CutWordsLeft 2 ] $ magnifiercz' (100/80) $ withIM (2%10)
