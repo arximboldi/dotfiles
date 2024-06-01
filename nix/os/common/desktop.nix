@@ -421,6 +421,7 @@ in
     libnotify
     system-config-printer
     simplescreenrecorder
+    vokoscreen-ng
 
     wmctrl
     dunst
