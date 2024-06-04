@@ -24,7 +24,6 @@ killall -rw blueman-applet &
 killall -rw mpdas &
 killall -rw mpDris2 &
 killall -rw taffybar &
-killall -rw status-notifier-watcher &
 killall -rw picom &
 killall -rw xfsettingsd &
 # killall -rw mpd &
@@ -36,7 +35,7 @@ picom -b
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
 xfsettingsd -D --daemon
 dunst &
-status-notifier-watcher &
+pidof status-notifier-watcher || status-notifier-watcher &
 taffybar &
 tracker3 daemon -s
 gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop &
