@@ -25,6 +25,30 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # https://nixos.wiki/wiki/Nvidia
+
+  virtualisation.docker.enable = true;
+  #virtualisation.docker.enableOnBoot = true;
+  virtualisation.docker.enableNvidia = true;
+  virtualisation.podman.enable = true;
+  #virtualisation.podman.enableOnBoot = true;
+  virtualisation.podman.enableNvidia = true;
+  systemd.enableUnifiedCgroupHierarchy = false;
+  hardware.nvidia-container-toolkit.enable = true;
+  hardware.nvidia-container-toolkit.mount-nvidia-executables = false;
+
+  #environment.sessionVariables = {
+  #  DOCKER_HOST="unix:///var/run/docker.sock";
+  #};
+  #virtualisation.docker.rootless = {
+  #  enable = true;
+  #  setSocketVariable = true;
+  #  daemon.settings = {
+  #    default-runtime = "nvidia";
+  #    runtimes.nvidia.path = "${pkgs.nvidia-docker}/bin/nvidia-container-runtime";
+  #  };
+  #};
+
+  nixpkgs.config.nvidia.acceptLicense = true;
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -38,6 +62,7 @@
     # Optionally, you may need to select the appropriate driver
     # version for your specific GPU.
     # package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
   };
 
   services.ssh-phone-home = {
@@ -48,8 +73,6 @@
     remoteUser = "raskolnikov";
     bindPort = 5489;
   };
-
-  virtualisation.docker.enableNvidia = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
