@@ -147,6 +147,97 @@ alias guix-shell="guix environment --ad-hoc"
 alias pa-hdmi="pactl set-card-profile 0 output:hdmi-stereo+input:analog-stereo"
 alias pa-normal="pactl set-card-profile 0 output:analog-stereo+input:analog-stereo"
 
+# run video2x
+alias video2x='sudo podman run --runtime nvidia --gpus all --privileged --rm -it -v "$PWD":/host docker.io/arximboldi/video2x-esrgan:latest'
+
+function converter_arguments()
+{
+    # https://linuxsimply.com/bash-scripting-tutorial/functions/return-values/
+
+    if [ -z "$1" ]
+    then
+        echo "need to pass an input file" >&2
+        return 1
+    fi
+
+    if [ -z "$3" ]
+    then
+        echo "need to pass an appendix" >&2
+        return 1
+    fi
+
+    appendix=$3
+    in_file=$1
+    in_file_name="${in_file%.*}"
+    in_file_ext="${in_file##*.}"
+
+    if [[ $in_file == *.upscaled.*.mkv ]];
+    then
+        echo "file already converted: $in_file" >&2
+        return 1
+    fi
+
+    default_out_file="${in_file_name}.upscaled.${appendix}.${in_file_ext}"
+    out_file="${2:-${default_out_file}}"
+
+    if [ -e "$out_file" ]
+    then
+        echo "output file already exists: $out_file" >&2
+        return 1
+    fi
+
+    if ! [ -e "$in_file" ]
+    then
+        echo "input file does not exists: $in_file" >&2
+        return 1
+    fi
+
+    echo "> INPUT:  $in_file" >&2
+    echo "> OUTPUT: $out_file" >&2
+}
+
+function anime4k()
+{
+    in_file=
+    out_file=
+    if ! converter_arguments "$1" "$2" "anime4k"; then
+        return 1;
+    fi
+    mpv "$in_file" \
+        --no-sub \
+        --glsl-shaders="~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl" \
+        -vf=gpu="w=1440:h=1080" \
+        --o="$out_file"
+}
+
+function video2x-realesr()
+{
+    in_file=
+    out_file=
+    if ! converter_arguments "$1" "$2" "realesr"; then
+        return 1;
+    fi
+    video2x -i "$in_file" -o "$out_file" -p 3 upscale -h 1080 -a realesr-animevideov3
+}
+
+function anime4k-all()
+{
+    for in_file in *.{avi,mpg,mkv};
+    do
+        [ -e "$in_file" ] || continue;
+        anime4k "$in_file"
+    done
+}
+
+function video2x-realesr-all()
+{
+    for in_file in *.{avi,mpg,mkv};
+    do
+        [ -e "$in_file" ] || continue;
+        video2x-realesr "$in_file"
+    done
+}
+
 function counter-ncurses-meta-meta-meetingcpp17()
 {
     mplayer -fs /home/raskolnikov/media/videos/terminator/render3.webm \
