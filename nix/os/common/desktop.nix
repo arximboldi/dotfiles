@@ -618,4 +618,7 @@ in
   services.logind.extraConfig = ''
     RuntimeDirectorySize=4G
   '';
+  security.sudo.extraConfig = ''
+    Defaults timestamp_timeout=1440
+  '';  # 60 * 24 -- one day
 }
