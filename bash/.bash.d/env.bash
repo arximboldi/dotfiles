@@ -175,8 +175,9 @@ elif is-guix-environment; then
     export CC=$GUIX_ENVIRONMENT/bin/gcc
     export CXX=$GUIX_ENVIRONMENT/bin/c++
 else
-    export CC=$GC
-    export CXX=$GXX
+    : # noop
+    # export CC=$GC
+    # export CXX=$GXX
 fi
 
 #
