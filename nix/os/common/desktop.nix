@@ -91,7 +91,7 @@ let
       };
     });
 
-    telegram-alias = pkg: self.runCommand "telegram-telegram" {} ''
+    telegram-alias = pkg: self.runCommand "telegram-alias" {} ''
       mkdir -p $out/bin
       ln -s ${pkg}/bin/telegram-desktop $out/bin/telegram
     '';
