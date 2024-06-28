@@ -59,6 +59,7 @@ in
   services.minidlna.enable = true;
   services.minidlna.mediaDirs = [
     "/run/media/raskolnikov/elemento/videos/pelis/erotica/vr"
+    "/run/media/raskolnikov/solaris/videos/pelis/erotica/vr"
     "/home/raskolnikov/media/videos"
   ];
   systemd.services.minidlna.serviceConfig.User = pkgs.lib.mkForce "root";
