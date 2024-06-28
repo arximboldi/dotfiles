@@ -135,6 +135,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # programming
+    nix-index
     zile
     emacs29-gtk3
     vscode
@@ -315,7 +316,7 @@ in
     # gaming
     # moonlight-embedded
     moonlight-qt
-    wine-staging
+    winePackages.stableFull
     winetricks
     protontricks
     steam
@@ -610,4 +611,11 @@ in
   security.pam.services.lightdm.enableGnomeKeyring = true;
   services.dbus.packages = [ pkgs.gnome3.gnome-keyring pkgs.gcr ];
   services.gnome.gnome-keyring.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [];
+
+  services.logind.extraConfig = ''
+    RuntimeDirectorySize=4G
+  '';
 }
