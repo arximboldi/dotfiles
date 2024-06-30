@@ -148,21 +148,68 @@ alias pa-hdmi="pactl set-card-profile 0 output:hdmi-stereo+input:analog-stereo"
 alias pa-normal="pactl set-card-profile 0 output:analog-stereo+input:analog-stereo"
 
 # run video2x
-alias video2x='sudo podman run --runtime nvidia --gpus all --privileged --rm -it -v "$PWD":/host docker.io/arximboldi/video2x-esrgan:latest'
+alias video2x-podman='sudo podman run --runtime nvidia --gpus all --privileged --rm -it -v "$PWD":/host docker.io/arximboldi/video2x-esrgan:latest'
 
-function converter_arguments()
+function check-upscale-resolution()
 {
-    # https://linuxsimply.com/bash-scripting-tutorial/functions/return-values/
+    min_height="$1"
+    target_height="$2"
+    file="$3"
+    if ! test -e "$file"; then
+        echo "> pass an existing file as second argument" >&2;
+        return 1
+    fi
+    if ! expr "$min_height" + 0 &>/dev/null; then
+        echo "> pass the minimum height as first argument" >&2;
+        return 1
+    fi
+    if ! expr "$target_height" + 0 &>/dev/null; then
+        echo "> pass the target height as second argument" >&2;
+        return 1
+    fi
+    res=$(ffprobe -v error \
+                  -select_streams v:0 \
+                  -show_entries stream=width,height \
+                  -of csv=s=x:p=0 "$file")
+    width=$(echo $res | cut -d'x' -f1)
+    height=$(echo $res | cut -d'x' -f2)
+    if ! expr "$width" + 0 &>/dev/null; then
+        echo "> couldn't get resolution for ${file}" >&2
+        return 1
+    fi
+    if ! expr "$height" + 0 &>/dev/null; then
+        echo "> couldn't get resolution for ${file}" >&2
+        return 1
+    fi
+    echo "resolution ${width}x${height} found for ${file}" >&2
+    if [ "$height" -ge "$min_height" ]; then
+        echo "> skipping..."
+        return 1
+    else
+        # out variable
+        target_width=$(($width * $target_height / $height))
+        echo "> upscaling to ${target_width}x${target_height}..." >&2
+        return 0
+    fi
+}
 
+function video2x-local()
+{
+    nix-shell ~/dev/video2x/shell.nix --argstr command "pdm run -p ~/dev/video2x python -m video2x $*"
+}
+
+# returns via variables out_file and in_file
+function check-upscale-files()
+{
     if [ -z "$1" ]
     then
-        echo "need to pass an input file" >&2
+        echo "> need to pass an input file" >&2
         return 1
     fi
 
     if [ -z "$3" ]
     then
-        echo "need to pass an appendix" >&2
+        echo "> need to pass an appendix" >&2
         return 1
     fi
 
@@ -171,9 +218,9 @@ function converter_arguments()
     in_file_name="${in_file%.*}"
     in_file_ext="${in_file##*.}"
 
-    if [[ $in_file == *.upscaled.*.mkv ]];
+    if [[ "$in_file" == *.upscaled.*.mkv ]];
     then
-        echo "file already converted: $in_file" >&2
+        echo "> file already converted: $in_file" >&2
         return 1
     fi
 
@@ -182,59 +229,132 @@ function converter_arguments()
 
     if [ -e "$out_file" ]
     then
-        echo "output file already exists: $out_file" >&2
+        echo "> output file already exists: $out_file" >&2
         return 1
     fi
-
     if ! [ -e "$in_file" ]
     then
-        echo "input file does not exists: $in_file" >&2
+        echo "> input file does not exists: $in_file" >&2
         return 1
     fi
-
-    echo "> INPUT:  $in_file" >&2
-    echo "> OUTPUT: $out_file" >&2
 }
 
 function anime4k()
 {
+    echo "> ---"
     in_file=
     out_file=
-    if ! converter_arguments "$1" "$2" "anime4k"; then
+    target_width=
+    target_height=1080
+    min_height=720
+    if ! check-upscale-files "$1" "$2" "anime4k-${target_height}.tmp"; then
         return 1;
     fi
-    mpv "$in_file" \
-        --no-sub \
-        --glsl-shaders="~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl" \
-        -vf=gpu="w=1440:h=1080" \
-        --o="$out_file"
+    tmp_file=$out_file
+    if ! check-upscale-files "$1" "$2" "anime4k-${target_height}"; then
+        return 1;
+    fi
+    echo "> input:  $in_file" >&2
+    echo "> output: $out_file" >&2
+    if ! check-upscale-resolution "$min_height" "$target_height" "$in_file"
+    then
+        return 1;
+    fi
+    # encode using mpv via shaders
+    if mpv "$in_file" \
+           --no-sub \
+           --glsl-shaders="~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_Restore_CNN_M.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl" \
+           -vf=gpu="w=${target_width}:h=${target_height}" \
+           --o="$tmp_file" \
+           --audio=no
+    then
+        # copy audio, subs, data, etc. from the original file
+        ffmpeg -i "$tmp_file" -i "$in_file" -c copy \
+               -map 0:v \
+               -map 1:a? -map 1:s? -map 1:d? -map 1:d? \
+               -max_interleave_delta 0 \
+               "$out_file"
+    fi
+    \rm -f "$tmp_file"
 }
 
-function video2x-realesr()
+function check-video2x-algorithm()
 {
+    case "$1" in
+        waifu2x) return 0
+                 ;;
+        srmd) return 0
+              ;;
+        realsr) return 0
+                ;;
+        realcugan) return 0
+                   ;;
+        anime4k) return 0
+                 ;;
+        realesr-animevideov3) return 0
+                              ;;
+        realesrgan-x4plus-anime) return 0
+                                 ;;
+        realesrgan-x4plu) return 0
+                          ;;
+    esac
+    echo "bad algorithm: $1" >&2
+    echo "must be one of: " >&2
+    echo "waifu2x srmd realsr realcugan anime4k realesr-animevideov3" >&2
+    echo "realesrgan-x4plus-anime realesrgan-x4plus" >&2
+    return 1
+}
+
+function video2x()
+{
+    echo "> ---"
+    target_width=
+    target_height=1080
+    min_height=720
+    algorithm=$1
+    if ! check-video2x-algorithm "$algorithm"; then
+        return 1
+    fi
     in_file=
     out_file=
-    if ! converter_arguments "$1" "$2" "realesr"; then
-        return 1;
+    if ! check-upscale-files "$2" "$3" "${algorithm}-${target_height}"; then
+        return 1
     fi
-    video2x -i "$in_file" -o "$out_file" -p 3 upscale -h 1080 -a realesr-animevideov3
+    echo "> input:  $in_file" >&2
+    echo "> output: $out_file" >&2
+    if check-upscale-resolution "$min_height" "$target_height" "$in_file"
+    then
+        video2x-local -i \'"$in_file"\' -o \'"$out_file"\' -p 3 upscale -h "$target_height" -a "$algorithm"
+    fi
+}
+
+function find-videos() {
+    find . -type f \( \
+         -iname \*.mp4 -o -iname \*.mkv -o -iname \*.avi -o -iname \*.mov -o \
+         -iname \*.flv -o -iname \*.wmv -o -iname \*.m4v -o -iname \*.webm -o \
+         -iname \*.mpeg -o -iname \*.mpg \
+         \)
 }
 
 function anime4k-all()
 {
-    for in_file in *.{avi,mpg,mkv};
+    find-videos | while read in_file
     do
         [ -e "$in_file" ] || continue;
         anime4k "$in_file"
     done
 }
 
-function video2x-realesr-all()
+function video2x-all()
 {
-    for in_file in *.{avi,mpg,mkv};
+    algorithm=$1
+    if ! check-video2x-algorithm "$algorithm"; then
+        return 1
+    fi
+    find-videos | while read in_file
     do
-        [ -e "$in_file" ] || continue;
-        video2x-realesr "$in_file"
+        [ -e "$in_file" ] || continue
+        video2x "$algorithm" "$in_file"
     done
 }
 
