@@ -224,7 +224,10 @@ function check-upscale-files()
         return 1
     fi
 
-    default_out_file="${in_file_name}.upscaled.${appendix}.${in_file_ext}"
+    # used to be $in_file_ext, but keeping the container format can
+    # cause problems with .ogm, etc. which don't support h.264
+    out_file_ext="mkv"
+    default_out_file="${in_file_name}.upscaled.${appendix}.${out_file_ext}"
     out_file="${2:-${default_out_file}}"
 
     if [ -e "$out_file" ]
