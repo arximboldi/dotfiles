@@ -359,6 +359,7 @@ in
     lm_sensors
     stress-ng
     gparted
+    exfatprogs
     hfsprogs
     exfat
     pv
