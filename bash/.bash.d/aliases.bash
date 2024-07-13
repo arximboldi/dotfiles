@@ -98,6 +98,9 @@ alias rsync-backup="rsync -a -A -X --info=progress2"
 # webcam
 alias photo="echo wait 3s... && sleep 1s && echo wait 2s... && sleep 1s && echo wait 1s... && sleep 1s && fswebcam --no-banner -r 1920x1080 --save photo-$(date -Iseconds).png"
 
+# download music from internet
+alias ripz="yt-dlp -x --audio-format mp3 --audio-quality 0"
+
 # latex
 svg2pdf_tex() {
     fname=$1
