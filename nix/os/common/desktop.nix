@@ -234,6 +234,7 @@ in
     unstable.telegram-desktop
     (telegram-alias unstable.telegram-desktop)
 
+    yt-dlp
     soulseekqt
     qt5.qtbase
     zoom-us
@@ -259,6 +260,7 @@ in
     vlc
     audacious
     ffmpeg-full
+    mkvtoolnix
     mpd
     cantata
     gmpc
