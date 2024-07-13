@@ -3,12 +3,15 @@
 let
   unstable = import <nixos-unstable> {};
 
-  nixos-21_11 = import (
-    let rev = "ec6eaba9dfcfdd11547d75a193e91e26701bf7e3";
+  # the main program I use with wine is Emule and it has been reported
+  # to work better with Wine 6... with current wine it hangs/freezes
+  # sometimes.
+  nixos-wine6 = import (
+    let rev = "70e9780f978a80fd5f9d041ad3172b2525f788f7";
     in builtins.fetchTarball rec {
       name   = "nixpkgs-${rev}";
       url    = "https://github.com/arximboldi/nixpkgs/archive/${rev}.tar.gz";
-      sha256 = "018658ypakpg9yxbyzd06vaxzs5956lr30jkfvw0fzn33pp01xdg";
+      sha256 = "1wpjp9brpis5lnyip912g2dkr4jgykq3wf31kk8091r1f1pgvh9m";
     }
   ) {};
 
@@ -316,8 +319,9 @@ in
     # gaming
     # moonlight-embedded
     moonlight-qt
-    winePackages.stableFull
-    winetricks
+    #winePackages.stableFull
+    nixos-wine6.wine64Packages.stableFull
+    nixos-wine6.winetricks
     protontricks
     steam
     steam-run
