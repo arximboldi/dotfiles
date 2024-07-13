@@ -299,6 +299,7 @@ in
     vkeybd
     vmpk
     bitwig-studio
+    tmsu
 
     # editing
     gimp-with-plugins
