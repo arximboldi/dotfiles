@@ -195,7 +195,7 @@ function check-upscale-resolution()
 
 function video2x-local()
 {
-    nix-shell ~/dev/video2x/shell.nix --argstr command "pdm run -p ~/dev/video2x python -m video2x $*"
+    nix-shell ~/dev/video2x/shell.nix --argstr command "pdm run -p ~/dev/video2x python -m video2x -l debug $*"
 }
 
 # returns via variables out_file and in_file
@@ -218,7 +218,7 @@ function check-upscale-files()
     in_file_name="${in_file%.*}"
     in_file_ext="${in_file##*.}"
 
-    if [[ "$in_file" == *.upscaled.*.mkv ]];
+    if [[ "$in_file" == *.upscaled.* ]];
     then
         echo "> file already converted: $in_file" >&2
         return 1
