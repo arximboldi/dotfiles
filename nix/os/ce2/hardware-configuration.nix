@@ -28,6 +28,11 @@
       fsType = "ext3";
     };
 
+  fileSystems."/media/omnium" =
+    { device = "/dev/disk/by-uuid/5b8e2218-334c-4287-be1a-bb92b51d622e";
+      fsType = "ext4";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/5c6a3b70-c81b-4103-85db-19145babb21f"; }
     ];
