@@ -338,7 +338,7 @@ function find-videos() {
     find . -type f \( \
          -iname \*.mp4 -o -iname \*.mkv -o -iname \*.avi -o -iname \*.mov -o \
          -iname \*.flv -o -iname \*.wmv -o -iname \*.m4v -o -iname \*.webm -o \
-         -iname \*.mpeg -o -iname \*.mpg \
+         -iname \*.mpeg -o -iname \*.mpg -o -iname \*.ogm \
          \)
 }
 
