@@ -1,24 +1,20 @@
-file:///home/raskolnikov/public
 file:///home/raskolnikov/dev
+file:///home/raskolnikov/down
+file:///home/raskolnikov/doc
+file:///home/raskolnikov/media/videos
+file:///home/raskolnikov/pic
+file:///home/raskolnikov/media/music
 file:///home/raskolnikov/sync
+file:///home/raskolnikov/public
+file:///media/extra extra
+file:///media/omnium omnium
 file:///home/raskolnikov/dev/bronze/data
 file:///home/raskolnikov/sync/doc/consultoria/accounting
-file:///media/extra
-sftp://root@wendy/var/www sftp://wendy/builds
-file:///home/raskolnikov/doc
-file:///home/raskolnikov/pic
-file:///home/raskolnikov/down
-file:///home/raskolnikov/media/music
-file:///home/raskolnikov/media/videos
-sftp://nexus9.local/home/raskolnikov sftp://nexus9
-sftp://raskolnikov@orion1:5488/home/raskolnikov sftp://orion1
-sftp://orion3/home/raskolnikov sftp://orion3
-sftp://orion0:2223/ sftp://mjpi (remote)
-sftp://mjpi.local/ sftp://mjpi
-sftp://orion0:2225/ sftp://pickup (remote)
-sftp://pickup.local/ sftp://pickup
-sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp://es.gnu.org
-sftp://andromeda.re/var/lib/transmission/Downloads sftp://andromeda.re
-sftp://raskolnikov@orion4/home/raskolnikov sftp://orion4
-file:///run/media/raskolnikov
 file:///home/raskolnikov/sync/music-export/playlists
+sftp://raskolnikov@orion1:5488/home/raskolnikov sftp://orion1
+sftp://raskolnikov@orion3/home/raskolnikov sftp://orion3
+sftp://root@andromeda.re/var/lib/transmission/Downloads sftp://andromeda.re
+sftp://raskolnikov@orion4/home/raskolnikov sftp://orion4
+sftp://root@wendy/var/www sftp://wendy/builds
+sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp://es.gnu.org
+sftp://nexus9.local/home/raskolnikov sftp://nexus9
