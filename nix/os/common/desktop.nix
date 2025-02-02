@@ -19,6 +19,7 @@ let
     # Optimize rubberband as much as possible... it seems to really ba
     # slow library not sure what more we can do about this...
     rubberband = unstable.rubberband.overrideAttrs (attrs: {
+      NIX_ENFORCE_NONATIVE = true;
       mesonFlags = ["-Dtests=disabled"
                     "--buildtype=release"
                     "--optimization=3"
@@ -33,33 +34,10 @@ let
     mixxx = (unstable.mixxx.override {
       rubberband = self.rubberband;
     }).overrideAttrs (attrs: {
+      NIX_ENFORCE_NONATIVE = true;
       cmakeFlags = attrs.cmakeFlags ++ ["-DOPTIMIZE=native"];
       hardeningDisable = [ "all" ];
     });
-
-    # mpdevil = with super;  python3Packages.buildPythonApplication rec {
-    #   pname = "mpdevil";
-    #   version = "1.1.1";
-    #   src = fetchGit {
-    #     url = "https://github.com/SoongNoonien/mpdevil.git";
-    #     rev = "7969ec54ffa535924f5d3846e6f82bf200899803";
-    #   };
-    #   nativeBuildInputs = [ glib gtk3 intltool wrapGAppsHook ];
-    #   buildInputs = [ glib gtk3 libnotify pango
-    #                   gsettings-desktop-schemas
-    #                   gobject-introspection
-    #                   python3Packages.distutils_extra ];
-    #   propagatedBuildInputs = with python3Packages; [
-    #     pygobject3
-    #     mpd2
-    #     beautifulsoup4
-    #     requests
-    #   ];
-    #   strictDeps = false;
-    #   postInstall = ''
-    #      glib-compile-schemas $out/share/glib-2.0/schemas
-    #   '';
-    # };
 
     covergrid = with super;  python3Packages.buildPythonApplication rec {
       pname = "covergrid";
