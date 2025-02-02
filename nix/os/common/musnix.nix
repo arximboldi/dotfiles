@@ -6,8 +6,8 @@ let
   musnix-src = fetchFromGitHub {
     owner  = "musnix";
     repo   = "musnix";
-    rev    = "52e344b30a364c709eb314e4f139074a7f81b19b";
-    sha256 = "sha256-crgQuuIXAJvWtheOuyACOeRtym4AERR2SsnE01e0VLc=";
+    rev    = "86ef22cbdd7551ef325bce88143be9f37da64c26";
+    sha256 = "sha256-lvee0rhKTpJEDl1SC4F3Kvz88snOU8OMTJBsPH1pVBo=";
   };
 
 in
