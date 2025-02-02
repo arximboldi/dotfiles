@@ -1,9 +1,9 @@
 file:///home/raskolnikov/public
 file:///home/raskolnikov/dev
-file:///media/extra
 file:///home/raskolnikov/sync
 file:///home/raskolnikov/dev/bronze/data
 file:///home/raskolnikov/sync/doc/consultoria/accounting
+file:///media/extra
 sftp://root@wendy/var/www sftp://wendy/builds
 file:///home/raskolnikov/doc
 file:///home/raskolnikov/pic
@@ -20,4 +20,5 @@ sftp://pickup.local/ sftp://pickup
 sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp://es.gnu.org
 sftp://andromeda.re/var/lib/transmission/Downloads sftp://andromeda.re
 sftp://raskolnikov@orion4/home/raskolnikov sftp://orion4
-file:///run/media/raskolnikov raskolnikov
+file:///run/media/raskolnikov
+file:///home/raskolnikov/sync/music-export/playlists

@@ -3,7 +3,7 @@
 <channel name="xfce4-notifyd" version="1.0">
   <property name="notify-location" type="uint" value="2"/>
   <property name="theme" type="string" value="Numix"/>
-  <property name="initial-opacity" type="double" value="0.800000"/>
+  <property name="initial-opacity" type="double" value="0.80000000000000004"/>
   <property name="expire-timeout" type="int" value="5"/>
   <property name="applications" type="empty">
     <property name="known_applications" type="array">
@@ -32,4 +32,5 @@
   <property name="log-level-apps" type="uint" value="0"/>
   <property name="do-not-disturb" type="bool" value="false"/>
   <property name="primary-monitor" type="uint" value="0"/>
+  <property name="log-max-size-enabled" type="bool" value="true"/>
 </channel>

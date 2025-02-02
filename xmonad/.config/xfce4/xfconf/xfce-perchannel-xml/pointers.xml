@@ -33,10 +33,16 @@
     </property>
   </property>
   <property name="DisableTouchpadWhileTyping" type="bool" value="true"/>
-  <property name="DisableTouchpadDuration" type="double" value="0.100000"/>
+  <property name="DisableTouchpadDuration" type="double" value="0.10000000000000001"/>
   <property name="Designer_Mouse" type="empty">
     <property name="Threshold" type="int" value="1"/>
-    <property name="Acceleration" type="double" value="3.000000"/>
+    <property name="Acceleration" type="double" value="3"/>
     <property name="RightHanded" type="bool" value="true"/>
+  </property>
+  <property name="Synaptics_TM3289-002" type="empty">
+    <property name="RightHanded" type="bool" value="true"/>
+    <property name="ReverseScrolling" type="bool" value="false"/>
+    <property name="Threshold" type="int" value="1"/>
+    <property name="Acceleration" type="double" value="5"/>
   </property>
 </channel>

@@ -18,7 +18,6 @@
         <value type="int" value="4"/>
         <value type="int" value="5"/>
         <value type="int" value="6"/>
-        <value type="int" value="8"/>
         <value type="int" value="10"/>
         <value type="int" value="11"/>
         <value type="int" value="12"/>
@@ -62,6 +61,20 @@
       <property name="names-ordered" type="array">
         <value type="string" value=".blueman-tray-wrapped"/>
         <value type="string" value="xfce4-power-manager"/>
+        <value type="string" value="networkmanager applet"/>
+      </property>
+      <property name="known-items" type="array">
+        <value type="string" value="Microsoft Teams - Preview1"/>
+        <value type="string" value="blueman"/>
+        <value type="string" value="pasystray"/>
+      </property>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value=".blueman-tray-wrapped"/>
+        <value type="string" value="reminders"/>
+        <value type="string" value="xfce4-power-manager"/>
+        <value type="string" value="system-config-printer"/>
+        <value type="string" value="evolution-alarm-notify"/>
+        <value type="string" value="blueberry-tray.py"/>
         <value type="string" value="networkmanager applet"/>
       </property>
     </property>
