@@ -29,7 +29,7 @@ in
 
   systemd.services.modem-manager.enable = true;
   # https://nixos.wiki/wiki/Accelerated_Video_Playback
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     libva intel-media-driver vaapiIntel libvdpau-va-gl vaapiVdpau # intel-ocl
   ];
   # hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva vaapiIntel libvdpau-va-gl vaapiVdpau ];
@@ -57,7 +57,7 @@ in
   #  }
   #];
   services.minidlna.enable = true;
-  services.minidlna.mediaDirs = [
+  services.minidlna.settings.media_dir = [
     "/run/media/raskolnikov/elemento/videos/pelis/erotica/vr"
     "/run/media/raskolnikov/solaris/videos/pelis/erotica/vr"
     "/home/raskolnikov/media/videos"
