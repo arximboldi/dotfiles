@@ -155,6 +155,7 @@ in
       inquirer
       lxml
       tabulate
+      subliminal
     ])).override (args: { ignoreCollisions = true; }))
     clipgrab
     ruby
@@ -185,6 +186,7 @@ in
     unzip
     unrar
     android-tools
+    hugo
 
     gnomeExtensions.x11-gestures
     gnomeExtensions.tactile
@@ -369,6 +371,7 @@ in
     exfatprogs
     hfsprogs
     exfat
+    exfatprogs
     pv
     progress
     # alarm-clock-applet
