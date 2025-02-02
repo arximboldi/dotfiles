@@ -27,12 +27,12 @@
   # https://nixos.wiki/wiki/Nvidia
 
   virtualisation.docker.enable = true;
-  #virtualisation.docker.enableOnBoot = true;
-  virtualisation.docker.enableNvidia = true;
   virtualisation.podman.enable = true;
+  #virtualisation.docker.enableOnBoot = true;
+  #virtualisation.docker.enableNvidia = true;
   #virtualisation.podman.enableOnBoot = true;
-  virtualisation.podman.enableNvidia = true;
-  systemd.enableUnifiedCgroupHierarchy = false;
+  #virtualisation.podman.enableNvidia = true;
+  # systemd.enableUnifiedCgroupHierarchy = false;
   hardware.nvidia-container-toolkit.enable = true;
   hardware.nvidia-container-toolkit.mount-nvidia-executables = false;
 
@@ -80,5 +80,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

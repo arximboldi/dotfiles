@@ -119,6 +119,7 @@ in
   };
 
   nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
     "openssl-1.1.1u"
     "python-2.7.18.6"
     "python2.7-pyjwt-1.7.1"
@@ -164,14 +165,12 @@ in
     ninja
     icu
     clang_16
-    clang-tools_16
     llvm_16
     cmake
     docker
     ycmd
     silver-searcher
     gdb
-    rustfmt
     wireshark
     zeal
     mmv
@@ -187,11 +186,19 @@ in
     unrar
     android-tools
     hugo
+    niv
+
+    clang-tools_16
+    rustfmt
+    # nodePackages.standard
+    nodePackages.prettier
+    cmake-format
+    alejandra
 
     gnomeExtensions.x11-gestures
     gnomeExtensions.tactile
     gnomeExtensions.reorder-workspaces
-    gnomeExtensions.current-screen-only-for-alternate-tab
+    # gnomeExtensions.current-screen-only-for-alternate-tab
     touchegg
 
     linuxPackages.perf
@@ -210,7 +217,7 @@ in
     wirelesstools
     iw
     thunderbird
-    transmission-gtk
+    transmission_4-gtk
     tor-browser
     unstable.firefox
     unstable.chromium
@@ -240,10 +247,10 @@ in
     soulseekqt
     qt5.qtbase
     zoom-us
-    gnome3.polari
+    polari
     # tdesktop
     signal-desktop
-    wire-desktop
+    # wire-desktop
     obs-studio
 
     # mail
@@ -265,7 +272,9 @@ in
     mkvtoolnix
     mpd
     cantata
-    gmpc
+    #gmpc
+    plattenalbum
+    ymuse
     #covergrid
     mpdevil
     ncmpc
@@ -280,7 +289,7 @@ in
     calibre
     qjackctl
     jack2
-    gnome3.cheese
+    cheese
     sound-juicer
     soundconverter
     lame
@@ -307,10 +316,12 @@ in
     gimp-with-plugins
     krita
     inkscape
+    # onlyoffice-desktopeditors
     libreoffice-fresh
     xournalpp
     pdftk
-    gcolor2
+    gcolor3
+    eyedropper
     blender
     imagemagickBig
     okular
@@ -353,7 +364,7 @@ in
     # utils
     # gksu
     gedit
-    gnome.gnome-terminal
+    gnome-terminal
     stow
     usbutils
     trash-cli
@@ -427,7 +438,7 @@ in
     pavucontrol
     pamixer
     blueman
-    gnome3.gnome-bluetooth
+    gnome-bluetooth
     blueberry
     syncthing
     libnotify
@@ -449,7 +460,7 @@ in
     sway
     unetbootin
     picom
-    gnome3.gnome-tweaks
+    gnome-tweaks
     pango
 
     # https://github.com/NixOS/nixpkgs/issues/43836#issuecomment-419217138
@@ -457,14 +468,14 @@ in
     gnome-icon-theme
   ];
 
-  services.xserver.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
   gtk.iconCache.enable = true;
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       corefonts
       inconsolata
       ubuntu_font_family
@@ -521,7 +532,7 @@ in
   };
 
   programs.evince.enable = true;
-  programs.bash.enableCompletion = true;
+  programs.bash.completion.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -554,7 +565,7 @@ in
 
   services.flatpak.enable = true;
 
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable32Bit = true;
   hardware.bluetooth.enable = true;
 
   security.rtkit.enable = true;
@@ -571,8 +582,8 @@ in
     support32Bit = true;
     package = pkgs.pulseaudioFull;
   };
-  services.gnome.tracker.enable = true;
-  services.gnome.tracker-miners.enable = true;
+  services.gnome.tinysparql.enable = true;
+  services.gnome.localsearch.enable = true;
   # deprecated?
   # xdg.portal.gtkUsePortal = true;
 
@@ -581,20 +592,22 @@ in
   programs.sway.enable = false;
 
   services.pantheon.apps.enable = true;
-  programs.pantheon-tweaks.enable = true;
+  # programs.pantheon-tweaks.enable = true;
 
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbOptions = "eurosign:e";
-    desktopManager.pantheon.enable = false;
-    desktopManager.gnome.enable = true;
-    #displayManager.gdm.enable = true;
-    displayManager.lightdm.enable = true;
-    displayManager.autoLogin = {enable = true; user = "raskolnikov";};
-    displayManager.lightdm.greeters.enso.enable = false;
-    displayManager.defaultSession = "none+xmonad";
-    desktopManager.xfce.enable = true;
+    xkb.layout = "us";
+    xkb.options = "eurosign:e";
+    desktopManager = {
+      pantheon.enable = false;
+      gnome.enable = true;
+      xfce.enable = true;
+      #gdm.enable = true;
+    };
+    displayManager = {
+      lightdm.enable = true;
+      lightdm.greeters.enso.enable = false;
+    };
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
@@ -602,6 +615,8 @@ in
       extraPackages = hs: [hs.taffybar];
     };
   };
+  services.displayManager.defaultSession = "none+xmonad";
+  services.displayManager.autoLogin = {enable = true; user = "raskolnikov";};
 
   # add wayland support for slack et al
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -620,7 +635,7 @@ in
   programs.dconf.enable = true;
   programs.seahorse.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
-  services.dbus.packages = [ pkgs.gnome3.gnome-keyring pkgs.gcr ];
+  services.dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
   services.gnome.gnome-keyring.enable = true;
 
   programs.nix-ld.enable = true;
