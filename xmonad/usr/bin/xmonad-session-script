@@ -36,7 +36,6 @@ xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 
 xfsettingsd -D --daemon
 dunst &
 pidof status-notifier-watcher || status-notifier-watcher &
-taffybar &
 tracker3 daemon -s
 gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop &
 ~/usr/bin/startemacs &
@@ -50,13 +49,13 @@ sleep 1
 # dbus-send --system --dest=org.freedesktop.ModemManager1 --print-reply /org/freedesktop/ModemManager1 org.freedesktop.DBus.Introspectable.Introspect &
 
 # start all programs with applets now
+taffybar &
 xfce4-power-manager  --restart --daemon
 pasystray -N all &
 nm-applet --sm-disable --indicator &
 blueman-applet &
 # mpdas &
 mpDris2 &
-xsettingsd &
 
 sleep 1
 xwallpaper --daemon --clear --zoom ~/pic/wallpaper/default.jpg
