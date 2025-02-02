@@ -1,9 +1,9 @@
 Gdk/WindowScalingFactor 1
 Gtk/CursorThemeName "Adwaita"
-Gtk/FontName "Cantarell 13"
-Gtk/MonospaceFontName "Iosevka 13"
+Gtk/FontName "Cantarell 14"
+Gtk/MonospaceFontName "Iosevka 14"
 Gtk/DecorationLayout "menu:"
-Net/IconThemeName "Dracula"
+Net/IconThemeName "Dracula Fixed"
 Net/SoundThemeName "default"
 Net/ThemeName "adw-gtk3"
 Xft/Antialias 1
