@@ -3,7 +3,7 @@ Gtk/CursorThemeName "Adwaita"
 Gtk/FontName "Cantarell 14"
 Gtk/MonospaceFontName "Iosevka 14"
 Gtk/DecorationLayout "menu:"
-Net/IconThemeName "Dracula Fixed"
+Net/IconThemeName "Dracula"
 Net/SoundThemeName "default"
 Net/ThemeName "adw-gtk3"
 Xft/Antialias 1

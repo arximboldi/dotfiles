@@ -16,6 +16,16 @@ let
   ) {};
 
   arximboldi-overlay = self: super: {
+    # fix broken for now
+    dracula-icon-theme = super.dracula-icon-theme.overrideAttrs {
+      src = super.fetchFromGitHub {
+        owner  = "Blazin64";
+        repo   = "dracula-icons";
+        rev    = "5739ffc6578a18d8287744eddc8550551e6e72f4";
+        sha256 = "sha256-9v4UCvywUJrESmBt+gJUeR3a0UpnbMD3zQVvibtqgyk=";
+      };
+    };
+
     # Optimize rubberband as much as possible... it seems to really ba
     # slow library not sure what more we can do about this...
     rubberband = unstable.rubberband.overrideAttrs (attrs: {
