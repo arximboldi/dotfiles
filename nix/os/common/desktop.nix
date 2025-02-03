@@ -29,7 +29,7 @@ let
     # Optimize rubberband as much as possible... it seems to really ba
     # slow library not sure what more we can do about this...
     rubberband = unstable.rubberband.overrideAttrs (attrs: {
-      NIX_ENFORCE_NONATIVE = true;
+      NIX_ENFORCE_NO_NATIVE = false;
       mesonFlags = ["-Dtests=disabled"
                     "--buildtype=release"
                     "--optimization=3"
@@ -44,7 +44,7 @@ let
     mixxx = (unstable.mixxx.override {
       rubberband = self.rubberband;
     }).overrideAttrs (attrs: {
-      NIX_ENFORCE_NONATIVE = true;
+      NIX_ENFORCE_NO_NATIVE = false;
       cmakeFlags = attrs.cmakeFlags ++ ["-DOPTIMIZE=native"];
       hardeningDisable = [ "all" ];
     });
