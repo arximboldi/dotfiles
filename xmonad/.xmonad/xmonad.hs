@@ -49,7 +49,7 @@ import XMonad.Util.Cursor
 
 import XMonad.Hooks.EwmhDesktops
 
-import System.Taffybar.Support.PagerHints (pagerHints)
+import XMonad.Hooks.TaffybarPagerHints (pagerHints)
 
 import Graphics.X11.ExtraTypes.XF86
 
@@ -300,6 +300,7 @@ main = do
   putEnv "GTK_CSD=0"
   putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
   putEnv "QT_AUTO_SCREEN_SCALE_FACTOR=0"
+  putEnv "XDG_CURRENT_DESKTOP=gnome"
   -- putEnv "QT_STYLE_OVERRIDE=breeze"
   -- putEnv "QT_SCALE_FACTOR=1.25"
   -- putEnv "QT_QPA_PLATFORMTHEME=lxqt"
