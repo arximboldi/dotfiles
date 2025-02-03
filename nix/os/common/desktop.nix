@@ -610,6 +610,7 @@ in
   };
   services.displayManager.defaultSession = "none+xmonad";
   services.displayManager.autoLogin = {enable = true; user = "raskolnikov";};
+  qt.platformTheme = "gnome";
 
   # add wayland support for slack et al
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
