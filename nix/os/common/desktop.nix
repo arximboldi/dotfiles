@@ -87,6 +87,11 @@ let
       ln -s ${pkg}/bin/telegram-desktop $out/bin/telegram
     '';
 
+    cantata-wrapper = self.writeScriptBin "cantata" ''
+      QT_SCALE_FACTOR=1.5 \
+        ${self.cantata}/bin/cantata
+    '';
+
     # sidequest-latest = super.sidequest.overrideDerivation (old: rec {
     #   version = "0.10.18";
     #   src = super.fetchurl {
@@ -259,7 +264,7 @@ in
     ffmpeg-full
     mkvtoolnix
     mpd
-    cantata
+    cantata-wrapper
     #gmpc
     plattenalbum
     ymuse
