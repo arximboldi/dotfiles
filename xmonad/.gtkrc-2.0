@@ -1,9 +1,7 @@
 gtk-theme-name="Dracula"
 gtk-icon-theme-name="Dracula"
-gtk-cursor-theme-name="Adwaita"
 gtk-font-name="Cantarell 14"
 gtk-menu-images=1
-gtk-cursor-theme-size=0
 gtk-button-images=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1

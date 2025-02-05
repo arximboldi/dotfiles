@@ -88,8 +88,7 @@ let
     '';
 
     cantata-wrapper = self.writeScriptBin "cantata" ''
-      QT_SCALE_FACTOR=1.5 \
-        ${self.cantata}/bin/cantata
+      ${self.cantata}/bin/cantata
     '';
 
     # sidequest-latest = super.sidequest.overrideDerivation (old: rec {
@@ -611,6 +610,7 @@ in
   services.displayManager.defaultSession = "none+xmonad";
   services.displayManager.autoLogin = {enable = true; user = "raskolnikov";};
   qt.platformTheme = "gnome";
+  xdg.icons.fallbackCursorThemes = ["Yaru-remix" "Adwaita"];
 
   # add wayland support for slack et al
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

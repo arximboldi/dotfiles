@@ -279,5 +279,3 @@ with-env () {
     shift
     $@
 }
-
-XCURSOR_THEME=Adwaita
