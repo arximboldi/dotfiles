@@ -263,12 +263,12 @@ in
     ffmpeg-full
     mkvtoolnix
     mpd
+    beets
     cantata-wrapper
     #gmpc
     plattenalbum
     ymuse
     #covergrid
-    mpdevil
     ncmpc
     ncmpcpp
     ario
