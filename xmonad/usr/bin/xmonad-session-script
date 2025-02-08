@@ -25,7 +25,6 @@ killall -rw mpdas &
 killall -rw mpDris2 &
 killall -rw taffybar &
 killall -rw picom &
-killall -rw xfsettingsd &
 # killall -rw mpd &
 wait
 
@@ -33,10 +32,10 @@ wait
 xset -b
 picom -b
 xinput set-prop 'ImPS/2 Generic Wheel Mouse' 'libinput Scroll Method Enabled' 0 0 1
-xfsettingsd -D --daemon
+xfsettingsd --replace -D --daemon
 dunst &
 pidof status-notifier-watcher || status-notifier-watcher &
-tracker3 daemon -s
+localsearch daemon -s
 gtk-launch /var/run/current-system/sw/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop &
 ~/usr/bin/startemacs &
 pidof syncthing || syncthing &
@@ -58,7 +57,6 @@ blueman-applet &
 mpDris2 &
 
 xwallpaper --daemon --clear --zoom ~/pic/wallpaper/default.jpg
-
 
 echo ===
 echo done initializing script!!!
