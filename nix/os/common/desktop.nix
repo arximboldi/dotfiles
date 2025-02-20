@@ -127,6 +127,19 @@ in
   ];
   programs.adb.enable = true;
 
+  # compiling remotely
+  services.distccd = {
+    enable = true;
+    zeroconf = true;
+    # bassically --allow-private
+    allowedClients = [
+      "10.0.0.0/8"
+      "192.168.0.0/16"
+      "172.16.0.0/12"
+      "127.0.0.0/8"
+    ];
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -255,7 +268,7 @@ in
     evolution
 
     # media
-    unstable.smplayer # unstable for subs
+    smplayer
     mpv
     mplayer
     vlc
