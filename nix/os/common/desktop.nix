@@ -131,6 +131,7 @@ in
   services.distccd = {
     enable = true;
     zeroconf = true;
+    openFirewall = true;
     # bassically --allow-private
     allowedClients = [
       "10.0.0.0/8"
@@ -139,6 +140,9 @@ in
       "127.0.0.0/8"
     ];
   };
+  services.avahi.enable = true;
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
