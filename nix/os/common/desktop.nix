@@ -133,13 +133,18 @@ in
     zeroconf = true;
     openFirewall = true;
     # bassically --allow-private
+    # https://github.com/distcc/distcc/blob/66bf4c56f6af2243c48748139c078f4f01cd639b/src/dopt.c#L134C46-L141C57
     allowedClients = [
-      "10.0.0.0/8"
       "192.168.0.0/16"
+      "10.0.0.0/8"
       "172.16.0.0/12"
       "127.0.0.0/8"
+      "fe80::/10"
+      "fc00::/7"
+      "::1/128"
     ];
   };
+  systemd.services.distccd.environment.LISTENER = "::";
   services.avahi.enable = true;
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
