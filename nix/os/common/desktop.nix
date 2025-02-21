@@ -132,6 +132,8 @@ in
     enable = true;
     zeroconf = true;
     openFirewall = true;
+    logLevel = "info";
+    stats.enable = true;
     # bassically --allow-private
     # https://github.com/distcc/distcc/blob/66bf4c56f6af2243c48748139c078f4f01cd639b/src/dopt.c#L134C46-L141C57
     allowedClients = [
@@ -144,10 +146,18 @@ in
       "::1/128"
     ];
   };
-  systemd.services.distccd.environment.LISTENER = "::";
-  services.avahi.enable = true;
-  services.avahi.publish.enable = true;
-  services.avahi.publish.userServices = true;
+  systemd.services.distccd.environment = {
+    LISTENER = "::"; # for ipv6 support
+    DISTCCD_PATH = builtins.concatStringsSep ":" ["${pkgs.gcc}/bin"];
+  };
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    #nssmdns6 = true;
+    openFirewall = true;
+    publish.enable = true;
+    publish.userServices = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
