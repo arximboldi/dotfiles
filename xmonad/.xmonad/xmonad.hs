@@ -323,6 +323,5 @@ main = do
     , handleEventHook    = handleEventHook def
     , logHook            = do
         spawn "~/usr/bin/xdotool-all Dunst windowraise"
-        spawn "~/usr/bin/xdotool-all Xfdesktop windowlower"
         spawn "~/usr/bin/xdotool-all Taffybar-linux-x86_64 windowlower"
     }
