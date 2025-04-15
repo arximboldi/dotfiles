@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-windows=`xdotool search --onlyvisible $1`
+windows=`xdotool search --onlyvisible --maxdepth 0 $1`
 for id in $windows
 do
     echo running: xdotool $2 $id
