@@ -36,6 +36,7 @@
 (require 'init-mail)
 (require 'init-devel)
 (require 'init-keys)
+(require 'init-ai)
 
 (set-cursor-color "yellow")
 
