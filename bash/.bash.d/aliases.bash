@@ -73,7 +73,7 @@ alias killemacs="emacsclient -e \"(kill-emacs)\" -a false"
 alias compemacs='emacs --batch -l ~/.emacs.d/init.el --eval "(byte-recompile-directory (expand-file-name \"~/.emacs.d\") 0)" --kill'
 
 # cmake
-alias cmake="\cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+# alias cmake="\cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 alias c=cmake
 alias cn="cmake -G Ninja"
 alias cn-all="cn .. && ninja && ctest --output-on-failure"
@@ -393,6 +393,10 @@ function counter-ncurses-meta-meta()
             > /dev/null \
             2> /dev/null
 }
+
+alias explain="gh-copilot explain"
+alias suggest="gh-copilot suggest"
+alias ghc="gh-copilot"
 
 [ -f ~/dev/prenav/env.bash ] && \
     source ~/dev/prenav/env.bash

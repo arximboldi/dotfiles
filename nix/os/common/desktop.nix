@@ -212,6 +212,12 @@ in
     hugo
     niv
 
+    # ai stuff
+    unstable.aider-chat
+    github-copilot-cli
+    gh-copilot
+    xsel
+
     clang-tools_16
     rustfmt
     # nodePackages.standard
