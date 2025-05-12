@@ -266,7 +266,7 @@ in
     niv
 
     # ai stuff
-    unstable.aider-chat
+    unstable.aider-chat-full
     github-copilot-cli
     gh-copilot
     xsel
