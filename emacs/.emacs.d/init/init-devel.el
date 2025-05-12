@@ -194,6 +194,11 @@
  '(("\\<\\(readonly\\|signal\\|property\\)\\>[^:]" . font-lock-keyword-face)
    ("id:\\s-*?\\<\\([[:alpha:]_$]\\(?:\\s_\\|\\sw\\)*\\)\\>" . font-lock-variable-name-face)))
 
+;; JS
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-js-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+
+
 ;;
 ;; Gtags
 ;;
