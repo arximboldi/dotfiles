@@ -318,7 +318,7 @@ in
     # franz
     # rambox
     # unstable.teams
-    unstable.skypeforlinux
+    # unstable.skypeforlinux
     unstable.slack
     unstable.teams-for-linux
     unstable.discord
