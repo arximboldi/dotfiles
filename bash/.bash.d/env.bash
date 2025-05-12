@@ -8,6 +8,8 @@ export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c"
 
+export BEETSDIR=~/sync/music/library
+
 #
 # Utils for manipulating environment paths
 #

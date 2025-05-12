@@ -91,6 +91,59 @@ let
       ${self.cantata}/bin/cantata
     '';
 
+    my-emacs = self.emacs-gtk.override {
+      withNativeCompilation = true;
+      withTreeSitter = true;
+    };
+
+    my-emacs-with-packages = (self.emacsPackagesFor self.my-emacs).emacsWithPackages (ps: with ps; [
+      treesit-grammars.with-all-grammars
+    ]);
+
+    beetcamp = (self.python3Packages.buildPythonApplication {
+      pname = "beets-beetcamp";
+      version = "0.21.0";
+      src = self.fetchFromGitHub {
+        repo = "beetcamp";
+        owner = "snejus";
+        rev = "64c7afc9d87682fb2b7c9f2deb76525e44afb248";
+        sha256 = "sha256-d0yvOyfxPPBUpoO6HCWfMq2vVw+CcQo16hx+JRDMkBw=";
+      };
+      format = "pyproject";
+      buildInputs = with self.python3Packages; [ poetry-core ];
+      propagatedBuildInputs = with self.python3Packages; [
+        setuptools requests cached-property pycountry dateutil ordered-set
+      ];
+      checkInputs = with self.python3Packages; [
+        # pytestCheckHook
+        pytest-cov
+        pytest-randomly
+        pytest-lazy-fixture
+        rich
+        tox
+        types-setuptools
+        types-requests
+      ] ++ [
+        self.beets
+      ];
+      meta = {
+        homepage = "https://github.com/snejus/beetcamp";
+        description = "Bandcamp autotagger plugin for beets.";
+        license = self.lib.licenses.gpl2;
+        inherit (self.beets.meta) platforms;
+        maintainers = with self.lib.maintainers; [ rrix ];
+      };
+    });
+
+    my-beets = (self.beets.override {
+      pluginOverrides = {
+        bandcamp = {
+          enable = true;
+          propagatedBuildInputs = [ self.beetcamp ];
+        };
+      };
+    });
+
     # sidequest-latest = super.sidequest.overrideDerivation (old: rec {
     #   version = "0.10.18";
     #   src = super.fetchurl {
@@ -165,7 +218,7 @@ in
     # programming
     nix-index
     zile
-    emacs29-gtk3
+    my-emacs-with-packages
     vscode
     gitAndTools.gitFull
     gitAndTools.gh
@@ -301,7 +354,7 @@ in
     ffmpeg-full
     mkvtoolnix
     mpd
-    beets
+    my-beets
     cantata-wrapper
     #gmpc
     plattenalbum
@@ -348,6 +401,7 @@ in
     inkscape
     # onlyoffice-desktopeditors
     libreoffice-fresh
+    onlyoffice-desktopeditors
     xournalpp
     pdftk
     gcolor3
@@ -466,6 +520,7 @@ in
     pa_applet
     pasystray
     pavucontrol
+    qpwgraph
     pamixer
     blueman
     gnome-bluetooth
