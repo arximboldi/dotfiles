@@ -78,6 +78,8 @@
 (setq notmuch-show-logo nil)
 (setq notmuch-search-oldest-first nil)
 
+(require 'sendmail)
+
 (setq sendmail-program "/run/current-system/sw/bin/msmtp"
       mail-specify-envelope-from t
       mail-envelope-from 'header
