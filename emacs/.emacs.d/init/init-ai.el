@@ -52,3 +52,5 @@
 
 (use-package elysium)
 (use-package magit-gptcommit) ;; doesn't support 'gptel on main branch yet...
+
+(provide 'init-ai)
