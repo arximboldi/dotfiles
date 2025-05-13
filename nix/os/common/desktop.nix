@@ -270,6 +270,7 @@ in
     github-copilot-cli
     gh-copilot
     xsel
+    jq
 
     clang-tools_16
     rustfmt
