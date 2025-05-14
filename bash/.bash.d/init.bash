@@ -38,6 +38,6 @@ source ~/.bash.d/history.bash
 source ~/.bash.d/git-completion.bash
 source ~/.bash.d/aliases.bash
 source ~/.bash.d/prompt.bash
-if [ -f ~/.bash.d/private.bash ]; then
-    source ~/.bash.d/private.bash
+if [ -f ~/.bash.priv.d/init.bash ]; then
+    source ~/.bash.priv.d/init.bash
 fi
