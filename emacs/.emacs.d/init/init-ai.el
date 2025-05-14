@@ -53,4 +53,8 @@
 (use-package elysium)
 (use-package magit-gptcommit) ;; doesn't support 'gptel on main branch yet...
 
+(use-package aider
+  :config
+  (global-set-key (kbd "C-c a") 'aider-transient-menu))
+
 (provide 'init-ai)
