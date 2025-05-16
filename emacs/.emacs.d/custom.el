@@ -213,7 +213,6 @@
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1)
  '(scroll-step 1)
- '(send-mail-function nil)
  '(shell-toggle-launch-shell 'shell)
  '(show-paren-mode t)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
