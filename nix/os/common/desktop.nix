@@ -437,6 +437,10 @@ in
     #alienarena
     superTuxKart
     gnujump
+    alephone-marathon
+    alephone-durandal
+    alephone-infinity
+    alephone-red
     # liquidwar
     # liquidwar5
     # unvanquished
