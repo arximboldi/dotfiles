@@ -326,6 +326,8 @@ in
     unstable.webcord
     unstable.telegram-desktop
     (telegram-alias unstable.telegram-desktop)
+    signal-desktop
+    signal-cli
 
     yt-dlp
     soulseekqt
