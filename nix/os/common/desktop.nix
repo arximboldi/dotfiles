@@ -258,11 +258,11 @@ in
     gitAndTools.gh
     git-lfs
     mercurialFull
-    ((unstable.python3.withPackages (ps: with ps; [
+    ((python3.withPackages (ps: with ps; [
       ipython
       livereload
       # pafy
-      pyliblo
+      pyliblo3
       twilio
       inquirer
       lxml
@@ -323,7 +323,7 @@ in
     hotspot
     sysprof
     valgrind
-    kcachegrind
+    #kcachegrind
 
     pandoc
     ispell
