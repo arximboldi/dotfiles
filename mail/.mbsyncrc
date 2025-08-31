@@ -5,7 +5,7 @@
 IMAPAccount gmail
 Host imap.gmail.com
 User magnicida@gmail.com
-SSLType IMAPS
+TLSType IMAPS
 PipelineDepth 4
 # genertate with:
 # $ gpg2 --output pass.gpg --symmetric pass
@@ -19,13 +19,13 @@ Path ~/mail/gmail/
 Inbox ~/mail/gmail/Inbox/
 
 Channel gmail
-Master :gmail-remote:
-Slave :gmail-local:
+Far :gmail-remote:
+Near :gmail-local:
 # Exclude everything under the internal [Gmail] folder,
 # except the interesting folders
 Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important"
-Create Slave
-Expunge Slave
+Create Near
+Expunge Near
 Sync All
 
 #
@@ -33,8 +33,8 @@ Sync All
 #
 
 IMAPAccount riseup
-SSLType IMAPS
-SSLVersions TLSv1.2
+TLSType IMAPS
+TLSVersions +1.2
 Host mail.riseup.net
 User juanpe
 PipelineDepth 4
@@ -48,11 +48,11 @@ Path ~/mail/riseup/
 Inbox ~/mail/riseup/Inbox/
 
 Channel riseup
-Master :riseup-remote:
-Slave :riseup-local:
+Far :riseup-remote:
+Near :riseup-local:
 Patterns *
-Create Slave
-Expunge Slave
+Create Near
+Expunge Near
 Sync All
 
 #
@@ -60,7 +60,7 @@ Sync All
 #
 
 IMAPAccount gnu
-SSLType IMAPS
+TLSType IMAPS
 Host es.gnu.org
 User raskolnikov
 CertificateFile ~/.mail/es.gnu.org.cert
@@ -74,11 +74,11 @@ Path ~/mail/gnu/
 Inbox ~/mail/gnu/Inbox/
 
 Channel gnu
-Master :gnu-remote:
-Slave :gnu-local:
+Far :gnu-remote:
+Near :gnu-local:
 Patterns * !.* !dev/*
-Create Slave
-Expunge Slave
+Create Near
+Expunge Near
 Sync All
 
 #
@@ -86,8 +86,8 @@ Sync All
 #
 
 IMAPAccount sinusoides
-SSLType IMAPS
-SSLVersions TLSv1.2
+TLSType IMAPS
+TLSVersions +1.2
 Host sinusoid.es
 User juanpe@sinusoid.es
 CertificateFile ~/.mail/sinusoid.es.cert
@@ -101,11 +101,11 @@ Path ~/mail/sinusoides/
 Inbox ~/mail/sinusoides/Inbox/
 
 Channel sinusoides
-Master :sinusoides-remote:
-Slave :sinusoides-local:
+Far :sinusoides-remote:
+Near :sinusoides-local:
 Patterns *
-Create Slave
-Expunge Slave
+Create Near
+Expunge Near
 Sync All
 
 #
@@ -113,8 +113,8 @@ Sync All
 #
 
 IMAPAccount sinusoidal
-SSLType IMAPS
-SSLVersions TLSv1.2
+TLSType IMAPS
+TLSVersions +1.2
 Host sinusoid.es
 User juanpe@sinusoid.al
 CertificateFile ~/.mail/sinusoid.es.cert
@@ -128,20 +128,20 @@ Path ~/mail/sinusoidal/
 Inbox ~/mail/sinusoidal/Inbox/
 
 Channel sinusoidal
-Master :sinusoidal-remote:
-Slave :sinusoidal-local:
+Far :sinusoidal-remote:
+Near :sinusoidal-local:
 Patterns *
-Create Slave
-Expunge Slave
+Create Near
+Expunge Near
 Sync All
 
 #
-# sinusoides account
+# sinusoides and sinusoidal account
 #
 
 IMAPAccount runbox
-SSLType IMAPS
-SSLVersions TLSv1.2
+TLSType IMAPS
+TLSVersions +1.2
 Host mail.runbox.com
 User juanpe
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d $HOME/.authinfo.gpg | awk '$2==\"mail.runbox.com\" {print $6}'"
@@ -154,11 +154,11 @@ Path ~/mail/runbox/
 Inbox ~/mail/runbox/Inbox/
 
 Channel runbox
-Master :runbox-remote:
-Slave :runbox-local:
+Far :runbox-remote:
+Near :runbox-local:
 Patterns *
-Create Slave
-Expunge Slave
+Create Near
+Expunge Near
 Sync All
 
 #
@@ -167,7 +167,7 @@ Sync All
 
 IMAPAccount bronze
 Host imap.gmail.com
-SSLType IMAPS
+TLSType IMAPS
 AuthMechs LOGIN
 User juanpe@bronze.ai
 # genertate with:
@@ -183,12 +183,12 @@ Inbox ~/mail/bronze/Inbox
 Subfolders Verbatim
 
 Channel bronze
-Master :bronze-remote:
-Slave :bronze-local:
+Far :bronze-remote:
+Near :bronze-local:
 # Exclude everything under the internal [Gmail] folder,
 # except the interesting folders
 # Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important"
 Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
-Create Slave
-Expunge Slave
+Create Near
+Expunge Near
 Sync All
