@@ -109,14 +109,6 @@
         "tooltip-format": "Memory"
     },
 
-    "custom/uptime": {
-        "format": "{}",
-        "format-icon": [""],
-        "tooltip": false,
-        "interval": 1600,
-        "exec": "bash $HOME/.config/waybar/scripts/uptime.sh"
-    },
-
     "wireplumber": {
         "format": "\udb81\udd7e  {volume}%",
         "max-volume": 100,
@@ -140,19 +132,4 @@
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
-
-    "custom/lock": {
-        "tooltip": false,
-        "on-click": "sh -c '(sleep 0s; hyprlock)' & disown",
-        "format" : ""
-    },
-
-    "custom/pomodoro": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "waybar-module-pomodoro --no-work-icons",
-        "on-click": "waybar-module-pomodoro toggle",
-        "on-click-right": "waybar-module-pomodoro reset",
-    },
-
 }
