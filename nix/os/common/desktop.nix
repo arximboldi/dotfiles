@@ -513,6 +513,8 @@ in
 
     # utils
     # gksu
+    tree
+    ghex
     gedit
     gnome-terminal
     stow
