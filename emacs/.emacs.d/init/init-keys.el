@@ -9,7 +9,6 @@
 ;; Helm
 ;;
 (helm-mode 1)
-
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
@@ -17,6 +16,9 @@
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
+
+(require 'helm-xref)
+(which-key-mode)
 
 (projectile-global-mode 1)
 (setq projectile-completion-system 'helm)
@@ -89,12 +91,12 @@
 ;;        (lambda ()
 ;;          (local-set-key (kbd "RET") 'gtags-select-tag)))
 
-(require 'dumb-jump)
-(dumb-jump-mode)
-(global-set-key (kbd "M-.") 'dumb-jump-go)
-(global-set-key (kbd "C-M-.") 'dumb-jump-go-other-window)
-(global-set-key (kbd "M-,") 'dumb-jump-back)
-(global-set-key (kbd "S-DEL") 'delete-indentation)
+;; (require 'dumb-jump)
+;; (dumb-jump-mode)
+;; (global-set-key (kbd "M-.") 'dumb-jump-go)
+;; (global-set-key (kbd "C-M-.") 'dumb-jump-go-other-window)
+;; (global-set-key (kbd "M-,") 'dumb-jump-back)
+;; (global-set-key (kbd "S-DEL") 'delete-indentation)
 
 ;;
 ;; Key bindings
