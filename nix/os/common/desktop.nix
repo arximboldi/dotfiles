@@ -733,6 +733,18 @@ in
   hardware.graphics.enable32Bit = true;
   hardware.bluetooth.enable = true;
 
+  # https://nixos.wiki/wikui/MPD
+  services.mpd = {
+    enable = true;
+    user = "raskolnikov";
+    musicDirectory = "/home/raskolnikov/media/music/mpd";
+    dataDir = "/home/raskolnikov/.config/mpd";
+  };
+  systemd.services.mpd.environment = {
+    # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
+    XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.raskolnikov.uid}";
+  };
+
   security.rtkit.enable = true;
   # sound.enable = true;
   services.pipewire = {
