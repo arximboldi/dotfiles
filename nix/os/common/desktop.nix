@@ -355,9 +355,9 @@ in
     thunderbird
     transmission_4-gtk
     tor-browser
-    unstable.firefox
-    unstable.chromium
-    unstable.google-chrome
+    firefox
+    chromium
+    google-chrome
     (pidgin.override {
       plugins = [
         pidgin-otr
