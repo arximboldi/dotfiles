@@ -37,26 +37,26 @@ let
 
     # Optimize rubberband as much as possible... it seems to really ba
     # slow library not sure what more we can do about this...
-    rubberband = unstable.rubberband.overrideAttrs (attrs: {
-      NIX_ENFORCE_NO_NATIVE = false;
-      mesonFlags = ["-Dtests=disabled"
-                    "--buildtype=release"
-                    "--optimization=3"
-                    "-Dcpp_args='-march=native'"];
-      hardeningDisable = [ "all" ];
-    });
+    # rubberband = unstable.rubberband.overrideAttrs (attrs: {
+    #   NIX_ENFORCE_NO_NATIVE = false;
+    #   mesonFlags = ["-Dtests=disabled"
+    #                 "--buildtype=release"
+    #                 "--optimization=3"
+    #                 "-Dcpp_args='-march=native'"];
+    #   hardeningDisable = [ "all" ];
+    # });
 
     # Compile Mixxx using a PortAudio build that supports JACK
     # Overriding PortAudio globally causes an expensive rebuild I want
     # to avoid until the change is merged upstream...
     # https://github.com/NixOS/nixpkgs/pull/157561
-    mixxx = (unstable.mixxx.override {
-      rubberband = self.rubberband;
-    }).overrideAttrs (attrs: {
-      NIX_ENFORCE_NO_NATIVE = false;
-      cmakeFlags = attrs.cmakeFlags ++ ["-DOPTIMIZE=native"];
-      hardeningDisable = [ "all" ];
-    });
+    # mixxx = (unstable.mixxx.override {
+    #   rubberband = self.rubberband;
+    # }).overrideAttrs (attrs: {
+    #   NIX_ENFORCE_NO_NATIVE = false;
+    #   cmakeFlags = attrs.cmakeFlags ++ ["-DOPTIMIZE=native"];
+    #   hardeningDisable = [ "all" ];
+    # });
 
     covergrid = with super;  python3Packages.buildPythonApplication rec {
       pname = "covergrid";
@@ -400,7 +400,7 @@ in
     vokoscreen
 
     # music
-    mixxx
+    unstable.mixxx
     helm
     vkeybd
     vmpk
