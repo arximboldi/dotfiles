@@ -402,6 +402,9 @@ in
     msmtp
     evolution
 
+    keepassxc
+    pam_u2f
+
     # media
     smplayer
     mpv
