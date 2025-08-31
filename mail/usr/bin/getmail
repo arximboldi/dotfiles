@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #CHANNELS="gmail gnu riseup sinusoides sinusoidal"
-CHANNELS="gnu riseup sinusoides sinusoidal runbox bronze"
+CHANNELS="riseup runbox bronze"
 
 afew_command=afew
 mbsync_command=mbsync
@@ -23,12 +23,12 @@ do-notify() {
 
 notify_progress() {
     echo "-- $1"
-    do-notify -i email -t $notify_infinity "Sync email" "$1"
+    do-notify -i email -a getmail -t $notify_infinity "Sync email" "$1"
 }
 
 notify_finish() {
     echo "== $1"
-    do-notify -i email -t $notify_delay "Sync email" "$1"
+    do-notify -i email -a getmail -t $notify_delay "Sync email" "$1"
 }
 
 kill_children() {
@@ -44,6 +44,7 @@ kill_children() {
 do_sync_email() {
     notify_progress "Fetching..."
     for i in $CHANNELS; do
+        echo "   ... fetching $i"
         $mbsync_command $i &
     done
     wait
