@@ -415,7 +415,9 @@ in
     mkvtoolnix
     mpd
     my-beets
-    cantata-wrapper
+    #cantata-wrapper
+    cantata
+    amberol
     #gmpc
     plattenalbum
     ymuse
