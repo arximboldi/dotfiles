@@ -702,7 +702,9 @@ in
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
+
   services.openssh.enable = true;
   # services.tailscale.enable = true;
   services.sysprof.enable = true;
