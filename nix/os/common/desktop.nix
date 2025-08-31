@@ -330,7 +330,11 @@ in
     gnomeExtensions.x11-gestures
     gnomeExtensions.tactile
     gnomeExtensions.reorder-workspaces
-    # gnomeExtensions.current-screen-only-for-alternate-tab
+    gnomeExtensions.syncthing-toggle
+    gnomeExtensions.astra-monitor
+    gnomeExtensions.xwayland-indicator
+    #gnomeExtensions.syncthing-indicator
+    #gnomeExtensions.current-screen-only-for-alternate-tab
     touchegg
 
     linuxPackages.perf
