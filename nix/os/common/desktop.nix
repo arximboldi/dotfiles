@@ -754,7 +754,7 @@ in
     alsa.support32Bit = false;
     jack.enable = false;
   };
-  hardware.pulseaudio = {
+  services.pulseaudio = {
     enable = false;
     support32Bit = true;
     package = pkgs.pulseaudioFull;
