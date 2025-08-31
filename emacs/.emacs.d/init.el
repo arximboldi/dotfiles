@@ -4,7 +4,7 @@
 
 (set-face-attribute 'default nil
                     :family "Iosevka"
-                    :height 140
+                    :height 110
                     :weight 'normal)
 
 ;; start as server if it's not already running
