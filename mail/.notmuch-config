@@ -3,7 +3,7 @@ path=/home/raskolnikov/mail
 
 [new]
 tags=new
-ignore=.uidvalidity;.mbsyncstate;slrnpull.conf;pass
+ignore=.uidvalidity;.mbsyncstate;slrnpull.conf;elmo;gmane;pass
 
 [search]
 exclude_tags=deleted;spam;gmail
