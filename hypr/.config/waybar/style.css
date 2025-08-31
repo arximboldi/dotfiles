@@ -1,8 +1,8 @@
 /* --- Global Styles --- */
 * {
-  font-family: 'SF Pro Text', 'Inter', 'Segoe UI, NotoSans Nerd Font', sans-serif;
-  font-size: 13px;
-  min-height: 0;
+  font-family: Cantarell;
+  font-size: 10pt;
+  padding-top: 0px;
   padding-right: 0px;
   padding-left: 0px;
   padding-bottom: 0px;
@@ -13,17 +13,19 @@
   background: transparent;
   color: #c6d0f5;
   margin: 0px;
-  font-weight: 500;
 }
 
 /* --- Left Modules (Individual, Fully Rounded Blocks - With Horizontal Spacing & Simple Hover) --- */
+#workspaces {
+  border-radius: 8px; /* These modules are always rounded */
+}
+
 #workspaces,
-#custom-uptime,
+#memory,
 #cpu {
   background-color: #1a1b26;
-  padding: 0.3rem 0.7rem;
-  margin: 5px 0px; /* 5px top/bottom margin, 0px left/right (base for individual control) */
-  border-radius: 6px; /* These modules are always rounded */
+  padding: 0.1rem 0.7rem;
+  margin: 6px 0px; /* 5px top/bottom margin, 0px left/right (base for individual control) */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   min-width: 0;
   border: none;
@@ -31,36 +33,49 @@
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+#cpu {
+  margin-left: 0px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+#memory {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-right: 8px;
+}
+
 #workspaces {
-  padding: 2px;
-  margin-left: 7px; /* Margin from the far left edge */
-  margin-right: 5px; /* Spacing after the workspaces module */
+  margin-left: 8px; /* Margin from the far left edge */
+  margin-right: 6px; /* Spacing after the workspaces module */
 }
 
 #custom-uptime {
-  margin-right: 5px; /* Spacing after the uptime module */
+  margin-right: 6px; /* Spacing after the uptime module */
 }
 
 /* Simple Hover effects for individual left modules - BRIGHTER COLOR */
 #custom-uptime:hover,
+#memory:hover,
 #cpu:hover {
   background-color: rgb(41, 42, 53); /* Brighter highlight */
 }
 
 #workspaces button {
   color: #babbf1;
-  border-radius: 5px; /* Workspaces buttons are always rounded */
-  padding: 0.3rem 0.6rem;
+  border-radius: 8px; /* Workspaces buttons are always rounded */
+  padding: 0.1rem 0.3rem;
   background: transparent;
   transition: all 0.2s ease-in-out;
   border: none;
   outline: none;
 }
 
+#workspaces button.visible,
 #workspaces button.active {
   color: #99d1db;
-  background-color: rgba(153, 209, 219, 0.1);
-  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+  /*background-color: rgba(153, 209, 219, 0.1);*/
+  /*box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);*/
 }
 
 #workspaces button:hover {
@@ -71,8 +86,8 @@
 /* --- Center Module (Individual, Fully Rounded Block - With Simple Hover) --- */
 #clock {
   background-color: #1a1b26;
-  padding: 0.3rem 0.7rem;
-  margin: 5px 0px;
+  padding: 0.1rem 0.7rem;
+  margin: 6px 0px;
   border-radius: 6px; /* This module is always rounded */
   box-shadow: 0 1px 3px rgba(153, 209, 219, 0.2);
   min-width: 0;
@@ -87,8 +102,8 @@
 
 #custom-pomodoro {
     background-color: #1a1b26; /* Consistent dark background */
-    padding: 0.3rem 0.7rem; /* Consistent padding with other modules (e.g., cpu, uptime) */
-    margin: 5px 0px; /* 5px top/bottom margin, 0px left/right (base for individual control) */
+    padding: 0.1rem 0.7rem; /* Consistent padding with other modules (e.g., cpu, uptime) */
+    margin: 6px 0px; /* 5px top/bottom margin, 0px left/right (base for individual control) */
     border-radius: 6px; /* Consistent rounded corners with other individual modules */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Consistent shadow */
     min-width: 0;
@@ -124,15 +139,17 @@
 }
 
 /* --- Right Modules (Single, Seamless Bar ) --- */
+#tray,
 #bluetooth,
 #pulseaudio,
+#wireplumber,
 #backlight,
 #network,
 #custom-lock,
 #battery {
   background-color: #1a1b26;
-  padding: 0.3rem 0.7rem;
-  margin: 5px 0px;
+  padding: 0.1rem 0.7rem;
+  margin: 6px 0px;
   border-radius: 0;
   box-shadow: none;
   min-width: 0;
@@ -140,8 +157,10 @@
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+#tray:hover,
 #bluetooth:hover,
 #pulseaudio:hover,
+#wireplumber:hover,
 #backlight:hover,
 #network:hover,
 #custom-lock:hover,
@@ -149,7 +168,7 @@
   background-color: rgb(41, 42, 53);
 }
 
-#bluetooth {
+#tray {
   margin-left: 0px;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
@@ -158,29 +177,26 @@
 #battery {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
-  margin-right: 7px;
+  margin-right: 8px;
 }
 
 #custom-uptime {
   color: #babbf1;
 }
+#memory,
 #cpu {
   color: #c6d0f5;
 }
 
 #clock {
   color: #99d1db;
-  font-weight: 500;
 }
 
-#pulseaudio {
-  color: #c6d0f5;
-}
+#tray,
+#pulseaudio,
+#wireplumber,
+#network,
 #backlight {
-  color: #c6d0f5;
-}
-
-#network {
   color: #c6d0f5;
 }
 
@@ -193,7 +209,6 @@
 }
 #bluetooth {
   color: #888888;
-  font-size: 16px;
 }
 #bluetooth.on {
   color: #2196f3;
@@ -211,14 +226,12 @@
   color: #e78284;
 }
 
-/* --- Tooltip Styles --- */
 tooltip {
-  background-color: #1a1b26;
-  color: #dddddd;
-  padding: 5px 12px;
-  margin: 5px 0px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  font-size: 12px;
+    margin: 0;
+    background-color: rgba(0,0,0,0.8);
+}
+
+tooltip label {
+  margin: 0;
+  padding: 0.5rem;
 }
