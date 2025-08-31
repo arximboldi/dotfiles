@@ -500,6 +500,7 @@ in
     alephone-durandal
     alephone-infinity
     alephone-red
+    gamescope
     # liquidwar
     # liquidwar5
     # unvanquished
@@ -543,6 +544,7 @@ in
     wallutils
     xwallpaper
     gnome-network-displays
+    smartmontools
 
     # lte internet
     modemmanager
