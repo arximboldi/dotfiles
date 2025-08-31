@@ -10,3 +10,4 @@ GTAGS
 /core
 .DS_Store
 bash/.bash.d/saved
+.claude
