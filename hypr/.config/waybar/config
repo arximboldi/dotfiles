@@ -15,6 +15,7 @@
     ],
 
     "modules-right": [
+        "custom/music",
         "tray",
         "bluetooth",
         "wireplumber",
@@ -53,12 +54,12 @@
             "off": "󰂲",
             "connected": "󰂱",
         },
-        "on-click": "blueman-manager",
+        "on-click": "blueberry",
         "tooltip-format-connected":"{device_enumerate}"
     },
 
     "custom/music": {
-        "format": "  {}",
+        "format": "𝅘𝅥𝅮    {} ",
         "escape": true,
         "interval": 5,
         "tooltip": false,
@@ -100,13 +101,14 @@
         "interval": 1,
         "format": "  {usage:>2}%",
         "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-        "on-click": "ghostty -e htop"
+        "on-click": "gnome-terminal -e htop"
     },
 
     "memory": {
         "interval": 30,
-        "format": "  {percentage:>2}%",
-        "tooltip-format": "Memory"
+        "format": "    {percentage}%",
+        "tooltip-format": "Memory",
+        "on-click": "gnome-terminal -e htop"
     },
 
     "wireplumber": {
@@ -123,11 +125,11 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon}   {capacity}%",
-        "format-full": "{icon}  {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
+        "format":      "{icon}   {capacity}%",
+        "format-full": "{icon}    {capacity}%",
+        "format-charging": "    {capacity}%",
+        "format-plugged": "    {capacity}%",
+        "format-alt": "{icon}    {time}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]

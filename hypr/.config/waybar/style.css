@@ -100,6 +100,11 @@
   background-color: rgba(153, 209, 219, 0.1); /* Brighter highlight */
 }
 
+#custom-music {
+  margin-left: 6px; /* Spacing from the previous module (e.g., clock) */
+  margin-right: 8px; /* Spacing before the next module (e.g., pomodoro) */
+}
+
 #custom-pomodoro {
     background-color: #1a1b26; /* Consistent dark background */
     padding: 0.1rem 0.7rem; /* Consistent padding with other modules (e.g., cpu, uptime) */
@@ -210,11 +215,11 @@
 #bluetooth {
   color: #888888;
 }
-#bluetooth.on {
+#bluetooth.connected {
   color: #2196f3;
 }
-#bluetooth.connected {
-  color: #99d1db;
+#bluetooth.on {
+  color: #c6d0f5;
 }
 #battery {
   color: #99d1db;;
