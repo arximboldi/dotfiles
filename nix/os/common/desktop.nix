@@ -16,6 +16,15 @@ let
   ) {};
 
   arximboldi-overlay = self: super: {
+    mpd = super.mpd.overrideAttrs {
+      src = super.fetchFromGitHub {
+        owner  = "MusicPlayerDaemon";
+        repo   = "mpd";
+        rev    = "v0.24.4";
+        sha256 = "sha256-wiQa6YtaD9/BZsC9trEIZyLcIs72kzuP99O4QVP15nQ=";
+      };
+    };
+
     # fix broken for now
     dracula-icon-theme = super.dracula-icon-theme.overrideAttrs {
       src = super.fetchFromGitHub {
