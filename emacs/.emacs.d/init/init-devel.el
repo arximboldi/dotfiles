@@ -9,7 +9,33 @@
 
 ;; Autocompletion
 (require 'company)
+;;(require 'company-box)
+(require 'company-tabnine)
+
+(add-to-list 'company-backends #'company-tabnine)
+;;(add-hook 'company-mode-hook 'company-box-mode)
 (add-hook 'after-init-hook 'global-company-mode)
+
+(require 'lsp-mode)
+(require 'dap-mode)
+
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  (require 'dap-cpptools))
+
+;;(add-hook 'c-mode-hook 'lsp)
+;;(add-hook 'c++-mode-hook 'lsp)
+
+;; Trigger completion immediately.
+(setq company-idle-delay 0)
+(setq company-show-numbers t)
+
+;;(setq gc-cons-threshold (* 100 1024 1024)
+;;      read-process-output-max (* 1024 1024)
+;;      treemacs-space-between-root-nodes nil
+;;      company-idle-delay 0.0
+;;      company-minimum-prefix-length 1
+;;      lsp-idle-delay 0.1)
 
 ;; Documentatio
 (require 'eldoc)
@@ -180,7 +206,8 @@
 ;;
 ;; Bazel
 ;;
-(add-to-list 'auto-mode-alist '("\\BUILD\\'" . bazel-mode))
+(add-to-list 'auto-mode-alist '("\\BUILD\\'" . bazel-build-mode))
+(add-to-list 'auto-mode-alist '("\\.bazel\\'" . bazel-build-mode))
 
 ;;
 ;; QML
@@ -357,7 +384,7 @@
 ;;
 ;; USDA
 ;;
-(require 'usda-mode)
-(add-to-list 'auto-mode-alist '("\\.usda\\'" . usda-mode))
+;;(require 'usda-mode)
+;;(add-to-list 'auto-mode-alist '("\\.usda\\'" . text-mode))
 
 (provide 'init-devel)
