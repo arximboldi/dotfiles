@@ -482,6 +482,9 @@ in
     # moonlight-embedded
     moonlight-qt
     #winePackages.stableFull
+    #wine64Packages.stagingFull
+    #wineWow64Packages.waylandFull
+    #winetricks
     nixos-wine6.wine64Packages.stableFull
     nixos-wine6.winetricks
     protontricks
