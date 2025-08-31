@@ -779,11 +779,11 @@ in
       pantheon.enable = false;
       gnome.enable = true;
       xfce.enable = true;
-      #gdm.enable = true;
     };
     displayManager = {
-      lightdm.enable = true;
-      lightdm.greeters.enso.enable = false;
+      gdm.enable = true;
+      #lightdm.enable = true;
+      #lightdm.greeters.enso.enable = false;
     };
     windowManager.xmonad = {
       enable = true;
@@ -792,8 +792,17 @@ in
       extraPackages = hs: [hs.taffybar];
     };
   };
-  services.displayManager.defaultSession = "none+xmonad";
-  services.displayManager.autoLogin = {enable = true; user = "raskolnikov";};
+  services.displayManager = {
+    #sddm = {
+    #  enable = true;
+    #  wayland.enable = true;
+    #  enableHidpi = true;
+    #  theme = "chili";
+    #};
+    # defaultSession = "gnome"; # "none+xmonad"
+    # autoLogin = {enable = true; user = "raskolnikov";};
+  };
+
   qt.platformTheme = "gnome";
   xdg.icons.fallbackCursorThemes = ["Yaru-remix" "Adwaita"];
 
