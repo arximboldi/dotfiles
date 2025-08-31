@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> {};
+  unstable = import <nixos-unstable> { config={allowUnfree=true;}; };
 
   # the main program I use with wine is Emule and it has been reported
   # to work better with Wine 6... with current wine it hangs/freezes
