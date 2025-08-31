@@ -434,7 +434,7 @@ in
     calibre
     qjackctl
     jack2
-    cheese
+    #cheese
     sound-juicer
     soundconverter
     lame
@@ -442,7 +442,7 @@ in
     gthumb
     gpodder
     amule
-    anbox
+    #anbox
     subberthehut
     subdl
     easytag
@@ -470,7 +470,7 @@ in
     eyedropper
     blender
     imagemagickBig
-    okular
+    #okular
     poppler_utils
     dia
     figma-linux
