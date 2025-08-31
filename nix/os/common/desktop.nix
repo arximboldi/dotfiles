@@ -252,7 +252,8 @@ in
     # programming
     nix-index
     zile
-    my-emacs-with-packages
+    emacs-pgtk
+    # my-emacs-with-packages
     vscode
     gitAndTools.gitFull
     gitAndTools.gh
