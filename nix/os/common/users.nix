@@ -17,20 +17,8 @@
        "wireshark"
        "sysprof"
        "adbusers"
+       "plugdev"
      ];
   };
-  users.extraUsers.nikki = {
-     isNormalUser = true;
-     uid = 1001;
-     extraGroups = [
-       "wheel"
-       "audio"
-       "pipewire"
-       "users"
-       "scanner"
-       "lp"
-       "networkmanager"
-     ];
-  };
-  nix.settings.trusted-users = [ "raskolnikov" "nikki" ];
+  nix.settings.trusted-users = [ "raskolnikov" ];
 }
