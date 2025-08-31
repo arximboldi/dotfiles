@@ -236,6 +236,16 @@ in
     publish.userServices = true;
   };
 
+
+  # syncthing
+  services.syncthing = {
+    enable = true;
+    user = "raskolnikov";
+    dataDir = "/home/raskolnikov/sync";    # Default folder for new synced folders
+    configDir = "/home/raskolnikov/.config/syncthing";
+  };
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
