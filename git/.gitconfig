@@ -12,7 +12,7 @@
 	ci = commit
 	co = checkout
 	br = branch
-	cp = cheery-pick
+	cp = cherry-pick
         lol = log --graph --decorate --pretty=oneline --abbrev-commit
         lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [color]
