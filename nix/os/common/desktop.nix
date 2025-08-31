@@ -597,9 +597,7 @@ in
     qpwgraph
     helvum
     pamixer
-    blueman
     gnome-bluetooth
-    blueberry
     syncthing
     libnotify
     system-config-printer
@@ -622,6 +620,8 @@ in
     picom
     gnome-tweaks
     pango
+    #blueman
+    blueberry
 
     # https://github.com/NixOS/nixpkgs/issues/43836#issuecomment-419217138
     hicolor-icon-theme
@@ -706,9 +706,8 @@ in
   virtualisation.virtualbox.host.enable = true;
   virtualisation.docker.enable = true;
 
-  services.blueman.enable = true;
-
-  services.touchegg.enable = true;
+  # services.blueman.enable = true;
+  # services.touchegg.enable = true;
 
   networking.firewall.enable = false;
   networking.hosts = {
