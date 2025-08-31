@@ -591,10 +591,11 @@ in
     emote
     dmenu
     xdotool-arximboldi
-    pa_applet
-    pasystray
-    pavucontrol
+    # pa_applet
+    # pavucontrol
+    pwvucontrol
     qpwgraph
+    helvum
     pamixer
     blueman
     gnome-bluetooth
