@@ -16,10 +16,10 @@
 (defun @notify (msg)
   (when (not (eq system-type 'darwin))
     (start-process "notify" nil
-                   "notify-send" "-i" "emacs" "Emacs" msg)))
+                   "notify-send" "-t" "3000" "-i" "emacs" "emacs" msg)))
 
 (add-hook 'emacs-startup-hook
-          (lambda () (@notify "Ready to roll!")))
+          (lambda () (@notify "ready!")))
 
 ;;
 ;; Compat for apt-utils

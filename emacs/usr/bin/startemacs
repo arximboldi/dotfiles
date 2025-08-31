@@ -3,8 +3,8 @@
 source ~/.bash.d/init.bash
 
 if pidof emacs || pidof .emacs-wrapped; then
-    notify-send -i emacs "Emacs" "I am already running!"
+    notify-send -t 3000 -i emacs "emacs" "already running!"
 else
-    notify-send -i emacs "Emacs" "Starting..."
-    GTK_THEME=Numix:dark emacs --daemon
+    notify-send -t 3000 -i emacs "emacs" "starting..."
+    emacs --daemon
 fi
