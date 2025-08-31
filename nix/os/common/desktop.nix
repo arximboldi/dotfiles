@@ -808,6 +808,7 @@ in
 
   # add wayland support for slack et al
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # environment.sessionVariables.QT_QPA_PLATFORM = "wayland";
   programs.xwayland.enable = true;
 
   # services.xserver.desktopManager.gnome.flashback.customSessions = [
