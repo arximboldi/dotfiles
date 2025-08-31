@@ -826,6 +826,11 @@ in
   services.dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
   services.gnome.gnome-keyring.enable = true;
 
+  security.pam.u2f.enable = true;
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="plugdev", TAG+="uaccess"
+  '';
+
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [];
 
