@@ -101,6 +101,11 @@ alias photo="echo wait 3s... && sleep 1s && echo wait 2s... && sleep 1s && echo 
 # download music from internet
 alias ripz="yt-dlp -x --audio-format mp3 --audio-quality 0"
 
+# show progress of `sync` command somehow
+syncprog() {
+    watch -n 1 grep -e Dirty: -e Writeback: /proc/meminfo
+}
+
 # latex
 svg2pdf_tex() {
     fname=$1
