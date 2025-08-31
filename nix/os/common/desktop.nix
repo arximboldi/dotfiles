@@ -257,6 +257,12 @@ in
     vscode
     gitAndTools.gitFull
     gitAndTools.gh
+    git-annex
+    git-annex-remote-googledrive
+    #git-annex-remote-rclone
+    #git-annex-remote-dbx
+    git-annex-metadata-gui
+    rclone
     git-lfs
     mercurialFull
     ((python3.withPackages (ps: with ps; [
