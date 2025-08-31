@@ -275,8 +275,8 @@ in
     gnumake
     ninja
     icu
-    clang_16
-    llvm_16
+    clang
+    llvm
     cmake
     docker
     ycmd
@@ -285,7 +285,7 @@ in
     wireshark
     zeal
     mmv
-    bazel
+    #bazel
     google-cloud-sdk
     nodejs
     puredata
