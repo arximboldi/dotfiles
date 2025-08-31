@@ -378,6 +378,8 @@ in
     unstable.webcord
     unstable.telegram-desktop
     (telegram-alias unstable.telegram-desktop)
+    wasistlos
+    zapzap
     signal-desktop
     signal-cli
 
