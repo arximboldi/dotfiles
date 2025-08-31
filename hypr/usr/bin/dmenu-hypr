@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if [ -d "$HOME/usr/bin" ] ; then
+    export PATH="$HOME/usr/bin:$PATH"
+fi
+dmenu-wl_path \
+   | grep -v "~$" \
+   | dmenu-wl -i -b -fn "Iosevka Bold 15" -h 30 -nb "#000000aa" -nf "#dddddd" -sb "#BD93F9" -sf "#000000" \
+   | ${SHELL:-"/bin/sh"} &

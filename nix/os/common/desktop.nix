@@ -236,6 +236,7 @@ in
     publish.userServices = true;
   };
 
+  programs.hyprland.enable = true;
 
   # syncthing
   services.syncthing = {
@@ -606,9 +607,27 @@ in
     guvcview
     fswebcam
     # kdePackages.kamoso
-
+    ghostty
+    hyprland
+    hyprpanel
+    hyprpaper
+    hyprpicker
+    hyprsunset
+    hyprshot
+    kooha
+    #unstable.quickshell
+    wofi
+    unstable.waybar # fix bug in update layout
+    playerctl
+    brightnessctl
+    wlprop
+    swaybg
+    mako
+    dmenu-wayland
+    ydotool
+    wtype
     wmctrl
-    dunst
+    # dunst
     xorg.xhost
     xvkbd
     xbindkeys
@@ -617,11 +636,22 @@ in
     xsettingsd
     sway
     unetbootin
-    picom
+    # picom
     gnome-tweaks
     pango
+    kitty
+    sddm-chili-theme
+    gdm-settings
     #blueman
     blueberry
+    swayosd
+    nwg-displays
+
+    # mess with auto-start
+    # picom
+    # pasystray
+    # mpdris2
+    # blueberry
 
     # https://github.com/NixOS/nixpkgs/issues/43836#issuecomment-419217138
     hicolor-icon-theme

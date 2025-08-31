@@ -1,0 +1,21 @@
+file:///home/raskolnikov/dev
+file:///home/raskolnikov/down
+file:///home/raskolnikov/doc
+file:///home/raskolnikov/media/videos
+file:///home/raskolnikov/pic
+file:///home/raskolnikov/media/music
+file:///home/raskolnikov/sync
+file:///home/raskolnikov/public
+file:///media/extra extra
+file:///media/omnium omnium
+file:///home/raskolnikov/dev/bronze/data
+file:///home/raskolnikov/sync/doc/consultoria/accounting
+file:///home/raskolnikov/sync/music-export/playlists
+sftp://raskolnikov@orion1:5488/home/raskolnikov sftp://orion1
+sftp://raskolnikov@orion3/home/raskolnikov sftp://orion3
+sftp://root@andromeda.re/var/lib/transmission/Downloads sftp://andromeda.re
+sftp://raskolnikov@orion4/home/raskolnikov sftp://orion4
+sftp://root@wendy/var/www sftp://wendy/builds
+sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp://es.gnu.org
+sftp://nexus9.local/home/raskolnikov sftp://nexus9
+file:///home/raskolnikov/tmp/4plane 4plane
