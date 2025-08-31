@@ -1,5 +1,7 @@
 ;;; emacs config file -- Juan Pedro Bolívar Puente
 
+(set 'byte-compile-warnings nil)
+
 (set-face-attribute 'default nil
                     :family "Iosevka"
                     :height 140
