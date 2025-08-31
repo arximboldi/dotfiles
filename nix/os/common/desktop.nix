@@ -307,13 +307,20 @@ in
     niv
 
     # ai stuff
-    unstable.aider-chat-full
+    # unstable.aider-chat-full
+    unstable.aider-chat
+    unstable.plandex
+    unstable.claude-code
+    unstable.gemini-cli
+    copilot-language-server
     github-copilot-cli
     gh-copilot
     xsel
     jq
 
-    clang-tools_16
+    tabnine
+    bear
+    clang-tools
     rustfmt
     # nodePackages.standard
     nodePackages.prettier
