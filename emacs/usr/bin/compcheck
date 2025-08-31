@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# https://chatgpt.com/share/6838d6e2-107c-8010-b31d-b31bbe1d80bf
+output_file=$(mktemp)
+error_file=$(mktemp)
+
+# Cleanup on exit
+trap '\rm -f "$output_file" "$error_file"' EXIT
+
+# Run the command:
+# - stdout to output_file (shown on screen)
+# - stderr to error_file (also shown on screen)
+# Use tee to show output live
+"$@" > >(tee "$output_file") 2> >(tee "$error_file" >&2)
+status=${PIPESTATUS[0]}
+
+# Get last line of stderr
+last_error_line=$(tail -n 5 "$error_file" | sed -r 's/\x1b\[[0-9;]*[a-zA-Z]//g')
+
+
+if [ $status -eq 0 ];
+then
+    exit 0
+else
+    notify-send --transient -i error --app-name Emacs -u critical "Compilation error" "$last_error_line"
+    exit $status
+fi
