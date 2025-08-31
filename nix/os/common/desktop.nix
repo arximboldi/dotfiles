@@ -638,6 +638,12 @@ in
     packages = with pkgs; [
       corefonts
       inconsolata
+      cantarell-fonts
+      jetbrains-mono
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.zed-mono
+      nerd-fonts.victor-mono
+      nerd-fonts.iosevka
       ubuntu_font_family
       dejavu_fonts
       noto-fonts
@@ -653,12 +659,12 @@ in
       roboto
       roboto-mono
       source-code-pro
-      iosevka
-      iosevka-bin
+      #iosevka
+      #iosevka-bin
       helvetica-neue-lt-std
       aileron
     ];
-    fontconfig.localConf = builtins.readFile ./fontconfig.xml;
+    # fontconfig.localConf = builtins.readFile ./fontconfig.xml;
     # fontconfig.defaultFonts = {
     #   emoji = [ "Noto Color Emoji" ];
     #   monospace = [ "Noto Sans Mono" "emoji" ];
