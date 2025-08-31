@@ -181,6 +181,21 @@ in
     "python2.7-certifi-2021.10.8"
   ];
 
+  # enable virt-manager
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["your_username"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  # make bazel be happy
+  # services.envfs.enable = true;
+  # system.activationScripts.binbash = {
+  #   deps = [ "binsh" ];
+  #   text = ''
+  #        ln -s /bin/sh /bin/bash
+  #   '';
+  # };
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ arximboldi-overlay ];
 
@@ -476,6 +491,7 @@ in
     appimage-run
     lsof
     #virtualbox
+    gnome-boxes
     lm_sensors
     stress-ng
     gparted
