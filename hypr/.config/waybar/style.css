@@ -1,115 +1,118 @@
 /* --- Global Styles --- */
 * {
-  font-family: Cantarell;
-  font-size: 10pt;
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-left: 0px;
-  padding-bottom: 0px;
+    font-family: Cantarell;
+    font-size: 10pt;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
 }
 
 /* --- Waybar Container --- */
 #waybar {
-  background: transparent;
-  color: #c6d0f5;
-  margin: 0px;
+    background: transparent;
+    color: #c6d0f5;
+    margin: 0px;
 }
 
 /* --- Left Modules (Individual, Fully Rounded Blocks - With Horizontal Spacing & Simple Hover) --- */
 #workspaces {
-  border-radius: 8px; /* These modules are always rounded */
+    border-radius: 8px; /* These modules are always rounded */
 }
 
 #workspaces,
 #memory,
+#language,
 #cpu {
-  background-color: #1a1b26;
-  padding: 0.1rem 0.7rem;
-  margin: 6px 0px; /* 5px top/bottom margin, 0px left/right (base for individual control) */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  min-width: 0;
-  border: none;
-  /* Transition for background-color and color only */
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: #1a1b26;
+    padding: 0.1rem 0.7rem;
+    margin: 6px 0px; /* 5px top/bottom margin, 0px left/right (base for individual control) */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-width: 0;
+    border: none;
+    /* Transition for background-color and color only */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-#cpu {
-  margin-left: 0px;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+#language {
+    margin-left: 0px;
+    padding-left: 1rem;
+    padding-right: 0.3rem;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 #memory {
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  margin-right: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-right: 8px;
 }
 
 #workspaces {
-  margin-left: 8px; /* Margin from the far left edge */
-  margin-right: 6px; /* Spacing after the workspaces module */
+    margin-left: 8px; /* Margin from the far left edge */
+    margin-right: 6px; /* Spacing after the workspaces module */
 }
 
 #custom-uptime {
-  margin-right: 6px; /* Spacing after the uptime module */
+    margin-right: 6px; /* Spacing after the uptime module */
 }
 
 /* Simple Hover effects for individual left modules - BRIGHTER COLOR */
 #custom-uptime:hover,
 #memory:hover,
 #cpu:hover {
-  background-color: rgb(41, 42, 53); /* Brighter highlight */
+    background-color: rgb(41, 42, 53); /* Brighter highlight */
 }
 
 #workspaces button {
-  color: #babbf1;
-  border-radius: 8px; /* Workspaces buttons are always rounded */
-  padding: 0.1rem 0.3rem;
-  background: transparent;
-  transition: all 0.2s ease-in-out;
-  border: none;
-  outline: none;
+    color: #babbf1;
+    border-radius: 8px; /* Workspaces buttons are always rounded */
+    padding: 0.1rem 0.3rem;
+    background: transparent;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    outline: none;
 }
 
 #workspaces button.visible,
 #workspaces button.active {
-  color: #99d1db;
-  /*background-color: rgba(153, 209, 219, 0.1);*/
-  /*box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);*/
+    color: #99d1db;
+    /*background-color: rgba(153, 209, 219, 0.1);*/
+    /*box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);*/
 }
 
 #workspaces button:hover {
-  background: rgb(41, 42, 53); /* Reference bright hover color */
-  color: #c6d0f5;
+    background: rgb(41, 42, 53); /* Reference bright hover color */
+    color: #c6d0f5;
 }
 
 /* --- Center Module (Individual, Fully Rounded Block - With Simple Hover) --- */
 #clock {
-  background-color: #1a1b26;
-  padding: 0.1rem 0.7rem;
-  margin: 6px 0px;
-  border-radius: 6px; /* This module is always rounded */
-  box-shadow: 0 1px 3px rgba(153, 209, 219, 0.2);
-  min-width: 0;
-  border: none;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: #1a1b26;
+    padding: 0.1rem 0.7rem;
+    margin: 6px 0px;
+    border-radius: 8px; /* This module is always rounded */
+    box-shadow: 0 1px 3px rgba(153, 209, 219, 0.2);
+    min-width: 0;
+    border: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 /* Simple Hover effect for clock module - BRIGHTER COLOR */
 #clock:hover {
-  background-color: rgba(153, 209, 219, 0.1); /* Brighter highlight */
+    background-color: rgba(153, 209, 219, 0.1); /* Brighter highlight */
 }
 
 #custom-music {
-  margin-left: 6px; /* Spacing from the previous module (e.g., clock) */
-  margin-right: 8px; /* Spacing before the next module (e.g., pomodoro) */
+    margin-left: 6px; /* Spacing from the previous module (e.g., clock) */
+    margin-right: 8px; /* Spacing before the next module (e.g., pomodoro) */
 }
 
 #custom-pomodoro {
     background-color: #1a1b26; /* Consistent dark background */
     padding: 0.1rem 0.7rem; /* Consistent padding with other modules (e.g., cpu, uptime) */
     margin: 6px 0px; /* 5px top/bottom margin, 0px left/right (base for individual control) */
-    border-radius: 6px; /* Consistent rounded corners with other individual modules */
+    border-radius: 8px; /* Consistent rounded corners with other individual modules */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Consistent shadow */
     min-width: 0;
     border: none;
@@ -137,10 +140,10 @@
 /* --- Highlighted state for Pomodoro module when running (work or break) --- */
 #custom-pomodoro.work,
 #custom-pomodoro.break {
-  color: #99d1db; /* Text color consistent with active workspaces button */
-  background-color: rgba(153, 209, 219, 0.1); /* Background color consistent with active workspaces button */
-  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2); /* Inner shadow for outline effect */
-  outline: none;
+    color: #99d1db; /* Text color consistent with active workspaces button */
+    background-color: rgba(153, 209, 219, 0.1); /* Background color consistent with active workspaces button */
+    box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2); /* Inner shadow for outline effect */
+    outline: none;
 }
 
 /* --- Right Modules (Single, Seamless Bar ) --- */
@@ -152,14 +155,14 @@
 #network,
 #custom-lock,
 #battery {
-  background-color: #1a1b26;
-  padding: 0.1rem 0.7rem;
-  margin: 6px 0px;
-  border-radius: 0;
-  box-shadow: none;
-  min-width: 0;
-  border: none;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: #1a1b26;
+    padding: 0.1rem 0.7rem;
+    margin: 6px 0px;
+    border-radius: 0;
+    box-shadow: none;
+    min-width: 0;
+    border: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 #tray:hover,
@@ -170,31 +173,31 @@
 #network:hover,
 #custom-lock:hover,
 #battery:hover {
-  background-color: rgb(41, 42, 53);
+    background-color: rgb(41, 42, 53);
 }
 
 #tray {
-  margin-left: 0px;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+    margin-left: 0px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 #battery {
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  margin-right: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-right: 8px;
 }
 
 #custom-uptime {
-  color: #babbf1;
+    color: #babbf1;
 }
 #memory,
 #cpu {
-  color: #c6d0f5;
+    color: #c6d0f5;
 }
 
 #clock {
-  color: #99d1db;
+    color: #99d1db;
 }
 
 #tray,
@@ -202,33 +205,33 @@
 #wireplumber,
 #network,
 #backlight {
-  color: #c6d0f5;
+    color: #c6d0f5;
 }
 
 #network.disconnected {
-  color: #e78284;
+    color: #e78284;
 }
 
 #custom-lock {
-  color: #babbf1;
+    color: #babbf1;
 }
 #bluetooth {
-  color: #888888;
+    color: #888888;
 }
 #bluetooth.connected {
-  color: #2196f3;
+    color: #2196f3;
 }
 #bluetooth.on {
-  color: #c6d0f5;
+    color: #c6d0f5;
 }
 #battery {
-  color: #99d1db;;
+    color: #99d1db;;
 }
 #battery.charging {
-  color: #a6d189;
+    color: #a6d189;
 }
 #battery.warning:not(.charging) {
-  color: #e78284;
+    color: #e78284;
 }
 
 tooltip {
@@ -237,6 +240,6 @@ tooltip {
 }
 
 tooltip label {
-  margin: 0;
-  padding: 0.5rem;
+    margin: 0;
+    padding: 0.5rem;
 }

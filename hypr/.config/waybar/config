@@ -6,6 +6,7 @@
 
     "modules-left": [
         "hyprland/workspaces",
+        "hyprland/language",
         "cpu",
         "memory",
     ],
@@ -95,6 +96,14 @@
         "interval": 5,
         "tooltip-format": "{essid} ({signalStrength}%)",
         "on-click": "nm-connection-editor"
+    },
+
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "EN",
+        "format-de": "DE",
+        "format-es": "ES",
+        "keyboard-name": "at-translated-set-2-keyboard",
     },
 
     "cpu": {
