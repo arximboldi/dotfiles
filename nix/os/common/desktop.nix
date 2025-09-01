@@ -164,6 +164,11 @@ let
 
 in
 {
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   # chromecast support
   networking.firewall.allowedTCPPorts = [ 8010 ];
 
