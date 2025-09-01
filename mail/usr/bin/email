@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-emacsclient -c -e "(notmuch)"
+emacsclient -r -e "(@email)" &
+hyprfocus emacs
+exit 0

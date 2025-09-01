@@ -31,6 +31,16 @@ notify_finish() {
     do-notify -i email -a getmail -t $notify_delay "Sync email" "$1"
 }
 
+notify_finish_ok() {
+    echo "== $1"
+    last_id=`echo $notify_id | sed 's/[^0-9]//g'`
+    action=`notify-send -r $last_id -A default=ok -i email -a getmail "Sync email" "$1"`
+    # if action is "default", run email command
+    if [ "$action" = "default" ]; then
+        email &
+    fi
+}
+
 kill_children() {
     trap '' INT TERM
     echo
@@ -55,7 +65,12 @@ do_sync_email() {
     notify_progress "Organizing email..."
     $afew_command --tag --new
 
-    notify_finish "$result_message"
+    # if result message contains "no new mail", case insensitive
+    if echo "$result_message" | grep -iq "no new mail"; then
+        notify_finish "$result_message"
+    else
+        notify_finish_ok "$result_message"
+    fi
 }
 
 main() {
