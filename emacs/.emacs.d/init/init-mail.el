@@ -10,6 +10,10 @@
   (interactive)
   (start-process "getmail" "*getmail*" "getmail"))
 
+(defun @email ()
+  (interactive)
+  (notmuch-search-by-tag "inbox"))
+
 (setq notmuch-saved-searches
    '((:name "inbox" :query "tag:inbox and not tag:lists" :key "i" :sort-order newest-first)
      (:name "lists" :query "tag:inbox and tag:lists" :key "l" :sort-order newest-first)
