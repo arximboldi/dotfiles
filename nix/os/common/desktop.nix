@@ -3,6 +3,8 @@
 let
   unstable = import <nixos-unstable> { config={allowUnfree=true;}; };
 
+  zen-browser-flake = builtins.getFlake "github:0xc000022070/zen-browser-flake/45c9893188e92bc0be717fb28c6d9e983c4b1734";
+
   # the main program I use with wine is Emule and it has been reported
   # to work better with Wine 6... with current wine it hangs/freezes
   # sometimes.
@@ -152,6 +154,8 @@ let
         };
       };
     });
+
+    zen-browser = zen-browser-flake.packages."${self.system}".default;
 
     # sidequest-latest = super.sidequest.overrideDerivation (old: rec {
     #   version = "0.10.18";
@@ -364,6 +368,7 @@ in
     firefox
     chromium
     google-chrome
+    zen-browser
     (pidgin.override {
       plugins = [
         pidgin-otr
