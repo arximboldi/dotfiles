@@ -2,10 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }@arg:
+{ inputs, config, pkgs, ... }@arg:
 
 let
-  unstable = import <nixos-unstable> {};
+  unstable = inputs.nixpkgs-unstable;
 
 in
 {

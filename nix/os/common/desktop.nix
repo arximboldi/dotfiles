@@ -1,7 +1,10 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> { config={allowUnfree=true;}; };
+  unstable = import inputs.nixos-unstable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
 
   zen-browser-flake = builtins.getFlake "github:0xc000022070/zen-browser-flake/45c9893188e92bc0be717fb28c6d9e983c4b1734";
 
@@ -15,7 +18,9 @@ let
       url    = "https://github.com/arximboldi/nixpkgs/archive/${rev}.tar.gz";
       sha256 = "1wpjp9brpis5lnyip912g2dkr4jgykq3wf31kk8091r1f1pgvh9m";
     }
-  ) {};
+  ) {
+    system = pkgs.system;
+  };
 
   arximboldi-overlay = self: super: {
     mpd = super.mpd.overrideAttrs {
