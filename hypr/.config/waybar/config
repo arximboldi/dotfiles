@@ -42,7 +42,8 @@
 
     "tray": {
         "icon-size": 16,
-        "spacing": 16
+        "spacing": 16,
+        "reverse-direction": true
     },
 
     "bluetooth": {
@@ -71,7 +72,7 @@
 
     "clock": {
         "tooltip": true,
-        "format": "{:%H:%M  //  %A, %d}",
+        "format": "{:%H:%M     %a, %e %b}",
         "on-click": "gnome-calendar",
         "tooltip-format": "<span font='Iosevka'>{calendar}</span>",
         "calendar": {
