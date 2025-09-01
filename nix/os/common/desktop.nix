@@ -623,6 +623,7 @@ in
     hyprpaper
     hyprpicker
     hyprsunset
+    unstable.sunsetr
     hyprshot
     kooha
     #unstable.quickshell
