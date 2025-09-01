@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+class=$1
+
+
+# Try to find the window in the current workspace
+current_ws=$(hyprctl activeworkspace -j | jq -r '.id')
+addr=$(hyprctl clients -j \
+    | jq -r --arg ws "$current_ws" --arg class "$class" '
+        .[] | select(.class==$class and .workspace.id == ($ws|tonumber)) | .address
+      ' \
+    | head -n1)
+
+echo "Focusing $class (addr: $addr) in workspace $current_ws"
+if [ -n "$addr" ]; then
+    result=`hyprctl dispatch focuswindow address:$addr`
+else
+    result=`hyprctl dispatch focuswindow class:$class`
+fi
+
+# if result is 'ok', then exit with 0 else exit with 1
+if [ "$result" = "ok" ]; then
+    exit 0
+else
+    exit 1
+fi
