@@ -640,13 +640,13 @@ in
     gnome-tweaks
     pango
     kitty
-    sddm-chili-theme
     gdm-settings
     #blueman
     blueberry
     swayosd
     nwg-displays
-
+    wlogout
+    wlock
     # mess with auto-start
     # picom
     # pasystray
