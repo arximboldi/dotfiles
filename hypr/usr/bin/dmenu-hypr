@@ -4,5 +4,5 @@ if [ -d "$HOME/usr/bin" ] ; then
 fi
 dmenu-wl_path \
    | grep -v "~$" \
-   | dmenu-wl -i -b -fn "Cantarell Bold 15" -h 32 -nb "#1a1b26" -nf "#dddddd" -sb "#BD93F9" -sf "#1a1b26" \
+   | dmenu-wl -i -b -fn "Cantarell Bold 18" -h 48 -nb "#1a1b2688" -nf "#dddddd" -sb "#BD93F9" -sf "#1a1b26" \
    | ${SHELL:-"/bin/sh"} &
