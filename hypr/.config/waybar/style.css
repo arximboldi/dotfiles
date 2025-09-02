@@ -36,7 +36,7 @@
 
 #language {
     margin-left: 0px;
-    padding-left: 1rem;
+    padding-left: 0.8rem;
     padding-right: 0.3rem;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -64,19 +64,35 @@
     background-color: rgb(41, 42, 53); /* Brighter highlight */
 }
 
+#workspaces {
+    padding: 0.1rem 0.3rem;
+}
+#workspaces * {
+    font-size: 16pt;
+    /*font-size: 16pt;*/
+}
 #workspaces button {
     color: #babbf1;
     border-radius: 8px; /* Workspaces buttons are always rounded */
-    padding: 0.1rem 0.3rem;
+    margin: 0 0;
+    margin-top: -1px;
+    padding: 0 0.3rem;
     background: transparent;
     transition: all 0.2s ease-in-out;
     border: none;
     outline: none;
+    opacity: 0.5;
 }
-
-#workspaces button.visible,
-#workspaces button.active {
-    color: #99d1db;
+#workspaces button.empty * {
+}
+#workspaces button.visible {
+    opacity: 1.0;
+}
+#workspaces button.empty.active *,
+#workspaces button.active * {
+    /*font-size: 22pt;*/
+    color: #99d1db; /*BD93F9*/
+    opacity: 1.0;
     /*background-color: rgba(153, 209, 219, 0.1);*/
     /*box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);*/
 }
@@ -186,6 +202,7 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     margin-right: 8px;
+    padding-right: 1em;
 }
 
 #custom-uptime {

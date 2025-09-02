@@ -27,9 +27,9 @@
         "format": "{icon}",
         "on-click": "activate",
         "format-icons": {
-            "active": "",
-            "default": "",
-            "empty": "\uf4c3"
+            "active": "●",
+            "default": "●",
+            "empty": "○"
         },
         "sort-by-number": true,
         "persistent-workspaces": {
