@@ -274,6 +274,7 @@ in
     blueberry
     swayosd
     nwg-displays
+    nwg-look
     wlogout
     wlock
     # mess with auto-start
@@ -426,7 +427,7 @@ in
   };
 
   qt.platformTheme = "gnome";
-  xdg.icons.fallbackCursorThemes = ["Yaru-remix" "Adwaita"];
+  xdg.icons.fallbackCursorThemes = ["Adwaita"];
 
   # add wayland support for slack et al
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
