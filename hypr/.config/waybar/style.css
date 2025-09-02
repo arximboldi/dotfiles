@@ -176,13 +176,13 @@
     background-color: rgb(41, 42, 53);
 }
 
-#tray {
+#wireplumber {
     margin-left: 0px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
 
-#battery {
+#bluetooth {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     margin-right: 8px;

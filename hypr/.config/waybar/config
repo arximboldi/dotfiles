@@ -17,10 +17,10 @@
 
     "modules-right": [
         "custom/music",
+        "wireplumber",
+        "battery",
         "tray",
         "bluetooth",
-        "wireplumber",
-        "battery"
     ],
 
     "hyprland/workspaces": {
