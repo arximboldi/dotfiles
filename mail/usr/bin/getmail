@@ -37,7 +37,7 @@ notify_finish_ok() {
     action=`notify-send -r $last_id -A default=ok -i email -a getmail "Sync email" "$1"`
     # if action is "default", run email command
     if [ "$action" = "default" ]; then
-        email &
+        ~/usr/bin/email
     fi
 }
 

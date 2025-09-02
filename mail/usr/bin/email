@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 emacsclient -r -e "(@email)" &
-hyprfocus emacs
+~/usr/bin/hyprfocus emacs
+wait
 exit 0
