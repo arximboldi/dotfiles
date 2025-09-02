@@ -1,6 +1,6 @@
 Gtk/CursorThemeName "Yaru-remix"
 Gtk/FontName "Cantarell 14"
-Gtk/MonospaceFontName "Iosevka 14"
+Gtk/MonospaceFontName "Iosevka Nerd Font 14"
 Gtk/DecorationLayout "menu:"
 Net/IconThemeName "Dracula"
 Net/SoundThemeName "default"

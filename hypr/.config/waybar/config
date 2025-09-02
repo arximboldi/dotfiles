@@ -74,7 +74,7 @@
         "tooltip": true,
         "format": "{:%H:%M     %a, %e %b}",
         "on-click": "gnome-calendar",
-        "tooltip-format": "<span font='Iosevka'>{calendar}</span>",
+        "tooltip-format": "<span font='Iosevka Nerd Font'>{calendar}</span>",
         "calendar": {
 	    "mode"          : "year",
 	    "mode-mon-col"  : 3,

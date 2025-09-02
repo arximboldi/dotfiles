@@ -3,7 +3,7 @@
 (set 'byte-compile-warnings nil)
 
 (set-face-attribute 'default nil
-                    :family "Iosevka"
+                    :family "Iosevka Nerd Font"
                     :height 110
                     :weight 'normal)
 
