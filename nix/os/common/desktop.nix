@@ -228,9 +228,13 @@ in
     hyprpaper
     hyprpicker
     hyprsunset
+    hypridle
+    hyprlock
     unstable.sunsetr
     hyprshot
     kooha
+    gtklock
+
     # unstable.quickshell
     wofi
     unstable.waybar # fix bug in update layout
@@ -273,6 +277,8 @@ in
     hicolor-icon-theme
     gnome-icon-theme
   ];
+
+  security.pam.services.gtklock = {};
 
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
   gtk.iconCache.enable = true;
