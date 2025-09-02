@@ -13,6 +13,7 @@
 
   outputs = { self, nixos, ... }@inputs: {
     nixosConfigurations = {
+      # framework laptop with amd ai 300
       ce3 = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
@@ -21,6 +22,16 @@
         ];
       };
 
+      # nxt desktop
+      ce2 = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./ce2/configuration.nix
+        ];
+      };
+
+      # lenovo x1 carbon 5th gen
       ce1 = nixos.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };

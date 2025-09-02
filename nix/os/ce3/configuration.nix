@@ -4,10 +4,6 @@
 
 { inputs, config, pkgs, ... }@arg:
 
-let
-  unstable = inputs.nixpkgs-unstable;
-
-in
 {
   imports = [
     ./hardware-configuration.nix

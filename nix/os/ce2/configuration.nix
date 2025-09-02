@@ -6,12 +6,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
-      ../common/printer.nix
-      ../common/musnix.nix
-      ../common/desktop.nix
-      ../common/users.nix
+      ../common/all.nix
       ../common/ssh-phone-home.nix
     ];
 
@@ -24,10 +21,9 @@
   nixpkgs.config.allowUnfree = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # https://nixos.wiki/wiki/Nvidia
-
   hardware.openrazer.enable = true;
 
+  # https://nixos.wiki/wiki/Nvidia
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
   # virtualisation.docker.enableOnBoot = true;
