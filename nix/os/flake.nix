@@ -12,12 +12,22 @@
   };
 
   outputs = { self, nixos, ... }@inputs: {
-    nixosConfigurations.ce3 = nixos.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./ce3/configuration.nix
-      ];
+    nixosConfigurations = {
+      ce3 = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./ce3/configuration.nix
+        ];
+      };
+
+      ce1 = nixos.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./ce1/configuration.nix
+        ];
+      };
     };
   };
 }

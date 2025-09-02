@@ -4,17 +4,10 @@
 
 { config, pkgs, ... }@arg:
 
-let
-  unstable = import <nixos-unstable> {};
-
-in
 {
   imports = [
     ./hardware-configuration.nix
-    ../common/printer.nix
-    ../common/musnix.nix
-    ../common/desktop.nix
-    ../common/users.nix
+    ../common/all.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -25,9 +18,9 @@ in
 
   # Damn Rubygems and Bitbucket...
   networking.enableIPv6 = false;
-  nixpkgs.config.allowUnfree = true;
 
   systemd.services.modem-manager.enable = true;
+
   # https://nixos.wiki/wiki/Accelerated_Video_Playback
   hardware.graphics.extraPackages = with pkgs; [
     libva intel-media-driver vaapiIntel libvdpau-va-gl vaapiVdpau # intel-ocl
@@ -38,24 +31,24 @@ in
 
   services.xserver = {
     videoDrivers = [ "modesetting" ];
-    #useGlamor = true;
-    #videoDrivers = [ "intel" ];
-    # deviceSection = ''
-    #   Option "DRI" "2"
-    #   Option "TearFree" "true"
+    # useGlamor = true;
+    # videoDrivers = [ "intel" ];
+    #  deviceSection = ''
+    #    Option "DRI" "2"
+    #    Option "TearFree" "true"
     # '';
   };
 
   services.fprintd.enable = true;
 
-  #services.mediatomb.enable = true;
-  #services.mediatomb.openFirewall = true;
-  #services.mediatomb.mediaDirectories = [
-  #  {
-  #    path = "/run/media/raskolnikov/elemento/videos/pelis/erotica/vr";
-  #    recursive = true;
-  #  }
-  #];
+  # services.mediatomb.enable = true;
+  # services.mediatomb.openFirewall = true;
+  # services.mediatomb.mediaDirectories = [
+  #   {
+  #     path = "/run/media/raskolnikov/elemento/videos/pelis/erotica/vr";
+  #     recursive = true;
+  #   }
+  # ];
   services.minidlna.enable = true;
   services.minidlna.settings.media_dir = [
     "/run/media/raskolnikov/elemento/videos/pelis/erotica/vr"
