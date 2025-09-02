@@ -26,27 +26,29 @@
 
   # https://nixos.wiki/wiki/Nvidia
 
+  hardware.openrazer.enable = true;
+
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
-  #virtualisation.docker.enableOnBoot = true;
-  #virtualisation.docker.enableNvidia = true;
-  #virtualisation.podman.enableOnBoot = true;
-  #virtualisation.podman.enableNvidia = true;
+  # virtualisation.docker.enableOnBoot = true;
+  # virtualisation.docker.enableNvidia = true;
+  # virtualisation.podman.enableOnBoot = true;
+  # virtualisation.podman.enableNvidia = true;
   # systemd.enableUnifiedCgroupHierarchy = false;
   hardware.nvidia-container-toolkit.enable = true;
   hardware.nvidia-container-toolkit.mount-nvidia-executables = false;
 
-  #environment.sessionVariables = {
-  #  DOCKER_HOST="unix:///var/run/docker.sock";
-  #};
-  #virtualisation.docker.rootless = {
-  #  enable = true;
-  #  setSocketVariable = true;
-  #  daemon.settings = {
-  #    default-runtime = "nvidia";
-  #    runtimes.nvidia.path = "${pkgs.nvidia-docker}/bin/nvidia-container-runtime";
-  #  };
-  #};
+  # environment.sessionVariables = {
+  #   DOCKER_HOST="unix:///var/run/docker.sock";
+  # };
+  # virtualisation.docker.rootless = {
+  #   enable = true;
+  #   setSocketVariable = true;
+  #   daemon.settings = {
+  #     default-runtime = "nvidia";
+  #     runtimes.nvidia.path = "${pkgs.nvidia-docker}/bin/nvidia-container-runtime";
+  #   };
+  # };
 
   nixpkgs.config.nvidia.acceptLicense = true;
   hardware.nvidia = {

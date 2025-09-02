@@ -20,5 +20,6 @@
        "plugdev"
      ];
   };
+
   nix.settings.trusted-users = [ "raskolnikov" ];
 }
