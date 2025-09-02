@@ -5,6 +5,7 @@
     nixos.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     musnix.url = "github:musnix/musnix";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";

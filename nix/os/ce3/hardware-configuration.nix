@@ -4,11 +4,6 @@
 { inputs, config, lib, pkgs, modulesPath, ... }:
 
 let
-  nixos-hardware-src = builtins.fetchGit {
-    url = "https://github.com/NixOS/nixos-hardware.git";
-    rev = "98236410ea0fe204d0447149537a924fb71a6d4f";
-  };
-
   unstable = import inputs.nixos-unstable {
     system = pkgs.system;
     config.allowUnfree = true;
@@ -28,7 +23,7 @@ in
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
-      "${nixos-hardware-src}/framework/13-inch/amd-ai-300-series/"
+      "${inputs.nixos-hardware}/framework/13-inch/amd-ai-300-series/"
     ];
 
   hardware.framework.laptop13.audioEnhancement.enable = true;
