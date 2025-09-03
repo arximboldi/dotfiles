@@ -239,6 +239,7 @@ in
     wofi
     wofi-emoji
     wofi-power-menu
+    bemenu
     unstable.waybar # fix bug in update layout
     playerctl
     brightnessctl

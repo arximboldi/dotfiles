@@ -9,9 +9,30 @@ fi
 #    | dmenu-wl -i -b -fn "Cantarell Bold 18" -h 48 -nb "#1a1b2688" -nf "#dddddd" -sb "#BD93F9" -sf "#1a1b26" \
 #    | ${SHELL:-"/bin/sh"} &
 
+# wofi --show run --insensitive
+
+export BEMENU_BACKEND=wayland
+
 dmenu-wl_path \
     | grep -v "~$" \
-    | wofi --show dmenu --insensitive --prompt "" \
+    | bemenu -b -i \
+             -p " " \
+             -M 0 \
+             -H 48 \
+             --hp 18 --ch 40 --cw 2 \
+             --fn "Cantarell Bold 18" \
+             --cf "#BD93F977" \
+             --ff "#BD93F9" \
+             --tb "#1a1b2688" \
+             --cb "#1a1b2688" \
+             --fb "#1a1b2688" \
+             --fbb "#1a1b2600" \
+             --scb "#1a1b2600" \
+             --ab "#1a1b2600" \
+             --nb "#1a1b2600" \
+             --nf "#dddddd" \
+             --sb "#BD93F9" \
+             --sf "#1a1b26" \
+             --hb "#BD93F9" \
+             --hf "#1a1b26" \
     | ${SHELL:-"/bin/sh"}
-
-# wofi --show run --insensitive
