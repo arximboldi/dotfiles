@@ -11,10 +11,10 @@ fi
 #    | dmenu-wl -i -b -fn "Cantarell Bold 18" -h 48 -nb "#1a1b2688" -nf "#dddddd" -sb "#BD93F9" -sf "#1a1b26" \
 #    | ${SHELL:-"/bin/sh"} &
 
-dmenu-wl_path \
-     | grep -v "~$" \
-     | wofi --show dmenu -W 640 -H 480 --insensitive --prompt "" -M multi-contains \
-     | ${SHELL:-"/bin/sh"} &
+# dmenu-wl_path \
+#      | grep -v "~$" \
+#      | wofi --show dmenu -W 640 -H 480 --insensitive --prompt "" -M multi-contains \
+#      | ${SHELL:-"/bin/sh"} &
 
 # export BEMENU_BACKEND=wayland
 # dmenu-wl_path \
@@ -40,3 +40,5 @@ dmenu-wl_path \
 #              --hb "#BD93F9" \
 #              --hf "#1a1b26" \
 #     | ${SHELL:-"/bin/sh"}
+
+rofi -show combi

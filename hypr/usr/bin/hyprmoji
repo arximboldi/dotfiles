@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-export BEMOJI_PICKER_CMD="wofi --show dmenu -W 640 -H 480 -p ''"
-bemoji -t
+# export BEMOJI_PICKER_CMD="wofi --show dmenu -W 640 -H 480 -p ''"
+# bemoji -t
+
+rofi -show emoji -theme-str 'element-icon { padding: 0 -0.75em; }'

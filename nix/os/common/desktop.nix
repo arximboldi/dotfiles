@@ -195,16 +195,21 @@ in
 
     # plasma5.plasma-workspace # for xembedsniproxy
     haskellPackages.status-notifier-item
-    rofi
+    # rofi
+    (rofi-wayland.override {
+      plugins = [
+        rofi-calc
+        rofi-bluetooth
+        rofi-file-browser
+        rofi-emoji
+        rofi-emoji-wayland
+        rofi-top
+        rofi-emoji
+        rofi-pulse-select
+        rofi-power-menu
+      ];
+    })
     rofi-mpd
-    rofi-top
-    rofi-calc
-    rofi-bluetooth
-    rofi-file-browser
-    rofi-emoji
-    rofi-pulse-select
-    rofi-power-menu
-    rofimoji
     # clerk
     emote
     dmenu

@@ -1,0 +1,5 @@
+@import "theme.rasi"
+
+element-icon {
+    padding: 0 -0.75em;
+}

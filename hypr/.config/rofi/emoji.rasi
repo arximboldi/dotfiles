@@ -1,0 +1,4 @@
+
+@import "config.rasi"
+
+@theme "theme-emoji.rasi"

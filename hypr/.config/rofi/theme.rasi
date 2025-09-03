@@ -1,0 +1,155 @@
+/*
+ * ROFI color theme
+ *
+ * Based on Base16 Material Color Scheme (https://github.com/ntpeters/base16-materialtheme-scheme)
+ *
+ * Modified by: Dave Davenport
+ * User: Tomaszal
+ * Copyright: Tomas Zaluckij
+ */
+
+* {
+    base00: rgba(40, 42, 54, 0.666);
+    base01: rgba(40, 42, 54, 1);
+    base02: #314549;
+    base03: rgba(68, 71, 90, 0.666);
+    base04: #B2CCD6;
+    base05: #EEFFFF;
+    base06: #EEFFFF;
+    base07: #FFFFFF;
+    base08: #F07178;
+    base09: #F78C6C;
+    base0A: #FFCB6B;
+    base0B: #C3E88D;
+    base0C: #89DDFF;
+    base0D: #82AAFF;
+    base0E: #C792EA;
+    base0F: #FF5370;
+
+    base0D: #bd93f9;
+
+    spacing: 0;
+    background-color: transparent;
+    font: "Iosevka Nerd Font 16";
+}
+
+window {
+    transparency: "real";
+    background-color: @base00; /*base00 + CC (80% opacity)*/
+    border-radius: 1em;
+    border: 0.2em;
+    border-color: @base0D;
+}
+
+mainbox {
+    children: [inputbar, message, listview /*, mode-switcher */];
+    spacing: 0em;
+    padding: 0em 0;
+}
+
+inputbar {
+    background-color: @base03;
+    padding: 1em;
+    /*
+      border-color: @base0D;
+      border: 0.05em;
+      margin: -0.1em;
+   */
+    children: [/*prompt, textbox-prompt-colon,*/ entry, case-indicator];
+}
+
+prompt {
+    text-color: @base0D;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0 1ch 0 0;
+    text-color: @base0D;
+}
+
+entry {
+    text-color: @base07;
+}
+
+case-indicator {
+    text-color: @base0F;
+}
+
+mode-switcher {
+    enabled: true;
+}
+
+mode-switcher, message {
+    border: 0;
+    border-color: @base0D;
+}
+
+button, textbox {
+    background-color: @base03;
+    text-color: @base07;
+    padding: 0.25em;
+}
+
+button selected {
+    text-color: @base0D;
+}
+
+listview {
+    scrollbar: false;
+    margin: 0;
+    padding: 0.1em 0 0 0;
+    lines: 10;
+}
+
+scrollbar {
+    background-color: @base03;
+    handle-color: @base0D;
+    handle-width: 0.5em;
+    border: 0;
+    border-color: @base0D;
+    margin: 0;
+}
+
+element {
+    padding: 0.25em 1em;
+    spacing: 0.5em;
+    highlight: bold underline;
+    children: [element-icon, element-text];
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+    foreground-color: inherit;
+}
+
+element-icon {
+    size: 1em;
+}
+
+element normal {
+    background-color: transparent;
+}
+
+element selected {
+    background-color: @base0D;
+    text-color: @base01;
+}
+
+element alternate {
+    /* background-color: @base03; */
+}
+
+element normal normal, element alternate normal {
+    text-color: @base07;
+}
+
+element normal urgent, element alternate urgent {
+    text-color: @base0F;
+}
+
+element normal active, element alternate active {
+    text-color: @base0B;
+}

@@ -1,0 +1,37 @@
+
+configuration {
+    /* actually goes in listview theme! */
+    /* lines: 5; */
+
+    terminal: "gnome-terminal";
+
+    /* run-command: "{terminal} -- {cmd}"; */
+
+    ssh-command: "{terminal} -- ssh {host}";
+    run-shell-command: "{terminal} -- bash -ic '{cmd}'";
+
+    /* modes: "combi,window,drun,run,emoji,file-browser-extended"; */
+    modes: "";
+    combi-modes: "window,drun,run";
+    /* combi-hide-mode-prefix: true; */
+
+    recursivebrowser {
+      /* Directory the file browser starts in. */
+      directory: "~";
+      /* filter entries using regex */
+      /* filter-regex: "(.*cache.*|.*\.o)"; */
+      /* command: "gio open"; */
+   }
+
+   drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+   window-format: "{c:-1} <span weight='light' size='small'><i>({t:-1})</i></span>";
+   display-combi: "✸";
+   display-recursivebrowser: "🗀";
+   display-file-browser-extended : "🗀";
+   display-emoji: "☻";
+   display-drun: " ";
+   display-run: " ";
+   display-window: " ";
+}
+
+@theme "./theme.rasi"
