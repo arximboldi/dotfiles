@@ -1,0 +1,70 @@
+
+* {
+    border-color: transparent;
+}
+
+window {
+    font-family: Iosevka Nerd Font;
+    font-size: 1.5rem;
+    border-radius: 16px;
+    margin: 0px;
+    border: 4px solid #bd93f9;
+    background-color: rgba(40, 42, 54, 0.666);
+}
+
+#icon {
+    visibility: hidden;
+}
+#input {
+    border-radius: 8px;
+    margin: 8px;
+    border: none;
+    color: #f8f8f2;
+    background-color: rgba(68, 71, 90, 0.666);
+}
+
+#inner-box {
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 4px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    padding-left: 1em;
+    margin: 4px;
+    border: none;
+    color: #f8f8f2;
+}
+
+#entry.activatable #text {
+    color: #282a36;
+}
+
+#entry {
+    border-radius: 0px;
+    border: none;
+}
+
+#entry > * {
+    border-radius: 0px;
+}
+
+#entry:selected {
+    background-color: #bd93f9;
+}
+
+#entry:selected #text {
+    color: #282a36;
+    font-weight: bold;
+}

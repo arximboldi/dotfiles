@@ -237,6 +237,8 @@ in
 
     # unstable.quickshell
     wofi
+    wofi-emoji
+    wofi-power-menu
     unstable.waybar # fix bug in update layout
     playerctl
     brightnessctl
