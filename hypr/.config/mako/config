@@ -1,6 +1,13 @@
 font=Cantarell 10
-background-color=#44475A99
+background-color=#44475A88
 border-color=#BD93F900
+border-size=0
 border-radius=8
-outer-margin=20
-padding=12
+outer-margin=8
+padding=12,12,12,12
+margin=8
+max-visible=8
+#anchor=bottom-right
+#padding=12,6,12,12
+#border-radius=8,0,0,8
+#outer-margin=8,0
