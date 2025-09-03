@@ -17,7 +17,12 @@ window {
 }
 #input {
     border-radius: 8px;
-    margin: 8px;
+    margin: 12px;
+    /*
+      padding: 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+    */
     border: none;
     color: #f8f8f2;
     background-color: rgba(68, 71, 90, 0.666);
@@ -41,7 +46,7 @@ window {
 }
 
 #text {
-    padding-left: 1em;
+    padding-left: 16px;
     margin: 4px;
     border: none;
     color: #f8f8f2;
