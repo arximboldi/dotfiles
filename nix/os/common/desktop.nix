@@ -240,6 +240,7 @@ in
     wofi-emoji
     wofi-power-menu
     bemenu
+    bemoji
     unstable.waybar # fix bug in update layout
     playerctl
     brightnessctl

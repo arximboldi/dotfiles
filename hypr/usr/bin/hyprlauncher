@@ -13,7 +13,7 @@ fi
 
 dmenu-wl_path \
      | grep -v "~$" \
-     | wofi --show dmenu --insensitive --prompt "" -M multi-contains \
+     | wofi --show dmenu -W 640 -H 480 --insensitive --prompt "" -M multi-contains \
      | ${SHELL:-"/bin/sh"} &
 
 # export BEMENU_BACKEND=wayland
