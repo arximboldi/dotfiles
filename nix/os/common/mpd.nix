@@ -93,6 +93,13 @@ in
     user = "raskolnikov";
     musicDirectory = "/home/raskolnikov/media/music/mpd";
     dataDir = "/home/raskolnikov/.config/mpd";
+    network.listenAddress = "any";
+    extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "PipeWire Output"
+      }
+    '';
   };
   systemd.services.mpd.environment = {
     # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
