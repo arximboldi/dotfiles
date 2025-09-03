@@ -50,6 +50,17 @@ let
         sha256 = "198944p7bndxbv41wrgjdkkrwnvddhk8dx6ldk0mad6c8p5gjdk1";
       };
     });
+
+    mako = with super; mako.overrideDerivation (attrs: rec {
+      name = "mako-${version}";
+      version = "arximboldi-git";
+      src = fetchFromGitHub {
+        owner = "arximboldi";
+        repo = "mako";
+        rev = "ad04199c40844d50136c255d33a68bffb541496f";
+        sha256 = "sha256-x4+J1RigiSlXlmFKJT01FhmdKZPPTeAtymHZiiecBho=";
+      };
+    });
   };
 
 in
