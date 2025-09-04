@@ -2,63 +2,44 @@ dotfiles
 ========
 
 So, here is another place in the Internet where someone is backing up
-her configuration files.  To use them, try out using `GNU Stow` as
-described [in this
+her configuration files.
+
+To use them, try out using `GNU Stow` as described [in this
 article](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html).
 Here are some details about the provided configurations.
 
-emacs
+Most configurations requires packages as installed in `nix/os`.
+
+nixos
 -----
 
-Configuration for GNU Emacs 24 from Debian Sid.  You might need to
-install extra packages like `chktex`, but I have lost track of all
-what you need.
+Machines are described in `nix/os/flakes.nix`.
 
-Here are some packages you might need to install via `package-install`
-though, see the file `emacs-installed-packages`.
+First, enable flakes:
+```
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+```
 
-xmonad
-------
+Then:
+```
+sudo nixos-rebuild switch --flake ~/dotfiles/nix/os#my-machine
+```
 
-This is the configuration for `xmonad`.  It also requires a very
-recent `taffybar`, that you can just grab [from
-upstream](https://github.com/travitch/taffybar).  Check `xmonad.hs` to
-figure out all the other dependencies, like `suckless-tools`,
-`cinnamon`, among others.
+Or more permanently (when hostname matches config name).
+```
+sudo mv /etc/nixos /etc/nixos.bak
+sudo ln -s ~/dotfiles/nix/os /etc/nixos
+sudo nixos-rebuild switch
+```
 
-It also depends on
-[wallpaperd](https://projects.pekdon.net/projects/wallpaperd) which
-may be installed separatelly.
-
-After installing the configuration, you may need to do:
-
-> ```
-> $ cd ~/.themes/Numix
-> $ make
-> ```
-
-> ```
-> sudo apt install libxtst-dev libxkbcommon-dev
-> cd _deps/xdotool
-> make
-> sudo make install
-> ```
-
-bash
-----
-
-Here is some bash stuff.  Now it is all modularized in a `.bash.d`
-folder, with `.bash.d/init.bash` being the entry point.
-
-git
----
-
-Git configuration too, yeah!
 
 macos
 -----
 
-Note:
+Some notes:
 ```
 chsh -s
 ```
