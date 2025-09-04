@@ -3,5 +3,3 @@
 *_flymake.*
 bash/.bash.d/private.bash
 mail/.mail/*.log
-# git update-index --assume-unchanged hypr/.config/hypr/local.conf
-# hypr/.config/hypr/local.conf
