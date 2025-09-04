@@ -131,6 +131,7 @@
 (global-set-key [C-kp-add]       'zoom-frm-in)
 (global-set-key (kbd "C--")      'zoom-frm-out)
 (global-set-key [C-kp-subtract]  'zoom-frm-out)
+(global-set-key (kbd "C-0")      'zoom-frm-unzoom)
 
 ;; Go to minibuffer
 (global-set-key (kbd "C-c m") '@goto-minibuffer)
