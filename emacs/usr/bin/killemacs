@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+emacsclient -e "(kill-emacs)" -a false
+notify-send -t 3000 "emacs" "Emacs killed"
