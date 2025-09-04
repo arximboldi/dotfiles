@@ -30,6 +30,12 @@
 
 (package-initialize)
 
+(defun @update-packages ()
+  (interactive)
+  (package-refresh-contents)
+  (package-upgrade-all)
+  (package-install-selected-packages))
+
 (when (eq system-type 'darwin)
   (require 'init-macos))
 (require 'init-generic)

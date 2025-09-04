@@ -35,6 +35,23 @@ sudo ln -s ~/dotfiles/nix/os /etc/nixos
 sudo nixos-rebuild switch
 ```
 
+emacs
+-----
+
+When you run Emacs for the first time you will be missing packages.
+Perhaps we should install those via Nix in the future... for now, run
+Emacs, ignore, the errors and update the package list and then install
+the required packages with:
+```
+(progn
+ (package-refresh-contents)
+ (package-upgrade-all)
+ (package-install-selected-packages))
+```
+Or simply
+```
+(@update-packages)
+```
 
 macos
 -----
