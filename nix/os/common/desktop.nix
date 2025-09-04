@@ -402,7 +402,7 @@ in
 
   programs.sway.enable = false;
 
-  services.pantheon.apps.enable = true;
+  services.pantheon.apps.enable = false;
   # programs.pantheon-tweaks.enable = true;
 
   services.xserver = {
@@ -412,7 +412,7 @@ in
     desktopManager = {
       pantheon.enable = false;
       gnome.enable = true;
-      xfce.enable = true;
+      xfce.enable = false;
     };
     displayManager = {
       gdm.enable = true;
