@@ -34,7 +34,8 @@
   (interactive)
   (package-refresh-contents)
   (package-upgrade-all)
-  (package-install-selected-packages))
+  (package-install-selected-packages)
+  (package-autoremove))
 
 (when (eq system-type 'darwin)
   (require 'init-macos))

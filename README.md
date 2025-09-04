@@ -46,7 +46,8 @@ the required packages with:
 (progn
  (package-refresh-contents)
  (package-upgrade-all)
- (package-install-selected-packages))
+ (package-install-selected-packages)
+ (package-autoremove))
 ```
 Or simply
 ```
