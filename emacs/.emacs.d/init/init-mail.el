@@ -67,6 +67,8 @@
          nil (("Fcc" . "runbox/Sent"))
          nil nil)))
 
+(setq notmuch-identities gnus-alias-identity-alist)
+
 (setq gnus-alias-default-identity "bronze")
 
 (setq gnus-alias-identity-rules
