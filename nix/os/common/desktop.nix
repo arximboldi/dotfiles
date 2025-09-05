@@ -40,6 +40,11 @@ let
     #   hardeningDisable = [ "all" ];
     # });
 
+    polkit-gnome-alias = self.runCommand "polkit-gnome-alias" {} ''
+      mkdir -p $out/bin
+      ln -s ${self.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 $out/bin/
+    '';
+
     xdotool-arximboldi = with super; xdotool.overrideDerivation (attrs: rec {
       name = "xdotool-${version}";
       version = "git";
@@ -293,6 +298,7 @@ in
     # pasystray
     # mpdris2
     # blueberry
+    polkit-gnome-alias
 
     # https://github.com/NixOS/nixpkgs/issues/43836#issuecomment-419217138
     hicolor-icon-theme
@@ -457,6 +463,8 @@ in
   programs.dconf.enable = true;
   programs.seahorse.enable = true;
   security.pam.services.lightdm.enableGnomeKeyring = true;
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
   services.dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
   services.gnome.gnome-keyring.enable = true;
 
