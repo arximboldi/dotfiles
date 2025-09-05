@@ -120,8 +120,10 @@
 }
 
 #custom-music {
+    padding: 0.1rem 0.7rem;
+    margin: 6px 0;
     margin-left: 6px; /* Spacing from the previous module (e.g., clock) */
-    margin-right: 8px; /* Spacing before the next module (e.g., pomodoro) */
+    border: none;
 }
 
 #custom-pomodoro {
