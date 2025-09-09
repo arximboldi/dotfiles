@@ -159,6 +159,19 @@ in
     # houdini
     libsForQt5.kruler
     libsForQt5.kmag
+    tuhi
+    inklingreader
+    wacomtablet
+    mypaint
+    obsidian
+    libwacom
+    # libwacom-surface
+    kdePackages.wacomtablet
+    # haskellPackages.wacom-daemon
+    pantheon.switchboard
+    pantheon.switchboard-plug-wacom
+    libinput
+    input-remapper
 
     # utils
     # gksu
@@ -255,6 +268,7 @@ in
     hyprshot
     kooha
     gtklock
+    wev
 
     # unstable.quickshell
     wofi
@@ -304,6 +318,8 @@ in
     hicolor-icon-theme
     gnome-icon-theme
   ];
+
+  services.input-remapper.enable = true;
 
   security.pam.services.gtklock = {};
 
