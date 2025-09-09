@@ -57,11 +57,14 @@
 ;;  :config
 ;;  (global-set-key (kbd "C-c a") 'aider-transient-menu))
 
-(use-package copilot
-  :ensure t
-  :hook (prog-mode . copilot-mode))
+;;(use-package copilot
+;;  :ensure t
+;;  :hook (prog-mode . copilot-mode))
 
 (require 'copilot)
+
+(add-hook 'prog-mode-hook 'copilot-mode)
+
 ;;(define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion)
 (define-key copilot-completion-map (kbd "M-p") 'copilot-accept-completion)
 (define-key copilot-completion-map (kbd "M-]") 'copilot-next-completion)
