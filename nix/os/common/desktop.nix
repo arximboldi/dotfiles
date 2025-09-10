@@ -66,6 +66,17 @@ let
         sha256 = "sha256-x4+J1RigiSlXlmFKJT01FhmdKZPPTeAtymHZiiecBho=";
       };
     });
+
+    hyprland = unstable.hyprland;
+
+    opentabletdriver = unstable.opentabletdriver.overrideAttrs (oldAttrs: rec {
+      src = super.fetchFromGitHub {
+        owner = "OpenTabletDriver";
+        repo = "OpenTabletDriver";
+        rev = "0989c15dfe6e1e656af58400b69b691e357dafb6";
+        sha256 = "sha256-Vo0ljnbL40YGX52nYXpbfGYWX6cYvX38ZdtcRUhVLgw=";
+      };
+    });
   };
 
 in
@@ -80,6 +91,8 @@ in
   nixpkgs.overlays = [ arximboldi-overlay ];
 
   programs.hyprland.enable = true;
+
+  hardware.opentabletdriver.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -172,6 +185,9 @@ in
     pantheon.switchboard-plug-wacom
     libinput
     input-remapper
+    opentabletdriver
+    rnote
+    osu-lazer-bin
 
     # utils
     # gksu
