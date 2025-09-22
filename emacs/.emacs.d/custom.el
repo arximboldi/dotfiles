@@ -291,9 +291,9 @@
                    clojure-cheatsheet clojurescript-mode cmake-ide
                    cmake-mode color-theme-sanityinc-tomorrow
                    company-auctex company-bibtex company-go
-                   company-tabnine company-ycmd copilot
-                   cyberpunk-theme dap-cpptools dap-mode dedicated
-                   diminish dirtrack-buffer-name-track-mode dirtree
+                   company-ycmd copilot cyberpunk-theme dap-cpptools
+                   dap-mode dedicated diminish
+                   dirtrack-buffer-name-track-mode dirtree
                    dockerfile-mode dracula-theme dumb-jump ebib
                    edit-indirect elm-mode elysium emms
                    emoji-cheat-sheet-plus emojify empos ensime

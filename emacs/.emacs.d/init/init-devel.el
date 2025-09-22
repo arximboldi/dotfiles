@@ -10,9 +10,9 @@
 ;; Autocompletion
 (require 'company)
 ;;(require 'company-box)
-(require 'company-tabnine)
+;;(require 'company-tabnine)
 
-(add-to-list 'company-backends #'company-tabnine)
+;;(add-to-list 'company-backends #'company-tabnine)
 ;;(add-hook 'company-mode-hook 'company-box-mode)
 (add-hook 'after-init-hook 'global-company-mode)
 
