@@ -387,4 +387,22 @@
 ;;(require 'usda-mode)
 ;;(add-to-list 'auto-mode-alist '("\\.usda\\'" . text-mode))
 
+(defun @reformat-xml ()
+  "Reformats xml to make it readable (respects current selection)."
+  (interactive)
+  (save-excursion
+    (let ((beg (point-min))
+          (end (point-max)))
+      (if (and mark-active transient-mark-mode)
+          (progn
+            (setq beg (min (point) (mark)))
+            (setq end (max (point) (mark))))
+        (widen))
+      (setq end (copy-marker end t))
+      (goto-char beg)
+      (while (re-search-forward ">\\s-*<" end t)
+        (replace-match ">\n<" t t))
+      (goto-char beg)
+      (indent-region beg end nil))))
+
 (provide 'init-devel)
