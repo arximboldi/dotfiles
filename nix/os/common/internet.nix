@@ -63,7 +63,7 @@ in
     # franz
     # rambox
     # unstable.teams
-    # unstable.skypeforlinux
+    # skypeforlinux
     unstable.slack
     unstable.teams-for-linux
     unstable.discord
@@ -93,6 +93,7 @@ in
     transmission_4-gtk
     amule
     soulseekqt
+    nicotine-plus
     yt-dlp
 
     # for emule
