@@ -32,6 +32,7 @@
 (global-unset-key (kbd "C-x m"))
 (global-set-key (kbd "C-c s") 'helm-notmuch)
 (global-set-key (kbd "C-x m m") '@email)
+(global-set-key (kbd "C-x m s") 'notmuch-search)
 (global-set-key (kbd "C-x m n") 'notmuch-mua-new-mail)
 (global-set-key (kbd "C-x m g") '@getmail)
 (define-key notmuch-show-mode-map (kbd "C-.") 'browse-url-at-point)
