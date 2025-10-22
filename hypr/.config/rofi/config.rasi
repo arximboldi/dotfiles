@@ -32,6 +32,8 @@ configuration {
    display-drun: " ";
    display-run: " ";
    display-window: " ";
+
+   kb-custom-1: "Alt+Return";
 }
 
 @theme "./theme.rasi"
