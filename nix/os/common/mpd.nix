@@ -31,11 +31,6 @@ let
       strictDeps = false;
     };
 
-    # wrapper to make
-    cantata-wrapper = self.writeScriptBin "cantata" ''
-      ${self.cantata}/bin/cantata
-    '';
-
     # beets plugin
     beetcamp = (self.python3Packages.buildPythonApplication {
       pname = "beets-beetcamp";
@@ -110,9 +105,10 @@ in
     mpd
 
     # clients
-    # cantata-wrapper
-    cantata
+    unstable.cantata # qt 6
     amberol
+    gapless
+    tauon
     # gmpc
     plattenalbum
     ymuse
