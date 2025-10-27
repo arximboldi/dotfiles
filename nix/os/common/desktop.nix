@@ -94,6 +94,15 @@ in
 
   hardware.opentabletdriver.enable = true;
 
+  #xdg.portal = {
+  #  enable = true;
+  #  config.common.default = [ "hyprland" "gtk" ];
+  #  extraPortals = [
+  #    pkgs.xdg-desktop-portal-gtk
+  #    pkgs.xdg-desktop-portal-hyprland
+  #  ];
+  #};
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
