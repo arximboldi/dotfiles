@@ -244,8 +244,10 @@ in
     adw-gtk3
     adwaita-qt
     adwaita-qt6
+    darkly
     dracula-theme
     dracula-icon-theme
+    kdePackages.qt6ct
 
     # plasma5.plasma-workspace # for xembedsniproxy
     haskellPackages.status-notifier-item
