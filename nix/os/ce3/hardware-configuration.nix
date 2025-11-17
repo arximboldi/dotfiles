@@ -6,7 +6,7 @@
 let
   unstable = import inputs.nixos-unstable {
     system = pkgs.system;
-    config.allowUnfree = true;
+    config = config.nixpkgs.config;
   };
 
   nixos-linux-6-14 = import (

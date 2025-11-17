@@ -3,7 +3,7 @@
 let
   unstable = import inputs.nixos-unstable {
     system = pkgs.system;
-    config.allowUnfree = true;
+    config = config.nixpkgs.config;
   };
 
   overlay = self: super: {
