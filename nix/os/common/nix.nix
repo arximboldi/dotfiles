@@ -24,6 +24,7 @@ in
     "python2.7-pyjwt-1.7.1"
     "libdwarf-20181024"
     "python2.7-certifi-2021.10.8"
+    "electron-36.9.5"
   ];
 
   environment.systemPackages = with pkgs; [
