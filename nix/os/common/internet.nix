@@ -21,11 +21,6 @@ let
   };
 
   overlay = self: super: {
-    telegram-alias = pkg: self.runCommand "telegram-alias" {} ''
-      mkdir -p $out/bin
-      ln -s ${pkg}/bin/telegram-desktop $out/bin/telegram
-    '';
-
     zen-browser = inputs.zen-browser.packages."${self.system}".default;
   };
 
@@ -69,10 +64,8 @@ in
     unstable.discord
     unstable.webcord
     unstable.telegram-desktop
-    (telegram-alias unstable.telegram-desktop)
-    wasistlos
+    unstable.signal-desktop
     zapzap
-    signal-desktop
     signal-cli
     zoom-us
     polari
