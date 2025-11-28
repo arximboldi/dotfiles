@@ -112,6 +112,7 @@ in
     unstable.aider-chat
     unstable.plandex
     unstable.claude-code
+    unstable.codex
     unstable.gemini-cli
     copilot-language-server
     github-copilot-cli
