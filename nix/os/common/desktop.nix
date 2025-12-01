@@ -442,16 +442,18 @@ in
   # programs.pantheon-tweaks.enable = true;
 
   services.displayManager = {
-    # gdm.enable = true;
-    ly.enable = true;
-    ly.settings = {
-      animation = "matrix";
-      bigclock = true;
-      default_input = "password";
-      # auto_login_session = "hyprland";
-      # auto_login_user = "raskolnikov";
-    };
+    gdm.enable = true;
+    # ly.enable = true;
+    # ly.settings = {
+    #  animation = "matrix";
+    #  bigclock = true;
+    #  default_input = "password";
+    #  # auto_login_session = "hyprland";
+    #  # auto_login_user = "raskolnikov";
+    # };
     # lightdm.enable = true;
+    # sddm.enable = true;
+    # sddm.wayland.enable = true;
     # lightdm.greeters.enso.enable = false;
   };
 
