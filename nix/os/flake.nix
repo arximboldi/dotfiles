@@ -2,7 +2,7 @@
   description = "nixos configurations, with flakes";
 
   inputs = {
-    nixos.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixos.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";

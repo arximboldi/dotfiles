@@ -1,20 +1,19 @@
 { inputs, config, pkgs, ... }@arg:
 let
   unstable = import inputs.nixos-unstable {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
 
   overlay = self: super: {
     # latest version for workaround
-    mpd = unstable.mpd;
 
     covergrid = with super;  python3Packages.buildPythonApplication rec {
       pname = "covergrid";
-      version = "2.1.12";
+      version = "3.2.1";
       src = fetchGit {
         url = "https://gitlab.com/coderkun/mcg.git";
-        rev = "17fe4ee8cad2265e0283f33be40508561687cddb";
+        rev = "75b99e5820f0f28f5cfb52507c9fb20f15b454fb";
       };
       postInstall = ''
          cp -r data $out/lib/python3.8/site-packages/mcg/
@@ -31,51 +30,6 @@ let
       strictDeps = false;
     };
 
-    # beets plugin
-    beetcamp = (self.python3Packages.buildPythonApplication {
-      pname = "beets-beetcamp";
-      version = "0.21.0";
-      src = self.fetchFromGitHub {
-        repo = "beetcamp";
-        owner = "snejus";
-        rev = "64c7afc9d87682fb2b7c9f2deb76525e44afb248";
-        sha256 = "sha256-d0yvOyfxPPBUpoO6HCWfMq2vVw+CcQo16hx+JRDMkBw=";
-      };
-      format = "pyproject";
-      buildInputs = with self.python3Packages; [ poetry-core ];
-      propagatedBuildInputs = with self.python3Packages; [
-        setuptools requests cached-property pycountry dateutil ordered-set
-      ];
-      checkInputs = with self.python3Packages; [
-        # pytestCheckHook
-        pytest-cov
-        pytest-randomly
-        pytest-lazy-fixture
-        rich
-        tox
-        types-setuptools
-        types-requests
-      ] ++ [
-        self.beets
-      ];
-      meta = {
-        homepage = "https://github.com/snejus/beetcamp";
-        description = "Bandcamp autotagger plugin for beets.";
-        license = self.lib.licenses.gpl2;
-        inherit (self.beets.meta) platforms;
-        maintainers = with self.lib.maintainers; [ rrix ];
-      };
-    });
-
-    # custom version of beets with bandcamp plugin enabled
-    my-beets = (self.beets.override {
-      pluginOverrides = {
-        bandcamp = {
-          enable = true;
-          propagatedBuildInputs = [ self.beetcamp ];
-        };
-      };
-    });
   };
 
 in
@@ -105,7 +59,7 @@ in
     mpd
 
     # clients
-    unstable.cantata # qt 6
+    cantata # qt 6
     amberol
     gapless
     tauon
@@ -119,14 +73,14 @@ in
     sonata
     # clerk
     mmtc
-    mpc_cli
+    mpc
 
     # integrations
     mpdris2
     mpdas
 
     # library management
-    my-beets
+    beets
     tmsu
   ];
 }

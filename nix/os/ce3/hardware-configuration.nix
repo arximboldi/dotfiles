@@ -5,7 +5,7 @@
 
 let
   unstable = import inputs.nixos-unstable {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
 
@@ -16,7 +16,7 @@ let
       url    = "https://github.com/arximboldi/nixpkgs/archive/${rev}.tar.gz";
       sha256 = "0xmyy0c8lyylm0fcvxc7w9xgf9jpc09wq1f3dhz17r5jkm9vczpl";
     }
-  ) { system = pkgs.system; };
+  ) { system = pkgs.stdenv.hostPlatform.system; };
 
 in
 {
@@ -67,7 +67,7 @@ in
 
   # for this
   # https://bbs.archlinux.org/viewtopic.php?id=305793
-  boot.kernelPackages = nixos-linux-6-14.linuxPackages_6_14;
+  # boot.kernelPackages = nixos-linux-6-14.linuxPackages_6_14;
 
   # trying this
   # boot.kernelParams = ["amdgpu.mes=0" "amdgpu.gpu_recovery=1"];

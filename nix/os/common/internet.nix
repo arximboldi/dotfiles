@@ -2,7 +2,7 @@
 
 let
   unstable = import inputs.nixos-unstable {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
 
@@ -17,11 +17,11 @@ let
       sha256 = "1wpjp9brpis5lnyip912g2dkr4jgykq3wf31kk8091r1f1pgvh9m";
     }
   ) {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
   };
 
   overlay = self: super: {
-    zen-browser = inputs.zen-browser.packages."${self.system}".default;
+    zen-browser = inputs.zen-browser.packages."${self.stdenv.hostPlatform.system}".default;
   };
 
 in
@@ -47,10 +47,10 @@ in
     # communications
     (pidgin.override {
       plugins = [
-        pidgin-otr
-        purple-facebook
-        purple-hangouts
-        purple-matrix
+        pidginPackages.pidgin-otr
+        # purple-facebook
+        # purple-hangouts
+        # purple-matrix
         # telegram-purple
       ];
     })
@@ -73,7 +73,7 @@ in
     # wire-desktop
 
     # mail
-    unstable.notmuch
+    notmuch
     isync
     afew
     notify-desktop
@@ -85,7 +85,7 @@ in
     # p2p
     transmission_4-gtk
     amule
-    soulseekqt
+    # soulseekqt
     nicotine-plus
     yt-dlp
 

@@ -1,7 +1,7 @@
 { inputs, config, pkgs, ... }@arg:
 let
   unstable = import inputs.nixos-unstable {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
 
@@ -25,6 +25,8 @@ in
     "libdwarf-20181024"
     "python2.7-certifi-2021.10.8"
     "electron-36.9.5"
+    "qtwebengine-5.15.19"
+    "libsoup-2.74.3"
   ];
 
   environment.systemPackages = with pkgs; [

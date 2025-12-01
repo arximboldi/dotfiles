@@ -2,7 +2,7 @@
 
 let
   unstable = import inputs.nixos-unstable {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
 
@@ -64,17 +64,6 @@ let
         repo = "mako";
         rev = "ad04199c40844d50136c255d33a68bffb541496f";
         sha256 = "sha256-x4+J1RigiSlXlmFKJT01FhmdKZPPTeAtymHZiiecBho=";
-      };
-    });
-
-    hyprland = unstable.hyprland;
-
-    opentabletdriver = unstable.opentabletdriver.overrideAttrs (oldAttrs: rec {
-      src = super.fetchFromGitHub {
-        owner = "OpenTabletDriver";
-        repo = "OpenTabletDriver";
-        rev = "0989c15dfe6e1e656af58400b69b691e357dafb6";
-        sha256 = "sha256-Vo0ljnbL40YGX52nYXpbfGYWX6cYvX38ZdtcRUhVLgw=";
       };
     });
   };
@@ -147,15 +136,15 @@ in
     gthumb
     gpodder
     # anbox
-    subberthehut
-    subdl
+    # subberthehut
+    # subdl
     python3Packages.subliminal
     easytag
     picard
     vokoscreen
 
     # music
-    unstable.mixxx
+    mixxx
     helm
     vkeybd
     vmpk
@@ -175,17 +164,16 @@ in
     blender
     imagemagickBig
     #okular
-    poppler_utils
+    poppler-utils
     dia
     figma-linux
     # houdini
-    libsForQt5.kruler
-    libsForQt5.kmag
+    kdePackages.kruler
+    kdePackages.kmag
     tuhi
     inklingreader
-    wacomtablet
+    kdePackages.wacomtablet
     mypaint
-    obsidian
     libwacom
     # libwacom-surface
     kdePackages.wacomtablet
@@ -205,7 +193,7 @@ in
     usbutils
     trash-cli
     psmisc
-    glxinfo
+    mesa-demos
     htop
     ntfs3g
     xorg.xkill
@@ -239,7 +227,7 @@ in
     lounge-gtk-theme
     yaru-remix-theme
     stilo-themes
-    gradience
+    # gradience
     themechanger
     adw-gtk3
     adwaita-qt
@@ -252,13 +240,12 @@ in
     # plasma5.plasma-workspace # for xembedsniproxy
     haskellPackages.status-notifier-item
     # rofi
-    (rofi-wayland.override {
+    (rofi.override {
       plugins = [
         rofi-calc
         rofi-bluetooth
         rofi-file-browser
         rofi-emoji
-        rofi-emoji-wayland
         rofi-top
         rofi-emoji
         rofi-pulse-select
@@ -291,7 +278,7 @@ in
     hyprsunset
     hypridle
     hyprlock
-    unstable.sunsetr
+    sunsetr
     hyprshot
     kooha
     gtklock
@@ -303,7 +290,7 @@ in
     wofi-power-menu
     bemenu
     bemoji
-    unstable.waybar # fix bug in update layout
+    waybar # fix bug in update layout
     playerctl
     brightnessctl
     wlprop
@@ -368,10 +355,10 @@ in
       nerd-fonts.zed-mono
       nerd-fonts.victor-mono
       nerd-fonts.iosevka
-      ubuntu_font_family
+      ubuntu-classic
       dejavu_fonts
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       openmoji-color
       fira
       fira-mono
@@ -379,7 +366,6 @@ in
       fira-code-symbols
       twemoji-color-font
       source-sans-pro
-      emojione
       roboto
       roboto-mono
       source-code-pro
@@ -455,20 +441,22 @@ in
   services.pantheon.apps.enable = false;
   # programs.pantheon-tweaks.enable = true;
 
+  services.displayManager = {
+      gdm.enable = true;
+      #lightdm.enable = true;
+      #lightdm.greeters.enso.enable = false;
+  };
+
+  services.desktopManager = {
+    gnome.enable = true;
+    # pantheon.enable = false;
+    # xfce.enable = false;
+  };
+
   services.xserver = {
     enable = true;
     xkb.layout = "us";
     xkb.options = "eurosign:e";
-    desktopManager = {
-      pantheon.enable = false;
-      gnome.enable = true;
-      xfce.enable = false;
-    };
-    displayManager = {
-      gdm.enable = true;
-      #lightdm.enable = true;
-      #lightdm.greeters.enso.enable = false;
-    };
     windowManager.xmonad = {
       enable = false;
       enableContribAndExtras = true;
@@ -518,9 +506,7 @@ in
   '';
 
   # make sure tmp folder is big enough
-  services.logind.extraConfig = ''
-    RuntimeDirectorySize=4G
-  '';
+  services.logind.settings.Login.RuntimeDirectorySize = ''4G'';
 
   security.sudo.extraConfig = ''
     Defaults timestamp_timeout=1440

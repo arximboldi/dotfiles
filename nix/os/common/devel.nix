@@ -2,7 +2,7 @@
 
 let
   unstable = import inputs.nixos-unstable {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
 
@@ -50,7 +50,7 @@ in
     librsvg
 
     # profiling and debugging
-    linuxPackages.perf
+    perf
     hotspot
     sysprof
     valgrind
@@ -72,8 +72,8 @@ in
     ghex
 
     # version control
-    gitAndTools.gitFull
-    gitAndTools.gh
+    gitFull
+    gh
     git-annex
     git-annex-remote-googledrive
     # git-annex-remote-rclone
@@ -128,9 +128,6 @@ in
 
   programs.wireshark.enable = true;
 
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
   programs.adb.enable = true;
 
   # compiling remotely

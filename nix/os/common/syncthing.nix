@@ -10,6 +10,6 @@
 
   environment.systemPackages = with pkgs; [
     syncthing
-    qsyncthingtray
+    # qsyncthingtray
   ];
 }
