@@ -442,9 +442,17 @@ in
   # programs.pantheon-tweaks.enable = true;
 
   services.displayManager = {
-      gdm.enable = true;
-      #lightdm.enable = true;
-      #lightdm.greeters.enso.enable = false;
+    # gdm.enable = true;
+    ly.enable = true;
+    ly.settings = {
+      animation = "matrix";
+      bigclock = true;
+      default_input = "password";
+      # auto_login_session = "hyprland";
+      # auto_login_user = "raskolnikov";
+    };
+    # lightdm.enable = true;
+    # lightdm.greeters.enso.enable = false;
   };
 
   services.desktopManager = {
@@ -463,16 +471,6 @@ in
       # haskellPackages = pkgs.haskell.packages.ghc8107;
       extraPackages = hs: [hs.taffybar];
     };
-  };
-  services.displayManager = {
-    #sddm = {
-    #  enable = true;
-    #  wayland.enable = true;
-    #  enableHidpi = true;
-    #  theme = "chili";
-    #};
-    # defaultSession = "gnome"; # "none+xmonad"
-    # autoLogin = {enable = true; user = "raskolnikov";};
   };
 
   qt.platformTheme = "gnome";
