@@ -9,25 +9,20 @@ let
     config = config.nixpkgs.config;
   };
 
-  nixos-linux-6-14 = import (
-    let rev = "d838e584bbbd0c5bcfe4da8cdccb2bca79b81c18";
-    in builtins.fetchTarball rec {
-      name   = "nixpkgs-${rev}";
-      url    = "https://github.com/arximboldi/nixpkgs/archive/${rev}.tar.gz";
-      sha256 = "0xmyy0c8lyylm0fcvxc7w9xgf9jpc09wq1f3dhz17r5jkm9vczpl";
-    }
-  ) { system = pkgs.stdenv.hostPlatform.system; };
-
 in
 {
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
       "${inputs.nixos-hardware}/framework/13-inch/amd-ai-300-series/"
+      inputs.ucodenix.nixosModules.default
     ];
 
   hardware.framework.laptop13.audioEnhancement.enable = true;
   hardware.framework.laptop13.audioEnhancement.hideRawDevice = false;
+
+  services.ucodenix.enable = true;
+  boot.kernelParams = [ "microcode.amd_sha_check=off" ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
@@ -64,10 +59,6 @@ in
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # for this
-  # https://bbs.archlinux.org/viewtopic.php?id=305793
-  # boot.kernelPackages = nixos-linux-6-14.linuxPackages_6_14;
 
   # trying this
   # boot.kernelParams = ["amdgpu.mes=0" "amdgpu.gpu_recovery=1"];

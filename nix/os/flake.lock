@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "cpu-microcodes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763336161,
+        "narHash": "sha256-KDi9xyL57RQmAAJLB6Q2dSF9BMRjq/QBFri7SP9+LX4=",
+        "owner": "platomav",
+        "repo": "CPUMicrocodes",
+        "rev": "2bd1bd04b8af70805c3da1f0f36673d896ca7952",
+        "type": "github"
+      },
+      "original": {
+        "owner": "platomav",
+        "repo": "CPUMicrocodes",
+        "rev": "2bd1bd04b8af70805c3da1f0f36673d896ca7952",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -124,7 +141,26 @@
         "nixos": "nixos",
         "nixos-hardware": "nixos-hardware",
         "nixos-unstable": "nixos-unstable",
+        "ucodenix": "ucodenix",
         "zen-browser": "zen-browser"
+      }
+    },
+    "ucodenix": {
+      "inputs": {
+        "cpu-microcodes": "cpu-microcodes"
+      },
+      "locked": {
+        "lastModified": 1763395895,
+        "narHash": "sha256-Ws+pqV0QxJ6oNU8sEwok8JQRkj4mAFOIwTMaA/K3G/Q=",
+        "owner": "e-tho",
+        "repo": "ucodenix",
+        "rev": "ae4840d921c77482f30e45a849025ad436e65521",
+        "type": "github"
+      },
+      "original": {
+        "owner": "e-tho",
+        "repo": "ucodenix",
+        "type": "github"
       }
     },
     "zen-browser": {
@@ -133,11 +169,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1764584743,
-        "narHash": "sha256-sOCyoqfX1RFlHsqQL0o4rcc7BZLmtLn+kZk6rtzuLgg=",
+        "lastModified": 1764598958,
+        "narHash": "sha256-sJQHRL8trBoG/ArR+mUlyp5cyKU0pgQY+qDQzZGnVgM=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "842a30e6e016b87af092a78f32d138f97a0adc3e",
+        "rev": "8cded25e10b13e2999241f1c73a7d4e5e5d6f69e",
         "type": "github"
       },
       "original": {

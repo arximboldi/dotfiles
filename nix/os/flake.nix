@@ -5,6 +5,7 @@
     nixos.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    ucodenix.url = "github:e-tho/ucodenix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     musnix.url = "github:musnix/musnix";
 
