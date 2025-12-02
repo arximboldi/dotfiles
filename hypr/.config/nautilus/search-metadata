@@ -1,5 +1,5 @@
 [directory]
 nautilus-list-view-sort-column=search_relevance
 nautilus-list-view-sort-reversed=true
-nautilus-icon-view-sort-by=size
-nautilus-icon-view-sort-reversed=true
+nautilus-icon-view-sort-by=date_modified
+nautilus-icon-view-sort-reversed=false

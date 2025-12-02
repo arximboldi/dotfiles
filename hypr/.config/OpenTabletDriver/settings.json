@@ -11,10 +11,10 @@
       "Filters": [],
       "AbsoluteModeSettings": {
         "Display": {
-          "Width": 1920.0,
-          "Height": 1080.0,
-          "X": 2240.0,
-          "Y": 540.0,
+          "Width": 1440.0,
+          "Height": 960.0,
+          "X": 720.0,
+          "Y": 480.0,
           "Rotation": 0.0
         },
         "Tablet": {
@@ -35,7 +35,7 @@
         "RelativeResetDelay": "00:00:00.1000000"
       },
       "Bindings": {
-        "TipActivationThreshold": 0.0,
+        "TipActivationThreshold": 1.0,
         "TipButton": {
           "Path": "OpenTabletDriver.Desktop.Binding.AdaptiveBinding",
           "Settings": [
@@ -59,11 +59,11 @@
         },
         "PenButtons": [
           {
-            "Path": "OpenTabletDriver.Desktop.Binding.KeyBinding",
+            "Path": "OpenTabletDriver.Desktop.Binding.AdaptiveBinding",
             "Settings": [
               {
-                "Property": "Key",
-                "Value": "D"
+                "Property": "Binding",
+                "Value": "Button 1"
               }
             ],
             "Enable": true
@@ -79,117 +79,27 @@
             "Enable": true
           },
           {
-            "Path": "OpenTabletDriver.Desktop.Binding.KeyBinding",
+            "Path": "OpenTabletDriver.Desktop.Binding.AdaptiveBinding",
             "Settings": [
               {
-                "Property": "Key",
-                "Value": "E"
+                "Property": "Binding",
+                "Value": "Button 3"
               }
             ],
             "Enable": true
           }
         ],
         "AuxButtons": [
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
-            "Settings": [
-              {
-                "Property": "Keys",
-                "Value": "Control+X"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.KeyBinding",
-            "Settings": [
-              {
-                "Property": "Key",
-                "Value": "V"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
-            "Settings": [
-              {
-                "Property": "Keys",
-                "Value": "Control+V"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.KeyBinding",
-            "Settings": [
-              {
-                "Property": "Key",
-                "Value": "D"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.KeyBinding",
-            "Settings": [
-              {
-                "Property": "Key",
-                "Value": "H"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.KeyBinding",
-            "Settings": [
-              {
-                "Property": "Key",
-                "Value": "Equal"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
-            "Settings": [
-              {
-                "Property": "Keys",
-                "Value": "Control+Z"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.KeyBinding",
-            "Settings": [
-              {
-                "Property": "Key",
-                "Value": "Minus"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
-            "Settings": [
-              {
-                "Property": "Keys",
-                "Value": "Control+Shift+Z"
-              }
-            ],
-            "Enable": true
-          },
-          {
-            "Path": "OpenTabletDriver.Desktop.Binding.MultiKeyBinding",
-            "Settings": [
-              {
-                "Property": "Keys",
-                "Value": "Shift+D2"
-              }
-            ],
-            "Enable": true
-          }
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ],
         "MouseButtons": [],
         "MouseScrollUp": null,
