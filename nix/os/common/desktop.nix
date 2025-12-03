@@ -10,10 +10,10 @@ let
     # fix broken for now
     dracula-icon-theme = super.dracula-icon-theme.overrideAttrs {
       src = super.fetchFromGitHub {
-        owner  = "Blazin64";
+        owner  = "m4thewz";
         repo   = "dracula-icons";
-        rev    = "5739ffc6578a18d8287744eddc8550551e6e72f4";
-        sha256 = "sha256-9v4UCvywUJrESmBt+gJUeR3a0UpnbMD3zQVvibtqgyk=";
+        rev    = "de2a8edd94608ba0ac4dcf5a187af0ffaa511ebc";
+        sha256 = "sha256-JUjC6oalD7teSzzdMqLTXn7eJTZQbPP/oDeLBC7bG6Es=";
       };
     };
 
