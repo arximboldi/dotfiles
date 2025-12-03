@@ -37,6 +37,10 @@ alias rm='echo "This is not the command you are looking for."; false'
 alias trall='trash *'
 alias trtilde='find . -name "*~" -exec trash {} +'
 
+function mkcd() {
+    mkdir -p $1 && cd $1
+}
+
 # Open like from nautilus
 if [ "$(uname)" != "Darwin" ]; then
     function open()
