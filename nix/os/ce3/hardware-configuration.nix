@@ -18,6 +18,21 @@ in
       inputs.ucodenix.nixosModules.default
     ];
 
+  # wifi issues
+  # https://chatgpt.com/share/69416726-23f8-8010-b19b-ae042297289a
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  # hardware.enableRedistributableFirmware = true;
+  # networking.networkmanager = {
+  #  enable = true;
+  #  wifi.powersave = false;
+  #  # wifi.backend = "iwd";
+  # };
+  # boot.extraModprobeConfig = ''
+  #  options iwlwifi power_save=0
+  #  options iwlwifi uapsd_disable=1
+  #  options iwlwifi disable_11ax=1
+  # '';
+
   hardware.framework.laptop13.audioEnhancement.enable = true;
   hardware.framework.laptop13.audioEnhancement.hideRawDevice = false;
 
