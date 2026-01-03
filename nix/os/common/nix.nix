@@ -16,6 +16,9 @@ in
     "nix-command"
     "flakes"
   ];
+  nix.nixPath = [
+    "nixpkgs=${inputs.nixos.outPath}"
+  ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "olm-3.2.16"
