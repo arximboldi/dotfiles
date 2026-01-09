@@ -59,6 +59,7 @@ in
     # kcachegrind
 
     # utils
+    direnv
     xsel
     jq
     clipgrab
