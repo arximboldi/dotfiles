@@ -101,7 +101,7 @@ in
     # nodePackages.standard
     nodePackages.prettier
     cmake-format
-    alejandra
+    nixfmt-rfc-style
 
     # language support in emacs
     tabnine
