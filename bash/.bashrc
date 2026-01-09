@@ -9,6 +9,3 @@ test -e /etc/static/bashrc \
     && . /etc/static/bashrc
 
 source ~/.bash.d/init.bash
-
-# added by travis gem
-[ -f /Users/raskolnikov/.travis/travis.sh ] && source /Users/raskolnikov/.travis/travis.sh
