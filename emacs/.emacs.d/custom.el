@@ -309,10 +309,10 @@
                    lsp-mode magit-filenotify magit-gptcommit
                    markdown-mode markdown-mode+ modern-cpp-font-lock
                    monokai-theme multi-term multiple-cursors neotree
-                   nginx-mode nix-mode nix-update nm notmuch
+                   nginx-mode nix-mode nix-update nixfmt nm notmuch
                    notmuch-labeler nsis-mode osc parinfer
                    phoenix-dark-mono-theme phoenix-dark-pink-theme
-                   projectile rainbow-delimiters realgud
+                   projectile rainbow-delimiters realgud reformatter
                    request-deferred rust-mode sass-mode scss-mode
                    shell-toggle skeletor skewer-mode smex
                    solarized-theme spacemacs-theme string-utils
@@ -334,7 +334,8 @@
  '(ring-bell-function 'ignore)
  '(rust-format-on-save t)
  '(safe-local-variable-values
-   '((clang-format-executable
+   '((eval add-hook 'before-save-hook #'cmake-format-buffer nil t)
+     (clang-format-executable
       . "/home/raskolnikov/dev/abl/source-utils/bin/linux/clang-format")
      (eval c-set-offset 'access-label '-)
      (eval c-set-offset 'substatement-open 0)

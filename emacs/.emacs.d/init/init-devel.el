@@ -87,6 +87,13 @@
 (setq reftex-plug-into-AUCTeX t)
 (setq-default TeX-master nil)
 
+;; cmake-format
+(require 'reformatter)
+
+(reformatter-define cmake-format
+  :program "cmake-format"
+  :args '("-"))
+
 ;;
 ;; C++
 ;;
