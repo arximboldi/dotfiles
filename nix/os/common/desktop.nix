@@ -9,11 +9,12 @@ let
   arximboldi-overlay = self: super: {
     # fix broken for now
     dracula-icon-theme = super.dracula-icon-theme.overrideAttrs {
-      src = super.fetchFromGitHub {
+      version = "0-unstable-2025-08-2";
+      src = self.fetchFromGitHub {
         owner  = "m4thewz";
         repo   = "dracula-icons";
         rev    = "de2a8edd94608ba0ac4dcf5a187af0ffaa511ebc";
-        sha256 = "sha256-JUjC6oalD7teSzzdMqLTXn7eJTZQbPP/oDeLBC7bG6Es=";
+        sha256 = "sha256-JUjC6oalD7teSzzdMqLTXn7eJTZQbPP/oDeLBC7bG6E=";
       };
     };
 
