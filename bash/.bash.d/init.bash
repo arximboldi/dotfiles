@@ -41,3 +41,24 @@ source ~/.bash.d/prompt.bash
 if [ -f ~/.bash.priv.d/init.bash ]; then
     source ~/.bash.priv.d/init.bash
 fi
+
+#
+# direnv support
+#
+# note this has to go in after the prompt has been set
+#
+if command -v direnv >/dev/null 2>&1; then
+    eval "$(direnv hook bash)"
+fi
+
+direnv-load() {
+    if [ -n "$1" ]; then
+        export DEV_SHELL="$1"
+    fi
+    direnv allow
+    eval "$(direnv export bash)"
+}
+
+dl() {
+    direnv-load $*
+}
