@@ -7,9 +7,12 @@
 
     ucodenix.url = "github:e-tho/ucodenix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
     musnix.url = "github:musnix/musnix";
+    musnix.inputs.nixpkgs.follows = "nixos";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixos";
   };
 
   outputs = { self, nixos, ... }@inputs: {

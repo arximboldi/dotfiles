@@ -62,7 +62,6 @@ in
     unstable.slack
     unstable.teams-for-linux
     unstable.discord
-    unstable.webcord
     unstable.telegram-desktop
     unstable.signal-desktop
     zapzap
