@@ -15,6 +15,20 @@ let
     my-emacs-with-packages = (self.emacsPackagesFor self.my-emacs).emacsWithPackages (ps: with ps; [
       treesit-grammars.with-all-grammars
     ]);
+
+    gg = self.rustPlatform.buildRustPackage (attrs: {
+      pname = "gg";
+      version = "0.2.8";
+      nativeBuildInputs = [ self.perl ];
+      buildInputs = [ self.openssl ];
+      src = self.fetchFromGitHub {
+        owner = "frankwiles";
+        repo = "gg";
+        tag = "v${attrs.version}";
+        hash = "sha256-M5MzGqEFXF8B5NCzjnCWtXH68LQpAFz7I2POaC+eAqA=";
+      };
+      cargoHash = "sha256-Hu7IzMOt9lWE9SvS9NhyJOyH39urDs7Fcx7ZY3gYFL0=";
+    });
   };
 
 in
@@ -75,6 +89,7 @@ in
     # version control
     gitFull
     gh
+    gg
     git-annex
     git-annex-remote-googledrive
     # git-annex-remote-rclone
