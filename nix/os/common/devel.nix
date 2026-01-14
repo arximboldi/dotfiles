@@ -76,7 +76,7 @@ in
     direnv
     xsel
     jq
-    clipgrab
+    # clipgrab
     silver-searcher
     mmv
     magic-wormhole

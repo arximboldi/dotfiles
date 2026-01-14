@@ -28,7 +28,7 @@ in
     "libdwarf-20181024"
     "python2.7-certifi-2021.10.8"
     "electron-36.9.5"
-    "qtwebengine-5.15.19"
+    # "qtwebengine-5.15.19"
     "libsoup-2.74.3"
   ];
 
