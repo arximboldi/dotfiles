@@ -7,7 +7,7 @@ fi
 
 # repeat three times to ensure the server is ready
 for i in {1..10}; do
-    if swayosd-client $*; then
+    if swayosd-client "$*"; then
         exit 0
     fi
     sleep 0.1
