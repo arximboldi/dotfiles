@@ -26,6 +26,8 @@
     publish.userServices = true;
   };
 
+  services.tailscale.enable = true;
+
   environment.systemPackages = with pkgs; [
     # lte internet
     modemmanager
@@ -35,5 +37,7 @@
 
 
     # tailscale
+    tailscale
+    # step-ca
   ];
 }
