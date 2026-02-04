@@ -1,7 +1,7 @@
 {
   "currentThemeName": "custom",
   "currentThemeCategory": "registry",
-  "customThemeFile": "/home/raskolnikov/.config/DankMaterialShell/themes/rosePine/theme.json",
+  "customThemeFile": "/home/raskolnikov/.config/DankMaterialShell/themes/catppuccin/theme.json",
   "registryThemeVariants": {
     "rosePine": "rosePine",
     "catppuccin": {
