@@ -295,6 +295,7 @@ in
     playerctl
     brightnessctl
     wlprop
+    wl-clipboard
     swaybg
     mako
     dmenu-wayland
