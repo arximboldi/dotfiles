@@ -13,6 +13,10 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixos";
+
+    # dms.url = "github:AvengeMedia/DankMaterialShell";
+    # noctalia.url = "github:noctalia-dev/noctalia-shell";
+    # noctalia.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixos, ... }@inputs: {

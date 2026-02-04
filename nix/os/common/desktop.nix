@@ -291,14 +291,14 @@ in
     wofi-power-menu
     bemenu
     bemoji
-    waybar # fix bug in update layout
+    # waybar
     playerctl
     brightnessctl
     wlprop
     wl-clipboard
     swaybg
-    mako
-    dmenu-wayland
+    # mako
+    # dmenu-wayland
     ydotool
     wtype
     wmctrl
@@ -321,8 +321,8 @@ in
     swayosd
     nwg-displays
     nwg-look
-    wlogout
-    wlock
+    # wlogout
+    # wlock
     # mess with auto-start
     # picom
     # pasystray
@@ -330,6 +330,13 @@ in
     # blueberry
     polkit-gnome-alias
     networkmanagerapplet
+
+    # nice shells
+    unstable.dms-shell
+    unstable.dgop
+    quickshell
+    # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # unstable.noctalia-shell
 
     # https://github.com/NixOS/nixpkgs/issues/43836#issuecomment-419217138
     hicolor-icon-theme
