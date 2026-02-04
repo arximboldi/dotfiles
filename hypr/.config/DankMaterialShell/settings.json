@@ -118,7 +118,7 @@
   "maxWorkspaceIcons": 1,
   "workspaceAppIconSizeOffset": 0,
   "groupWorkspaceApps": true,
-  "workspaceFollowFocus": false,
+  "workspaceFollowFocus": true,
   "showOccupiedWorkspacesOnly": false,
   "reverseScrolling": false,
   "dwlShowAllTags": false,
