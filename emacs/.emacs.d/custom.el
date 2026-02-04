@@ -306,7 +306,7 @@
                    helm-nixos-options helm-notmuch helm-package
                    helm-projectile helm-smex helm-unicode helm-xref
                    ido-ubiquitous jabber-otr jack-connect jade-mode
-                   lsp-mode magit-filenotify magit-gptcommit
+                   kdl-mode lsp-mode magit-filenotify magit-gptcommit
                    markdown-mode markdown-mode+ modern-cpp-font-lock
                    monokai-theme multi-term multiple-cursors neotree
                    nginx-mode nix-mode nix-update nixfmt nm notmuch

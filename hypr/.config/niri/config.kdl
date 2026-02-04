@@ -1,0 +1,400 @@
+// Niri configuration migrated from Hyprland
+// Some concepts don't translate directly - see comments
+
+// =============================================================================
+// INPUT
+// =============================================================================
+
+input {
+    keyboard {
+        xkb {
+            layout "us,es"
+        }
+    }
+
+    mouse {
+        // off | on-demand | always
+        accel-profile "flat"
+    }
+
+    touchpad {
+        tap
+        // natural-scroll
+        accel-profile "flat"
+    }
+
+    // Focus follows mouse
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+// =============================================================================
+// OUTPUTS (MONITORS)
+// =============================================================================
+
+// Configure outputs in a separate file or uncomment and adjust:
+// output "eDP-1" {
+//     scale 2.0
+//     mode "2880x1920@120"
+// }
+// output "DP-4" {
+//     scale 1.0
+//     mode "1920x1080@60"
+// }
+
+// =============================================================================
+// LAYOUT
+// =============================================================================
+
+layout {
+    gaps 8
+
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 2
+        active-color "#BD93F9"
+        inactive-color "#595959"
+    }
+
+    border {
+        off
+    }
+
+    // NOTE: Niri uses scrolling layout, not master-stack or dwindle
+    // The closest equivalent is using preset widths
+}
+
+// =============================================================================
+// ENVIRONMENT VARIABLES
+// =============================================================================
+
+environment {
+    DE "gnome"
+    XCURSOR_SIZE "24"
+    GTK_CSD "0"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    DISPLAY null
+}
+
+// =============================================================================
+// CURSOR
+// =============================================================================
+
+cursor {
+    xcursor-size 24
+    xcursor-theme "Adwaita"
+}
+
+// =============================================================================
+// STARTUP COMMANDS
+// =============================================================================
+
+spawn-at-startup "sh" "-c" "~/usr/bin/startemacs &"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.wm.preferences" "button-layout" "appmenu:"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
+spawn-at-startup "mpDris2"
+spawn-at-startup "polkit-gnome-authentication-agent-1"
+spawn-at-startup "dms" "run" "-d"
+
+// =============================================================================
+// MISC SETTINGS
+// =============================================================================
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+animations {
+    slowdown 1.0
+
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    config-notification-open-close {
+        spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+    }
+}
+
+// =============================================================================
+// WINDOW RULES
+// =============================================================================
+
+// NOTE: Niri window rules use different matchers than Hyprland
+// Using app-id which corresponds to the window class
+
+window-rule {
+    match app-id="firefox"
+    open-on-workspace "1"
+}
+
+window-rule {
+    match app-id="zen-beta"
+    open-on-workspace "1"
+}
+
+window-rule {
+    match app-id="emacs"
+    open-on-workspace "2"
+}
+
+window-rule {
+    match app-id="Slack"
+    open-on-workspace "4"
+}
+
+window-rule {
+    match app-id="signal"
+    open-on-workspace "4"
+}
+
+window-rule {
+    match app-id="discord"
+    open-on-workspace "4"
+}
+
+window-rule {
+    match app-id="org.telegram.desktop"
+    open-on-workspace "4"
+}
+
+window-rule {
+    match app-id="com.rtosta.zapzap"
+    open-on-workspace "4"
+}
+
+// Inhibit idle when fullscreen
+// window-rule {
+//     match is-active=true is-fullscreen=true
+//     block-out-from "screencast"
+// }
+
+// =============================================================================
+// KEYBINDINGS
+// =============================================================================
+
+binds {
+    // Quitting
+    Mod+Q { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Mod+Shift+Q { quit; }
+
+    // Programs
+    Mod+M { spawn "sh" "-c" "~/usr/bin/getmail"; }
+    Mod+Shift+M { spawn "sh" "-c" "~/usr/bin/email"; }
+
+    // Terminal - NOTE: hyprfocus doesn't exist in niri, using direct launch
+    Mod+Backslash { spawn "gnome-terminal"; }
+    Mod+Shift+Backslash { spawn "gnome-terminal"; }
+
+    // Browser
+    Mod+W { spawn "zen-beta"; }
+    Mod+Shift+W { spawn "zen-beta"; }
+
+    // Emacs
+    Mod+E { spawn "emacsclient" "-c" "-e" "(ignore)"; }
+    Mod+Shift+E { spawn "emacsclient" "-c" "-e" "(ignore)"; }
+
+    // Emoji picker
+    Mod+R { spawn "sh" "-c" "~/usr/bin/hyprmoji"; }
+
+    // File manager
+    Mod+N { spawn "nautilus"; }
+    Mod+Shift+N { spawn "nautilus" "-w"; }
+
+    // Launcher
+    Mod+Space { spawn "sh" "-c" "~/usr/bin/hyprlauncher"; }
+    Mod+Shift+Space { spawn "rofi" "-show" "file-browser-extended" "-file-browser-depth" "4" "-file-browser-no-descend"; }
+
+    // Screenshots
+    // NOTE: hyprshot won't work, using niri's built-in screenshot or grim
+    Shift+Print { screenshot-screen; }
+    Mod+Print { screenshot-window; }
+    Print { screenshot; }
+    Alt+Print { spawn "kooha"; }
+
+    // Window management (niri defaults)
+    Mod+Shift+C { close-window; }
+    Mod+V { toggle-window-floating; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+C { center-column; }
+    Mod+T { toggle-column-tabbed-display; }
+
+    // Focus columns/windows (vim-style H/J/K/L)
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+Home { focus-column-first; }
+    Mod+End { focus-column-last; }
+
+    // Focus with arrow keys
+    Mod+Left { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up { focus-window-up; }
+    Mod+Down { focus-window-down; }
+
+    // Move columns/windows (Ctrl modifier)
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+L { move-column-right; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End { move-column-to-last; }
+
+    // Move with arrow keys
+    Mod+Ctrl+Left { move-column-left; }
+    Mod+Ctrl+Right { move-column-right; }
+    Mod+Ctrl+Up { move-window-up; }
+    Mod+Ctrl+Down { move-window-down; }
+
+    // Consume/expel windows into columns
+    Mod+BracketLeft { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    // Column width (Mod+R conflicts with emoji picker, using Mod+P)
+    Mod+P { switch-preset-column-width; }
+    Mod+Shift+P { switch-preset-window-height; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Workspaces
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    // Navigate workspaces
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up { focus-workspace-up; }
+    Mod+U { focus-workspace-down; }
+    Mod+I { focus-workspace-up; }
+
+    // Move window to workspace
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up { move-column-to-workspace-up; }
+    Mod+Ctrl+U { move-column-to-workspace-down; }
+    Mod+Ctrl+I { move-column-to-workspace-up; }
+
+    // Monitor focus (Shift modifier)
+    Mod+Shift+H { focus-monitor-left; }
+    Mod+Shift+L { focus-monitor-right; }
+    Mod+Shift+Left { focus-monitor-left; }
+    Mod+Shift+Right { focus-monitor-right; }
+
+    // Move column to monitor (Shift+Ctrl)
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+Left { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+
+    // Mouse scroll for workspaces
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
+
+    // Tab/window cycling
+    Mod+Tab { focus-window-down-or-column-right; }
+    Mod+Shift+Tab { focus-window-up-or-column-left; }
+
+    // DMS shell bindings
+    Mod+Comma { spawn "dms" "ipc" "call" "settings" "focusOrToggle"; }
+    Mod+Shift+Comma { spawn "dms" "ipc" "call" "processlist" "focusOrToggle"; }
+    Mod+Period { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
+    Mod+Slash { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+    Mod+Shift+Slash { spawn "dms" "ipc" "call" "notepad" "toggle"; }
+
+    // Audio controls
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "3"; }
+    XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
+    XF86AudioPause allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "playPause"; }
+    XF86AudioPlay allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "playPause"; }
+    XF86AudioPrev allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "previous"; }
+    XF86AudioNext allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "next"; }
+
+    // Brightness controls
+    XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
+
+    // Keyboard layout switching
+    // NOTE: Niri handles this differently - use input section or:
+    Mod+Alt+Space { switch-layout "next"; }
+}
+
+// =============================================================================
+// NOTES ON CONCEPTS THAT DON'T TRANSLATE
+// =============================================================================
+
+// 1. LAYOUT: Niri uses a scrolling column layout, not master-stack or dwindle.
+//    - No direct equivalent to "swapwithmaster", "addmaster", "removemaster"
+//    - Use consume-window-into-column / expel-window-from-column instead
+//    - Column width presets replace mfact
+//
+// 2. WINDOW FOCUS: hyprfocus (focus-or-spawn) doesn't exist
+//    - You may need a script wrapper or use niri IPC
+//
+// 3. SCREENSHOTS: hyprshot won't work
+//    - Use niri's built-in screenshot actions or grim/slurp
+//
+// 4. BLUR: Niri doesn't support blur effects (as of writing)
+//
+// 5. ANIMATIONS: Different animation system - bezier curves vs spring physics
+//
+// 6. LAYER RULES: No equivalent to Hyprland's layerrule
+//
+// 7. GESTURES: Touchpad gestures are built-in, not configurable the same way
+//
+// 8. PER-DEVICE CONFIG: Use input section with device matcher instead

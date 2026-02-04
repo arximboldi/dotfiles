@@ -81,6 +81,7 @@ in
   nixpkgs.overlays = [ arximboldi-overlay ];
 
   programs.hyprland.enable = true;
+  # programs.niri.enable = true;
 
   hardware.opentabletdriver.enable = true;
 
@@ -272,6 +273,8 @@ in
     guvcview
     fswebcam
     # kdePackages.kamoso
+    # niri
+    # xwayland-satellite
     hyprland
     hyprpanel
     hyprpaper
