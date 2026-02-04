@@ -63,6 +63,7 @@ in
     amberol
     gapless
     tauon
+    euphonica
     # gmpc
     plattenalbum
     ymuse
