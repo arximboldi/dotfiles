@@ -20,7 +20,7 @@ in
 
   # wifi issues
   # https://chatgpt.com/share/69416726-23f8-8010-b19b-ae042297289a
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  # boot.kernelPackages = pkgs.linuxPackages_6_18;
   # hardware.enableRedistributableFirmware = true;
   # networking.networkmanager = {
   #  enable = true;
