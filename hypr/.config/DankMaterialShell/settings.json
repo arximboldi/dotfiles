@@ -320,7 +320,7 @@
   "notificationHistorySaveNormal": true,
   "notificationHistorySaveCritical": true,
   "osdAlwaysShowValue": false,
-  "osdPosition": 0,
+  "osdPosition": 5,
   "osdVolumeEnabled": true,
   "osdMediaVolumeEnabled": true,
   "osdBrightnessEnabled": true,
