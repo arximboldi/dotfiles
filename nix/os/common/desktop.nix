@@ -332,7 +332,8 @@ in
     networkmanagerapplet
 
     # nice shells
-    unstable.dms-shell
+    # unstable.dms-shell
+    inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default
     unstable.dgop
     quickshell
     # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
