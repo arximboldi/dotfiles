@@ -94,22 +94,39 @@ in
   #  ];
   #};
 
-  imports = [
-    inputs.dms.nixosModules.greeter
-  ];
-  programs.dank-material-shell.greeter = {
-    enable = true;
-    compositor.name = "hyprland";
-    configHome = "/home/raskolnikov";
-    quickshell.package = inputs.dms.inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    logs = {
-      save = true;
-      path = "/tmp/dms-greeter.log";
-    };
-  };
+  #imports = [
+  #  inputs.dms.nixosModules.greeter
+  #];
+  #programs.dank-material-shell.greeter = {
+  #  enable = true;
+  #  compositor.name = "hyprland";
+  #  configHome = "/home/raskolnikov";
+  #  quickshell.package = inputs.dms.inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  #  logs = {
+  #    save = true;
+  #    path = "/tmp/dms-greeter.log";
+  #  };
+  #};
   services.fprintd.enable = true;
   security.pam.services.greetd.fprintAuth = false;
+  security.pam.services.ly.fprintAuth = false;
   security.pam.services.login.fprintAuth = true;
+  services.displayManager = {
+    # gdm.enable = true;
+    # lightdm.enable = true;
+    # lightdm.greeters.enso.enable = false;
+    # gdm.enable = true;
+    ly.enable = true;
+    ly.settings = {
+      animation = "matrix";
+      bigclock = true;
+      default_input = "password";
+      # auto_login_session = "hyprland";
+      # auto_login_user = "raskolnikov";
+    };
+    # lightdm.enable = true;
+    # lightdm.greeters.enso.enable = false;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -473,22 +490,6 @@ in
 
   services.pantheon.apps.enable = false;
   # programs.pantheon-tweaks.enable = true;
-
-  services.displayManager = {
-    gdm.enable = false;
-    # ly.enable = true;
-    # ly.settings = {
-    #  animation = "matrix";
-    #  bigclock = true;
-    #  default_input = "password";
-    #  # auto_login_session = "hyprland";
-    #  # auto_login_user = "raskolnikov";
-    # };
-    # lightdm.enable = true;
-    # sddm.enable = true;
-    # sddm.wayland.enable = true;
-    # lightdm.greeters.enso.enable = false;
-  };
 
   services.desktopManager = {
     gnome.enable = true;
