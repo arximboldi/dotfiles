@@ -23,6 +23,12 @@
 
   hardware.openrazer.enable = true;
 
+  boot.kernelParams = [
+    "nvidia-drm.modeset=1"
+    "nvidia-drm.fbdev=1"
+    "video=1920x1080"
+  ];
+
   # https://nixos.wiki/wiki/Nvidia
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
