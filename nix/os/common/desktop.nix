@@ -94,6 +94,23 @@ in
   #  ];
   #};
 
+  imports = [
+    inputs.dms.nixosModules.greeter
+  ];
+  programs.dank-material-shell.greeter = {
+    enable = true;
+    compositor.name = "hyprland";
+    configHome = "/home/raskolnikov";
+    quickshell.package = inputs.dms.inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    logs = {
+      save = true;
+      path = "/tmp/dms-greeter.log";
+    };
+  };
+  services.fprintd.enable = true;
+  security.pam.services.greetd.fprintAuth = false;
+  security.pam.services.login.fprintAuth = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -339,6 +356,8 @@ in
     inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default
     unstable.dgop
     inputs.dms.inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    cava
+    matugen
     # quickshell
     # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     # unstable.noctalia-shell
@@ -456,7 +475,7 @@ in
   # programs.pantheon-tweaks.enable = true;
 
   services.displayManager = {
-    gdm.enable = true;
+    gdm.enable = false;
     # ly.enable = true;
     # ly.settings = {
     #  animation = "matrix";

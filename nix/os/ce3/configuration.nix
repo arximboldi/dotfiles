@@ -33,7 +33,5 @@
 
   # Damn Rubygems and Bitbucket...
 
-  services.fprintd.enable = true;
-
   system.stateVersion = "25.05"; # Did you read the comment?
 }
