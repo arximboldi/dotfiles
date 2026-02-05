@@ -182,7 +182,7 @@
   "networkPreference": "wifi",
   "iconTheme": "System Default",
   "cursorSettings": {
-    "theme": "System Default",
+    "theme": "Dracula-cursors",
     "size": 24,
     "niri": {
       "hideWhenTyping": false,
