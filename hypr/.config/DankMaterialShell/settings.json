@@ -442,7 +442,7 @@
       ],
       "spacing": 0,
       "innerPadding": 0,
-      "bottomGap": -8,
+      "bottomGap": -4,
       "transparency": 0,
       "widgetTransparency": 0.7,
       "squareCorners": false,
