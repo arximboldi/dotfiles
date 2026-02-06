@@ -97,7 +97,7 @@ in
     mpc
 
     # integrations
-    mpdris2
+    mpdris2-rs
     mpdas
 
     # library management
