@@ -95,6 +95,16 @@
       "width": 50
     },
     {
+      "id": "builtin_vpn",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "battery",
+      "enabled": true,
+      "width": 50
+    },
+    {
       "id": "audioOutput",
       "enabled": true,
       "width": 50
@@ -105,14 +115,24 @@
       "width": 50
     },
     {
-      "id": "nightMode",
+      "id": "colorPicker",
       "enabled": true,
-      "width": 50
+      "width": 25
     },
     {
-      "id": "darkMode",
+      "id": "idleInhibitor",
       "enabled": true,
-      "width": 50
+      "width": 25
+    },
+    {
+      "id": "doNotDisturb",
+      "enabled": true,
+      "width": 25
+    },
+    {
+      "id": "nightMode",
+      "enabled": true,
+      "width": 25
     }
   ],
   "showWorkspaceIndex": false,
@@ -383,6 +403,10 @@
           "enabled": true
         },
         {
+          "id": "separator",
+          "enabled": true
+        },
+        {
           "id": "keyboard_layout_name",
           "enabled": true,
           "keyboardLayoutNameCompactMode": true
@@ -402,28 +426,12 @@
         {
           "id": "music",
           "enabled": true,
-          "mediaSize": 1
-        },
-        {
-          "id": "clock",
-          "enabled": true
-        },
-        {
-          "id": "weather",
-          "enabled": true
+          "mediaSize": 2
         }
       ],
       "rightWidgets": [
         {
           "id": "systemTray",
-          "enabled": true
-        },
-        {
-          "id": "notificationButton",
-          "enabled": true
-        },
-        {
-          "id": "battery",
           "enabled": true
         },
         {
@@ -436,8 +444,20 @@
           "showBrightnessPercent": false,
           "showMicIcon": false,
           "showMicPercent": false,
-          "showBatteryIcon": false,
+          "showBatteryIcon": true,
           "showPrinterIcon": false
+        },
+        {
+          "id": "separator",
+          "enabled": true
+        },
+        {
+          "id": "weather",
+          "enabled": true
+        },
+        {
+          "id": "clock",
+          "enabled": true
         }
       ],
       "spacing": 0,
