@@ -272,6 +272,8 @@ in
     dracula-theme
     dracula-icon-theme
     kdePackages.qt6ct
+    qt6Packages.qtstyleplugin-kvantum
+    libsForQt5.qtstyleplugin-kvantum
 
     # plasma5.plasma-workspace # for xembedsniproxy
     haskellPackages.status-notifier-item
@@ -509,7 +511,7 @@ in
     };
   };
 
-  qt.platformTheme = "gnome";
+  # qt.platformTheme = "gnome";
   xdg.icons.fallbackCursorThemes = ["Adwaita"];
 
   # add wayland support for slack et al
