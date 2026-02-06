@@ -376,7 +376,7 @@ in
     unstable.dgop
     inputs.dms.inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
     cava
-    matugen
+    # matugen # causes generation of lots of files
     # quickshell
     # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     # unstable.noctalia-shell
