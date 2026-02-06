@@ -16,6 +16,10 @@
 
     dms.url = "github:AvengeMedia/DankMaterialShell";
     dms.inputs.nixpkgs.follows = "nixos";
+
+    cantata.url = "github:nullobsi/cantata";
+    cantata.inputs.nixpkgs.follows = "nixos";
+
     # noctalia.url = "github:noctalia-dev/noctalia-shell";
     # noctalia.inputs.nixpkgs.follows = "nixpkgs";
   };

@@ -30,6 +30,25 @@ let
       strictDeps = false;
     };
 
+    cantata = inputs.cantata.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (attrs: rec {
+      buildInputs = attrs.buildInputs ++ [ super.kdePackages.karchive ];
+    });
+
+    cantata-latest = super.cantata.overrideAttrs (attrs: rec {
+      version = "3.4.0";
+      patches = [];
+      src = super.fetchFromGitHub {
+        owner = "nullobsi";
+        repo = "cantata";
+        rev = "v3.4.0";
+        sha256 = "sha256-jwIsuNgsd1TFb1Zkyen/AulGQfVY2RWKfAJaWvg4WMI=";
+      };
+      cmakeFlags = attrs.cmakeFlags ++ [
+        "-DBUNDLED_KCATEGORIZEDVIEW=on"
+        "-DBUNDLED_KARCHIVE=on"
+        "-DBUNDLED_FONTAWESOME=on"
+      ];
+    });
   };
 
 in
@@ -60,6 +79,7 @@ in
 
     # clients
     cantata # qt 6
+
     amberol
     gapless
     tauon
