@@ -12,7 +12,7 @@
   "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
-  "popupTransparency": 1,
+  "popupTransparency": 0.6,
   "dockTransparency": 0.5,
   "widgetBackgroundColor": "sch",
   "widgetColorMode": "default",
