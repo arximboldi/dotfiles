@@ -67,6 +67,8 @@ let
         sha256 = "sha256-x4+J1RigiSlXlmFKJT01FhmdKZPPTeAtymHZiiecBho=";
       };
     });
+
+    hyprland = unstable.hyprland;
   };
 
 in
@@ -286,7 +288,7 @@ in
         rofi-emoji
         rofi-top
         rofi-emoji
-        rofi-pulse-select
+       rofi-pulse-select
         rofi-power-menu
       ];
     })
