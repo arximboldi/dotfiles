@@ -77,6 +77,8 @@ in
   environment.systemPackages = with pkgs; [
     mpd
 
+    mpd-sima
+
     # clients
     cantata # qt 6
 

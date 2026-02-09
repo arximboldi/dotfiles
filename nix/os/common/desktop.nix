@@ -195,6 +195,8 @@ in
     # onlyoffice-desktopeditors
     libreoffice-fresh
     onlyoffice-desktopeditors
+    #wpsoffice
+    #softmaker-office-nx
     xournalpp
     pdftk
     gcolor3
