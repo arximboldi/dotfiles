@@ -78,6 +78,7 @@ in
     mpd
 
     mpd-sima
+    inputs.mpd-sima-gui.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # clients
     cantata # qt 6
