@@ -22,9 +22,6 @@
 
     mpd-sima-gui.url = "github:arximboldi/mpd-sima-gui";
     mpd-sima-gui.inputs.nixpkgs.follows = "nixos";
-
-    # noctalia.url = "github:noctalia-dev/noctalia-shell";
-    # noctalia.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixos, ... }@inputs: {
