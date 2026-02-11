@@ -5,6 +5,9 @@
     nixos.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+    nix-darwin.inputs.nixpkgs.follows = "nixos";
+
     ucodenix.url = "github:e-tho/ucodenix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -24,7 +27,21 @@
     mpd-sima-gui.inputs.nixpkgs.follows = "nixos";
   };
 
-  outputs = { self, nixos, ... }@inputs: {
+  outputs = { self, nixos, nix-darwin, ... }@inputs: {
+    darwinConfigurations = {
+      # macbook pro (last intel gen)
+      tyrell1 = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./tyrell0/darwin-configuration.nix
+          {
+            nixpkgs.hostPlatform = "x86_64-darwin";
+          }
+        ];
+
+      };
+    };
+
     nixosConfigurations = {
       # framework laptop with amd ai 300
       ce3 = nixos.lib.nixosSystem {

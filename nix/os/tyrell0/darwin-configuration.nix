@@ -2,62 +2,68 @@
 { config, pkgs, ... }:
 
 {
-  # List packages installed in system profile. To search by name, run:
+ # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     # iterm2
     # slack
     gdb
     # valgrind
-    lldb_16
-    llvm_16
-    clang-tools_16
+    lldb
+    llvm
+    clang-tools
     vscode
     vim
-    emacs29
+    emacs30
     stow
     # bash
     coreutils
     trash-cli
     gitFull
-    gitAndTools.gh
+    gh
     cmake
     (python3.withPackages (ps: with ps; [
       ipython
       livereload
     ]))
+    copilot-language-server
   ];
 
-  # Other software
-  #   - homebrew
-  #   - conan
-  #
-  fonts.enableFontDir = true;
-  fonts.fonts = with pkgs; [
-    # corefonts
-    inconsolata
-    ubuntu_font_family
+  fonts.packages = with pkgs; [
+    aileron
+    cantarell-fonts
+    corefonts
     dejavu_fonts
     fira
-    # fira-mono
     fira-code
     fira-code-symbols
-    source-sans-pro
-    # emojione
+    fira-mono
+    helvetica-neue-lt-std
+    inconsolata
+    iosevka
+    iosevka-bin
+    jetbrains-mono
+    nerd-fonts.iosevka
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.victor-mono
+    nerd-fonts.zed-mono
+    noto-fonts
+    noto-fonts-color-emoji
+    openmoji-color
     roboto
     roboto-mono
     source-code-pro
-    iosevka
-    iosevka-bin
+    source-sans-pro
+    twemoji-color-font
+    ubuntu-classic
   ];
 
   nixpkgs.config.allowUnfree = true;
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
-
-  nix.configureBuildUsers = true;
+  # services.nix-daemon.enable = true;
+  # nix.package = pkgs.nix;
+  # nix.configureBuildUsers = true;
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.bash.enable = true;
@@ -68,7 +74,7 @@
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
-  nix.maxJobs = 1;
-  nix.buildCores = 1;
-  nix.trustedUsers = ["raskolnikov"];
+  nix.settings.max-jobs = 1;
+  nix.settings.build-cores = 1;
+  nix.settings.trusted-users = ["raskolnikov"];
 }
