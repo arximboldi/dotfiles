@@ -182,7 +182,7 @@ in
     vokoscreen
 
     # music
-    mixxx
+    unstable.mixxx
     helm
     vkeybd
     vmpk
@@ -427,6 +427,7 @@ in
       source-code-pro
       helvetica-neue-lt-std
       aileron
+      inter
     ];
     fontconfig.useEmbeddedBitmaps = true;
     # fontconfig.localConf = builtins.readFile ./fontconfig.xml;
