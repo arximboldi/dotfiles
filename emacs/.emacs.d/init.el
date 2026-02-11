@@ -4,7 +4,8 @@
 
 (set-face-attribute 'default nil
                     :family "Iosevka Nerd Font"
-                    :height 110
+                    :height (if (eq system-type 'darwin)
+                                150 110)
                     :weight 'normal)
 
 ;; start as server if it's not already running
