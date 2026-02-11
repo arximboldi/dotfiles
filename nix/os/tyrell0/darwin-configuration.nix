@@ -12,8 +12,9 @@
     lldb_16
     llvm_16
     clang-tools_16
+    vscode
     vim
-    emacs29-macport
+    emacs29
     stow
     # bash
     coreutils
