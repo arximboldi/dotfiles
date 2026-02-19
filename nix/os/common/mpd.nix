@@ -30,9 +30,7 @@ let
       strictDeps = false;
     };
 
-    cantata = inputs.cantata.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (attrs: rec {
-      buildInputs = attrs.buildInputs ++ [ super.kdePackages.karchive ];
-    });
+    cantata = inputs.cantata.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     cantata-latest = super.cantata.overrideAttrs (attrs: rec {
       version = "3.4.0";

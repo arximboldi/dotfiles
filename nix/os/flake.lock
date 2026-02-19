@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766118022,
-        "narHash": "sha256-iy1nkiSb1pnHQ2tRFzkZOtWbVKcp08pIxGrCdfJo26Y=",
+        "lastModified": 1771462730,
+        "narHash": "sha256-HDcA9VQg3MyXjhrJftbaIPuH9RycAuqS/yxrXRm34rk=",
         "owner": "nullobsi",
         "repo": "cantata",
-        "rev": "6a1bf1801cd7955d0dbd2c5d056398420a59f179",
+        "rev": "af55857bdad042e965e1b1afa334905ae06d532a",
         "type": "github"
       },
       "original": {
