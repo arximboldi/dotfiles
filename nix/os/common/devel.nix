@@ -130,6 +130,7 @@ in
     unstable.claude-code
     unstable.codex
     unstable.gemini-cli
+    inputs.claudebox.packages.${pkgs.stdenv.hostPlatform.system}.default
     copilot-language-server
     github-copilot-cli
     gh-copilot
