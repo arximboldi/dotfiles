@@ -477,7 +477,7 @@ in
   # services.picom.enable = true;
   # services.picom.vSync = true;
 
-  virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
   virtualisation.docker.enable = true;
 
   # services.blueman.enable = true;
