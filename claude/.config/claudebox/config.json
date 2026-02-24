@@ -1,0 +1,5 @@
+{
+  "allowSshAgent": false,
+  "allowGpgAgent": false,
+  "allowXdgRuntime": true
+}

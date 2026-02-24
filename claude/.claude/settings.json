@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pw-play ~/.claude/sounds/808521__licht2003__done-sound.mp3 & notify-send -u normal -i utilities-terminal 'Claude Code' 'Task Completed'"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pw-play ~/.claude/sounds/237422__plasterbrain__hover-1.ogg & notify-send -u normal -i dialog-question 'Claude Code' 'Input Required'"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true
+}
