@@ -411,6 +411,8 @@ alias explain="gh-copilot explain"
 alias suggest="gh-copilot suggest"
 alias ghc="gh-copilot"
 
+alias bnz=bronze-composer
+
 [ -f ~/dev/prenav/env.bash ] && \
     source ~/dev/prenav/env.bash
 
