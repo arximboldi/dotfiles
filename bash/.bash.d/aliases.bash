@@ -418,3 +418,6 @@ alias bnz=bronze-composer
 
 [ -f ~/dev/magnopus/automaton/setup-docker.bash ] && \
     source ~/dev/magnopus/automaton/setup-docker.bash
+
+[ -f ~/.claude/local/claude ] && \
+    alias claude="~/.claude/local/claude"
