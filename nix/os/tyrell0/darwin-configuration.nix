@@ -34,6 +34,9 @@
     claude-code
     nodejs
     nixfmt-rfc-style
+    nodePackages.typescript-language-server
+    tree-sitter-grammars.tree-sitter-typescript
+    tree-sitter-grammars.tree-sitter-tsx
   ];
 
   fonts.packages = with pkgs; [
