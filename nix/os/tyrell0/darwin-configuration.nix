@@ -27,6 +27,13 @@
       livereload
     ]))
     copilot-language-server
+    devenv
+    htop
+    _1password-cli
+    _1password-gui
+    claude-code
+    nodejs
+    nixfmt-rfc-style
   ];
 
   fonts.packages = with pkgs; [
@@ -59,6 +66,8 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+
+  services.tailscale.enable = true;
 
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;
