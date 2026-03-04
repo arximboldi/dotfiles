@@ -37,7 +37,7 @@ in
   hardware.framework.laptop13.audioEnhancement.hideRawDevice = false;
 
   services.ucodenix.enable = true;
-  boot.kernelParams = [ "microcode.amd_sha_check=off" ];
+  boot.kernelParams = [ "microcode.amd_sha_check=off" "amdgpu.sg_display=0" ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
@@ -78,4 +78,52 @@ in
   # trying this
   # boot.kernelParams = ["amdgpu.mes=0" "amdgpu.gpu_recovery=1"];
   services.fwupd.enable = true;
+
+  # ===== Fix: AX210 s2idle suspend/resume freeze =====
+  # The AX210 (firmware 89.x) fails to resume from s2idle. Its registers return
+  # 0x5a5a5a5a (device unresponsive), causing iwl_fw_dbg_collect_sync to spin
+  # on dead hardware, triggering an RCU stall and full system freeze.
+  # See: https://community.frame.work/t/framework-13-ai-300-series-wont-resume-most-of-the-time/72695
+
+  # Safety net: disable debug dump (prevents RCU stall) and cleanly remove dead device
+  boot.extraModprobeConfig = ''
+    options iwlwifi enable_ini=0 remove_when_gone=1
+    options iwlmvm power_scheme=1
+  '';
+
+  # Firmware 89.x introduced the s2idle resume regression. Removing it forces
+  # the kernel to fall back to 86.x, which doesn't have the bug.
+  nixpkgs.overlays = [
+    (_final: prev: {
+      linux-firmware = prev.linux-firmware.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          rm -f $out/lib/firmware/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-89.ucode.zst
+        '';
+      });
+    })
+  ];
+
+  # ===== Fallback workaround (try if firmware downgrade above is insufficient) =====
+  # Unloading the driver before sleep bypasses the broken resume path entirely,
+  # at the cost of a WiFi reconnect delay on every wake. Also requires disabling
+  # D3cold (the udev rule below) so PCIe doesn't power-gate the card while unloaded.
+  #
+  # systemd.services."iwlwifi-pre-suspend" = {
+  #   description = "Unload iwlwifi before sleep";
+  #   before = [ "sleep.target" ];
+  #   wantedBy = [ "sleep.target" ];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     ExecStart = "${pkgs.kmod}/bin/modprobe -r iwlmvm iwlwifi";
+  #   };
+  # };
+  #
+  # powerManagement.resumeCommands = ''
+  #   ${pkgs.kmod}/bin/modprobe iwlwifi
+  #   ${pkgs.kmod}/bin/modprobe iwlmvm
+  # '';
+  #
+  # services.udev.extraRules = ''
+  #   ACTION=="add", SUBSYSTEM=="pci", DRIVER=="iwlwifi", ATTR{d3cold_allowed}="0"
+  # '';
 }
