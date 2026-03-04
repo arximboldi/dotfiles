@@ -9,6 +9,17 @@ let
     config = config.nixpkgs.config;
   };
 
+  # Full linux-firmware pinned to 20260110 (known-good for s2idle on AMD AI 300).
+  # Injected first in hardware.firmware so it wins all file collisions.
+  linux-firmware-20260110 = pkgs.linux-firmware.overrideAttrs (_: {
+    version = "20260110";
+    src = pkgs.fetchzip {
+      url = "https://gitlab.com/api/v4/projects/kernel-firmware%2Flinux-firmware/repository/archive.tar.gz?sha=refs/tags/20260110";
+      hash = "sha256-zL2ck91IBjBw/10YirxfoScEjbvEXVBR7bpLzuF3kDc=";
+      name = "linux-firmware-20260110.tar.gz";
+    };
+  });
+
 in
 {
   imports =
@@ -18,9 +29,10 @@ in
       inputs.ucodenix.nixosModules.default
     ];
 
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+
   # wifi issues
   # https://chatgpt.com/share/69416726-23f8-8010-b19b-ae042297289a
-  # boot.kernelPackages = pkgs.linuxPackages_6_18;
   # hardware.enableRedistributableFirmware = true;
   # networking.networkmanager = {
   #  enable = true;
@@ -79,51 +91,14 @@ in
   # boot.kernelParams = ["amdgpu.mes=0" "amdgpu.gpu_recovery=1"];
   services.fwupd.enable = true;
 
-  # ===== Fix: AX210 s2idle suspend/resume freeze =====
-  # The AX210 (firmware 89.x) fails to resume from s2idle. Its registers return
-  # 0x5a5a5a5a (device unresponsive), causing iwl_fw_dbg_collect_sync to spin
-  # on dead hardware, triggering an RCU stall and full system freeze.
-  # See: https://community.frame.work/t/framework-13-ai-300-series-wont-resume-most-of-the-time/72695
-
-  # Safety net: disable debug dump (prevents RCU stall) and cleanly remove dead device
-  boot.extraModprobeConfig = ''
-    options iwlwifi enable_ini=0 remove_when_gone=1
-    options iwlmvm power_scheme=1
-  '';
-
-  # Firmware 89.x introduced the s2idle resume regression. Removing it forces
-  # the kernel to fall back to 86.x, which doesn't have the bug.
-  nixpkgs.overlays = [
-    (_final: prev: {
-      linux-firmware = prev.linux-firmware.overrideAttrs (old: {
-        postInstall = (old.postInstall or "") + ''
-          rm -f $out/lib/firmware/intel/iwlwifi/iwlwifi-ty-a0-gf-a0-89.ucode.zst
-        '';
-      });
-    })
-  ];
-
-  # ===== Fallback workaround (try if firmware downgrade above is insufficient) =====
-  # Unloading the driver before sleep bypasses the broken resume path entirely,
-  # at the cost of a WiFi reconnect delay on every wake. Also requires disabling
-  # D3cold (the udev rule below) so PCIe doesn't power-gate the card while unloaded.
-  #
-  # systemd.services."iwlwifi-pre-suspend" = {
-  #   description = "Unload iwlwifi before sleep";
-  #   before = [ "sleep.target" ];
-  #   wantedBy = [ "sleep.target" ];
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     ExecStart = "${pkgs.kmod}/bin/modprobe -r iwlmvm iwlwifi";
-  #   };
-  # };
-  #
-  # powerManagement.resumeCommands = ''
-  #   ${pkgs.kmod}/bin/modprobe iwlwifi
-  #   ${pkgs.kmod}/bin/modprobe iwlmvm
-  # '';
-  #
-  # services.udev.extraRules = ''
-  #   ACTION=="add", SUBSYSTEM=="pci", DRIVER=="iwlwifi", ATTR{d3cold_allowed}="0"
-  # '';
+  # ===== Fix: s2idle suspend/resume freeze (AMD AI 300 / Strix Point) =====
+  # linux-firmware 20260221 introduced regressions that prevent S0ix:
+  # - amdgpu/dcn_3_5_1_dmcub.bin: DMCUB regression blocks AMD PMC S0ix handshake
+  # - amdnpu/1502_00/npu.sbin: NPU firmware 1.5.5.391 protocol incompatible with amdxdna
+  # - intel/ibt-0041-0041.sfi: BT regression may block USB xHCI from entering D3
+  # Rather than chasing individual files, pin the entire linux-firmware to 20260110
+  # (the last known-good version) by injecting it FIRST in hardware.firmware.
+  # The aggregation uses ignoreCollisions=true / first-wins, so 20260110 files
+  # take precedence; any NEW files only in 20260221 still get included.
+  hardware.firmware = lib.mkBefore [ linux-firmware-20260110 ];
 }
