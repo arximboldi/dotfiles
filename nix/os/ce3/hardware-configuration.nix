@@ -50,13 +50,13 @@ in
     };
 
   boot.initrd.luks.devices."luks-96baacf0-b474-4836-852c-8defe41909ad".device =
-        "/dev/disk/by-uuid/96baacf0-b474-4836-852c-8defe41909ad";
+    "/dev/disk/by-uuid/96baacf0-b474-4836-852c-8defe41909ad";
 
   boot.initrd.luks.devices."luks-f93c075a-47bc-46e7-af18-400201a7680f".device =
-        "/dev/disk/by-uuid/f93c075a-47bc-46e7-af18-400201a7680f";
+    "/dev/disk/by-uuid/f93c075a-47bc-46e7-af18-400201a7680f";
 
 	fileSystems."/boot" =
-	{ device = "/dev/disk/by-uuid/98D4-90BE";
+	  { device = "/dev/disk/by-uuid/98D4-90BE";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
