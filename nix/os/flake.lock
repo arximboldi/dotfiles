@@ -50,15 +50,15 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1769290057,
-        "narHash": "sha256-4C+e9K0Mq+OfBIH9u/EdzrtXLXVqWBfndAC2BHU+JhE=",
-        "owner": "numtide",
+        "lastModified": 1772478519,
+        "narHash": "sha256-MctA+PdZNCulQmMbB+I4ukwF6/Glv7i+ZK+ptIJXEIY=",
+        "owner": "arximboldi",
         "repo": "claudebox",
-        "rev": "33a7705a6232acfe77397e20c8710456221277a1",
+        "rev": "d02f6e01d7cd4364f6691e279c4aefc0592427fa",
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
+        "owner": "arximboldi",
         "repo": "claudebox",
         "type": "github"
       }
