@@ -28,7 +28,7 @@ in
       inputs.ucodenix.nixosModules.default
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  # boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   # wifi issues
   # https://chatgpt.com/share/69416726-23f8-8010-b19b-ae042297289a
@@ -99,5 +99,5 @@ in
   # (the last known-good version) by injecting it FIRST in hardware.firmware.
   # The aggregation uses ignoreCollisions=true / first-wins, so 20260110 files
   # take precedence; any NEW files only in 20260221 still get included.
-  hardware.firmware = lib.mkBefore [ linux-firmware-20260110 ];
+  # hardware.firmware = lib.mkBefore [ linux-firmware-20260110 ];
 }
