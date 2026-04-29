@@ -14,9 +14,8 @@ let
   linux-firmware-20260110 = pkgs.linux-firmware.overrideAttrs (_: {
     version = "20260110";
     src = pkgs.fetchzip {
-      url = "https://gitlab.com/api/v4/projects/kernel-firmware%2Flinux-firmware/repository/archive.tar.gz?sha=refs/tags/20260110";
+      url = "https://gitlab.com/kernel-firmware/linux-firmware/-/archive/20260110/linux-firmware-20260110.tar.gz";
       hash = "sha256-zL2ck91IBjBw/10YirxfoScEjbvEXVBR7bpLzuF3kDc=";
-      name = "linux-firmware-20260110.tar.gz";
     };
   });
 
