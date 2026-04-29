@@ -43,6 +43,10 @@ in
     vscode
     zeal
     gedit
+    unstable.zed-editor
+
+    _1password-gui
+    _1password-cli
 
     # languages, compilers, build systems
     ruby
@@ -74,6 +78,7 @@ in
 
     # utils
     direnv
+    devenv
     xsel
     jq
     # clipgrab
