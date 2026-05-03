@@ -38,7 +38,9 @@ in
   environment.systemPackages = with pkgs; [
     # editors
     zile
-    emacs-pgtk
+    ((emacsPackagesFor emacs-pgtk).emacsWithPackages (
+      epkgs: [ epkgs.treesit-grammars.with-all-grammars ]
+    ))
     # my-emacs-with-packages
     vscode
     zeal
