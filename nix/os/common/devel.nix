@@ -49,6 +49,7 @@ in
 
     _1password-gui
     _1password-cli
+    obsidian
 
     # languages, compilers, build systems
     ruby
