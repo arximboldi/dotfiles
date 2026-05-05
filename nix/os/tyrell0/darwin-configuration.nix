@@ -100,4 +100,6 @@
   system.defaults.NSGlobalDomain = {
     "com.apple.swipescrolldirection" = false;
   };
-  system.primaryUser = "raskolnikov";}
+  system.primaryUser = "raskolnikov";
+  system.keyboard.swapLeftCtrlAndFn = true;
+  system.keyboard.enableKeyMapping = true;}
