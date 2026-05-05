@@ -1,5 +1,5 @@
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
  # List packages installed in system profile. To search by name, run:
@@ -35,6 +35,7 @@
     nodejs
     nixfmt-rfc-style
     nodePackages.typescript-language-server
+    zen-browser
     tree-sitter-grammars.tree-sitter-typescript
     tree-sitter-grammars.tree-sitter-tsx
   ];
@@ -69,6 +70,12 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.overlays = [
+    (self: super: {
+      zen-browser = inputs.zen-browser.packages."${self.stdenv.hostPlatform.system}".default;
+    })
+  ];
 
   services.tailscale.enable = true;
 
