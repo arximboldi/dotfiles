@@ -116,7 +116,7 @@
   "^\UF703" = "moveWordRight:";
   /* Ctrl+Shift+Left/Right: select word */
   "^$\UF702" = "moveWordLeftAndModifySelection:";
-  "^$\UF703" = "moveWordRightAndModifySelection:";
+  "^$\UF703" = "moveWordRightAndModifySelection:";\n  /* Ctrl+Up/Down: move line up/down */\n  "^\UF700" = "moveLineUp:";\n  "^\UF701" = "moveLineDown:";
 }
 EOF
   '';
