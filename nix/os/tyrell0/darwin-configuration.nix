@@ -102,4 +102,22 @@
   };
   system.primaryUser = "raskolnikov";
   system.keyboard.swapLeftCtrlAndFn = true;
-  system.keyboard.enableKeyMapping = true;}
+  system.keyboard.enableKeyMapping = true;
+
+  # Make Ctrl+Arrow keys jump words in all Cocoa text editors
+  system.activationScripts.keyBindings.text = ''
+    KEYBINDINGS_DIR="/Users/raskolnikov/Library/KeyBindings"
+    KEYBINDINGS_FILE="$KEYBINDINGS_DIR/DefaultKeyBinding.dict"
+    mkdir -p "$KEYBINDINGS_DIR"
+    cat > "$KEYBINDINGS_FILE" << 'EOF'
+{
+  /* Ctrl+Left/Right: jump words */
+  "^\UF702" = "moveWordLeft:";
+  "^\UF703" = "moveWordRight:";
+  /* Ctrl+Shift+Left/Right: select word */
+  "^$\UF702" = "moveWordLeftAndModifySelection:";
+  "^$\UF703" = "moveWordRightAndModifySelection:";
+}
+EOF
+  '';
+}
