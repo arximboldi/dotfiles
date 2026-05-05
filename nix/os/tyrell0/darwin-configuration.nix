@@ -96,4 +96,8 @@
   nix.settings.max-jobs = 1;
   nix.settings.build-cores = 1;
   nix.settings.trusted-users = ["raskolnikov"];
-}
+
+  system.defaults.NSGlobalDomain = {
+    "com.apple.swipescrolldirection" = false;
+  };
+  system.primaryUser = "raskolnikov";}
