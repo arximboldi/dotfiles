@@ -5,6 +5,7 @@
   users.extraUsers.raskolnikov = {
      isNormalUser = true;
      uid = 1000;
+     shell = pkgs.bash;
      extraGroups = [
        "wheel"
        "audio"
