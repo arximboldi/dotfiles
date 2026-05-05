@@ -30,7 +30,7 @@
   };
 
   outputs = { self, nixos, nix-darwin, ... }@inputs: {
-    darwinConfigurations = {
+    darwinConfigurations = rec {
       # macbook pro (last intel gen)
       tyrell1 = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs; };
@@ -38,9 +38,20 @@
           ./tyrell0/darwin-configuration.nix
           {
             nixpkgs.hostPlatform = "x86_64-darwin";
+            system.stateVersion = 4;
           }
         ];
-
+      };
+      tyrell2 = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./tyrell0/darwin-configuration.nix
+          {
+            nixpkgs.hostPlatform = "aarch64-darwin";
+            # ids.gids.nixbld = 350;
+            system.stateVersion = 6;
+          }
+        ];
       };
     };
 

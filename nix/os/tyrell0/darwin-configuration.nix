@@ -52,7 +52,7 @@
     inconsolata
     iosevka
     iosevka-bin
-    jetbrains-mono
+    #jetbrains-mono
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nerd-fonts.victor-mono
@@ -82,7 +82,7 @@
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 4;
+  # system.stateVersion = 4;
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
