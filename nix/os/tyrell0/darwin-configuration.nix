@@ -6,7 +6,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     # iterm2
-    # slack
+    slack
     gdb
     # valgrind
     lldb
