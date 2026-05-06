@@ -104,6 +104,17 @@
   system.keyboard.swapLeftCtrlAndFn = true;
   system.keyboard.enableKeyMapping = true;
 
+  # make bash the default shell for the user raskolnikov
+  users.users.raskolnikov.shell = pkgs.bashInteractive;
+  system.activationScripts.postActivation.text =
+    let username = "raskolnikov"; in ''
+    TARGET_SHELL="/run/current-system/sw/bin/bash"
+    CURRENT_SHELL=$(dscl . -read /Users/${username} UserShell | awk '{print $2}')
+    if [ "$CURRENT_SHELL" != "$TARGET_SHELL" ]; then
+      dscl . -create /Users/${username} UserShell "$TARGET_SHELL"
+    fi
+  '';
+
   # Make Ctrl+Arrow keys jump words in all Cocoa text editors
   system.activationScripts.keyBindings.text = ''
     KEYBINDINGS_DIR="/Users/raskolnikov/Library/KeyBindings"
