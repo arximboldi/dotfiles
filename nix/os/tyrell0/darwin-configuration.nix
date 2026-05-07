@@ -14,7 +14,9 @@
     clang-tools
     vscode
     vim
-    emacs30
+    ((emacsPackagesFor emacs).emacsWithPackages (
+      epkgs: [ epkgs.treesit-grammars.with-all-grammars ]
+    ))
     stow
     # bash
     coreutils
@@ -36,8 +38,6 @@
     nixfmt-rfc-style
     nodePackages.typescript-language-server
     zen-browser
-    tree-sitter-grammars.tree-sitter-typescript
-    tree-sitter-grammars.tree-sitter-tsx
   ];
 
   fonts.packages = with pkgs; [
