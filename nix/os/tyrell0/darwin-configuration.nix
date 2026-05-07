@@ -33,11 +33,14 @@
     htop
     _1password-cli
     _1password-gui
+    obsidian
     claude-code
     nodejs
     nixfmt-rfc-style
     nodePackages.typescript-language-server
     zen-browser
+    telegram
+    whatsapp-for-mac
   ];
 
   fonts.packages = with pkgs; [
