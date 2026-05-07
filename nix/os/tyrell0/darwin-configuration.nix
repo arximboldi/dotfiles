@@ -39,8 +39,8 @@
     nixfmt-rfc-style
     nodePackages.typescript-language-server
     zen-browser
-    telegram
-    whatsapp-for-mac
+    #telegram-desktop
+    #whatsapp-for-mac
   ];
 
   fonts.packages = with pkgs; [
@@ -175,4 +175,6 @@ EOF
       };
     };
   };
-}
+
+  homebrew.casks = [ "telegram" "whatsapp" ];
+  homebrew.enable = true;}
