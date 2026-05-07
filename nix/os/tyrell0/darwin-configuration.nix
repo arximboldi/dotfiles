@@ -100,9 +100,23 @@
   system.defaults.NSGlobalDomain = {
     "com.apple.swipescrolldirection" = false;
   };
+
   system.primaryUser = "raskolnikov";
   system.keyboard.swapLeftCtrlAndFn = true;
   system.keyboard.enableKeyMapping = true;
+
+  # Re-apply the swap on every login, since hidutil mappings don't persist across reboots
+  launchd.user.agents.swap-ctrl-fn = {
+    serviceConfig = {
+      ProgramArguments = [
+        "/usr/bin/hidutil"
+        "property"
+        "--set"
+        ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x70000FFFF03,"HIDKeyboardModifierMappingDst":0x7000000E0},{"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0x70000FFFF03}]}''
+      ];
+      RunAtLoad = true;
+    };
+  };
 
   # make bash the default shell for the user raskolnikov
   users.users.raskolnikov.shell = pkgs.bashInteractive;
@@ -131,4 +145,26 @@
 }
 EOF
   '';
+
+  # disable Ctrl+Space and Ctrl+Option+Space input source switching, which conflicts with Emacs's default keybindings
+  # this is wrong (wrong domain)
+  # system.defaults.CustomUserPreferences = {
+  #  NSGlobalDomain = { AppleSymbolicHotKeys = { "60" = { enabled = false; }; }; };
+  # };
+
+  # claude version
+  system.defaults.CustomUserPreferences = {
+    "com.apple.symbolichotkeys" = {
+      AppleSymbolicHotKeys = {
+        # Disable "Select the previous input source" (default: Ctrl+Space)
+        "60" = {
+          enabled = false;
+        };
+        # Disable "Select next source in Input menu" (default: Ctrl+Option+Space)
+        "61" = {
+          enabled = false;
+        };
+      };
+    };
+  };
 }
