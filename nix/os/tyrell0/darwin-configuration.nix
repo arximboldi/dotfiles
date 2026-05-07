@@ -102,20 +102,25 @@
   };
 
   system.primaryUser = "raskolnikov";
-  system.keyboard.swapLeftCtrlAndFn = true;
-  system.keyboard.enableKeyMapping = true;
 
+  # system.keyboard.swapLeftCtrlAndFn = true;
+  # system.keyboard.enableKeyMapping = true;
   # Re-apply the swap on every login, since hidutil mappings don't persist across reboots
-  launchd.user.agents.swap-ctrl-fn = {
-    serviceConfig = {
-      ProgramArguments = [
-        "/usr/bin/hidutil"
-        "property"
-        "--set"
-        ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x70000FFFF03,"HIDKeyboardModifierMappingDst":0x7000000E0},{"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0x70000FFFF03}]}''
-      ];
-      RunAtLoad = true;
-    };
+  launchd.daemons.swap-ctrl-fn-v2 = {
+  serviceConfig = {
+    Label = "org.local.swap-ctrl-fn-v2";
+    ProgramArguments = [
+      "/bin/sh"
+      "-c"
+      ''
+        for i in $(seq 1 20); do
+          /usr/bin/hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0xFF00000003},{"HIDKeyboardModifierMappingSrc":0xFF00000003,"HIDKeyboardModifierMappingDst":0x7000000E0}]}' > /dev/null
+          sleep 1
+        done
+      ''
+    ];
+    RunAtLoad = true;
+  };
   };
 
   # make bash the default shell for the user raskolnikov
