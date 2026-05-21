@@ -40,6 +40,7 @@
             nixpkgs.hostPlatform = "x86_64-darwin";
             system.stateVersion = 4;
           }
+          ./modules/darwin/system-defaults.nix
         ];
       };
       tyrell2 = nix-darwin.lib.darwinSystem {

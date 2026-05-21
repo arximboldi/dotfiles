@@ -1,6 +1,12 @@
 
 { config, pkgs, inputs, ... }:
 
+let
+  unstable = import inputs.nixos-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = config.nixpkgs.config;
+  };
+in
 {
  # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -29,12 +35,13 @@
       livereload
     ]))
     copilot-language-server
-    devenv
+    unstable.devenv
     htop
     _1password-cli
     _1password-gui
     obsidian
-    claude-code
+    unstable.claude-code
+    unstable.codex
     nodejs
     nixfmt-rfc-style
     nodePackages.typescript-language-server
@@ -176,6 +183,6 @@ EOF
     };
   };
 
-  homebrew.casks = [ "telegram" "whatsapp" "syncthing-app" ];
+  homebrew.casks = [ "telegram" "whatsapp" "syncthing-app" "linear" ];
   homebrew.enable = true;
 }
