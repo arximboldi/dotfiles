@@ -103,6 +103,7 @@ in
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.max-jobs = 1;
   nix.settings.build-cores = 1;
   nix.settings.trusted-users = ["raskolnikov"];
