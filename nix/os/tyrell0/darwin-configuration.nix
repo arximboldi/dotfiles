@@ -184,6 +184,6 @@ EOF
     };
   };
 
-  homebrew.casks = [ "telegram" "whatsapp" "syncthing-app" "linear" ];
+  homebrew.casks = [ "telegram" "whatsapp" "syncthing-app" "linear" "utm" ];
   homebrew.enable = true;
 }
