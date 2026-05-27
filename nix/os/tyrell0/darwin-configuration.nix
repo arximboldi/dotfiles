@@ -48,6 +48,7 @@ in
     zen-browser
     #telegram-desktop
     #whatsapp-for-mac
+    tart
   ];
 
   fonts.packages = with pkgs; [
@@ -186,4 +187,5 @@ EOF
 
   homebrew.casks = [ "telegram" "whatsapp" "syncthing-app" "linear" "utm" ];
   homebrew.enable = true;
+
 }
