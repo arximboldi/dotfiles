@@ -2,10 +2,10 @@
   description = "nixos configurations, with flakes";
 
   inputs = {
-    nixos.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixos.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
     nix-darwin.inputs.nixpkgs.follows = "nixos";
 
     ucodenix.url = "github:e-tho/ucodenix";

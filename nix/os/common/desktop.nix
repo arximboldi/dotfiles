@@ -179,7 +179,7 @@ in
     python3Packages.subliminal
     easytag
     picard
-    vokoscreen
+    # vokoscreen
 
     # music
     unstable.mixxx
@@ -303,7 +303,8 @@ in
     # pavucontrol
     pwvucontrol
     qpwgraph
-    helvum
+    # helvum
+    crosspipe
     pamixer
     gnome-bluetooth
     libnotify
@@ -360,7 +361,7 @@ in
     kitty
     gdm-settings
     # blueman
-    blueberry
+    # blueberry
     swayosd
     nwg-displays
     nwg-look

@@ -57,15 +57,16 @@ in
   services.mpd = {
     enable = true;
     user = "raskolnikov";
-    musicDirectory = "/home/raskolnikov/media/music/mpd";
     dataDir = "/home/raskolnikov/.config/mpd";
-    network.listenAddress = "any";
-    extraConfig = ''
-      audio_output {
-        type "pipewire"
-        name "PipeWire Output"
-      }
-    '';
+    openFirewall = false;
+    settings = {
+      bind_to_address = "any";
+      music_directory = "/home/raskolnikov/media/music/mpd";
+      audio_output = [{
+        type = "pipewire";
+        name = "PipeWire Output";
+      }];
+    };
   };
   systemd.services.mpd.environment = {
     # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609

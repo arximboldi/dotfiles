@@ -122,8 +122,9 @@ in
     # code formatters and linters
     clang-tools
     rustfmt
+
     # nodePackages.standard
-    nodePackages.prettier
+    prettier
     cmake-format
     nixfmt-rfc-style
 
@@ -134,14 +135,15 @@ in
 
     # ai agents
     unstable.aider-chat
-    unstable.plandex
+    # unstable.plandex
     unstable.claude-code
     unstable.codex
     unstable.gemini-cli
+    unstable.opencode
     inputs.claudebox.packages.${pkgs.stdenv.hostPlatform.system}.default
     copilot-language-server
     github-copilot-cli
-    gh-copilot
+    #gh-copilot
 
     # deployment
     google-cloud-sdk
@@ -152,8 +154,6 @@ in
   ];
 
   programs.wireshark.enable = true;
-
-  programs.adb.enable = true;
 
   # compiling remotely
   services.distccd = {
