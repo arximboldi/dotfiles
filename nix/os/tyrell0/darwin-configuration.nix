@@ -44,7 +44,7 @@ in
     unstable.codex
     nodejs
     nixfmt-rfc-style
-    nodePackages.typescript-language-server
+    typescript-language-server
     zen-browser
     #telegram-desktop
     #whatsapp-for-mac
