@@ -13,7 +13,7 @@
     quake3pointrelease
     quake3e
     openarena
-    superTuxKart
+    supertuxkart
     gnujump
     alephone-marathon
     alephone-durandal

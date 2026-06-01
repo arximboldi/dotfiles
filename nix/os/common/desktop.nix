@@ -236,7 +236,7 @@ in
     mesa-demos
     htop
     ntfs3g
-    xorg.xkill
+    xkill
     appimage-run
     lsof
     #virtualbox
@@ -347,7 +347,7 @@ in
     wtype
     wmctrl
     # dunst
-    xorg.xhost
+    xhost
     xvkbd
     xbindkeys
     xautomation
