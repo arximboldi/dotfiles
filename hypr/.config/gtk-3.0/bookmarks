@@ -19,3 +19,4 @@ sftp://root@wendy/var/www sftp://wendy/builds
 sftp://raskolnikov@es.gnu.org/home/raskolnikov sftp://es.gnu.org
 sftp://nexus9.local/home/raskolnikov sftp://nexus9
 file:///home/raskolnikov/tmp/4plane
+sftp://root@andromeda.re/data/transmission/Downloads andromeda
