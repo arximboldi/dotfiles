@@ -215,7 +215,7 @@ button {
         color: $b_color; //FIXME: does it work on the dark variant?
       }
 
-      &:hover { @include button(hover, $b_color, white); }
+      &:hover { @include button(hover, $b_color, white); opacity: 0.85;}
 
       &:active,
       &:checked { @include button(active, $b_color, white); }
@@ -246,7 +246,8 @@ button {
 
       &:disabled {
         @include button(insensitive, $b_color, white);
-        label { color: transparentize($selected_fg_color, 0.2); }
+        label { color: #fff; }
+        opacity: 0.75;
         &:active,
         &:checked { @include button(insensitive-active, $b_color, white); }
       }
@@ -356,53 +357,27 @@ button {
   }
 }
 
-toolbar {
-  button {
-    &:hover { @include button(normal,darken($bg_color,7%));}
-    &:active { @include button(normal,darken($bg_color,12%));}
-  }
-}
-// all the following is for the +|- buttons on inline toolbars, that way
-// should really be deprecated...
-.inline-toolbar toolbutton > button { // redefining the button look is
-                                      // needed since those are flat...
+/* oldstyle toolbar buttons */
+
+.toolbar > button,
+.toolbar > :not(.linked) > button,
+.toolbar :not(.linked) > menubutton > button,
+.toolbar :not(.linked) > scalebutton > button,
+.toolbar :not(.linked) > dropdown > button,
+.toolbar :not(.linked) > colorbutton > button,
+.toolbar :not(.linked) > fontbutton > button,
+.toolbar :not(.linked) > appchooserbutton > button,
+.toolbar :not(.linked) > combobox > box > button {
+  margin: 1px;
+
   @include button(undecorated);
 
-  &:hover { color: $selected_bg_color; }
-
+  &:hover,
   &:active,
-  &:checked{ color: darken($selected_bg_color, 5%); }
+  &:checked { @include button(hover, $c:lighten($bg_color, 10%)); }
 
   &:disabled {
-    color: $backdrop_text_color;
-
-    &:active,
-    &:checked { color: transparentize(darken($selected_bg_color, 5%),0.7); }
-  }
-
-  &:backdrop {
-    color: $backdrop_text_color;
-
-    &:active,
-    &:checked { color: darken($selected_bg_color, 5%); }
-
-    &:disabled {
-      color: $backdrop_text_color;
-
-      &:active,
-      &:checked { color: transparentize(darken($selected_bg_color, 5%),0.7); }
-    }
-  }
-}
-
-// More inline toolbar buttons
-toolbar.inline-toolbar toolbutton,
-toolbar.inline-toolbar toolbutton:backdrop {
-  > button.flat {
-    &:backdrop {
-      border-color: transparent;
-      box-shadow: none;
-    }
+    opacity: 0.5;
   }
 }
 
@@ -543,12 +518,16 @@ toggle-group{
   }
 }
 
-// Gnome 48 accent color buttons
-button.accent-button {
+/*
+  * Gnome 48 accent color buttons
+  * Gnome papers - buttons in context menu
+*/
+
+button.accent-button, button.color-button {
   &, &:backdrop {
     min-height: 24px;
     min-width: 24px;
-    padding: 5px;
+    padding: 3px;
     border-radius: 100%;
     background: var(--accent-bg-color);
     outline: none;
@@ -557,7 +536,15 @@ button.accent-button {
     border: none;
   }
   
-  &:hover { box-shadow: 0 0 0 3px lighten($base_color, 5%); }
+  &:hover { 
+    box-shadow: 0 0 0 3px darken($base_color, 5%);
+    background-color: var(--accent-bg-color);
+  }
 
-  &:checked { &, &:backdrop { box-shadow: 0 0 0 3px var(--accent-bg-color); }}
+  &:checked { 
+    &, &:backdrop { 
+      box-shadow: 0 0 0 3px var(--accent-bg-color); 
+      background-color: var(--accent-bg-color);
+    }
+  }
 }
