@@ -124,7 +124,7 @@ in
     rustfmt
 
     # nodePackages.standard
-    prettier
+    nodePackages.prettier
     cmake-format
     nixfmt-rfc-style
 
@@ -154,6 +154,8 @@ in
   ];
 
   programs.wireshark.enable = true;
+
+  programs.adb.enable = true;
 
   # compiling remotely
   services.distccd = {

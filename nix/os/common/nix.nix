@@ -30,6 +30,7 @@ in
     "electron-36.9.5"
     # "qtwebengine-5.15.19"
     "libsoup-2.74.3"
+    "python3.13-beets-2.5.1"
   ];
 
   environment.systemPackages = with pkgs; [

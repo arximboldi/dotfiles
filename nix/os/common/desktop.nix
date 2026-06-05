@@ -5,6 +5,10 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
+  pkgs-26_05 = import inputs.nixos-26_05 {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = config.nixpkgs.config;
+  };
 
   arximboldi-overlay = self: super: {
     # fix broken for now
@@ -69,6 +73,8 @@ let
     });
 
     hyprland = unstable.hyprland;
+
+    gnome-calendar = pkgs-26_05.gnome-calendar;
   };
 
 in
@@ -236,7 +242,7 @@ in
     mesa-demos
     htop
     ntfs3g
-    xkill
+    xorg.xkill
     appimage-run
     lsof
     #virtualbox
@@ -304,7 +310,7 @@ in
     pwvucontrol
     qpwgraph
     # helvum
-    crosspipe
+    # crosspipe
     pamixer
     gnome-bluetooth
     libnotify
@@ -347,7 +353,7 @@ in
     wtype
     wmctrl
     # dunst
-    xhost
+    xorg.xhost
     xvkbd
     xbindkeys
     xautomation
