@@ -6,6 +6,10 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
+  nixpkgs-unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = config.nixpkgs.config;
+  };
 in
 {
  # List packages installed in system profile. To search by name, run:
@@ -37,13 +41,13 @@ in
     copilot-language-server
     unstable.devenv
     htop
-    _1password-cli
-    _1password-gui
+    nixpkgs-unstable._1password-cli
+    nixpkgs-unstable._1password-gui
     obsidian
     unstable.claude-code
     unstable.codex
     nodejs
-    nixfmt-rfc-style
+    nixfmt
     typescript-language-server
     zen-browser
     #telegram-desktop
@@ -62,9 +66,9 @@ in
     fira-mono
     helvetica-neue-lt-std
     inconsolata
-    iosevka
-    iosevka-bin
-    #jetbrains-mono
+    # iosevka
+    # iosevka-bin
+    # jetbrains-mono
     nerd-fonts.iosevka
     nerd-fonts.jetbrains-mono
     nerd-fonts.victor-mono

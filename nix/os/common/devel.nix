@@ -126,7 +126,7 @@ in
     # nodePackages.standard
     nodePackages.prettier
     cmake-format
-    nixfmt-rfc-style
+    nixfmt
 
     # language support in emacs
     tabnine

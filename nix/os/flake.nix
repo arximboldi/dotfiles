@@ -5,9 +5,10 @@
     nixos.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-26_05.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
-    nix-darwin.inputs.nixpkgs.follows = "nixos";
+    nix-darwin.inputs.nixpkgs.follows = "nixos-26_05";
 
     ucodenix.url = "github:e-tho/ucodenix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
