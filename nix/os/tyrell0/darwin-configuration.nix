@@ -33,6 +33,7 @@ in
     trash-cli
     gitFull
     gh
+    graphite-cli
     cmake
     (python3.withPackages (ps: with ps; [
       ipython

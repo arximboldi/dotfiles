@@ -106,6 +106,7 @@ in
     rclone
     git-lfs
     mercurialFull
+    graphite-cli
 
     # python
     ((python3.withPackages (ps: with ps; [
