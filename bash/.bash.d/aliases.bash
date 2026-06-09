@@ -97,7 +97,7 @@ alias pjson="python -mjson.tool"
 
 # screen
 alias scr="screen -DR"
-alias caffeinate="systemd-inhibit --what=idle:sleep"
+! command -v caffeinate &>/dev/null && alias caffeinate="systemd-inhibit --what=idle:sleep"
 
 # email
 alias sm="sync-mail"
