@@ -45,8 +45,8 @@ in
     nixpkgs-unstable._1password-cli
     nixpkgs-unstable._1password-gui
     obsidian
-    unstable.claude-code
-    unstable.codex
+    nixpkgs-unstable.claude-code
+    nixpkgs-unstable.codex
     nodejs
     nixfmt
     typescript-language-server
