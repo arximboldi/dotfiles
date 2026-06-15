@@ -137,11 +137,13 @@ in
     # ai agents
     unstable.aider-chat
     # unstable.plandex
-    unstable.claude-code
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     unstable.codex
     unstable.gemini-cli
     unstable.opencode
-    inputs.claudebox.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (inputs.claudebox.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      claude-code = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
+    })
     copilot-language-server
     github-copilot-cli
     #gh-copilot
