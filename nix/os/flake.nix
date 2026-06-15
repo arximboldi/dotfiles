@@ -29,6 +29,7 @@
     mpd-sima-gui.inputs.nixpkgs.follows = "nixos";
 
     claudebox.url = "github:arximboldi/claudebox";
+    claudebox.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = { self, nixos, nix-darwin, ... }@inputs: {
