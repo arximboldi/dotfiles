@@ -24,6 +24,16 @@ add-path()
     done
 }
 
+add-path-if-exists()
+{
+    var=$1
+    shift
+    for path in $@
+    do
+        [ -e "$path" ] && add-path $var $path
+    done
+}
+
 del-path()
 {
     var=$1
@@ -40,8 +50,8 @@ del-path()
 #
 # local installations
 #
-add-path LD_LIBRARY_PATH /usr/local/lib
-add-path PATH /usr/local/bin
+add-path-if-exists LD_LIBRARY_PATH /usr/local/lib
+add-path-if-exists PATH /usr/local/bin
 
 #
 # Guile
@@ -115,11 +125,11 @@ is-nix-shell() {
 #
 # User installations
 #
-add-path LD_LIBRARY_PATH "$HOME/usr/lib"
-add-path PATH "$HOME/usr/bin"
+add-path-if-exists LD_LIBRARY_PATH "$HOME/usr/lib"
+add-path-if-exists PATH "$HOME/usr/bin"
 
-add-path LD_LIBRARY_PATH "$HOME/.local/lib"
-add-path PATH "$HOME/.local/bin"
+add-path-if-exists LD_LIBRARY_PATH "$HOME/.local/lib"
+add-path-if-exists PATH "$HOME/.local/bin"
 
 #
 # C++
@@ -184,8 +194,8 @@ fi
 #
 # emscripten
 #
-add-path PATH $HOME/soft/binaryen/build/bin
-add-path PATH $HOME/dev/emsdk
+add-path-if-exists PATH $HOME/soft/binaryen/build/bin
+add-path-if-exists PATH $HOME/dev/emsdk
 #[ -f $HOME/dev/emsdk/emsdk_set_env.sh ] && \
 #    source $HOME/dev/emsdk/emsdk_set_env.sh
 
@@ -193,19 +203,19 @@ add-path PATH $HOME/dev/emsdk
 # Go
 #
 export GOPATH=~/.go-path
-add-path PATH $GOPATH/bin
+add-path-if-exists PATH $GOPATH/bin
 
 #
 # Haskell
 #
-add-path PATH ~/.cabal/bin
+add-path-if-exists PATH ~/.cabal/bin
 
 #
 # Node.js
 #
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export NODE_PATH="${NPM_PACKAGES}"
-add-path PATH "${NPM_PACKAGES}/bin"
+add-path-if-exists PATH "${NPM_PACKAGES}/bin"
 
 #
 # Google cloud stuff
@@ -222,6 +232,12 @@ add-path PATH "${NPM_PACKAGES}/bin"
     source ~/.travis/travis.sh
 
 #
+# Homebrew
+#
+add-path-if-exists PATH /opt/homebrew/bin
+add-path-if-exists PATH /opt/homebrew/sbin
+
+#
 # Clojure
 #
 # export LEIN_FAST_TRAMPOLINE=true
@@ -231,12 +247,12 @@ add-path PATH "${NPM_PACKAGES}/bin"
 #
 export CONSCRIPT_HOME="$HOME/.conscript"
 export CONSCRIPT_OPTS="-Dfile.encoding=UTF-8"
-add-path PATH $CONSCRIPT_HOME/bin
+add-path-if-exists PATH $CONSCRIPT_HOME/bin
 
 #
 # Ruby
 #
-add-path PATH $HOME/.gem/ruby/2.3.0/bin
+add-path-if-exists PATH $HOME/.gem/ruby/2.3.0/bin
 
 #
 # Utils for saving and reloading environment
