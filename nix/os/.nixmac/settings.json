@@ -1,0 +1,6 @@
+{
+  "maxBuildAttempts": 5,
+  "maxIterations": 25,
+  "maxOutputTokens": 32768,
+  "maxTokenBudget": 500000
+}
