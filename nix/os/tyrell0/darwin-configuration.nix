@@ -45,8 +45,11 @@ in
     nixpkgs-unstable._1password-cli
     nixpkgs-unstable._1password-gui
     obsidian
-    nixpkgs-unstable.claude-code
-    nixpkgs-unstable.codex
+
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.omp
+
     nodejs
     nixfmt
     typescript-language-server
