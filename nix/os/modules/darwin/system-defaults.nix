@@ -7,4 +7,7 @@
 
   system.defaults.NSGlobalDomain = {
     NSShowAllExtensions = true;
-  };}
+  };
+
+  system.defaults.controlcenter.Sound = true;
+}
