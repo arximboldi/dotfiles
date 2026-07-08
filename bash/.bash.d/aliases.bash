@@ -102,6 +102,7 @@ alias scr="screen -DR"
 # email
 alias sm="sync-mail"
 
+# sycn folders
 alias rsync-backup="rsync -a -A -X --info=progress2"
 
 # webcam
@@ -109,6 +110,9 @@ alias photo="echo wait 3s... && sleep 1s && echo wait 2s... && sleep 1s && echo 
 
 # download music from internet
 alias ripz="yt-dlp -x --audio-format mp3 --audio-quality 0"
+
+# ai stuff
+alias claude-yolo="claude --dangerously-skip-permissions"
 
 # show progress of `sync` command somehow
 syncprog() {
