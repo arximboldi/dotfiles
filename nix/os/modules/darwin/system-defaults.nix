@@ -3,4 +3,8 @@
 
   system.defaults.dock = {
     orientation = "left";
+  };
+
+  system.defaults.NSGlobalDomain = {
+    NSShowAllExtensions = true;
   };}
