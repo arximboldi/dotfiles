@@ -33,14 +33,17 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
     llm-agents.inputs.nixpkgs.follows = "nixos-unstable";
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixos, nix-darwin, ... }@inputs: {
+  outputs = { self, nixos, nix-darwin, sops-nix, ... }@inputs: {
     darwinConfigurations = rec {
       # macbook pro (last intel gen)
       tyrell1 = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs; };
         modules = [
+          sops-nix.darwinModules.sops
           ./tyrell0/darwin-configuration.nix
           {
             nixpkgs.hostPlatform = "x86_64-darwin";
@@ -52,6 +55,7 @@
       tyrell2 = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs; };
         modules = [
+          sops-nix.darwinModules.sops
           ./tyrell0/darwin-configuration.nix
           {
             nixpkgs.hostPlatform = "aarch64-darwin";
