@@ -385,7 +385,8 @@ in
     # unstable.dms-shell
     inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default
     unstable.dgop
-    inputs.dms.inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.quickshell
+    # unstable.quickshell
     cava
     # matugen # causes generation of lots of files
     # quickshell

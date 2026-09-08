@@ -137,7 +137,7 @@
         "dank-qml-common": "dank-qml-common",
         "flake-compat": "flake-compat",
         "nixpkgs": [
-          "nixos"
+          "nixos-unstable"
         ]
       },
       "locked": {

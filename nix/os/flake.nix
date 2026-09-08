@@ -20,7 +20,7 @@
     zen-browser.inputs.nixpkgs.follows = "nixos";
 
     dms.url = "github:AvengeMedia/DankMaterialShell/stable";
-    dms.inputs.nixpkgs.follows = "nixos";
+    dms.inputs.nixpkgs.follows = "nixos-unstable";
 
     cantata.url = "github:nullobsi/cantata";
     cantata.inputs.nixpkgs.follows = "nixos";
