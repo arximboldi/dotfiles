@@ -44,7 +44,7 @@ in
   #  options iwlwifi disable_11ax=1
   # '';
 
-  hardware.framework.laptop13.audioEnhancement.enable = true;
+  hardware.framework.laptop13.audioEnhancement.enable = false;
   hardware.framework.laptop13.audioEnhancement.hideRawDevice = false;
 
   services.ucodenix.enable = true;
