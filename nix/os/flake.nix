@@ -33,6 +33,9 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
     llm-agents.inputs.nixpkgs.follows = "nixos-unstable";
+
+    ai-jail.url = "github:akitaonrails/ai-jail";
+    ai-jail.inputs.nixpkgs.follows = "nixos-unstable";
   };
 
   outputs = { self, nixos, nix-darwin, ... }@inputs: {

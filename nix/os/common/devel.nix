@@ -144,6 +144,7 @@ in
     (inputs.claudebox.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       claude-code = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
     })
+    inputs.ai-jail.packages.${pkgs.stdenv.hostPlatform.system}.default
     copilot-language-server
     github-copilot-cli
     #gh-copilot
