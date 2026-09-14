@@ -15,9 +15,10 @@
   "floatingWindowTransparency": 0.8,
   "widgetBackgroundColor": "sth",
   "clockFormat": "24h",
+  "animationSpeed": 4,
+  "customAnimationDuration": 149,
   "barElevationEnabled": false,
   "blurEnabled": true,
-  "blurBorderEnabled": false,
   "controlCenterShowMicPercent": true,
   "controlCenterWidgets": [
     {
@@ -85,6 +86,7 @@
   "workspaceFollowFocus": true,
   "workspaceOccupiedColorMode": "sec",
   "workspaceFocusedBorderColor": "secondary",
+  "mediaUseAlbumArtAccent": true,
   "runningAppsCurrentWorkspace": false,
   "appIdSubstitutions": [],
   "useAutoLocation": true,
@@ -173,7 +175,8 @@
           "showMicIcon": false,
           "showMicPercent": false,
           "showBatteryIcon": true,
-          "showPrinterIcon": false
+          "showPrinterIcon": false,
+          "showIdleInhibitorIcon": false
         },
         {
           "id": "weather",
