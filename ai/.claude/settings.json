@@ -1,4 +1,9 @@
 {
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "model": "claude-fable-5-1[1m]",
   "hooks": {
     "Stop": [
       {
@@ -25,10 +30,6 @@
   },
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true
-  },
-  "attribution": {
-    "commit": "",
-    "pr": ""
   },
   "skipDangerousModePermissionPrompt": true
 }
