@@ -26,5 +26,9 @@
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "skipDangerousModePermissionPrompt": true
 }
