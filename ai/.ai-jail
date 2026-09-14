@@ -1,0 +1,21 @@
+
+env_pass = [
+  "NIX_LD",
+  "NIX_LD_LIBRARY_PATH"
+]
+ro_maps = [
+  "/run/current-system",
+  "~/.config/git",
+  "~/dotfiles/git",
+  "~/.ssh",
+  "~/dotfiles/ssh",
+  ".."
+]
+rw_maps = [
+  "/nix/var/nix/daemon-socket/socket",
+  "~/dotfiles/ai"
+]
+x11 = true
+audio = true
+network = true
+agent_state = true
