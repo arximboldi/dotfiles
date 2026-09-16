@@ -21,7 +21,7 @@
   nixpkgs.config.allowUnfree = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  hardware.openrazer.enable = true;
+  # hardware.openrazer.enable = true;
 
   boot.kernelParams = [
     "nvidia-drm.modeset=1"
