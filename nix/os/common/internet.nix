@@ -5,6 +5,10 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
+  pkgs-26_05 = import inputs.nixos-26_05 {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = config.nixpkgs.config;
+  };
 
   # the main program I use with wine is Emule and it has been reported
   # to work better with Wine 6... with current wine it hangs/freezes
@@ -89,7 +93,10 @@ in
     yt-dlp
 
     # for emule
-    nixos-wine6.wine64Packages.stableFull
-    nixos-wine6.winetricks
+    # nixos-wine6.wine64Packages.stableFull
+    # nixos-wine6.winetricks
+    # wine-wayland.stableFull
+    pkgs-26_05.wineWow64Packages.stagingFull
+    pkgs-26_05.winetricks
   ];
 }
