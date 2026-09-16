@@ -5,3 +5,5 @@ bash/.bash.d/private.bash
 mail/.mail/*.log
 nix/os/result
 hypr/.config/hypr/.dms-backups
+hypr/.config/hypr/local.lua
+hypr/.config/hypr/monitors.lua
