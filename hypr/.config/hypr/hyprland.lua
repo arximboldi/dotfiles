@@ -7,9 +7,35 @@ require("style")
 require("layout")
 require("keys")
 
--- this is in gitignore
-pcall(require, "monitors")
-pcall(require, "local")
+-- Per-machine config, kept out of the repo (see .gitignore):
+--   monitors.lua  the monitor layout; nwg-displays still writes hyprlang
+--                 (monitors.conf), so port its output here by hand
+--   local.lua     anything else that only applies to this machine
+--
+-- Both are optional, hence the lookup instead of a plain require(). We also
+-- load them by hand because Hyprland's require() swallows errors raised by the
+-- file and hands back an empty table, so a typo would leave the machine
+-- silently unconfigured.
+local function require_local(name)
+    local path = package.searchpath(name, package.path)
+    if not path then return end
+
+    local chunk, err = loadfile(path)
+    if chunk then
+        local ok, run_err = pcall(chunk)
+        if ok then return end
+        err = run_err
+    end
+
+    pcall(hl.notification.create, {
+        text = "hyprland.lua: " .. tostring(err),
+        timeout = 10000,
+        color = "rgb(ff5555)",
+    })
+end
+
+require_local("monitors")
+require_local("local")
 
 -- from dms
 -- pcall(require, "dms.layout")
