@@ -7,3 +7,5 @@ nix/os/result
 hypr/.config/hypr/.dms-backups
 hypr/.config/hypr/local.lua
 hypr/.config/hypr/monitors.lua
+hypr/.config/hypr/monitors.conf
+hypr/.config/hypr/workspaces.conf
