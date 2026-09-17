@@ -9,16 +9,17 @@
       "accent": "mauve"
     }
   },
-  "popupTransparency": 0.5,
+  "popupTransparency": 0.6,
   "dockTransparency": 0.5,
   "floatingWindowSyncGlobal": false,
   "floatingWindowTransparency": 0.8,
+  "floatingWindowForegroundTransparency": 0.8,
   "widgetBackgroundColor": "sth",
   "clockFormat": "24h",
   "animationSpeed": 4,
   "customAnimationDuration": 149,
-  "barElevationEnabled": false,
   "blurEnabled": true,
+  "foregroundLayerTransparency": 0.75,
   "controlCenterShowMicPercent": true,
   "controlCenterWidgets": [
     {
