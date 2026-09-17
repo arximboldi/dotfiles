@@ -3,7 +3,7 @@ env_pass = [
   "NIX_LD",
   "NIX_LD_LIBRARY_PATH",
   "GITHUB_TOKEN",
-  "GIT_SSH_COMMAND='ssh -F ~/.ssh/config'"
+  "GIT_SSH_COMMAND=ssh -F ~/.ssh/config"
 ]
 ro_maps = [
   "/run/current-system",
