@@ -10,7 +10,7 @@ ro_maps = [
   "~/dotfiles/git",
   "~/.ssh",
   "~/dotfiles/ssh",
-  "~/dotfiles/ai/.config/ai-jail/ssh_config:/etc/ssh/ssh_config"
+  "~/dotfiles/ai/.config/ai-jail/ssh_config:/etc/ssh/ssh_config",
   ".."
 ]
 rw_maps = [
