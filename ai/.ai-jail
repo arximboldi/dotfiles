@@ -1,7 +1,8 @@
 
 env_pass = [
   "NIX_LD",
-  "NIX_LD_LIBRARY_PATH"
+  "NIX_LD_LIBRARY_PATH",
+  "GITHUB_TOKEN"
 ]
 ro_maps = [
   "/run/current-system",
@@ -9,13 +10,16 @@ ro_maps = [
   "~/dotfiles/git",
   "~/.ssh",
   "~/dotfiles/ssh",
+  "~/dotfiles/ai/.config/ai-jail/ssh_config:/etc/ssh/ssh_config"
   ".."
 ]
 rw_maps = [
   "/nix/var/nix/daemon-socket/socket",
-  "~/dotfiles/ai"
+  "~/dotfiles/ai",
+  "~/.darkmatter"
 ]
 x11 = true
 audio = true
 network = true
 agent_state = true
+systemd_user = true
