@@ -18,6 +18,7 @@
   "clockFormat": "24h",
   "animationSpeed": 4,
   "customAnimationDuration": 149,
+  "barElevationEnabled": false,
   "blurEnabled": true,
   "foregroundLayerTransparency": 0.75,
   "controlCenterShowMicPercent": true,
