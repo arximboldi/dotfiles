@@ -40,6 +40,7 @@ in
     # flashplayer
     wirelesstools
     iw
+    riseup-vpn
 
     # browsers
     tor-browser
