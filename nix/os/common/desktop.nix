@@ -213,6 +213,7 @@ in
     poppler-utils
     dia
     figma-linux
+    davinci-resolve
     # houdini
     kdePackages.kruler
     kdePackages.kmag
