@@ -356,6 +356,26 @@
         "type": "github"
       }
     },
+    "media-logger": {
+      "inputs": {
+        "nixpkgs": [
+          "nixos"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792688742,
+        "narHash": "sha256-XiR+btGTCvk3VeFFyworM0ixUoCRjMtk6tmNVv9kk4Y=",
+        "owner": "arximboldi",
+        "repo": "media-logger",
+        "rev": "1adcc67dab71bc051fb9310340bf2a0639db58c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arximboldi",
+        "repo": "media-logger",
+        "type": "github"
+      }
+    },
     "mpd-sima-gui": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -543,6 +563,7 @@
         "claudebox": "claudebox",
         "dms": "dms",
         "llm-agents": "llm-agents",
+        "media-logger": "media-logger",
         "mpd-sima-gui": "mpd-sima-gui",
         "musnix": "musnix",
         "nix-darwin": "nix-darwin",
