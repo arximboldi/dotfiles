@@ -155,6 +155,9 @@ in
 
     # networking
     wireshark
+
+    # database
+    postgresql
   ];
 
   programs.wireshark.enable = true;

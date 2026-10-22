@@ -30,6 +30,7 @@
     enable = true;
     extraDaemonFlags = [ "--encrypt-state=false" ];
   };
+  services.teleport.enable = true;
 
   environment.systemPackages = with pkgs; [
     # lte internet
