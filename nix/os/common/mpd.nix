@@ -72,6 +72,14 @@ in
     XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.raskolnikov.uid}";
   };
 
+    # in your configuration
+  imports = [ inputs.media-logger.nixosModules.default ];
+
+  services.media-logger = {
+    enable = true;
+    logsRoot = "%h/sync/doc/media-logs";   # systemd specifiers expand
+  };
+
   environment.systemPackages = with pkgs; [
     mpd
 

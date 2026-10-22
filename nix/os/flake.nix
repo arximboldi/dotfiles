@@ -28,6 +28,9 @@
     mpd-sima-gui.url = "github:arximboldi/mpd-sima-gui";
     mpd-sima-gui.inputs.nixpkgs.follows = "nixos";
 
+    media-logger.url = "github:arximboldi/media-logger";
+    media-logger.inputs.nixpkgs.follows = "nixos";
+
     claudebox.url = "github:arximboldi/claudebox";
     claudebox.inputs.nixpkgs.follows = "nixos-unstable";
 
