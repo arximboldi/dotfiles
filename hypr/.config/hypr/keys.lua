@@ -72,6 +72,7 @@ hl.bind(mod .. " + SHIFT + N", hl.dsp.exec_cmd("nautilus -w"))
 
 hl.bind(mod .. " + B", hl.dsp.exec_cmd("~/usr/bin/hyprfocus dog.unix.cantata.Cantata || cantata"))
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("mpd-sima-gui"))
+hl.bind(mod .. " + ALT + B", hl.dsp.exec_cmd("media-logger show --web"))
 
 hl.bind(mod .. " + space", hl.dsp.exec_cmd("~/usr/bin/hyprlauncher"))
 hl.bind(mod .. " + SHIFT + space", hl.dsp.exec_cmd("rofi -show file-browser-extended -file-browser-depth 4 -file-browser-no-descend"))
