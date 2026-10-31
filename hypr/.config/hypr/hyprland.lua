@@ -50,6 +50,13 @@ hl.config({
         anr_missed_pings = 5,
         enable_anr_dialog = true,
         disable_watchdog_warning = true,
+
+        -- Let any input wake a DPMS-off panel. Hyprland blanks the
+        -- internal display on lid close; if the matching re-enable is lost
+        -- on resume, nothing else turns it back on and the screen is stuck
+        -- black until you fix it from a TTY.
+        key_press_enables_dpms = true,
+        mouse_move_enables_dpms = true,
     },
 
     xwayland = {
