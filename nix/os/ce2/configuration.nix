@@ -70,7 +70,7 @@
   };
 
   services.ssh-phone-home = {
-    enable = true;
+    enable = false;
     localUser = "raskolnikov";
     remoteHostname = "sinusoid.es";
     remotePort = 5488;
