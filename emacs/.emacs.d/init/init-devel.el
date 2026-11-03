@@ -87,6 +87,10 @@
 (setq reftex-plug-into-AUCTeX t)
 (setq-default TeX-master nil)
 
+(with-eval-after-load 'tex
+  (add-to-list 'TeX-command-list
+               '("Make" "make" TeX-run-compile nil t)))
+
 ;; cmake-format
 (require 'reformatter)
 

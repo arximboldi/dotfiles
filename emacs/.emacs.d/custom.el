@@ -4,6 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-command-style '(("" "%(latex) %S%(PDFout)")))
+ '(TeX-PDF-mode t)
+ '(TeX-engine 'luatex)
  '(TeX-output-view-style
    '(("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$")
       "%(o?)dvips -t landscape %d -o && gv %f")
