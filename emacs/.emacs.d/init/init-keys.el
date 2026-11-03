@@ -20,7 +20,8 @@
 (require 'helm-xref)
 (which-key-mode)
 
-(projectile-global-mode 1)
+(require 'projectile)
+(projectile-mode 1)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 (define-key projectile-mode-map (kbd "C-c p s a") 'helm-projectile-ag)
