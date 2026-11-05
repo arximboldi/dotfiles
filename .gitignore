@@ -9,3 +9,6 @@ hypr/.config/hypr/local.lua
 hypr/.config/hypr/monitors.lua
 hypr/.config/hypr/monitors.conf
 hypr/.config/hypr/workspaces.conf
+ai/.config/herdr-app/*
+!ai/.config/herdr-app/settings.json
+!ai/.config/herdr-app/keys.json
