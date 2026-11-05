@@ -144,7 +144,6 @@ in
     inputs.ai-jail.packages.${pkgs.stdenv.hostPlatform.system}.default
     copilot-language-server
     github-copilot-cli
-    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.herdr
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.herdr-app
     #gh-copilot
 
