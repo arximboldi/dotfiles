@@ -59,6 +59,10 @@ hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("~/usr/bin/email"))
 hl.bind(mod .. " + backslash", hl.dsp.exec_cmd("~/usr/bin/hyprfocus org.gnome.Terminal || gnome-terminal"))
 hl.bind(mod .. " + SHIFT + backslash", hl.dsp.exec_cmd("gnome-terminal"))
 
+local herdr = hl.dsp.exec_cmd("~/usr/bin/hyprfocus herdr-app || herdr-app")
+hl.bind(mod .. " + ALT + backslash", herdr)
+hl.bind(mod .. " + grave", herdr)
+
 hl.bind(mod .. " + W", hl.dsp.exec_cmd("~/usr/bin/hyprfocus zen-beta || zen-beta"))
 hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("zen-beta"))
 
