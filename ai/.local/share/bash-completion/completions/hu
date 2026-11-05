@@ -1,0 +1,73 @@
+# bash completion for hu (see ~/usr/bin/hu), loaded on demand by bash-completion.
+
+# Branches checked out in the current repo; with "linked", not the main checkout's.
+_hu_checked_out() {
+  git worktree list --porcelain 2>/dev/null |
+    awk -v skip="${1:-}" '/^worktree /{n++} /^branch /{ if (!(skip && n == 1)) print substr($0, 19) }'
+}
+
+# Branches hu wt could create or open: local ones, plus remote ones by short name.
+_hu_branches() {
+  git for-each-ref --format='%(refname:short)' refs/heads 2>/dev/null
+  git for-each-ref --format='%(refname:lstrip=3)' refs/remotes 2>/dev/null | grep -vx HEAD
+}
+
+_hu() {
+  local cur prev words cword
+  _init_completion || return
+
+  if ((cword == 1)); then
+    mapfile -t COMPREPLY < <(compgen -W "wt help" -- "$cur")
+    return
+  fi
+  [[ ${words[1]} == wt ]] || return
+
+  case $prev in
+    -a|--agent) mapfile -t COMPREPLY < <(compgen -c -- "$cur"); return ;;
+    -t|--task) return ;;
+    -b|--base)
+      mapfile -t COMPREPLY < <(compgen -W "$(git for-each-ref --format='%(refname:short)' \
+        --exclude='refs/remotes/*/HEAD' refs/heads refs/remotes refs/tags 2>/dev/null)" -- "$cur")
+      return ;;
+  esac
+
+  # What's been typed so far: the action, and whether the branch is given.
+  local mode="" arg="" i w
+  for ((i = 2; i < cword; i++)); do
+    w=${words[i]}
+    case $w in
+      -o|--open) mode=open ;;
+      -c|--create) mode=create ;;
+      -d|--delete) mode=delete ;;
+      -l|--list) mode=list ;;
+      -a|--agent|-t|--task|-b|--base) ((i++)) ;;
+      -*) ;;
+      *) arg=$w ;;
+    esac
+  done
+
+  if [[ $cur == -* || -n $arg || $mode == list ]]; then
+    local opts
+    case $mode in
+      "") opts="-o --open -c --create -d --delete -a --agent -t --task -b --base -n --no-space"
+          [[ -n $arg ]] || opts="-l --list $opts" ;;
+      open) opts="-a --agent -t --task" ;;
+      create) opts="-a --agent -t --task -b --base -n --no-space" ;;
+      delete) opts="-f --force" ;;
+      list) opts="" ;;
+    esac
+    mapfile -t COMPREPLY < <(compgen -W "$opts" -- "$cur")
+    return
+  fi
+
+  local candidates
+  case $mode in
+    open) candidates=$(_hu_checked_out) ;;
+    delete) candidates=$(_hu_checked_out linked) ;;
+    create) candidates=$(_hu_branches | sort -u | grep -vxF -f <(_hu_checked_out; echo)) ;;
+    *) candidates=$(_hu_branches | sort -u) ;;
+  esac
+  mapfile -t COMPREPLY < <(compgen -W "$candidates" -- "$cur")
+}
+
+complete -F _hu hu
