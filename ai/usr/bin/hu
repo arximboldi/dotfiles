@@ -18,16 +18,19 @@ usage() {
   cat <<'EOF'
 usage: hu <command> ...
 
-  hu wt [list]                      worktrees of this repo, and their spaces
-  hu wt create <branch> [options]   new checkout + a space on it
-      -b, --base <ref>                start a new branch here (default: HEAD)
-      -a, --agent <cmd>               run this in the space (e.g. claude)
-      -t, --task <text>               the agent's first message (implies -a claude)
-      -n, --no-space                  only create the checkout
-  hu wt open <branch|path> [-a <cmd>] [-t <text>]
-                                    go to its space, or open one
-  hu wt remove [<branch|path>] [-f]  delete the checkout (the branch stays) and
-                                    close its spaces; default: the current one
+  hu wt                        worktrees of this repo, and their spaces (also -l)
+  hu wt <branch> [options]     open its checkout, or create it if there is none
+  hu wt -o <branch|path>       open only: go to its space, or open one
+  hu wt -c <branch>            create only: new checkout + a space on it
+  hu wt -d [<branch|path>]     delete the checkout (the branch stays) and close
+                               its spaces; default: the one you're in
+
+  options:
+    -a, --agent <cmd>          run this in the new space (e.g. claude)
+    -t, --task <text>          the agent's first message (implies -a claude)
+    -b, --base <ref>           a new branch starts here (default: HEAD)
+    -n, --no-space             create the checkout only, no space
+    -f, --force                delete even with uncommitted changes
 EOF
 }
 
@@ -88,7 +91,6 @@ open_space() {
 # --- wt --------------------------------------------------------------------
 
 wt_list() {
-  repo
   local path branch id names
   while IFS=$'\t' read -r path branch; do
     names=""
@@ -99,33 +101,12 @@ wt_list() {
   done < <(checkouts)
 }
 
-# Parses -a/-t (and -b/-n for create) into AGENT TASK BASE NOSPACE; sets ARG.
-parse_opts() {
-  AGENT="" TASK="" BASE="" NOSPACE="" ARG=""
-  while (($#)); do
-    case $1 in
-      -a|--agent) AGENT=${2:?--agent needs a command}; shift ;;
-      -t|--task) TASK=${2:?--task needs text}; shift ;;
-      -b|--base) BASE=${2:?--base needs a ref}; shift ;;
-      -n|--no-space) NOSPACE=1 ;;
-      -h|--help) usage; exit 0 ;;
-      -*) die "unknown option $1" ;;
-      *) [[ -z $ARG ]] || die "unexpected argument $1"; ARG=$1 ;;
-    esac
-    shift
-  done
-  [[ -z $TASK || -n $AGENT ]] || AGENT=claude
-}
-
 wt_create() {
-  parse_opts "$@"
   local branch=$ARG
-  [[ -n $branch ]] || die "usage: hu wt create <branch> [-b base] [-a agent] [-t task]"
-  repo
   git check-ref-format --branch "$branch" >/dev/null || die "invalid branch name: $branch"
   local existing
   if existing=$(find_checkout "$branch"); then
-    die "$branch is already checked out at $(tilde "$existing") (hu wt open $branch)"
+    die "$branch is already checked out at $(tilde "$existing") (hu wt $branch)"
   fi
   local path
   path="$ROOT/$NAME/$(slug "$branch")"
@@ -146,13 +127,11 @@ wt_create() {
   tilde "$path"
 }
 
+# wt_open <checkout path>
 wt_open() {
-  parse_opts "$@"
-  [[ -z $BASE && -z $NOSPACE ]] || die "open takes only -a and -t"
-  [[ -n $ARG ]] || die "usage: hu wt open <branch|path> [-a agent] [-t task]"
-  repo
-  local path id
-  path=$(find_checkout "$ARG") || die "no checkout of $ARG (hu wt create $ARG)"
+  local path=$1 id
+  [[ -z $BASE ]] || echo "hu: $ARG is already checked out, ignoring --base" >&2
+  if [[ -n $NOSPACE ]]; then tilde "$path"; return; fi
   id=$(spaces_at "$path" | head -n1)
   if [[ -n $id && -z $AGENT ]]; then
     herdr-app "do" space.select --id "$id" >/dev/null
@@ -161,33 +140,22 @@ wt_open() {
   fi
 }
 
-wt_remove() {
-  local force="" target=""
-  while (($#)); do
-    case $1 in
-      -f|--force) force=--force ;;
-      -h|--help) usage; exit 0 ;;
-      -*) die "unknown option $1" ;;
-      *) [[ -z $target ]] || die "unexpected argument $1"; target=$1 ;;
-    esac
-    shift
-  done
-  repo
+wt_delete() {
   local path
-  if [[ -n $target ]]; then
-    path=$(find_checkout "$target") || die "no checkout of $target"
+  if [[ -n $ARG ]]; then
+    path=$(find_checkout "$ARG") || die "no checkout of $ARG"
   else
     path=$(git rev-parse --show-toplevel)
   fi
-  [[ $path != "$MAIN" ]] || die "that's the main checkout; not removing it"
+  [[ $path != "$MAIN" ]] || die "that's the main checkout; not deleting it"
 
-  # Collect the spaces first, remove, then close them last: this shell may be
+  # Collect the spaces first, delete, then close them last: this shell may be
   # running in one of them.
   local ids
   ids=$(spaces_at "$path")
   cd "$MAIN"
-  git worktree remove $force "$path" || die "not removed (uncommitted changes? use -f)"
-  echo "removed $(tilde "$path"); the branch stays"
+  git worktree remove $FORCE "$path" || die "not deleted (uncommitted changes? use -f)"
+  echo "deleted $(tilde "$path"); the branch stays"
   local id
   for id in $ids; do
     herdr-app "do" space.close --id "$id" --confirmed true >/dev/null || true
@@ -195,15 +163,46 @@ wt_remove() {
 }
 
 wt() {
-  local cmd=${1:-list}
-  (($#)) && shift
-  case $cmd in
-    list|ls) wt_list "$@" ;;
-    create|new) wt_create "$@" ;;
-    open|go) wt_open "$@" ;;
-    remove|rm) wt_remove "$@" ;;
-    -h|--help|help) usage ;;
-    *) die "unknown wt command: $cmd" ;;
+  local mode="" AGENT="" TASK="" BASE="" NOSPACE="" FORCE="" ARG=""
+  setmode() { [[ -z $mode || $mode == "$1" ]] || die "pick one of -l, -o, -c, -d"; mode=$1; }
+  while (($#)); do
+    case $1 in
+      -l|--list) setmode list ;;
+      -o|--open) setmode open ;;
+      -c|--create) setmode create ;;
+      -d|--delete) setmode delete ;;
+      -a|--agent) AGENT=${2:?--agent needs a command}; shift ;;
+      -t|--task) TASK=${2:?--task needs text}; shift ;;
+      -b|--base) BASE=${2:?--base needs a ref}; shift ;;
+      -n|--no-space) NOSPACE=1 ;;
+      -f|--force) FORCE=--force ;;
+      -h|--help) usage; exit 0 ;;
+      -*) die "unknown option $1 (hu help)" ;;
+      *) [[ -z $ARG ]] || die "unexpected argument $1"; ARG=$1 ;;
+    esac
+    shift
+  done
+  [[ -z $TASK || -n $AGENT ]] || AGENT=claude
+  [[ -n $mode ]] || { [[ -n $ARG ]] && mode=auto || mode=list; }
+
+  local creating="$BASE$NOSPACE" spawning="$AGENT"
+  case $mode in
+    list) [[ -z $ARG$creating$spawning$FORCE ]] || die "-l takes no arguments" ;;
+    delete) [[ -z $creating$spawning ]] || die "-d takes only -f" ;;
+    *) [[ -z $FORCE ]] || die "-f goes with -d"
+       [[ -n $ARG ]] || die "which branch? (hu help)" ;;
+  esac
+  [[ $mode != open || -z $creating ]] || die "-o takes only -a and -t"
+
+  repo
+  local path
+  case $mode in
+    list) wt_list ;;
+    delete) wt_delete ;;
+    create) wt_create ;;
+    open) path=$(find_checkout "$ARG") || die "no checkout of $ARG (hu wt -c $ARG)"
+          wt_open "$path" ;;
+    auto) if path=$(find_checkout "$ARG"); then wt_open "$path"; else wt_create; fi ;;
   esac
 }
 
