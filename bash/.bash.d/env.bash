@@ -218,6 +218,14 @@ export NODE_PATH="${NPM_PACKAGES}"
 add-path-if-exists PATH "${NPM_PACKAGES}/bin"
 
 #
+# Claude Code
+#
+# Installed via nix (see nix/os/common/devel.nix). Keep the auto-updater off so
+# it never drops a newer npm-global copy into ${NPM_PACKAGES}/bin, which shadows
+# the nix build on PATH.
+export DISABLE_AUTOUPDATER=1
+
+#
 # Google cloud stuff
 #
 [ -f ~/soft/google-cloud-sdk/completion.bash.inc ] && \
