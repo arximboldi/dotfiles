@@ -135,15 +135,12 @@ in
     ycmd
 
     # ai agents
-    unstable.aider-chat
+    # unstable.aider-chat
     # unstable.plandex
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     unstable.codex
     unstable.gemini-cli
     unstable.opencode
-    (inputs.claudebox.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-      claude-code = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
-    })
     inputs.ai-jail.packages.${pkgs.stdenv.hostPlatform.system}.default
     copilot-language-server
     github-copilot-cli
