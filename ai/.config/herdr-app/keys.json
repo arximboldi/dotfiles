@@ -44,6 +44,7 @@
     "alt-up": "agent.prev",
     "ctrl-shift-/": "app.help",
     "ctrl-shift-?": "app.help",
+    "ctrl-?": "app.help",
     "ctrl-shift-b": "layout.toggle:sidebar",
     "ctrl-shift-n": "space.new",
     "ctrl-shift-t": "tab.new",
