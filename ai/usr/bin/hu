@@ -1,0 +1,214 @@
+#!/usr/bin/env bash
+# hu: herd utilities, small helpers on top of Herdr (herdr-app, hc) and git.
+#
+# Worktrees use the same layout as Herdr's worktree dialog,
+# ~/.herdr/worktrees/<repo>/<branch>, so the sidebar nesting and the
+# New/Open/Remove worktree dialogs work on checkouts made either way.
+
+set -euo pipefail
+
+ROOT="$HOME/.herdr/worktrees"
+
+die() { echo "hu: $*" >&2; exit 1; }
+tilde() { local p=$1; [[ $p == "$HOME"* ]] && p="~${p#"$HOME"}"; echo "$p"; }
+# Same as the worktree mod's slug(): branch name -> folder name.
+slug() { sed -E 's/[^A-Za-z0-9._-]+/-/g; s/^-+|-+$//g' <<<"$1"; }
+
+usage() {
+  cat <<'EOF'
+usage: hu <command> ...
+
+  hu wt [list]                      worktrees of this repo, and their spaces
+  hu wt create <branch> [options]   new checkout + a space on it
+      -b, --base <ref>                start a new branch here (default: HEAD)
+      -a, --agent <cmd>               run this in the space (e.g. claude)
+      -t, --task <text>               the agent's first message (implies -a claude)
+      -n, --no-space                  only create the checkout
+  hu wt open <branch|path> [-a <cmd>] [-t <text>]
+                                    go to its space, or open one
+  hu wt remove [<branch|path>] [-f]  delete the checkout (the branch stays) and
+                                    close its spaces; default: the current one
+EOF
+}
+
+# --- git -------------------------------------------------------------------
+
+# Sets MAIN (the main checkout), NAME (repo name) for the repo at $PWD.
+repo() {
+  local common
+  common=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) \
+    || die "not in a git repository"
+  MAIN=${common%/.git}
+  [[ $MAIN != "$common" ]] || die "bare repositories aren't supported"
+  NAME=$(basename "$MAIN")
+}
+
+# "path<TAB>branch" per checkout, the main one first; branch is empty if detached.
+checkouts() {
+  git -C "$MAIN" worktree list --porcelain | awk '
+    /^worktree /  { if (p != "") print p "\t" b; p = substr($0, 10); b = "" }
+    /^branch /    { b = substr($0, 8); sub(/^refs\/heads\//, "", b) }
+    END           { if (p != "") print p "\t" b }'
+}
+
+# The checkout for a branch name or a path (absolute or relative).
+find_checkout() {
+  local want=$1 abs="" path branch
+  [[ -e $want ]] && abs=$(cd "$want" && git rev-parse --show-toplevel 2>/dev/null || true)
+  while IFS=$'\t' read -r path branch; do
+    if [[ $branch == "$want" || $path == "$abs" ]]; then echo "$path"; return; fi
+  done < <(checkouts)
+  return 1
+}
+
+# --- herdr -----------------------------------------------------------------
+
+# Space ids (this machine) whose folder is the checkout or inside it.
+spaces_at() {
+  herdr-app ls 2>/dev/null | jq -r --arg p "$1" '
+    .spaces[] | select(.machine == null)
+    | select(.folder == $p or (.folder | startswith($p + "/"))) | .id' || true
+}
+
+space_name() {
+  herdr-app ls 2>/dev/null | jq -r --arg id "$1" '.spaces[] | select(.id == $id) | .name' || true
+}
+
+# open_space <folder> <agent> <task>
+open_space() {
+  local args=(--folder "$1")
+  if [[ -n $2 ]]; then
+    # shellcheck disable=SC2086 # the agent command is split into words on purpose
+    args+=(--argv "$(jq -cn '$ARGS.positional' --args -- $2)")
+    [[ -z $3 ]] || args+=(--task "$3")
+  fi
+  herdr-app "do" space.new "${args[@]}" >/dev/null || die "herdr-app couldn't open a space (is it running?)"
+}
+
+# --- wt --------------------------------------------------------------------
+
+wt_list() {
+  repo
+  local path branch id names
+  while IFS=$'\t' read -r path branch; do
+    names=""
+    while read -r id; do
+      [[ -n $id ]] && names+="${names:+, }$(space_name "$id")"
+    done < <(spaces_at "$path")
+    printf '%-28s %-50s %s\n' "${branch:-(detached)}" "$(tilde "$path")" "${names:--}"
+  done < <(checkouts)
+}
+
+# Parses -a/-t (and -b/-n for create) into AGENT TASK BASE NOSPACE; sets ARG.
+parse_opts() {
+  AGENT="" TASK="" BASE="" NOSPACE="" ARG=""
+  while (($#)); do
+    case $1 in
+      -a|--agent) AGENT=${2:?--agent needs a command}; shift ;;
+      -t|--task) TASK=${2:?--task needs text}; shift ;;
+      -b|--base) BASE=${2:?--base needs a ref}; shift ;;
+      -n|--no-space) NOSPACE=1 ;;
+      -h|--help) usage; exit 0 ;;
+      -*) die "unknown option $1" ;;
+      *) [[ -z $ARG ]] || die "unexpected argument $1"; ARG=$1 ;;
+    esac
+    shift
+  done
+  [[ -z $TASK || -n $AGENT ]] || AGENT=claude
+}
+
+wt_create() {
+  parse_opts "$@"
+  local branch=$ARG
+  [[ -n $branch ]] || die "usage: hu wt create <branch> [-b base] [-a agent] [-t task]"
+  repo
+  git check-ref-format --branch "$branch" >/dev/null || die "invalid branch name: $branch"
+  local existing
+  if existing=$(find_checkout "$branch"); then
+    die "$branch is already checked out at $(tilde "$existing") (hu wt open $branch)"
+  fi
+  local path
+  path="$ROOT/$NAME/$(slug "$branch")"
+  [[ ! -e $path ]] || die "$(tilde "$path") already exists"
+  mkdir -p "$(dirname "$path")"
+
+  if git -C "$MAIN" show-ref --verify --quiet "refs/heads/$branch"; then
+    [[ -z $BASE ]] || echo "hu: $branch exists, ignoring --base" >&2
+    git -C "$MAIN" worktree add "$path" "$branch"
+  elif [[ -z $BASE ]] && git -C "$MAIN" for-each-ref --format=x "refs/remotes/*/$branch" | grep -q .; then
+    git -C "$MAIN" worktree add "$path" "$branch"   # git sets up tracking
+  else
+    # A new branch starts from here: this checkout's HEAD, like the dialog.
+    git -C "$MAIN" worktree add -b "$branch" "$path" "$(git rev-parse "${BASE:-HEAD}")"
+  fi
+
+  [[ -n $NOSPACE ]] || open_space "$path" "$AGENT" "$TASK"
+  tilde "$path"
+}
+
+wt_open() {
+  parse_opts "$@"
+  [[ -z $BASE && -z $NOSPACE ]] || die "open takes only -a and -t"
+  [[ -n $ARG ]] || die "usage: hu wt open <branch|path> [-a agent] [-t task]"
+  repo
+  local path id
+  path=$(find_checkout "$ARG") || die "no checkout of $ARG (hu wt create $ARG)"
+  id=$(spaces_at "$path" | head -n1)
+  if [[ -n $id && -z $AGENT ]]; then
+    herdr-app "do" space.select --id "$id" >/dev/null
+  else
+    open_space "$path" "$AGENT" "$TASK"
+  fi
+}
+
+wt_remove() {
+  local force="" target=""
+  while (($#)); do
+    case $1 in
+      -f|--force) force=--force ;;
+      -h|--help) usage; exit 0 ;;
+      -*) die "unknown option $1" ;;
+      *) [[ -z $target ]] || die "unexpected argument $1"; target=$1 ;;
+    esac
+    shift
+  done
+  repo
+  local path
+  if [[ -n $target ]]; then
+    path=$(find_checkout "$target") || die "no checkout of $target"
+  else
+    path=$(git rev-parse --show-toplevel)
+  fi
+  [[ $path != "$MAIN" ]] || die "that's the main checkout; not removing it"
+
+  # Collect the spaces first, remove, then close them last: this shell may be
+  # running in one of them.
+  local ids
+  ids=$(spaces_at "$path")
+  cd "$MAIN"
+  git worktree remove $force "$path" || die "not removed (uncommitted changes? use -f)"
+  echo "removed $(tilde "$path"); the branch stays"
+  local id
+  for id in $ids; do
+    herdr-app "do" space.close --id "$id" --confirmed true >/dev/null || true
+  done
+}
+
+wt() {
+  local cmd=${1:-list}
+  (($#)) && shift
+  case $cmd in
+    list|ls) wt_list "$@" ;;
+    create|new) wt_create "$@" ;;
+    open|go) wt_open "$@" ;;
+    remove|rm) wt_remove "$@" ;;
+    -h|--help|help) usage ;;
+    *) die "unknown wt command: $cmd" ;;
+  esac
+}
+
+case ${1:-} in
+  wt) shift; wt "$@" ;;
+  ""|-h|--help|help) usage ;;
+  *) die "unknown command: $1 (hu help)" ;;
+esac
