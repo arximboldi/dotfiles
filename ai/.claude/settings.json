@@ -13,7 +13,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "pw-play ~/.claude/sounds/808521__licht2003__done-sound.mp3 & notify-send -u normal -i utilities-terminal 'Claude Code' 'Task Completed'"
+            "command": "[ -n \"$HC_TERMINAL_ID\" ] || [ \"$(uname)\" != Linux ] || { pw-play ~/.claude/sounds/808521__licht2003__done-sound.mp3 & notify-send -u normal -i utilities-terminal 'Claude Code' 'Task Completed'; }"
           }
         ]
       }
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "pw-play ~/.claude/sounds/237422__plasterbrain__hover-1.ogg & notify-send -u normal -i dialog-question 'Claude Code' 'Input Required'"
+            "command": "[ -n \"$HC_TERMINAL_ID\" ] || [ \"$(uname)\" != Linux ] || { pw-play ~/.claude/sounds/237422__plasterbrain__hover-1.ogg & notify-send -u normal -i dialog-question 'Claude Code' 'Input Required'; }"
           }
         ]
       }
