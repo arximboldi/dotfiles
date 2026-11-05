@@ -4,6 +4,7 @@ env_pass = [
   "NIX_LD_LIBRARY_PATH",
   "GITHUB_TOKEN",
   "GIT_SSH_COMMAND=ssh -F ~/.ssh/config"
+  "CLAUDE_CODE_NO_FLICKER=0",
 ]
 ro_maps = [
   "/run/current-system",
@@ -23,3 +24,4 @@ audio = true
 network = true
 agent_state = true
 systemd_user = true
+terminal_passthrough = true
