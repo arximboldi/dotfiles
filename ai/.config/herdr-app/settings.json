@@ -1,11 +1,12 @@
 {
-  "zoom": 1,
+  "zoom": 1.0,
   "sounds": {
     "enabled": true
   },
-  "minimum_contrast": 1,
-  "ui_font": "Inter Display",
   "font": "Iosevka Nerd Font",
+  "font_size": 15.0,
+  "ui_font": "Inter Display",
+  "minimum_contrast": 1.0,
   "appearance": "dark",
   "theme": "dracula"
 }
