@@ -1,26 +1,13 @@
 #!/usr/bin/env bash
+# hyprfocus <class>: focus a window of that class, preferring the current
+# workspace. Fails if there is none, so callers can do `hyprfocus x || x`.
 
 class=$1
 
+addr=$(hyprctl clients -j | jq -r --arg class "$class" \
+    --argjson ws "$(hyprctl activeworkspace -j | jq .id)" '
+    [.[] | select(.class == $class)] | sort_by(.workspace.id != $ws) | .[0].address // empty')
+[ -n "$addr" ] || exit 1
 
-# Try to find the window in the current workspace
-current_ws=$(hyprctl activeworkspace -j | jq -r '.id')
-addr=$(hyprctl clients -j \
-    | jq -r --arg ws "$current_ws" --arg class "$class" '
-        .[] | select(.class==$class and .workspace.id == ($ws|tonumber)) | .address
-      ' \
-    | head -n1)
-
-echo "Focusing $class (addr: $addr) in workspace $current_ws"
-if [ -n "$addr" ]; then
-    result=`hyprctl dispatch focuswindow address:$addr`
-else
-    result=`hyprctl dispatch focuswindow class:$class`
-fi
-
-# if result is 'ok', then exit with 0 else exit with 1
-if [ "$result" = "ok" ]; then
-    exit 0
-else
-    exit 1
-fi
+# Hyprland's Lua config: dispatch takes a Lua expression.
+[ "$(hyprctl dispatch "hl.dsp.focus({window = \"address:$addr\"})")" = ok ]
