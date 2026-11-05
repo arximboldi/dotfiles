@@ -53,7 +53,7 @@ _hu() {
           [[ -n $arg ]] || opts="-l --list $opts" ;;
       open) opts="-a --agent -t --task" ;;
       create) opts="-a --agent -t --task -b --base -n --no-space" ;;
-      delete) opts="-f --force" ;;
+      delete) opts="-f --force -k --keep-branch" ;;
       list) opts="" ;;
     esac
     mapfile -t COMPREPLY < <(compgen -W "$opts" -- "$cur")

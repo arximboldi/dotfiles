@@ -22,8 +22,9 @@ usage: hu <command> ...
   hu wt <branch> [options]     open its checkout, or create it if there is none
   hu wt -o <branch|path>       open only: go to its space, or open one
   hu wt -c <branch>            create only: new checkout + a space on it
-  hu wt -d [<branch|path>]     delete the checkout (the branch stays) and close
-                               its spaces; default: the one you're in
+  hu wt -d [<branch|path>]     delete the checkout and close its spaces; default:
+                               the one you're in. The branch goes too when another
+                               branch has all its commits (merged, or same commit)
 
   options:
     -a, --agent <cmd>          run this in the new space (e.g. claude)
@@ -31,6 +32,7 @@ usage: hu <command> ...
     -b, --base <ref>           a new branch starts here (default: HEAD)
     -n, --no-space             create the checkout only, no space
     -f, --force                delete even with uncommitted changes
+    -k, --keep-branch          with -d, keep the branch anyway
 EOF
 }
 
@@ -140,6 +142,25 @@ wt_open() {
   fi
 }
 
+# Why branch $1 can go: another branch (local or remote, not its own remote
+# copy) has all its commits. Prints "merged into X" or "same commit as X";
+# fails if there's none. Prefers the main checkout's branch and the default one.
+branch_redundant() {
+  local branch=$1 tip ref obj best="" upstream prefer why line
+  tip=$(git rev-parse --verify --quiet "refs/heads/$branch") || return 1
+  upstream=$(git rev-parse --symbolic-full-name --quiet "$branch@{upstream}" 2>/dev/null || true)
+  prefer=" $(git symbolic-ref --quiet HEAD || true) $(git symbolic-ref --quiet refs/remotes/origin/HEAD || true) "
+  while read -r ref obj; do
+    [[ $ref == "refs/heads/$branch" || $ref == "$upstream" || $ref == refs/remotes/*/HEAD ]] && continue
+    [[ $ref == refs/remotes/*/"$branch" ]] && continue   # its own pushed copy
+    why="merged into"; [[ $obj == "$tip" ]] && why="same commit as"
+    line="$why $(git rev-parse --abbrev-ref "$ref")"
+    if [[ $prefer == *" $ref "* ]]; then echo "$line"; return; fi
+    [[ -n $best ]] || best=$line
+  done < <(git for-each-ref --contains "$tip" --format='%(refname) %(objectname)' refs/heads refs/remotes)
+  [[ -n $best ]] && echo "$best"
+}
+
 wt_delete() {
   local path
   if [[ -n $ARG ]]; then
@@ -151,11 +172,26 @@ wt_delete() {
 
   # Collect the spaces first, delete, then close them last: this shell may be
   # running in one of them.
-  local ids
+  local ids branch p b
   ids=$(spaces_at "$path")
+  while IFS=$'\t' read -r p b; do [[ $p == "$path" ]] && branch=$b; done < <(checkouts)
   cd "$MAIN"
   git worktree remove $FORCE "$path" || die "not deleted (uncommitted changes? use -f)"
-  echo "deleted $(tilde "$path"); the branch stays"
+  echo "deleted $(tilde "$path")"
+
+  local why
+  if [[ -z ${branch:-} ]]; then
+    :
+  elif [[ -n $KEEP ]]; then
+    echo "kept branch $branch (-k)"
+  elif why=$(branch_redundant "$branch"); then
+    git branch -q -D "$branch"
+    echo "deleted branch $branch ($why)"
+  else
+    local pushed
+    pushed=$(git for-each-ref --format='%(refname:short)' "refs/remotes/*/$branch" | head -n1)
+    echo "kept branch $branch: not merged anywhere${pushed:+ (pushed as $pushed)}"
+  fi
   local id
   for id in $ids; do
     herdr-app "do" space.close --id "$id" --confirmed true >/dev/null || true
@@ -163,7 +199,7 @@ wt_delete() {
 }
 
 wt() {
-  local mode="" AGENT="" TASK="" BASE="" NOSPACE="" FORCE="" ARG=""
+  local mode="" AGENT="" TASK="" BASE="" NOSPACE="" FORCE="" KEEP="" ARG=""
   setmode() { [[ -z $mode || $mode == "$1" ]] || die "pick one of -l, -o, -c, -d"; mode=$1; }
   while (($#)); do
     case $1 in
@@ -176,6 +212,7 @@ wt() {
       -b|--base) BASE=${2:?--base needs a ref}; shift ;;
       -n|--no-space) NOSPACE=1 ;;
       -f|--force) FORCE=--force ;;
+      -k|--keep-branch) KEEP=1 ;;
       -h|--help) usage; exit 0 ;;
       -*) die "unknown option $1 (hu help)" ;;
       *) [[ -z $ARG ]] || die "unexpected argument $1"; ARG=$1 ;;
@@ -187,9 +224,9 @@ wt() {
 
   local creating="$BASE$NOSPACE" spawning="$AGENT"
   case $mode in
-    list) [[ -z $ARG$creating$spawning$FORCE ]] || die "-l takes no arguments" ;;
-    delete) [[ -z $creating$spawning ]] || die "-d takes only -f" ;;
-    *) [[ -z $FORCE ]] || die "-f goes with -d"
+    list) [[ -z $ARG$creating$spawning$FORCE$KEEP ]] || die "-l takes no arguments" ;;
+    delete) [[ -z $creating$spawning ]] || die "-d takes only -f and -k" ;;
+    *) [[ -z $FORCE$KEEP ]] || die "-f and -k go with -d"
        [[ -n $ARG ]] || die "which branch? (hu help)" ;;
   esac
   [[ $mode != open || -z $creating ]] || die "-o takes only -a and -t"
