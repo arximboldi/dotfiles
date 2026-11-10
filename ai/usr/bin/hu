@@ -252,6 +252,8 @@ wt() {
 # Herdr's own alerts (sound, toast) live inside its window. This adds a
 # desktop notification when an agent needs you or is done and the Herdr
 # window isn't the focused one; clicking it shows that agent.
+# Stopgap until Herdr does this itself (herdrdev/herdr-app#120); then drop
+# this and its autostart in hypr/.config/hypr/init.lua.
 notify() {
   [[ $# == 0 ]] || die "notify takes no arguments"
   exec 9>"${XDG_RUNTIME_DIR:-/tmp}/hu-notify.lock"
