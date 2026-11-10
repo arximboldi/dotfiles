@@ -33,6 +33,10 @@ usage: hu <command> ...
     -n, --no-space             create the checkout only, no space
     -f, --force                delete even with uncommitted changes
     -k, --keep-branch          with -d, keep the branch anyway
+
+  hu notify                    desktop notifications when an agent needs you or
+                               is done and Herdr isn't the focused window
+                               (runs until killed; started with Hyprland)
 EOF
 }
 
@@ -243,8 +247,56 @@ wt() {
   esac
 }
 
+# --- notify ----------------------------------------------------------------
+
+# Herdr's own alerts (sound, toast) live inside its window. This adds a
+# desktop notification when an agent needs you or is done and the Herdr
+# window isn't the focused one; clicking it shows that agent.
+notify() {
+  [[ $# == 0 ]] || die "notify takes no arguments"
+  exec 9>"${XDG_RUNTIME_DIR:-/tmp}/hu-notify.lock"
+  flock -n 9 || die "notify is already running"
+  while :; do
+    notify_follow || true
+    sleep 2   # herdr-core restarting: follow it again
+  done
+}
+
+notify_follow() {
+  local kind t state prev
+  local -A last=()
+  hc events --json | jq --unbuffered -r '
+    if .terminals then .terminals[] | ["seed", .address, .status.state // "-"]
+    elif .params.type? == "status" then ["status", .params.terminal, .params.data.status.state // "-"]
+    else empty end | @tsv' |
+  while IFS=$'\t' read -r kind t state; do
+    prev=${last[$t]:-}; last[$t]=$state
+    [[ $kind == status && $state != "$prev" ]] || continue
+    case $state in blocked|done) notify_agent "$t" "$state" & ;; esac
+  done
+}
+
+notify_agent() {
+  local t=$1 state=$2 info where text summary
+  if command -v hyprctl >/dev/null; then
+    [[ $(hyprctl activewindow -j | jq -r .class) != herdr-app ]] || return 0
+  fi
+  info=$(hc get "$t" --json) || return 0
+  where=$(jq -r '.labels.where // .address' <<<"$info")
+  text=$(jq -r '.title // .status.msg // ""' <<<"$info")
+  case $state in
+    blocked) summary="$where needs you" ;;
+    *) summary="$where is done" ;;
+  esac
+  if [[ $(notify-send -a Herdr -i herdr-app -A default=Show "$summary" "$text") == default ]]; then
+    herdr-app "do" agent.focus --terminal "$t" >/dev/null || true
+    hyprfocus herdr-app >/dev/null 2>&1 || herdr-app
+  fi
+}
+
 case ${1:-} in
   wt) shift; wt "$@" ;;
+  notify) shift; notify "$@" ;;
   ""|-h|--help|help) usage ;;
   *) die "unknown command: $1 (hu help)" ;;
 esac

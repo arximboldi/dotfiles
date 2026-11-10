@@ -17,7 +17,7 @@ _hu() {
   _init_completion || return
 
   if ((cword == 1)); then
-    mapfile -t COMPREPLY < <(compgen -W "wt help" -- "$cur")
+    mapfile -t COMPREPLY < <(compgen -W "wt notify help" -- "$cur")
     return
   fi
   [[ ${words[1]} == wt ]] || return
