@@ -9,6 +9,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
     hl.exec_cmd("polkit-gnome-authentication-agent-1")
     hl.exec_cmd("mpdris2-rs -n")
+    hl.exec_cmd("~/usr/bin/hu notify") -- herdr agents -> desktop notifications
     -- hl.exec_cmd("while true; do mpdris2-rs; sleep 0.1; done")
 
     -- custom more modular shell setup
