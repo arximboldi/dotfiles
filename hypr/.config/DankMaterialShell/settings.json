@@ -237,8 +237,7 @@
     "hslHue": -1,
     "hslSaturation": 0,
     "hslLightness": 1,
-    "valid": true,
-    "rgba": -1
+    "valid": true
   },
   "systemMonitorCustomColor": {
     "r": 1,
@@ -251,8 +250,7 @@
     "hslHue": -1,
     "hslSaturation": 0,
     "hslLightness": 1,
-    "valid": true,
-    "rgba": -1
+    "valid": true
   },
   "builtInPluginSettings": {
     "dms_settings_search": {
