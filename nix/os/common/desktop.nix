@@ -416,6 +416,7 @@ in
       inconsolata
       cantarell-fonts
       jetbrains-mono
+      libertine
       nerd-fonts.jetbrains-mono
       nerd-fonts.zed-mono
       nerd-fonts.victor-mono

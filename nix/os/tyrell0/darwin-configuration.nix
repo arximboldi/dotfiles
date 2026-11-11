@@ -70,6 +70,7 @@ in
     fira-mono
     helvetica-neue-lt-std
     inconsolata
+    libertine
     # iosevka
     # iosevka-bin
     # jetbrains-mono
