@@ -35,6 +35,12 @@ in
 {
   nixpkgs.overlays = [ overlay ];
 
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "raskolnikov" ];
+  };
+
   environment.systemPackages = with pkgs; [
     # editors
     zile
@@ -47,8 +53,8 @@ in
     gedit
     unstable.zed-editor
 
-    _1password-gui
-    _1password-cli
+    #_1password-gui
+    #_1password-cli
     obsidian
 
     # languages, compilers, build systems
