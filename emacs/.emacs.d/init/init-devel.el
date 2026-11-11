@@ -416,4 +416,16 @@
       (goto-char beg)
       (indent-region beg end nil))))
 
+;; markdown-preview / markdown-export: a readable page (light or dark, as the
+;; system is), with the stylesheet inlined so exported files stand alone.
+(with-eval-after-load 'markdown-mode
+  (setq markdown-xhtml-header-content
+        (concat "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+                "<style>\n"
+                (with-temp-buffer
+                  (insert-file-contents
+                   (locate-file "markdown-preview.css" load-path))
+                  (buffer-string))
+                "</style>")))
+
 (provide 'init-devel)

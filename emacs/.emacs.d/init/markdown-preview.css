@@ -1,0 +1,65 @@
+/* Style for markdown-mode's preview/export (see init-devel.el). */
+
+:root {
+  color-scheme: light dark;
+  --fg: #1f2328; --muted: #59636e; --bg: #ffffff;
+  --code-bg: #f6f8fa; --border: #d1d9e0; --link: #0969da;
+  --kw: #cf222e; --st: #0a3069; --co: #59636e; --fn: #8250df; --dt: #953800;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #f8f8f2; --muted: #a0a4b8; --bg: #282a36;
+    --code-bg: #21222c; --border: #44475a; --link: #8be9fd;
+    --kw: #ff79c6; --st: #f1fa8c; --co: #6272a4; --fn: #50fa7b; --dt: #bd93f9;
+  }
+}
+
+html { background: var(--bg); }
+body {
+  max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem;
+  font: 17px/1.65 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--fg); background: var(--bg);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; margin: 2em 0 0.6em; font-weight: 650; }
+h1 { font-size: 2em; margin-top: 0.5em; }
+h2 { font-size: 1.45em; padding-bottom: 0.3em; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.2em; }
+h4, h5, h6 { font-size: 1em; }
+p, ul, ol, dl, table, blockquote, pre { margin: 0 0 1.1em; }
+li + li, li > ul, li > ol { margin-top: 0.3em; }
+ul, ol { padding-left: 1.6em; }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 2.5em 0; }
+img { max-width: 100%; }
+
+blockquote {
+  margin-left: 0; padding: 0.1em 1em; color: var(--muted);
+  border-left: 0.25em solid var(--border);
+}
+
+code, pre {
+  font: 0.88em/1.5 "Iosevka", "JetBrains Mono", ui-monospace, monospace;
+}
+code { background: var(--code-bg); padding: 0.15em 0.35em; border-radius: 5px; }
+pre {
+  background: var(--code-bg); padding: 0.9em 1.1em; border-radius: 8px;
+  overflow-x: auto; border: 1px solid var(--border);
+}
+pre code { background: none; padding: 0; font-size: 1em; }
+pre code a[aria-hidden] { display: none; } /* pandoc's line anchors */
+
+table { border-collapse: collapse; display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--border); padding: 0.4em 0.8em; }
+th { background: var(--code-bg); font-weight: 600; }
+
+/* pandoc syntax highlighting classes */
+.kw, .cf, .im { color: var(--kw); }
+.st, .ch, .ss, .vs { color: var(--st); }
+.co, .do, .an, .cv, .in { color: var(--co); font-style: italic; }
+.fu { color: var(--fn); }
+.dt, .dv, .bn, .fl, .cn, .bu { color: var(--dt); }
+.op { color: var(--muted); }
