@@ -65,7 +65,7 @@ alias glsignore="git ls-files -v | grep \"^[[:lower:]]\""
 
 # emacs
 if [ "$(uname)" == "Darwin" ]; then
-    alias ee="emacsclient -n"
+    alias e="emacsclient -n"
 else
     # Emacs is a Wayland window, which wmctrl can't see: hyprfocus first.
     function raise_emacs() {
@@ -73,8 +73,8 @@ else
     }
     function toemacs() { "$@" && raise_emacs; }
     # Open in the existing Emacs window, or a new one when there is none.
-    unalias ee 2> /dev/null
-    function ee() {
+    unalias e 2> /dev/null
+    function e() {
         local frames
         frames=$(emacsclient -e '(length (filtered-frame-list (quote display-graphic-p)))' 2> /dev/null)
         if [ "${frames:-0}" -gt 0 ]; then
@@ -84,7 +84,7 @@ else
         fi
     }
 fi
-alias e="emacsclient -t"
+alias et="emacsclient -t"
 alias ew="emacsclient -n -c"
 alias se="SUDO_EDITOR='emacsclient -t' sudoedit"
 alias see="SUDO_EDITOR='emacsclient' toemacs sudoedit -b $*"
