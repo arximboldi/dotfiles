@@ -1,4 +1,6 @@
-/* Style for markdown-mode's preview/export (see init-devel.el). */
+/* Style for markdown-mode's preview/export (see init-devel.el).
+   Fonts as in the immer docs (sinusoid.es/immer): Linux Libertine,
+   Source Sans Pro, Inconsolata; all in nix/os fonts.packages. */
 
 :root {
   color-scheme: light dark;
@@ -17,14 +19,14 @@
 html { background: var(--bg); }
 body {
   max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem;
-  font: 18px/1.65 "Charter", "Source Serif 4", "Literata", Georgia, "Noto Serif", serif;
+  font: 19px/1.55 "Linux Libertine O", "Linux Libertine", "Source Serif Pro", Georgia, serif;
   color: var(--fg); background: var(--bg);
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.25; margin: 2em 0 0.6em; font-weight: 650;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.25; margin: 2em 0 0.6em; font-weight: 600;
+  font-family: "Source Sans Pro", "Source Sans 3", "Open Sans", Helvetica, Arial, sans-serif;
 }
 h1 { font-size: 2em; margin-top: 0.5em; }
 h2 { font-size: 1.45em; padding-bottom: 0.3em; border-bottom: 1px solid var(--border); }
@@ -45,7 +47,7 @@ blockquote {
 }
 
 code, pre {
-  font: 0.88em/1.5 "Iosevka", "JetBrains Mono", ui-monospace, monospace;
+  font: 0.85em/1.5 "Inconsolata", "Iosevka", ui-monospace, monospace;
 }
 code { background: var(--code-bg); padding: 0.15em 0.35em; border-radius: 5px; }
 pre {
@@ -61,7 +63,7 @@ table {
   /* !important: pandoc sets width:100% and column percentages on wide tables */
   width: max-content !important; max-width: min(calc(100% + 8rem), calc(100vw - 2rem));
   margin-left: 50%; transform: translateX(-50%);
-  font: 0.85em/1.45 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font: 0.85em/1.45 "Source Sans Pro", "Source Sans 3", "Open Sans", Helvetica, Arial, sans-serif;
 }
 table col { width: auto !important; }
 th, td { border: 1px solid var(--border); padding: 0.4em 0.8em; }
