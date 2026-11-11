@@ -49,8 +49,8 @@ blockquote {
   border-left: 0.25em solid var(--border);
 }
 
-code, pre {
-  font: 17px/23px "Iosevka", "Iosevka Nerd Font", ui-monospace, monospace;
+code, pre, tt, kbd, samp {
+  font: 15px/21px "Iosevka", "Iosevka Nerd Font", ui-monospace, monospace;
 }
 code { background: var(--code-bg); padding: 0.15em 0.35em; border-radius: 5px; }
 pre {
