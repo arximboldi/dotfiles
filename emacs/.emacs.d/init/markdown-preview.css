@@ -17,44 +17,53 @@
 }
 
 html { background: var(--bg); }
+/* Sizes and spacing follow the immer docs: 17px/1.5 text in an 810px
+   column, normal-weight headings 34/28/24/20px, 10px between blocks. */
 body {
-  max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem;
-  font: 19px/1.55 "Linux Libertine O", "Linux Libertine", "Source Serif Pro", Georgia, serif;
+  max-width: 810px; margin: 0 auto; padding: 40px 45px 80px;
+  font: 17px/1.5 "Linux Libertine O", "Linux Libertine", "Source Serif Pro", Georgia, serif;
   color: var(--fg); background: var(--bg);
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
+@media (max-width: 600px) { body { padding: 24px 20px 60px; } }
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.25; margin: 2em 0 0.6em; font-weight: 600;
+  line-height: 1.1; padding: 0; font-weight: normal;
   font-family: "Source Sans Pro", "Source Sans 3", "Open Sans", Helvetica, Arial, sans-serif;
 }
-h1 { font-size: 2em; margin-top: 0.5em; }
-h2 { font-size: 1.45em; padding-bottom: 0.3em; border-bottom: 1px solid var(--border); }
-h3 { font-size: 1.2em; }
-h4, h5, h6 { font-size: 1em; }
-p, ul, ol, dl, table, blockquote, pre { margin: 0 0 1.1em; }
-li + li, li > ul, li > ol { margin-top: 0.3em; }
-ul, ol { padding-left: 1.6em; }
+h1, h2, h3 { margin: 30px 0 20px; }
+h1 { font-size: 38px; font-weight: bold; margin-top: 0; }
+h2 { font-size: 34px; padding: .2em 0; border-bottom: 1px solid var(--border); }
+h3 { font-size: 28px; margin-top: 35px; }
+h4 { font-size: 24px; margin: 30px 0 10px; }
+h5 { font-size: 20px; margin: 25px 0 10px; }
+h6 { font-size: 17px; margin: 20px 0 10px; }
+p, ul, ol, dl, table { margin: 0 0 10px; }
+ul, ol { padding-left: 40px; }
+li > ul, li > ol { margin-bottom: 0; }
+dl dd { margin: 3px 0 10px 30px; }
 
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
-hr { border: 0; border-top: 1px solid var(--border); margin: 2.5em 0; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 20px 0; }
 img { max-width: 100%; }
 
 blockquote {
-  margin-left: 0; padding: 0.1em 1em; color: var(--muted);
-  border-left: 0.25em solid var(--border);
+  margin: 20px 0; padding: 15px 20px; color: var(--muted);
+  border-left: 3px solid var(--border);
 }
+blockquote > :last-child { margin-bottom: 0; }
 
 code, pre {
-  font: 0.85em/1.5 "Iosevka", "Iosevka Nerd Font", ui-monospace, monospace;
+  font-family: "Iosevka", "Iosevka Nerd Font", ui-monospace, monospace;
+  font-size: 17px; line-height: 23px;
 }
-code { background: var(--code-bg); padding: 0.15em 0.35em; border-radius: 5px; }
+code { background: var(--code-bg); padding: 0.1em 0.3em; border-radius: 4px; }
 pre {
-  background: var(--code-bg); padding: 0.9em 1.1em; border-radius: 8px;
-  overflow-x: auto; border: 1px solid var(--border);
+  background: var(--code-bg); padding: 14px 20px; margin: 20px 0;
+  border-radius: 6px; overflow-x: auto; border: 1px solid var(--border);
 }
-pre code { background: none; padding: 0; font-size: 1em; }
+pre code { background: none; padding: 0; }
 pre code a[aria-hidden] { display: none; } /* pandoc's line anchors */
 
 /* Tables: smaller, centred, and wide ones may spill up to 4rem past each margin. */
@@ -63,10 +72,10 @@ table {
   /* !important: pandoc sets width:100% and column percentages on wide tables */
   width: max-content !important; max-width: min(calc(100% + 8rem), calc(100vw - 2rem));
   margin-left: 50%; transform: translateX(-50%);
-  font: 0.85em/1.45 "Source Sans Pro", "Source Sans 3", "Open Sans", Helvetica, Arial, sans-serif;
+  font: 15px/1.4 "Source Sans Pro", "Source Sans 3", "Open Sans", Helvetica, Arial, sans-serif;
 }
 table col { width: auto !important; }
-th, td { border: 1px solid var(--border); padding: 0.4em 0.8em; }
+th, td { border: 1px solid var(--border); padding: 6px 12px; }
 th { background: var(--code-bg); font-weight: 600; }
 
 /* pandoc syntax highlighting classes */
