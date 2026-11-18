@@ -6,6 +6,7 @@
     "commit": "",
     "pr": ""
   },
+  "model": "fable",
   "hooks": {
     "Stop": [
       {
@@ -34,6 +35,12 @@
     "clangd-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true
   },
+  "modelSettings": {
+    "claude-fable-5-2": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "tui": "fullscreen"
 }
