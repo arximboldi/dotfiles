@@ -363,11 +363,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795008625,
-        "narHash": "sha256-pjVIRf5uqP2wVXXbKxx2dHhP7RNLoSINEN/ibgTzS9c=",
+        "lastModified": 1795011403,
+        "narHash": "sha256-wuDkVLrGESDx6g6YKGKELXykgt5K6JmjQbjrwXHWuNA=",
         "owner": "arximboldi",
         "repo": "media-logger",
-        "rev": "fa699efad16f87af0acc39b341e9a83777ee729e",
+        "rev": "937c5b8cd0e6cbb64df1aef442e4d6e462b46416",
         "type": "github"
       },
       "original": {
