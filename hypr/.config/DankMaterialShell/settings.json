@@ -1,12 +1,20 @@
 {
   "currentThemeName": "custom",
-  "currentThemeCategory": "custom",
+  "currentThemeCategory": "registry",
   "customThemeFile": "/home/raskolnikov/.config/DankMaterialShell/themes/catppuccin/theme.json",
   "registryThemeVariants": {
     "rosePine": "rosePine",
     "catppuccin": {
-      "flavor": "mocha",
-      "accent": "mauve"
+      "dark": {
+        "flavor": "mocha",
+        "accent": "mauve"
+      }
+    },
+    "detroit87": {
+      "dark": {
+        "flavor": "ultra",
+        "accent": "nitro"
+      }
     }
   },
   "popupTransparency": 0.6,
@@ -237,7 +245,8 @@
     "hslHue": -1,
     "hslSaturation": 0,
     "hslLightness": 1,
-    "valid": true
+    "valid": true,
+    "rgba": -1
   },
   "systemMonitorCustomColor": {
     "r": 1,
@@ -250,7 +259,8 @@
     "hslHue": -1,
     "hslSaturation": 0,
     "hslLightness": 1,
-    "valid": true
+    "valid": true,
+    "rgba": -1
   },
   "builtInPluginSettings": {
     "dms_settings_search": {
