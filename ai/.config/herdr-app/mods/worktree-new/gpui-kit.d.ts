@@ -22197,10 +22197,11 @@ declare module "herdr" {
     stderr: string;
   }
 
-  /** Runs a program with the user's real environment (HOME, PATH, auth). 30 s limit, 8 MiB output.
+  /** Runs a program with the user's real environment (HOME, PATH, auth). 8 MiB output.
+   *  `timeout`: milliseconds, defaults to 30,000, capped at 600,000 (10 minutes).
    *  `on`: on that machine (a space's `machine`) through herdr-core, its home by default.
    *  Rejects when it can't start (not installed, no such folder, the machine is unreachable). */
-  export function exec(command: string, args?: string[], options?: { cwd?: string; on?: string | null }): Promise<ExecResult>;
+  export function exec(command: string, args?: string[], options?: { cwd?: string; on?: string | null; timeout?: number }): Promise<ExecResult>;
 
   /** Runs `hc` (herdr-core) with the given arguments. Add "--json" for machine output. */
   export function hc(args: string[]): Promise<ExecResult>;
@@ -22219,7 +22220,8 @@ declare module "herdr" {
 
   /** The agents people can start from a menu (entries with `run` in programs.json), most picked
    *  first, and whether each is installed: asked of the shell agents start in (on another machine,
-   *  `on`, its `sh`), at most once a minute per machine. Start one with its `run` as `argv`. */
+   *  `on`, its login/interactive shell when supported), at most once a minute per machine.
+   *  Start one with its `run` as `argv`. */
   export function knownAgents(options?: { on?: string | null }): Promise<(Program & { run: string[]; installed: boolean })[]>;
 
   /** Opens the system's folder picker (this machine). Resolves with the chosen folder, or null
@@ -22244,13 +22246,15 @@ declare module "herdr" {
    *   tab.close {id?}, tab.rename {id?, name}, tab.move {id, index}, tab.select {index | id},
    *   tab.next, tab.prev.
    * Panes: pane.split {direction: "right" | "down", pane?}, pane.close {pane?}, pane.zoom {pane?},
-   *   pane.focus {pane | terminal}, pane.go {direction}, pane.swap {direction}. Pane menus get target { pane, terminal }.
+   *   pane.focus {pane | terminal}, pane.go {direction}, pane.swap {pane?, direction | target}.
+   *   Pane menus get target { pane, terminal }.
    * Terminals: terminal.open {argv?, folder?, place?: "tab" | "right" | "down"}, terminal.kill {terminal},
    *   terminal.keep {terminal, place?} (a running one without a pane, e.g. a sub-agent, gets one),
    *   terminal.park {terminal} (its pane goes, it keeps running; the menu's "Send back"),
    *   terminal.peek {terminal} (peek over the tab, with keep-as-tab and close),
    *   terminal.show {terminal?, pane?} (shown in the pane for now, in place of its own), terminal.copy, terminal.paste,
    *   terminal.right_click {to: "program" | "menu", terminal?} (right-clicks to a program that takes the mouse; Shift: the menu).
+   *   terminal.scroll {lines | pages | to: "top" | "bottom", terminal?} (Herdr's view of the history: negative goes up; pages may be fractional).
    * Agents: agent.next, agent.prev (the agents list's order), agent.focus {terminal} (sub-agents too).
    * Layout (the shown layout's nodes by id): layout.toggle|show|hide {id}, layout.resize {id, px | weight},
    *   layout.select {stack, child}, layout.set {layout} (personal trees; shipped layouts: click/look fields only), layout.switch {name?} (no name: the next one).
@@ -22350,7 +22354,8 @@ declare module "herdr" {
     tab: string;
     tab_index: number;
     tab_name: string;
-    /** "done" means it finished while you weren't looking; it becomes "idle" once you look. */
+    /** "done" means it finished while you weren't looking; it becomes "idle" once you look
+     *  (here or on another Herdr client). */
     status: Status;
     /** What the agent reported (OSC 7501 `app`), e.g. "claude-code", "pi", "codex". */
     app: string | null;
@@ -22359,6 +22364,8 @@ declare module "herdr" {
     title: string;
     /** Higher = changed more recently. */
     seq: number;
+    /** Pinned with `terminal.pin`, on any Herdr client. */
+    pinned: boolean;
     focused: boolean;
   }
 
@@ -22406,6 +22413,9 @@ declare module "herdr" {
    *  `terminal` and `cwd` describe it; `pane` and `shown` are null, not its source pane.
    *  Implicit pane split/close/zoom/go/swap and terminal.show fail in that case, as do
    *  terminal.open/keep with place right/down. An explicit pane id targets a model pane.
+   *  A terminal in a window (openOverlay with a layout) that has the keyboard is reported
+   *  the same way (`pane` and `shown` null); implicit pane commands still act on the
+   *  focused pane under the window.
    *  pane.focus {terminal} prefers the first visible layout terminal block, then a model pane.
    *  `shown`: terminal.show replacement, if any. `agent`: the agent an agent block shows.
    *  `terminal` is null for mod panes. Live. */
@@ -22579,14 +22589,20 @@ declare module "herdr" {
 
   /**
    * Waits for the next key command for this mod ("alt-s": "<mod>:<command>" in keys.json).
+   * With "focusable": true in mod.json, pane.go can move onto this copy and send "focus".
+   * Focus your own handle then (this.handle.focus()) and handle keys with on_key_down.
+   * The copy gets "focus" again when a popup over it closes. Leave with pane.go.
    *   cx.spawn(async (cx) => { for (;;) { const c = await nextCommand(); ...; cx.notify(); } });
    */
   export function nextCommand(): Promise<string>;
 
   /**
-   * Waits for the next changes under a folder (recursive) and returns the changed paths
-   * (absolute). Changes that came since the last call return at once, so none are missed;
-   * a save's events come as one batch. One OS watcher per folder, shared by every mod.
+   * Waits for changes under a folder and returns absolute paths in batches.
+   * On Linux, Git-ignored directories and Git's object database are skipped; trees
+   * above 4096 non-ignored directories reject the watch, so use a timer fallback.
+   * macOS and Windows watch recursively, including ignored directories.
+   * Pending paths are bounded: a batch containing the root means refresh everything.
+   * Shared by every mod. Files also refreshes on its 10-second timer.
    *   cx.spawn(async (cx) => { for (;;) { await watchFolder(dir); this.reload(); cx.notify(); } });
    * Watch what you show, not a whole home folder (node_modules is a lot of events).
    */
