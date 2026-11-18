@@ -78,6 +78,7 @@ in
   services.media-logger = {
     enable = true;
     logsRoot = "%h/sync/doc/media-logs";   # systemd specifiers expand
+    ignoreStreams = [ "telegram" ];
   };
 
   environment.systemPackages = with pkgs; [
